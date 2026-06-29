@@ -3,6 +3,7 @@ import { useLearningStore } from '../store/learningStore';
 import { useAuthStore } from '../store/authStore';
 import { ShieldAlert, BarChart3, Plus, Trash2, CheckCircle2, ListFilter, AlertCircle, BookOpen, LayoutList, HelpCircle } from 'lucide-react';
 import { Lesson, Word } from '../types';
+import API_BASE_URL from '../config/api';
 
 export const AdminPanel: React.FC = () => {
   const { 
@@ -10,10 +11,18 @@ export const AdminPanel: React.FC = () => {
     allWords, lessons, fetchLessons, fetchAllWords, fetchAdminStats 
   } = useLearningStore();
 
-  const [activeAdminTab, setActiveAdminTab] = useState<'stats' | 'vocab' | 'lesson' | 'manage'>('stats');
+  const [activeAdminTab, setActiveAdminTab] = useState<'stats' | 'vocab' | 'lesson' | 'manage' | 'challenge'>('stats');
   const timerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [stats, setStats] = useState<any | null>(null);
   const [alertInfo, setAlertInfo] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  // Challenge edit state variables
+  const [selectedChallengeDay, setSelectedChallengeDay] = useState<number>(1);
+  const [dayDetails, setDayDetails] = useState<any | null>(null);
+  const [editingGrammarConcept, setEditingGrammarConcept] = useState('');
+  const [editingGrammarExplanation, setEditingGrammarExplanation] = useState('');
+  const [editingSpeakingPrompt, setEditingSpeakingPrompt] = useState('');
+  const [editingWritingPrompt, setEditingWritingPrompt] = useState('');
 
   // Form states: Vocab
   const [vocabForm, setVocabForm] = useState({
@@ -44,11 +53,35 @@ export const AdminPanel: React.FC = () => {
     }
   };
 
+  const loadChallengeDayForEdit = async (day: number) => {
+    try {
+      const token = useAuthStore.getState().token;
+      const res = await fetch(`${API_BASE_URL}/challenge/day/${day}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setDayDetails(data);
+        setEditingGrammarConcept(data.grammar.conceptName || '');
+        setEditingGrammarExplanation(data.grammar.explanation || '');
+        setEditingSpeakingPrompt(data.speaking.prompt || '');
+        setEditingWritingPrompt(data.writing.prompt || '');
+      }
+    } catch (err) {
+      console.error('Error fetching day details for admin edit:', err);
+    }
+  };
+
   useEffect(() => {
     loadAdminStats();
     fetchAllWords();
     fetchLessons('grammar'); // fetch preloaded lessons
-  }, [activeAdminTab]);
+    if (activeAdminTab === 'challenge') {
+      loadChallengeDayForEdit(selectedChallengeDay);
+    }
+  }, [activeAdminTab, selectedChallengeDay]);
 
   const triggerAlert = (type: 'success' | 'error', message: string) => {
     setAlertInfo({ type, message });
@@ -220,6 +253,14 @@ export const AdminPanel: React.FC = () => {
           }`}
         >
           Manage Content
+        </button>
+        <button
+          onClick={() => setActiveAdminTab('challenge')}
+          className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
+            activeAdminTab === 'challenge' ? 'bg-rose-600 text-white' : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          Challenge Days
         </button>
       </div>
 
@@ -618,6 +659,134 @@ export const AdminPanel: React.FC = () => {
             </div>
           </div>
 
+        </div>
+      )}
+
+      {/* 5. CHALLENGE DAYS EDIT PANEL */}
+      {activeAdminTab === 'challenge' && (
+        <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-6 text-left">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-850 pb-3">
+            <div>
+              <h3 className="font-bold text-slate-200 text-sm">Curriculum Challenge Days Management</h3>
+              <p className="text-[10px] text-slate-450 leading-normal mt-0.5">Select a day index to audit vocabulary sets and edit curriculum prompts.</p>
+            </div>
+            
+            <div className="flex items-center space-x-2 shrink-0">
+              <span className="text-xs text-slate-400">Select Day:</span>
+              <select
+                value={selectedChallengeDay}
+                onChange={e => setSelectedChallengeDay(parseInt(e.target.value))}
+                className="p-2 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+              >
+                {Array.from({ length: 15 }).map((_, i) => (
+                  <option key={i + 1} value={i + 1}>Day {i + 1}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {dayDetails ? (
+            <div className="space-y-5">
+              {/* Day Vocabulary items view */}
+              <div className="space-y-2">
+                <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block">Vocabulary Items Seeding (10 Words)</span>
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                  {dayDetails.vocabulary?.map((v: any, idx: number) => (
+                    <div key={idx} className="p-2 bg-slate-950/60 border border-slate-900 rounded-xl text-[10px] text-center">
+                      <p className="font-bold text-slate-205 truncate">{v.word}</p>
+                      <span className="text-slate-500 font-mono">{v.partOfSpeech}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Day details edit inputs */}
+              <div className="space-y-4 pt-2 border-t border-slate-850">
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase font-bold text-slate-400">Grammar Concept Title</label>
+                  <input
+                    type="text"
+                    value={editingGrammarConcept}
+                    onChange={e => setEditingGrammarConcept(e.target.value)}
+                    className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase font-bold text-slate-400">Grammar Explanation</label>
+                  <textarea
+                    value={editingGrammarExplanation}
+                    onChange={e => setEditingGrammarExplanation(e.target.value)}
+                    className="w-full h-24 p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none resize-none leading-relaxed"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase font-bold text-slate-400">Speaking Challenge Prompt</label>
+                  <input
+                    type="text"
+                    value={editingSpeakingPrompt}
+                    onChange={e => setEditingSpeakingPrompt(e.target.value)}
+                    className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase font-bold text-slate-400">Writing prompt</label>
+                  <input
+                    type="text"
+                    value={editingWritingPrompt}
+                    onChange={e => setEditingWritingPrompt(e.target.value)}
+                    className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Submit triggers */}
+              <button
+                type="button"
+                onClick={async () => {
+                  try {
+                    const token = useAuthStore.getState().token;
+                    const res = await fetch(`${API_BASE_URL}/challenge/day/${selectedChallengeDay}`, {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                      },
+                      body: JSON.stringify({
+                        grammar: {
+                          ...dayDetails.grammar,
+                          conceptName: editingGrammarConcept,
+                          explanation: editingGrammarExplanation
+                        },
+                        speaking: {
+                          ...dayDetails.speaking,
+                          prompt: editingSpeakingPrompt
+                        },
+                        writing: {
+                          ...dayDetails.writing,
+                          prompt: editingWritingPrompt
+                        }
+                      })
+                    });
+                    if (res.ok) {
+                      triggerAlert('success', `Day ${selectedChallengeDay} curriculum saved and updated successfully!`);
+                    } else {
+                      triggerAlert('error', 'Failed to update day details.');
+                    }
+                  } catch (err) {
+                    triggerAlert('error', 'Server offline or database error.');
+                  }
+                }}
+                className="w-full py-3 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-rose-600/20"
+              >
+                Save Day {selectedChallengeDay} Changes
+              </button>
+            </div>
+          ) : (
+            <div className="text-xs text-slate-500 py-3">Fetching day metadata...</div>
+          )}
         </div>
       )}
 

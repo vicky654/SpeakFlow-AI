@@ -14,6 +14,8 @@ const vocab_1 = __importDefault(require("./routes/vocab"));
 const learning_1 = __importDefault(require("./routes/learning"));
 const gamification_1 = __importDefault(require("./routes/gamification"));
 const admin_1 = __importDefault(require("./routes/admin"));
+const challenge_1 = __importDefault(require("./routes/challenge"));
+const aiCoach_1 = __importDefault(require("./routes/aiCoach"));
 // 1. Load Environment Variables first
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -73,6 +75,8 @@ app.use('/api/auth', auth_1.default);
 app.use('/api/vocab', vocab_1.default);
 app.use('/api/learning', learning_1.default);
 app.use('/api/gamification', gamification_1.default);
+app.use('/api/challenge', challenge_1.default);
+app.use('/api/ai-coach', aiCoach_1.default);
 app.use('/api/admin', admin_1.default);
 // Health check endpoint
 app.get('/health', (req, res) => {

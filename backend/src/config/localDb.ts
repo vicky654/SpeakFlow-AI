@@ -26,7 +26,7 @@ function writeData<T>(filename: string, data: T[]): void {
   }
 }
 
-type CollectionName = 'users' | 'vocabs' | 'lessons' | 'progress';
+type CollectionName = 'users' | 'vocabs' | 'lessons' | 'progress' | 'challengeDays' | 'challengeProgress';
 
 export const localDb = {
   readData,

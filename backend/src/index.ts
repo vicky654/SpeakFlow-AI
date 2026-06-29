@@ -10,6 +10,8 @@ import vocabRouter from './routes/vocab';
 import learningRouter from './routes/learning';
 import gamificationRouter from './routes/gamification';
 import adminRouter from './routes/admin';
+import challengeRouter from './routes/challenge';
+import aiCoachRouter from './routes/aiCoach';
 
 // 1. Load Environment Variables first
 dotenv.config();
@@ -83,6 +85,8 @@ app.use('/api/auth', authRouter);
 app.use('/api/vocab', vocabRouter);
 app.use('/api/learning', learningRouter);
 app.use('/api/gamification', gamificationRouter);
+app.use('/api/challenge', challengeRouter);
+app.use('/api/ai-coach', aiCoachRouter);
 app.use('/api/admin', adminRouter);
 
 // Health check endpoint

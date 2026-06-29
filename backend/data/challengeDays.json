@@ -1,0 +1,5730 @@
+[
+  {
+    "_id": "6a4264deb732781418c229d0",
+    "dayNumber": 1,
+    "vocabulary": [
+      {
+        "word": "Eloquent",
+        "pronunciation": "/ˈɛləkwənt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Fluent or persuasive in speaking or writing.",
+        "hindiMeaning": "सुवक्ता / वाक्पटु",
+        "synonyms": [
+          "Articulate",
+          "Expressive",
+          "Fluent"
+        ],
+        "antonyms": [
+          "Inarticulate",
+          "Stuttering",
+          "Mumbled"
+        ],
+        "exampleSentences": [
+          "His eloquent speech moved the clients.",
+          "An eloquent email secures deals."
+        ],
+        "commonMistakes": "Spelled as eloquant with an \"a\" sometimes. It is always ending with \"ent\".",
+        "memoryTrick": "Elephant speech - an elephant speaking so beautifully that everyone listens.",
+        "realLifeUsage": "Used to describe presenters, public speakers, or well-written pitch documents."
+      },
+      {
+        "word": "Resilience",
+        "pronunciation": "/rɪˈzɪlɪəns/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The capacity to recover quickly from difficulties.",
+        "hindiMeaning": "लचीलापन / जुझारूपन",
+        "synonyms": [
+          "Grit",
+          "Durability",
+          "Adaptability"
+        ],
+        "antonyms": [
+          "Fragility",
+          "Vulnerability",
+          "Weakness"
+        ],
+        "exampleSentences": [
+          "The engineering team showed great resilience during the server outage.",
+          "Nylon is notable for its resilience."
+        ],
+        "commonMistakes": "Spelled as resiliance with an \"a\". It is always ending with \"ence\".",
+        "memoryTrick": "Sounds like re-silence. When obstacles make noise, you recover quickly to quiet silence.",
+        "realLifeUsage": "Used in team retrospectives, HR reviews, and psychological growth seminars."
+      },
+      {
+        "word": "Pragmatic",
+        "pronunciation": "/præɡˈmætɪk/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Dealing with things realistically based on practical considerations.",
+        "hindiMeaning": "व्यवहारिक",
+        "synonyms": [
+          "Realistic",
+          "Sensible",
+          "Practical"
+        ],
+        "antonyms": [
+          "Idealistic",
+          "Impractical",
+          "Visionary"
+        ],
+        "exampleSentences": [
+          "We need a pragmatic solution to this bottleneck, not a theoretical framework.",
+          "He made a pragmatic choice."
+        ],
+        "commonMistakes": "Do not confuse with dogmatic (strict/stubborn belief).",
+        "memoryTrick": "Pragmatic sounds like practical magic. Practical actions work like magic.",
+        "realLifeUsage": "Commonly used in scoping technical requirements, budgeting, and planning sprints."
+      },
+      {
+        "word": "Procrastinate",
+        "pronunciation": "/prəʊˈkræstɪneɪt/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Delay or postpone action; put off doing something.",
+        "hindiMeaning": "टालमटोल करना",
+        "synonyms": [
+          "Delay",
+          "Postpone",
+          "Dither"
+        ],
+        "antonyms": [
+          "Accelerate",
+          "Expedite",
+          "Advance"
+        ],
+        "exampleSentences": [
+          "Do not procrastinate on writing the test cases.",
+          "I always procrastinate when cleaning."
+        ],
+        "commonMistakes": "Often misspelled as procrastnate. Do not forget the \"i\" after the \"t\".",
+        "memoryTrick": "Pro at putting things off until tomorrow (crast/crust in Latin).",
+        "realLifeUsage": "Used when discussing study plans, deliverables, and team productivity."
+      },
+      {
+        "word": "Meticulous",
+        "pronunciation": "/mɪˈtɪkjʊləs/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Showing great attention to detail; very careful and precise.",
+        "hindiMeaning": "अति सावधान / सूक्ष्म",
+        "synonyms": [
+          "Precise",
+          "Scrupulous",
+          "Detailed"
+        ],
+        "antonyms": [
+          "Careless",
+          "Sloppy",
+          "Negligent"
+        ],
+        "exampleSentences": [
+          "Our QA team is meticulous in finding edge-case bugs.",
+          "He kept meticulous records of files."
+        ],
+        "commonMistakes": "Pronounced as meti-cu-lous. Avoid writing meticules.",
+        "memoryTrick": "Meticulous has \"tick\". Check off every item with a \"tick\" because you are careful.",
+        "realLifeUsage": "Used in performance reviews, code styling standards, and accounting audits."
+      },
+      {
+        "word": "Collaborate",
+        "pronunciation": "/kəˈlæbəreɪt/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Work jointly on an activity or project.",
+        "hindiMeaning": "सहयोग करना",
+        "synonyms": [
+          "Cooperate",
+          "Work together",
+          "Concur"
+        ],
+        "antonyms": [
+          "Oppose",
+          "Part",
+          "Separate"
+        ],
+        "exampleSentences": [
+          "We need to collaborate with the design team.",
+          "They collaborated on the brand release."
+        ],
+        "commonMistakes": "Double \"l\" and single \"r\" - collaborate. Do not spell as colaborate.",
+        "memoryTrick": "Co-Labor-ate. Jointly laboring or working together to achieve a goal.",
+        "realLifeUsage": "Common in remote work setups, meeting scripts, and task cards."
+      },
+      {
+        "word": "Assertive",
+        "pronunciation": "/əˈsɜːtɪv/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Having or showing a confident and forceful personality.",
+        "hindiMeaning": "निश्चयात्मक / दबंग",
+        "synonyms": [
+          "Confident",
+          "Decisive",
+          "Bold"
+        ],
+        "antonyms": [
+          "Passive",
+          "Shy",
+          "Timid"
+        ],
+        "exampleSentences": [
+          "Be assertive when negotiating your career salary.",
+          "She made an assertive argument."
+        ],
+        "commonMistakes": "Do not confuse with aggressive. Assertive is confident; aggressive is hostile.",
+        "memoryTrick": "Assert. Assuring your position with confidence.",
+        "realLifeUsage": "Common in self-growth programs, interview drills, and corporate leadership coaching."
+      },
+      {
+        "word": "Articulate",
+        "pronunciation": "/ɑːˈtɪkjʊlət/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Having or showing the ability to speak fluently and coherently.",
+        "hindiMeaning": "स्पष्ट / सुवक्ता",
+        "synonyms": [
+          "Eloquent",
+          "Fluent",
+          "Clear"
+        ],
+        "antonyms": [
+          "Inarticulate",
+          "Unclear",
+          "Mumbled"
+        ],
+        "exampleSentences": [
+          "An articulate engineer explains complex designs clearly.",
+          "She is articulate under pressure."
+        ],
+        "commonMistakes": "Avoid writing articulat without the ending \"e\".",
+        "memoryTrick": "Article-ate. Speaking so clearly it could be written directly as a news article.",
+        "realLifeUsage": "Used in speech evaluations, customer pitches, and manager reviews."
+      },
+      {
+        "word": "Comprehensive",
+        "pronunciation": "/ˌkɒmprɪˈhɛnsɪv/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Including all or nearly all elements or aspects of something.",
+        "hindiMeaning": "व्यापक / विस्तृत",
+        "synonyms": [
+          "Thorough",
+          "Complete",
+          "Exhaustive"
+        ],
+        "antonyms": [
+          "Partial",
+          "Selective",
+          "Limited"
+        ],
+        "exampleSentences": [
+          "We ran a comprehensive audit of the backend server.",
+          "The course is comprehensive."
+        ],
+        "commonMistakes": "Do not confuse with comprehensible (meaning easy to understand).",
+        "memoryTrick": "Comprehend everything. Covers all areas completely.",
+        "realLifeUsage": "Common in software audits, textbooks, and syllabus structures."
+      },
+      {
+        "word": "Alleviate",
+        "pronunciation": "/əˈliːvɪeɪt/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make (suffering, deficiency, or a problem) less severe.",
+        "hindiMeaning": "कम करना / शांत करना",
+        "synonyms": [
+          "Relieve",
+          "Ease",
+          "Mitigate"
+        ],
+        "antonyms": [
+          "Aggravate",
+          "Worsen",
+          "Intensify"
+        ],
+        "exampleSentences": [
+          "Caching will alleviate the query pressure on the database.",
+          "Take medicine to alleviate pain."
+        ],
+        "commonMistakes": "Double \"l\" and single \"v\" - alleviate. Not aleveate.",
+        "memoryTrick": "Sounds like elevation. Elevating your pain to rise above it and make it less severe.",
+        "realLifeUsage": "Used in system optimization scoping, healthcare, and customer conflict resolution."
+      }
+    ],
+    "grammar": {
+      "conceptName": "Parts of Speech Overview",
+      "explanation": "In English, words are categorized into eight primary parts of speech based on their function in a sentence: Nouns, Pronouns, Verbs, Adjectives, Adverbs, Prepositions, Conjunctions, and Interjections.",
+      "examples": [
+        "Noun: \"Vicky\" is a software developer.",
+        "Verb: She \"writes\" code daily.",
+        "Adjective: The project has a \"clean\" interface.",
+        "Adverb: The code runs \"extremely\" fast."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "Identify the noun in this sentence: \"The developer finished the product.\"",
+          "options": [
+            "finished",
+            "product",
+            "the",
+            "rapidly"
+          ],
+          "answer": "product",
+          "explanation": "Product is a noun (thing). Developer is also a noun, but not an option."
+        },
+        {
+          "question": "What part of speech is the word \"quickly\" in: \"She solved the query quickly\"?",
+          "options": [
+            "Noun",
+            "Verb",
+            "Adverb",
+            "Adjective"
+          ],
+          "answer": "Adverb",
+          "explanation": "Quickly is an adverb describing how the action (solved) was performed."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Introduce yourself as a software professional joining a team meeting.",
+      "sentencesToRead": [
+        "Hello everyone, I am delighted to collaborate with you.",
+        "I bring expertise in backend scoping and database structures.",
+        "I look forward to hitting our upcoming project milestones."
+      ],
+      "helperVocabulary": [
+        "Delighted",
+        "Collaborate",
+        "Milestones",
+        "Expertise"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A short monologue detailing a project sprint kickoff.",
+      "transcript": "Good morning team. Today we kickoff our sprint. Our focus is to alleviate page loading times by implementing custom caching. We need to be meticulous with review sessions to guarantee zero leaks. Let us collaborate and succeed.",
+      "fillInBlanks": [
+        {
+          "question": "Today we kickoff our ____.",
+          "answer": "sprint"
+        },
+        {
+          "question": "Our focus is to alleviate ____ times.",
+          "answer": "loading"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What optimization is proposed to speed up page loading times?",
+          "options": [
+            "Rebuilding servers",
+            "Implementing custom caching",
+            "Reducing user permissions",
+            "Rewriting databases"
+          ],
+          "answer": "Implementing custom caching"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Write an email introduction introducing yourself to a new overseas client.",
+      "placeholder": "Dear Client,\n\nI hope this email finds you well. My name is...",
+      "suggestedVocabulary": [
+        "Eloquent",
+        "Collaborate",
+        "Comprehensive"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is a synonym of \"Eloquent\"?",
+        "options": [
+          "Stuttering",
+          "Articulate",
+          "Timid",
+          "Mumbled"
+        ],
+        "answer": "Articulate",
+        "explanation": "Eloquent means fluent/persuasive, making Articulate the synonym."
+      },
+      {
+        "id": "q2",
+        "skillType": "vocab",
+        "question": "Select the antonym for \"Resilience\":",
+        "options": [
+          "Grit",
+          "Adaptability",
+          "Fragility",
+          "Durability"
+        ],
+        "answer": "Fragility",
+        "explanation": "Resilience is durability/grit; Fragility is weakness/vulnerability."
+      },
+      {
+        "id": "q3",
+        "skillType": "grammar",
+        "question": "Which word is a verb?",
+        "options": [
+          "Pragmatic",
+          "Alleviate",
+          "Meticulous",
+          "Resilience"
+        ],
+        "answer": "Alleviate",
+        "explanation": "Alleviate is an action (verb). The others are adjectives and nouns."
+      },
+      {
+        "id": "q4",
+        "skillType": "grammar",
+        "question": "In the sentence \"He is an eloquent speaker,\" what is the word \"speaker\"?",
+        "options": [
+          "Noun",
+          "Verb",
+          "Adjective",
+          "Adverb"
+        ],
+        "answer": "Noun",
+        "explanation": "Speaker is a person/thing (noun)."
+      },
+      {
+        "id": "q5",
+        "skillType": "listening",
+        "question": "Based on the listening transcript, what does the team want to ensure is at zero?",
+        "options": [
+          "Bugs",
+          "Leaks",
+          "Timeouts",
+          "Delays"
+        ],
+        "answer": "Leaks",
+        "explanation": "The transcript says: \"We need to be meticulous with review sessions to guarantee zero leaks.\""
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.824Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229d1",
+    "dayNumber": 2,
+    "vocabulary": [
+      {
+        "word": "Aptitude2",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition2",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency2",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish2",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze2",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize2",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten2",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate2",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish2",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent2",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Articles (A, An, The)",
+      "explanation": "Articles define nouns as specific or unspecific. \"A/An\" is indefinite (general), \"The\" is definite (specific). Use \"an\" before vowel sounds.",
+      "examples": [
+        "A project kickoff",
+        "An email query",
+        "The developer in charge"
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "___ query was resolved in 5 minutes.",
+          "options": [
+            "A",
+            "An",
+            "The",
+            "None"
+          ],
+          "answer": "The",
+          "explanation": "Refers to a specific query that was resolved."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Articles (A, An, The).",
+      "sentencesToRead": [
+        "I have practiced Articles (A, An, The) lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Articles (A, An, The) concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Articles (A, An, The), we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Articles (A, An, The) grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude2",
+        "Cognition2",
+        "Fluency2"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude2\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude2."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "___ query was resolved in 5 minutes.",
+        "options": [
+          "A",
+          "An",
+          "The",
+          "None"
+        ],
+        "answer": "The",
+        "explanation": "Refers to a specific query that was resolved."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish2\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish2."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.828Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229d2",
+    "dayNumber": 3,
+    "vocabulary": [
+      {
+        "word": "Aptitude3",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition3",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency3",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish3",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze3",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize3",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten3",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate3",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish3",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent3",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Present Simple Tense",
+      "explanation": "Present Simple describes routines, general truths, and habits. Use Verb+s/es for singular pronouns (he, she, it).",
+      "examples": [
+        "He reviews code every morning.",
+        "Earth revolves around the sun."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "She ___ to the client daily.",
+          "options": [
+            "speak",
+            "speaks",
+            "speaking",
+            "spoke"
+          ],
+          "answer": "speaks",
+          "explanation": "Singular pronoun takes verb+s/es."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Present Simple Tense.",
+      "sentencesToRead": [
+        "I have practiced Present Simple Tense lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Present Simple Tense concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Present Simple Tense, we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Present Simple Tense grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude3",
+        "Cognition3",
+        "Fluency3"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude3\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude3."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "She ___ to the client daily.",
+        "options": [
+          "speak",
+          "speaks",
+          "speaking",
+          "spoke"
+        ],
+        "answer": "speaks",
+        "explanation": "Singular pronoun takes verb+s/es."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish3\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish3."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.832Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229d3",
+    "dayNumber": 4,
+    "vocabulary": [
+      {
+        "word": "Aptitude4",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition4",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency4",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish4",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze4",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize4",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten4",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate4",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish4",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent4",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Present Continuous Tense",
+      "explanation": "Present Continuous describes actions occurring at the exact moment of speaking. Form: is/am/are + verb(ing).",
+      "examples": [
+        "We are hosting a retro session.",
+        "I am drafting a brief."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "They ___ planning the release pipeline.",
+          "options": [
+            "is",
+            "am",
+            "are",
+            "was"
+          ],
+          "answer": "are",
+          "explanation": "Plural pronoun they takes are."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Present Continuous Tense.",
+      "sentencesToRead": [
+        "I have practiced Present Continuous Tense lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Present Continuous Tense concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Present Continuous Tense, we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Present Continuous Tense grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude4",
+        "Cognition4",
+        "Fluency4"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude4\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude4."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "They ___ planning the release pipeline.",
+        "options": [
+          "is",
+          "am",
+          "are",
+          "was"
+        ],
+        "answer": "are",
+        "explanation": "Plural pronoun they takes are."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish4\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish4."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.835Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229d4",
+    "dayNumber": 5,
+    "vocabulary": [
+      {
+        "word": "Aptitude5",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition5",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency5",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish5",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze5",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize5",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten5",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate5",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish5",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent5",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Past Simple Tense",
+      "explanation": "Past Simple is used for completed actions in the past. Always uses the second form of the verb.",
+      "examples": [
+        "I wrote the report yesterday.",
+        "We completed the audit last week."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "The QA team ___ three critical bugs yesterday.",
+          "options": [
+            "finds",
+            "finding",
+            "found",
+            "will find"
+          ],
+          "answer": "found",
+          "explanation": "Yesterday demands past simple form (found)."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Past Simple Tense.",
+      "sentencesToRead": [
+        "I have practiced Past Simple Tense lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Past Simple Tense concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Past Simple Tense, we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Past Simple Tense grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude5",
+        "Cognition5",
+        "Fluency5"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude5\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude5."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "The QA team ___ three critical bugs yesterday.",
+        "options": [
+          "finds",
+          "finding",
+          "found",
+          "will find"
+        ],
+        "answer": "found",
+        "explanation": "Yesterday demands past simple form (found)."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish5\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish5."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.838Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229d5",
+    "dayNumber": 6,
+    "vocabulary": [
+      {
+        "word": "Aptitude6",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition6",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency6",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish6",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze6",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize6",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten6",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate6",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish6",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent6",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Past Continuous Tense",
+      "explanation": "Past Continuous describes actions that were ongoing in the past. Form: was/were + verb(ing).",
+      "examples": [
+        "I was coding when the power failed.",
+        "They were discussing budgets."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "We ___ waiting for the client feedback when they called.",
+          "options": [
+            "was",
+            "were",
+            "is",
+            "are"
+          ],
+          "answer": "were",
+          "explanation": "Plural subject \"we\" takes \"were\" in past continuous."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Past Continuous Tense.",
+      "sentencesToRead": [
+        "I have practiced Past Continuous Tense lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Past Continuous Tense concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Past Continuous Tense, we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Past Continuous Tense grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude6",
+        "Cognition6",
+        "Fluency6"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude6\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude6."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "We ___ waiting for the client feedback when they called.",
+        "options": [
+          "was",
+          "were",
+          "is",
+          "are"
+        ],
+        "answer": "were",
+        "explanation": "Plural subject \"we\" takes \"were\" in past continuous."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish6\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish6."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.841Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229d6",
+    "dayNumber": 7,
+    "vocabulary": [
+      {
+        "word": "Aptitude7",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition7",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency7",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish7",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze7",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize7",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten7",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate7",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish7",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent7",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Present Perfect Tense",
+      "explanation": "Present Perfect links the past with the present. Action completed but time not specified. Form: has/have + Verb(3rd form).",
+      "examples": [
+        "I have pushed the changes to main.",
+        "She has finished the design."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "She ___ already loaded the seed data.",
+          "options": [
+            "have",
+            "has",
+            "is",
+            "did"
+          ],
+          "answer": "has",
+          "explanation": "Singular \"she\" takes \"has\"."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Present Perfect Tense.",
+      "sentencesToRead": [
+        "I have practiced Present Perfect Tense lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Present Perfect Tense concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Present Perfect Tense, we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Present Perfect Tense grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude7",
+        "Cognition7",
+        "Fluency7"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude7\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude7."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "She ___ already loaded the seed data.",
+        "options": [
+          "have",
+          "has",
+          "is",
+          "did"
+        ],
+        "answer": "has",
+        "explanation": "Singular \"she\" takes \"has\"."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish7\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish7."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.845Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229d7",
+    "dayNumber": 8,
+    "vocabulary": [
+      {
+        "word": "Aptitude8",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition8",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency8",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish8",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze8",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize8",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten8",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate8",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish8",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent8",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Past Perfect Tense",
+      "explanation": "Past Perfect describes an action completed before another action in the past. Form: had + Verb(3rd form).",
+      "examples": [
+        "The server had crashed before we implemented caching.",
+        "I had written the report."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "The developers ___ finished the prototype when the specifications changed.",
+          "options": [
+            "have",
+            "had",
+            "were",
+            "did"
+          ],
+          "answer": "had",
+          "explanation": "Indicates action completed before another past event."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Past Perfect Tense.",
+      "sentencesToRead": [
+        "I have practiced Past Perfect Tense lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Past Perfect Tense concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Past Perfect Tense, we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Past Perfect Tense grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude8",
+        "Cognition8",
+        "Fluency8"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude8\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude8."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "The developers ___ finished the prototype when the specifications changed.",
+        "options": [
+          "have",
+          "had",
+          "were",
+          "did"
+        ],
+        "answer": "had",
+        "explanation": "Indicates action completed before another past event."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish8\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish8."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.851Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229d8",
+    "dayNumber": 9,
+    "vocabulary": [
+      {
+        "word": "Aptitude9",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition9",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency9",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish9",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze9",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize9",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten9",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate9",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish9",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent9",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Future Simple Tense",
+      "explanation": "Future Simple describes actions that will occur in the future. Form: will + Verb(1st form).",
+      "examples": [
+        "The client will approve the project.",
+        "We will release it tomorrow."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "We ___ sync the database registers next week.",
+          "options": [
+            "will",
+            "shall",
+            "are",
+            "going"
+          ],
+          "answer": "will",
+          "explanation": "Simple future uses \"will\"."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Future Simple Tense.",
+      "sentencesToRead": [
+        "I have practiced Future Simple Tense lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Future Simple Tense concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Future Simple Tense, we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Future Simple Tense grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude9",
+        "Cognition9",
+        "Fluency9"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude9\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude9."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "We ___ sync the database registers next week.",
+        "options": [
+          "will",
+          "shall",
+          "are",
+          "going"
+        ],
+        "answer": "will",
+        "explanation": "Simple future uses \"will\"."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish9\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish9."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.857Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229d9",
+    "dayNumber": 10,
+    "vocabulary": [
+      {
+        "word": "Aptitude10",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition10",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency10",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish10",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze10",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize10",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten10",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate10",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish10",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent10",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Future Continuous Tense",
+      "explanation": "Future Continuous describes ongoing future actions. Form: will be + verb(ing).",
+      "examples": [
+        "This time tomorrow, we will be presenting the demo.",
+        "They will be testing."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "At 10:00 AM, she ___ coding the dashboard.",
+          "options": [
+            "will",
+            "will be",
+            "is",
+            "shall"
+          ],
+          "answer": "will be",
+          "explanation": "Ongoing action in the future."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Future Continuous Tense.",
+      "sentencesToRead": [
+        "I have practiced Future Continuous Tense lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Future Continuous Tense concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Future Continuous Tense, we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Future Continuous Tense grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude10",
+        "Cognition10",
+        "Fluency10"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude10\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude10."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "At 10:00 AM, she ___ coding the dashboard.",
+        "options": [
+          "will",
+          "will be",
+          "is",
+          "shall"
+        ],
+        "answer": "will be",
+        "explanation": "Ongoing action in the future."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish10\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish10."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.863Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229da",
+    "dayNumber": 11,
+    "vocabulary": [
+      {
+        "word": "Aptitude11",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition11",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency11",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish11",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze11",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize11",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten11",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate11",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish11",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent11",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Modal Verbs (Can, Could, May, Might)",
+      "explanation": "Modal verbs express ability, permission, probability, or obligation. Do not change forms.",
+      "examples": [
+        "We can release today.",
+        "Could you check the logs?"
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "You ___ check the credentials before submitting.",
+          "options": [
+            "should",
+            "may",
+            "could",
+            "might"
+          ],
+          "answer": "should",
+          "explanation": "Expresses obligation or advice."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Modal Verbs (Can, Could, May, Might).",
+      "sentencesToRead": [
+        "I have practiced Modal Verbs (Can, Could, May, Might) lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Modal Verbs (Can, Could, May, Might) concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Modal Verbs (Can, Could, May, Might), we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Modal Verbs (Can, Could, May, Might) grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude11",
+        "Cognition11",
+        "Fluency11"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude11\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude11."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "You ___ check the credentials before submitting.",
+        "options": [
+          "should",
+          "may",
+          "could",
+          "might"
+        ],
+        "answer": "should",
+        "explanation": "Expresses obligation or advice."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish11\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish11."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.869Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229db",
+    "dayNumber": 12,
+    "vocabulary": [
+      {
+        "word": "Aptitude12",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition12",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency12",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish12",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze12",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize12",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten12",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate12",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish12",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent12",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Active & Passive Voice",
+      "explanation": "Active voice focuses on the doer (subject). Passive voice focuses on the receiver (object). Form: Object + was/is + past participle.",
+      "examples": [
+        "Active: \"Vicky wrote code.\"",
+        "Passive: \"Code was written by Vicky.\""
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "Identify the passive sentence:",
+          "options": [
+            "She built the UI.",
+            "The UI was built by her.",
+            "She is building the UI.",
+            "UI is coding."
+          ],
+          "answer": "The UI was built by her.",
+          "explanation": "Follows passive object-verb format."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Active & Passive Voice.",
+      "sentencesToRead": [
+        "I have practiced Active & Passive Voice lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Active & Passive Voice concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Active & Passive Voice, we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Active & Passive Voice grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude12",
+        "Cognition12",
+        "Fluency12"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude12\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude12."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "Identify the passive sentence:",
+        "options": [
+          "She built the UI.",
+          "The UI was built by her.",
+          "She is building the UI.",
+          "UI is coding."
+        ],
+        "answer": "The UI was built by her.",
+        "explanation": "Follows passive object-verb format."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish12\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish12."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.874Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229dc",
+    "dayNumber": 13,
+    "vocabulary": [
+      {
+        "word": "Aptitude13",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition13",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency13",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish13",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze13",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize13",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten13",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate13",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish13",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent13",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Relative Clauses (Who, Which, That)",
+      "explanation": "Relative clauses add detail to nouns. Use \"who\" for people, \"which\" for things, \"that\" for both.",
+      "examples": [
+        "The coder who fixed the bug.",
+        "The file which was corrupted."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "The manager ___ coordinates the sprint is Sarah.",
+          "options": [
+            "who",
+            "which",
+            "whom",
+            "where"
+          ],
+          "answer": "who",
+          "explanation": "Who is used to refer to people."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Relative Clauses (Who, Which, That).",
+      "sentencesToRead": [
+        "I have practiced Relative Clauses (Who, Which, That) lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Relative Clauses (Who, Which, That) concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Relative Clauses (Who, Which, That), we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Relative Clauses (Who, Which, That) grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude13",
+        "Cognition13",
+        "Fluency13"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude13\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude13."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "The manager ___ coordinates the sprint is Sarah.",
+        "options": [
+          "who",
+          "which",
+          "whom",
+          "where"
+        ],
+        "answer": "who",
+        "explanation": "Who is used to refer to people."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish13\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish13."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.879Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229dd",
+    "dayNumber": 14,
+    "vocabulary": [
+      {
+        "word": "Aptitude14",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition14",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency14",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish14",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze14",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize14",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten14",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate14",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish14",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent14",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Conditionals (Zero & First)",
+      "explanation": "Zero: General facts (If + present, present). First: Real future possibilities (If + present, will + verb).",
+      "examples": [
+        "If you heat ice, it melts.",
+        "If we cache, the server will load faster."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "If it rains, we ___ postpone the launch event.",
+          "options": [
+            "will",
+            "did",
+            "had",
+            "would"
+          ],
+          "answer": "will",
+          "explanation": "First conditional uses \"will\" for future result."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Conditionals (Zero & First).",
+      "sentencesToRead": [
+        "I have practiced Conditionals (Zero & First) lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Conditionals (Zero & First) concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Conditionals (Zero & First), we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Conditionals (Zero & First) grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude14",
+        "Cognition14",
+        "Fluency14"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude14\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude14."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "If it rains, we ___ postpone the launch event.",
+        "options": [
+          "will",
+          "did",
+          "had",
+          "would"
+        ],
+        "answer": "will",
+        "explanation": "First conditional uses \"will\" for future result."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish14\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish14."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.885Z"
+  },
+  {
+    "_id": "6a4264deb732781418c229de",
+    "dayNumber": 15,
+    "vocabulary": [
+      {
+        "word": "Aptitude15",
+        "pronunciation": "/ˈæptɪtjuːd/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A natural ability to do something.",
+        "hindiMeaning": "योग्यता",
+        "synonyms": [
+          "Ability",
+          "Talent",
+          "Skill"
+        ],
+        "antonyms": [
+          "Inability",
+          "Weakness",
+          "Lack"
+        ],
+        "exampleSentences": [
+          "He has an aptitude for languages.",
+          "Tech aptitude is critical."
+        ],
+        "commonMistakes": "Not attitude.",
+        "memoryTrick": "Apt + Altitude - high talent.",
+        "realLifeUsage": "Interviews"
+      },
+      {
+        "word": "Cognition15",
+        "pronunciation": "/kɒɡˈnɪʃ(ə)n/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The process of acquiring knowledge.",
+        "hindiMeaning": "अनुभूति / समझ",
+        "synonyms": [
+          "Perception",
+          "Reasoning",
+          "Insight"
+        ],
+        "antonyms": [
+          "Ignorance",
+          "Stupidity"
+        ],
+        "exampleSentences": [
+          "Cognition is human learning.",
+          "Cognitive loads are high."
+        ],
+        "commonMistakes": "Not recognition.",
+        "memoryTrick": "Cog in brain.",
+        "realLifeUsage": "Academics"
+      },
+      {
+        "word": "Fluency15",
+        "pronunciation": "/ˈfluːənsi/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "The quality of speaking easily and rapidly.",
+        "hindiMeaning": "प्रवाह",
+        "synonyms": [
+          "Articulateness",
+          "Eloquence",
+          "Flow"
+        ],
+        "antonyms": [
+          "Hesitation",
+          "Stuttering"
+        ],
+        "exampleSentences": [
+          "She speaks with fluency.",
+          "Daily drills ensure fluency."
+        ],
+        "commonMistakes": "Not fluent (noun).",
+        "memoryTrick": "Fluid flow.",
+        "realLifeUsage": "Coaching"
+      },
+      {
+        "word": "Establish15",
+        "pronunciation": "/ɪˈstæblɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Set up on a firm or permanent basis.",
+        "hindiMeaning": "स्थापित करना",
+        "synonyms": [
+          "Setup",
+          "Found",
+          "Create"
+        ],
+        "antonyms": [
+          "Destroy",
+          "Abolish"
+        ],
+        "exampleSentences": [
+          "We must establish clean standards.",
+          "He established the database."
+        ],
+        "commonMistakes": "Not stablish.",
+        "memoryTrick": "Table setup.",
+        "realLifeUsage": "Business"
+      },
+      {
+        "word": "Analyze15",
+        "pronunciation": "/ˈænəlaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Examine methodically for explanation.",
+        "hindiMeaning": "विश्लेषण करना",
+        "synonyms": [
+          "Inspect",
+          "Audit",
+          "Scrutinize"
+        ],
+        "antonyms": [
+          "Ignore",
+          "Synthesize"
+        ],
+        "exampleSentences": [
+          "Analyze the log outputs.",
+          "She analyzed code errors."
+        ],
+        "commonMistakes": "Spelled analyse in UK.",
+        "memoryTrick": "Anna-lies.",
+        "realLifeUsage": "Engineering"
+      },
+      {
+        "word": "Synthesize15",
+        "pronunciation": "/ˈsɪnθɪsaɪz/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Combine elements into a coherent whole.",
+        "hindiMeaning": "संश्लेषण करना",
+        "synonyms": [
+          "Combine",
+          "Integrate",
+          "Blend"
+        ],
+        "antonyms": [
+          "Separate",
+          "Deconstruct"
+        ],
+        "exampleSentences": [
+          "Synthesize findings into reports.",
+          "They synthesized files."
+        ],
+        "commonMistakes": "Not synthese.",
+        "memoryTrick": "Syn (together) + thesis.",
+        "realLifeUsage": "Writing"
+      },
+      {
+        "word": "Hasten15",
+        "pronunciation": "/ˈheɪs(ə)n/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Be quick to do something.",
+        "hindiMeaning": "जल्दी करना",
+        "synonyms": [
+          "Hurry",
+          "Accelerate",
+          "Expedite"
+        ],
+        "antonyms": [
+          "Delay",
+          "Slow"
+        ],
+        "exampleSentences": [
+          "Please hasten the delivery.",
+          "We hastened to resolve it."
+        ],
+        "commonMistakes": "Silent t.",
+        "memoryTrick": "Haste makes waste.",
+        "realLifeUsage": "Deliveries"
+      },
+      {
+        "word": "Advocate15",
+        "pronunciation": "/ˈædvəkət/",
+        "partOfSpeech": "Noun",
+        "level": "intermediate",
+        "englishMeaning": "A person who publicly supports a cause.",
+        "hindiMeaning": "वकील / समर्थक",
+        "synonyms": [
+          "Supporter",
+          "Defender",
+          "Proponent"
+        ],
+        "antonyms": [
+          "Opponent",
+          "Critic"
+        ],
+        "exampleSentences": [
+          "He is an advocate of clean CSS.",
+          "She advocated the redesign."
+        ],
+        "commonMistakes": "Advocat.",
+        "memoryTrick": "Ad-vote.",
+        "realLifeUsage": "Scoping"
+      },
+      {
+        "word": "Diminish15",
+        "pronunciation": "/dɪˈmɪnɪʃ/",
+        "partOfSpeech": "Verb",
+        "level": "intermediate",
+        "englishMeaning": "Make or become less.",
+        "hindiMeaning": "घटाना",
+        "synonyms": [
+          "Reduce",
+          "Shrink",
+          "Deplete"
+        ],
+        "antonyms": [
+          "Increase",
+          "Grow"
+        ],
+        "exampleSentences": [
+          "Errors diminish user trust.",
+          "The streak diminished."
+        ],
+        "commonMistakes": "Diminsh.",
+        "memoryTrick": "Mini size.",
+        "realLifeUsage": "Audits"
+      },
+      {
+        "word": "Benevolent15",
+        "pronunciation": "/bɪˈnɛvələnt/",
+        "partOfSpeech": "Adjective",
+        "level": "intermediate",
+        "englishMeaning": "Well meaning and kindly.",
+        "hindiMeaning": "परोपकारी",
+        "synonyms": [
+          "Kind",
+          "Generous",
+          "Altruistic"
+        ],
+        "antonyms": [
+          "Malevolent",
+          "Cruel"
+        ],
+        "exampleSentences": [
+          "The manager is benevolent.",
+          "Benevolent rewards cheer teams."
+        ],
+        "commonMistakes": "Benevolant.",
+        "memoryTrick": "Ben (good) + violent (not).",
+        "realLifeUsage": "Coaching"
+      }
+    ],
+    "grammar": {
+      "conceptName": "Conditionals (Second & Third)",
+      "explanation": "Second: Unlikely present/future (If + past, would + verb). Third: Past regrets (If + past perfect, would have + 3rd form).",
+      "examples": [
+        "If I had more time, I would write unit tests.",
+        "If they had seeded, it would have run."
+      ],
+      "interactiveQuiz": [
+        {
+          "question": "If we ___ checked the CORS options, the request would not have failed.",
+          "options": [
+            "had",
+            "have",
+            "were",
+            "did"
+          ],
+          "answer": "had",
+          "explanation": "Third conditional past clause uses past perfect."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Drill speaking expressions targeting: Conditionals (Second & Third).",
+      "sentencesToRead": [
+        "I have practiced Conditionals (Second & Third) lessons today.",
+        "The software compiler executes tasks dynamically.",
+        "Collaborate with stakeholders to unlock project budgets."
+      ],
+      "helperVocabulary": [
+        "Collaborate",
+        "Dynamic",
+        "Pacing"
+      ]
+    },
+    "listening": {
+      "audioPrompt": "A conversation discussing Conditionals (Second & Third) concepts.",
+      "transcript": "We need to follow strict grammar rules. Specifically, when we discuss Conditionals (Second & Third), we must be precise. Let us practice daily.",
+      "fillInBlanks": [
+        {
+          "question": "We discuss ____ structures.",
+          "answer": "grammar"
+        }
+      ],
+      "multipleChoice": [
+        {
+          "question": "What should we follow strictly?",
+          "options": [
+            "Coding layouts",
+            "Grammar rules",
+            "Streak timers",
+            "Preflight OPTIONS"
+          ],
+          "answer": "Grammar rules"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Draft a report incorporating Conditionals (Second & Third) grammar rules.",
+      "placeholder": "Write your text here...",
+      "suggestedVocabulary": [
+        "Aptitude15",
+        "Cognition15",
+        "Fluency15"
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "skillType": "vocab",
+        "question": "What is the meaning of \"Aptitude15\"?",
+        "options": [
+          "A natural ability to do something.",
+          "Postponing work",
+          "Being hostile",
+          "Slowly walking"
+        ],
+        "answer": "A natural ability to do something.",
+        "explanation": "English meaning of Aptitude15."
+      },
+      {
+        "id": "q2",
+        "skillType": "grammar",
+        "question": "If we ___ checked the CORS options, the request would not have failed.",
+        "options": [
+          "had",
+          "have",
+          "were",
+          "did"
+        ],
+        "answer": "had",
+        "explanation": "Third conditional past clause uses past perfect."
+      },
+      {
+        "id": "q3",
+        "skillType": "listening",
+        "question": "What is the goal of studying daily?",
+        "options": [
+          "To speak with fluency",
+          "To crash servers",
+          "To procrastinate",
+          "To print mock receipts"
+        ],
+        "answer": "To speak with fluency",
+        "explanation": "Daily drills guarantee fluency."
+      },
+      {
+        "id": "q4",
+        "skillType": "reading",
+        "question": "Which word is the antonym of \"Diminish15\"?",
+        "options": [
+          "Increase",
+          "Reduce",
+          "Collapse",
+          "Hasten"
+        ],
+        "answer": "Increase",
+        "explanation": "Antonym of Diminish15."
+      },
+      {
+        "id": "q5",
+        "skillType": "speaking",
+        "question": "To talk aloud is associated with which communication skill?",
+        "options": [
+          "Listening",
+          "Writing",
+          "Reading",
+          "Speaking"
+        ],
+        "answer": "Speaking",
+        "explanation": "Oral communication is speaking."
+      }
+    ],
+    "createdAt": "2026-06-29T12:28:14.892Z"
+  }
+]

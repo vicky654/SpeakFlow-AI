@@ -1,0 +1,200 @@
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useChallengeStore, IDayStatus } from '../store/challengeStore';
+import { Flame, Coins, Sparkles, Trophy, Lock, Play, CheckCircle2, Gift } from 'lucide-react';
+import confetti from 'canvas-confetti';
+
+export const ChallengeTimeline: React.FC = () => {
+  const { progress, fetchProgress, claimDailyChest } = useChallengeStore();
+  const navigate = useNavigate();
+  const [chestMessage, setChestMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchProgress();
+  }, [fetchProgress]);
+
+  const handleClaimChest = async () => {
+    const res = await claimDailyChest();
+    if (res) {
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+      setChestMessage('You unlocked the Daily Chest! Earned +50 XP and +20 Coins! 🎉');
+      setTimeout(() => setChestMessage(null), 5000);
+    }
+  };
+
+  const handleNodeClick = (dayNumber: number, status: string) => {
+    if (status === 'locked') {
+      alert('This day is locked. Finish the previous challenge day to unlock.');
+      return;
+    }
+    navigate(`/challenge/day/${dayNumber}`);
+  };
+
+  const today = new Date().toISOString().split('T')[0];
+  const canClaimChest = progress && progress.lastClaimedDailyChest !== today;
+
+  return (
+    <div className="space-y-6 select-none max-w-lg mx-auto pb-6">
+      {/* HEADER SECTION */}
+      <div className="space-y-1">
+        <h2 className="text-2xl font-extrabold text-white">15-Day Master Challenge</h2>
+        <p className="text-xs text-slate-400">Complete curriculum blocks sequentially to unlock fluency credentials.</p>
+      </div>
+
+      {/* STATS OVERVIEW CARD */}
+      <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 bg-gradient-to-r from-indigo-950/20 via-slate-900/60 to-purple-950/15 flex items-center justify-between">
+        <div className="flex items-center space-x-3.5">
+          <div className="p-3 bg-indigo-500/15 rounded-2xl text-indigo-405 shrink-0">
+            <Trophy className="w-6 h-6 animate-pulse text-indigo-400" />
+          </div>
+          <div className="min-w-0">
+            <h3 className="font-extrabold text-sm text-slate-200">Overall Progress</h3>
+            <p className="text-xs text-slate-400 font-bold">
+              {progress ? Math.round((progress.completedDays.length / 15) * 100) : 0}% Complete
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center space-x-4 text-xs font-bold text-slate-350">
+          <div className="flex items-center space-x-1">
+            <Flame className="w-4 h-4 text-orange-500 fill-current animate-pulse" />
+            <span>{progress?.longestStreak || 0} days</span>
+          </div>
+          <div className="flex items-center space-x-1">
+            <Coins className="w-4 h-4 text-amber-500 fill-current" />
+            <span>{progress?.coinsEarned || 0}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* DAILY CHEST CLAIM */}
+      {progress && (
+        <div className={`p-4 rounded-3xl border flex flex-col justify-between items-center text-center space-y-3.5 transition-all ${
+          canClaimChest 
+            ? 'bg-indigo-950/20 border-indigo-500/30 text-slate-200' 
+            : 'bg-slate-950/30 border-slate-900 text-slate-500 opacity-60'
+        }`}>
+          <div className="flex flex-col items-center space-y-1">
+            <Gift className={`w-8 h-8 ${canClaimChest ? 'text-indigo-400 animate-bounce' : 'text-slate-600'}`} />
+            <h4 className="font-extrabold text-xs text-slate-200">Daily Treasure Chest</h4>
+            <p className="text-[10px] text-slate-405 leading-normal">
+              {canClaimChest ? 'Claim +50 XP and +20 Coins daily reward bonus!' : 'Already claimed today. Chest resets tomorrow!'}
+            </p>
+          </div>
+          {canClaimChest && (
+            <button
+              onClick={handleClaimChest}
+              className="w-full py-2 bg-indigo-650 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md active:scale-95"
+            >
+              Unlock Treasure Chest
+            </button>
+          )}
+        </div>
+      )}
+
+      {chestMessage && (
+        <div className="p-3 bg-emerald-500/10 border border-emerald-500/25 rounded-2xl text-center text-xs text-emerald-400 font-semibold animate-pulse">
+          {chestMessage}
+        </div>
+      )}
+
+      {/* LUCKY SPIN MINI LINK */}
+      <div 
+        onClick={() => navigate('/lucky-spin')}
+        className="glass-card rounded-2xl p-4 border border-slate-250/10 dark:border-slate-800/80 cursor-pointer hover:border-indigo-500/30 active:scale-[0.99] transition-all flex items-center justify-between"
+      >
+        <div className="flex items-center space-x-3">
+          <span className="text-xl">🎡</span>
+          <div className="text-left">
+            <h4 className="font-extrabold text-xs text-slate-200">Lucky Spin Wheel</h4>
+            <p className="text-[10px] text-slate-500 leading-normal">Roll the wheel to win XP multipliers, badges, or coins.</p>
+          </div>
+        </div>
+        <span className="text-[10px] text-indigo-400 font-extrabold font-mono uppercase">Spin →</span>
+      </div>
+
+      {/* TIMELINE PATH (SEQUENTIAL NODES) */}
+      <div className="space-y-4 relative pl-8 border-l border-slate-900 my-4 ml-6 pt-2">
+        {Array.from({ length: 15 }).map((_, idx) => {
+          const dayNumber = idx + 1;
+          
+          // Determine status
+          let status: 'locked' | 'completed' | 'current' = 'locked';
+          if (progress) {
+            const statusObj = progress.dailyStatus[dayNumber];
+            if (statusObj) {
+              status = statusObj.status as 'locked' | 'completed' | 'current';
+            } else if (dayNumber === 1) {
+              status = 'current';
+            }
+          } else if (dayNumber === 1) {
+            status = 'current';
+          }
+
+          let nodeClass = 'bg-slate-950 border-slate-900 text-slate-650';
+          let ringClass = 'border-transparent';
+
+          if (status === 'completed') {
+            nodeClass = 'bg-emerald-600/15 border-emerald-500 text-emerald-400';
+          } else if (status === 'current') {
+            nodeClass = 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/20 scale-105';
+            ringClass = 'border-indigo-500/30 animate-ping';
+          }
+
+          return (
+            <div key={dayNumber} className="relative mb-6">
+              {/* Outer Pulsing Ring for Current Node */}
+              {status === 'current' && (
+                <div className={`absolute -left-[45px] top-1/2 -translate-y-1/2 w-11 h-11 rounded-full border-2 ${ringClass}`} />
+              )}
+
+              {/* Node Circle */}
+              <button
+                onClick={() => handleNodeClick(dayNumber, status)}
+                className={`absolute -left-[41px] top-1/2 -translate-y-1/2 w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all ${nodeClass}`}
+              >
+                {status === 'completed' ? (
+                  <CheckCircle2 className="w-4.5 h-4.5" />
+                ) : status === 'locked' ? (
+                  <Lock className="w-3.5 h-3.5 text-slate-600" />
+                ) : (
+                  <Play className="w-3.5 h-3.5 text-white ml-0.5 fill-current" />
+                )}
+              </button>
+
+              {/* Node Details Description */}
+              <div className="pl-4 text-left">
+                <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-500">Day {dayNumber}</span>
+                <h4 className={`font-extrabold text-xs ${status === 'locked' ? 'text-slate-550' : 'text-slate-200'}`}>
+                  {dayNumber === 1 ? 'Parts of Speech Overview' :
+                   dayNumber === 2 ? 'Articles (A, An, The)' :
+                   dayNumber === 3 ? 'Present Simple Tense' :
+                   dayNumber === 4 ? 'Present Continuous Tense' :
+                   dayNumber === 5 ? 'Past Simple Tense' :
+                   dayNumber === 6 ? 'Past Continuous Tense' :
+                   dayNumber === 7 ? 'Present Perfect Tense' :
+                   dayNumber === 8 ? 'Past Perfect Tense' :
+                   dayNumber === 9 ? 'Future Simple Tense' :
+                   dayNumber === 10 ? 'Future Continuous Tense' :
+                   dayNumber === 11 ? 'Modal Verbs (Can/Could)' :
+                   dayNumber === 12 ? 'Active & Passive Voice' :
+                   dayNumber === 13 ? 'Relative Clauses (Who/Which)' :
+                   dayNumber === 14 ? 'Conditionals (Zero/First)' :
+                   'Conditionals (Second/Third)'}
+                </h4>
+                <p className="text-[10px] text-slate-500 leading-normal mt-0.5">
+                  {status === 'completed' ? 'Challenge Day Fully Completed • 100%' :
+                   status === 'current' ? 'Available. Click to start practice modules' :
+                   'Prerequisite: complete previous days to unlock'}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};

@@ -21,6 +21,9 @@ import { AdminPanel } from './pages/AdminPanel';
 import { LearnHub } from './pages/LearnHub';
 import { PracticeHub } from './pages/PracticeHub';
 import { ProgressHub } from './pages/ProgressHub';
+import { ChallengeTimeline } from './pages/ChallengeTimeline';
+import { ChallengeDayDrill } from './pages/ChallengeDayDrill';
+import { LuckySpin } from './pages/LuckySpin';
 
 const ProtectedLayout: React.FC = () => {
   const token = useAuthStore(state => state.token);
@@ -88,7 +91,7 @@ const ProtectedLayout: React.FC = () => {
             <Route path="/practice" element={<PracticeHub />} />
             <Route path="/progress" element={<ProgressHub />} />
             
-            <Route path="/vocab" element={<Vocabulary />} />
+             <Route path="/vocab" element={<Vocabulary />} />
             <Route path="/game" element={<VocabGame />} />
             <Route path="/speaking" element={<SpeakingPractice />} />
             <Route path="/listening" element={<ListeningPractice />} />
@@ -97,6 +100,10 @@ const ProtectedLayout: React.FC = () => {
             <Route path="/grammar" element={<GrammarCourse />} />
             <Route path="/interview" element={<InterviewPrep />} />
             <Route path="/profile" element={<Profile />} />
+            
+            <Route path="/challenge" element={<ChallengeTimeline />} />
+            <Route path="/challenge/day/:dayNumber" element={<ChallengeDayDrill />} />
+            <Route path="/lucky-spin" element={<LuckySpin />} />
             
             {/* Guarded Admin panel route */}
             <Route 

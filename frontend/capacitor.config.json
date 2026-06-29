@@ -1,0 +1,6 @@
+{
+  "appId": "com.speakflow.app",
+  "appName": "SpeakFlow AI",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

@@ -1,9 +1,13 @@
 import bcrypt from 'bcryptjs';
 import { dbService } from './dbService';
 import { ILesson } from '../models/Lesson';
+import { seedChallengeDays } from './seedChallenge';
 
 export async function seedInitialData() {
   try {
+    // 0. Seed Challenge Days
+    await seedChallengeDays();
+
     // 1. Seed Users if empty
     const users = await dbService.users.getAll();
     if (users.length === 0) {

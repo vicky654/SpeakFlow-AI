@@ -6,8 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.seedInitialData = seedInitialData;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const dbService_1 = require("./dbService");
+const seedChallenge_1 = require("./seedChallenge");
 async function seedInitialData() {
     try {
+        // 0. Seed Challenge Days
+        await (0, seedChallenge_1.seedChallengeDays)();
         // 1. Seed Users if empty
         const users = await dbService_1.dbService.users.getAll();
         if (users.length === 0) {

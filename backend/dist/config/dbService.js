@@ -8,6 +8,8 @@ const User_1 = __importDefault(require("../models/User"));
 const Vocab_1 = __importDefault(require("../models/Vocab"));
 const Lesson_1 = __importDefault(require("../models/Lesson"));
 const Progress_1 = __importDefault(require("../models/Progress"));
+const ChallengeDay_1 = __importDefault(require("../models/ChallengeDay"));
+const ChallengeProgress_1 = __importDefault(require("../models/ChallengeProgress"));
 const db_1 = require("./db");
 const localDb_1 = require("./localDb");
 const mongoose_1 = __importDefault(require("mongoose"));
@@ -247,6 +249,115 @@ exports.dbService = {
             }
             const updated = await Progress_1.default.findOneAndUpdate({ userId, date }, { $set: progressData }, { new: true, upsert: true }).lean();
             return updated;
+        }
+    },
+    challengeDays: {
+        async findByDayNumber(dayNumber) {
+            if (db_1.useLocalDB) {
+                const days = localDb_1.localDb.getCollection('challengeDays');
+                return days.find(d => d.dayNumber === dayNumber) || null;
+            }
+            const result = await ChallengeDay_1.default.findOne({ dayNumber }).lean();
+            return result;
+        },
+        async create(dayData) {
+            if (db_1.useLocalDB) {
+                const days = localDb_1.localDb.getCollection('challengeDays');
+                const newDay = {
+                    _id: generateId(),
+                    dayNumber: dayData.dayNumber || 1,
+                    vocabulary: dayData.vocabulary || [],
+                    grammar: dayData.grammar || { conceptName: '', explanation: '', examples: [], interactiveQuiz: [] },
+                    speaking: dayData.speaking || { prompt: '', sentencesToRead: [], helperVocabulary: [] },
+                    listening: dayData.listening || { audioPrompt: '', transcript: '', fillInBlanks: [], multipleChoice: [] },
+                    writing: dayData.writing || { prompt: '', placeholder: '', suggestedVocabulary: [] },
+                    quiz: dayData.quiz || [],
+                    createdAt: new Date().toISOString(),
+                    ...dayData
+                };
+                days.push(newDay);
+                localDb_1.localDb.saveCollection('challengeDays', days);
+                return newDay;
+            }
+            const d = new ChallengeDay_1.default(dayData);
+            const saved = await d.save();
+            return saved.toObject();
+        },
+        async getAll() {
+            if (db_1.useLocalDB) {
+                return localDb_1.localDb.getCollection('challengeDays');
+            }
+            const result = await ChallengeDay_1.default.find().sort({ dayNumber: 1 }).lean();
+            return result;
+        },
+        async update(dayNumber, dayData) {
+            if (db_1.useLocalDB) {
+                const days = localDb_1.localDb.getCollection('challengeDays');
+                const idx = days.findIndex(d => d.dayNumber === dayNumber);
+                if (idx === -1)
+                    return null;
+                days[idx] = { ...days[idx], ...dayData };
+                localDb_1.localDb.saveCollection('challengeDays', days);
+                return days[idx];
+            }
+            const result = await ChallengeDay_1.default.findOneAndUpdate({ dayNumber }, { $set: dayData }, { new: true }).lean();
+            return result;
+        }
+    },
+    challengeProgress: {
+        async findByUserId(userId) {
+            if (db_1.useLocalDB) {
+                const progress = localDb_1.localDb.getCollection('challengeProgress');
+                return progress.find(p => p.userId === userId) || null;
+            }
+            const result = await ChallengeProgress_1.default.findOne({ userId }).lean();
+            return result;
+        },
+        async upsert(userId, progressData) {
+            if (db_1.useLocalDB) {
+                const progress = localDb_1.localDb.getCollection('challengeProgress');
+                const idx = progress.findIndex(p => p.userId === userId);
+                if (idx === -1) {
+                    const newProgress = {
+                        _id: generateId(),
+                        userId,
+                        currentDay: 1,
+                        completedDays: [],
+                        dailyStatus: {
+                            1: { status: 'current' }
+                        },
+                        answersSaved: {},
+                        xpEarned: 0,
+                        coinsEarned: 0,
+                        longestStreak: 0,
+                        luckySpinsLeftToday: 1,
+                        updatedAt: new Date().toISOString(),
+                        ...progressData
+                    };
+                    // Initialize locked days
+                    for (let d = 2; d <= 15; d++) {
+                        newProgress.dailyStatus[d] = { status: 'locked' };
+                    }
+                    progress.push(newProgress);
+                    localDb_1.localDb.saveCollection('challengeProgress', progress);
+                    return newProgress;
+                }
+                else {
+                    progress[idx] = { ...progress[idx], ...progressData, updatedAt: new Date().toISOString() };
+                    localDb_1.localDb.saveCollection('challengeProgress', progress);
+                    return progress[idx];
+                }
+            }
+            // Initialize default dailyStatus object structure for Mongoose
+            const defaultStatus = { 1: { status: 'current' } };
+            for (let d = 2; d <= 15; d++) {
+                defaultStatus[d] = { status: 'locked' };
+            }
+            const result = await ChallengeProgress_1.default.findOneAndUpdate({ userId }, {
+                $setOnInsert: { dailyStatus: defaultStatus },
+                $set: progressData
+            }, { new: true, upsert: true }).lean();
+            return result;
         }
     }
 };
