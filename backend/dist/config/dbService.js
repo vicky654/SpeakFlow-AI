@@ -22,14 +22,16 @@ exports.dbService = {
                 const users = localDb_1.localDb.getCollection('users');
                 return users.find(u => u.email.toLowerCase() === email.toLowerCase()) || null;
             }
-            return User_1.default.findOne({ email }).lean({ virtuals: true });
+            const result = await User_1.default.findOne({ email }).lean({ virtuals: true });
+            return result;
         },
         async findById(id) {
             if (db_1.useLocalDB) {
                 const users = localDb_1.localDb.getCollection('users');
                 return users.find(u => u._id === id) || null;
             }
-            return User_1.default.findById(id).lean({ virtuals: true });
+            const result = await User_1.default.findById(id).lean({ virtuals: true });
+            return result;
         },
         async create(userData) {
             if (db_1.useLocalDB) {
@@ -70,13 +72,15 @@ exports.dbService = {
                 localDb_1.localDb.saveCollection('users', users);
                 return users[idx];
             }
-            return User_1.default.findByIdAndUpdate(id, { $set: updateData }, { new: true }).lean();
+            const result = await User_1.default.findByIdAndUpdate(id, { $set: updateData }, { new: true }).lean();
+            return result;
         },
         async getAll() {
             if (db_1.useLocalDB) {
                 return localDb_1.localDb.getCollection('users');
             }
-            return User_1.default.find().lean();
+            const result = await User_1.default.find().lean();
+            return result;
         }
     },
     vocab: {
@@ -84,14 +88,16 @@ exports.dbService = {
             if (db_1.useLocalDB) {
                 return localDb_1.localDb.getCollection('vocabs');
             }
-            return Vocab_1.default.find().lean();
+            const result = await Vocab_1.default.find().lean();
+            return result;
         },
         async findById(id) {
             if (db_1.useLocalDB) {
                 const vocabs = localDb_1.localDb.getCollection('vocabs');
                 return vocabs.find(v => v._id === id) || null;
             }
-            return Vocab_1.default.findById(id).lean();
+            const result = await Vocab_1.default.findById(id).lean();
+            return result;
         },
         async create(vocabData) {
             if (db_1.useLocalDB) {
@@ -144,14 +150,16 @@ exports.dbService = {
             const query = { type };
             if (level)
                 query.level = level;
-            return Lesson_1.default.find(query).lean();
+            const result = await Lesson_1.default.find(query).lean();
+            return result;
         },
         async findById(id) {
             if (db_1.useLocalDB) {
                 const lessons = localDb_1.localDb.getCollection('lessons');
                 return lessons.find(l => l._id === id) || null;
             }
-            return Lesson_1.default.findById(id).lean();
+            const result = await Lesson_1.default.findById(id).lean();
+            return result;
         },
         async create(lessonData) {
             if (db_1.useLocalDB) {
@@ -195,19 +203,21 @@ exports.dbService = {
                 const prog = localDb_1.localDb.getCollection('progress');
                 return prog.find(p => p.userId === userId && p.date === date) || null;
             }
-            return Progress_1.default.findOne({ userId, date }).lean();
+            const result = await Progress_1.default.findOne({ userId, date }).lean();
+            return result;
         },
         async getHistory(userId) {
             if (db_1.useLocalDB) {
                 const prog = localDb_1.localDb.getCollection('progress');
                 return prog.filter(p => p.userId === userId).sort((a, b) => b.date.localeCompare(a.date));
             }
-            return Progress_1.default.find({ userId }).sort({ date: -1 }).lean();
+            const result = await Progress_1.default.find({ userId }).sort({ date: -1 }).lean();
+            return result;
         },
         async upsert(userId, date, progressData) {
             if (db_1.useLocalDB) {
                 const prog = localDb_1.localDb.getCollection('progress');
-                let idx = prog.findIndex(p => p.userId === userId && p.date === date);
+                const idx = prog.findIndex(p => p.userId === userId && p.date === date);
                 if (idx === -1) {
                     const newProgress = {
                         _id: generateId(),

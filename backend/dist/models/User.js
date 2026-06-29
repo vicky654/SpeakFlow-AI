@@ -40,7 +40,7 @@ const LevelProgressSchema = new mongoose_1.Schema({
     favorites: { type: [String], default: [] },
     completedLessons: { type: [String], default: [] }
 }, { _id: false });
-const UserSchema = new mongoose_1.Schema({
+const userSchemaDefinition = {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true, index: true },
     passwordHash: { type: String, required: true },
@@ -56,7 +56,8 @@ const UserSchema = new mongoose_1.Schema({
         professional: { type: LevelProgressSchema, default: () => ({}) }
     },
     createdAt: { type: String, default: () => new Date().toISOString() }
-}, { timestamps: false, toObject: { virtuals: true }, toJSON: { virtuals: true } });
+};
+const UserSchema = new mongoose_1.Schema(userSchemaDefinition, { timestamps: false, toObject: { virtuals: true }, toJSON: { virtuals: true } });
 // Virtuals for legacy fields
 UserSchema.virtual('xp')
     .get(function () {
