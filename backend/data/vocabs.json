@@ -1,0 +1,147 @@
+[
+  {
+    "_id": "6a421ae7a648b5104e2cb47e",
+    "word": "Confident",
+    "pronunciation": "/ˈkɒnfɪdənt/",
+    "hindiMeaning": "आत्मविश्वासी",
+    "englishMeaning": "Feeling or showing self-assurance and belief in one's own abilities.",
+    "partOfSpeech": "Adjective",
+    "synonyms": [
+      "Bold",
+      "Self-assured",
+      "Fearless",
+      "Assertive"
+    ],
+    "antonyms": [
+      "Shy",
+      "Nervous",
+      "Apprehensive",
+      "Timid"
+    ],
+    "exampleSentences": [
+      "She is confident during interview panels.",
+      "He spoke in a confident voice to the clients."
+    ],
+    "commonMistakes": "Don't confuse \"confident\" (sure of self) with \"confidant\" (a close friend to share secrets with).",
+    "memoryTrick": "Break it into \"Con\" + \"Fi\" (fidelity/trust) + \"Dent\". Think of a confident dentist who has full trust in fixing your teeth.",
+    "realLifeUsage": "Used extensively in professional workplaces, performance reviews, self-help books, and job interview settings.",
+    "audioUrl": "",
+    "createdAt": "2026-06-29T07:12:39.647Z"
+  },
+  {
+    "_id": "6a421ae7a648b5104e2cb47f",
+    "word": "Resilience",
+    "pronunciation": "/rɪˈzɪlɪəns/",
+    "hindiMeaning": "लचीलापन",
+    "englishMeaning": "The capacity to recover quickly from difficulties; toughness.",
+    "partOfSpeech": "Noun",
+    "synonyms": [
+      "Toughness",
+      "Flexibility",
+      "Adaptability",
+      "Grit"
+    ],
+    "antonyms": [
+      "Fragility",
+      "Vulnerability",
+      "Weakness",
+      "Rigidity"
+    ],
+    "exampleSentences": [
+      "Nylon is notable for its durability and resilience.",
+      "The team showed great resilience after losing the first game."
+    ],
+    "commonMistakes": "Do not write \"resiliance\" with an \"a\". It is always spelled with an \"e\" - \"resilience\".",
+    "memoryTrick": "Sounds like \"re-silence\". When obstacles make noise, you recover quickly to find your calm silence again.",
+    "realLifeUsage": "Discussed during team retro meetings, career growth reviews, and psychological discussions on stress management.",
+    "audioUrl": "",
+    "createdAt": "2026-06-29T07:12:39.650Z"
+  },
+  {
+    "_id": "6a421ae7a648b5104e2cb480",
+    "word": "Eloquent",
+    "pronunciation": "/ˈɛləkwənt/",
+    "hindiMeaning": "सुवक्ता / वाक्पटु",
+    "englishMeaning": "Fluent or persuasive in speaking or writing.",
+    "partOfSpeech": "Adjective",
+    "synonyms": [
+      "Articulate",
+      "Expressive",
+      "Persuasive",
+      "Fluent"
+    ],
+    "antonyms": [
+      "Inarticulate",
+      "Stuttering",
+      "Silent",
+      "Mumbled"
+    ],
+    "exampleSentences": [
+      "His eloquent speech moved the audience to tears.",
+      "An eloquent email can secure deals faster."
+    ],
+    "commonMistakes": "Avoid pronouncing it as \"elo-cunt\". The correct pronunciation ends with a soft \"kwent\".",
+    "memoryTrick": "Think of \"Elephant speech\" - an elephant speaking so beautifully that everyone listens in awe.",
+    "realLifeUsage": "Used to describe great speakers, politicians, writers, or well-written emails and proposals.",
+    "audioUrl": "",
+    "createdAt": "2026-06-29T07:12:39.651Z"
+  },
+  {
+    "_id": "6a421ae7a648b5104e2cb481",
+    "word": "Procrastinate",
+    "pronunciation": "/prəʊˈkræstɪneɪt/",
+    "hindiMeaning": "टालमटोल करना",
+    "englishMeaning": "Delay or postpone action; put off doing something.",
+    "partOfSpeech": "Verb",
+    "synonyms": [
+      "Delay",
+      "Postpone",
+      "Dither",
+      "Linger"
+    ],
+    "antonyms": [
+      "Accelerate",
+      "Expedite",
+      "Advance",
+      "Hasten"
+    ],
+    "exampleSentences": [
+      "If you procrastinate, you will miss the assignment deadline.",
+      "I always procrastinate when it comes to cleaning the room."
+    ],
+    "commonMistakes": "Often misspelled as \"procrastnate\". Do not miss the \"i\" after \"t\".",
+    "memoryTrick": "Pro-crast-inate. \"Pro\" at putting things off until \"tomorrow\" (crust/tomorrow in Latin).",
+    "realLifeUsage": "Often used when discussing time management, study habits, workflow struggles, and productivity.",
+    "audioUrl": "",
+    "createdAt": "2026-06-29T07:12:39.653Z"
+  },
+  {
+    "_id": "6a421ae7a648b5104e2cb482",
+    "word": "Pragmatic",
+    "pronunciation": "/præɡˈmætɪk/",
+    "hindiMeaning": "व्यवहारिक",
+    "englishMeaning": "Dealing with things sensibly and realistically in a way that is based on practical considerations.",
+    "partOfSpeech": "Adjective",
+    "synonyms": [
+      "Practical",
+      "Realistic",
+      "Sensible",
+      "Hard-headed"
+    ],
+    "antonyms": [
+      "Idealistic",
+      "Impractical",
+      "Visionary",
+      "Unrealistic"
+    ],
+    "exampleSentences": [
+      "We need a pragmatic solution, not a theoretical lecture.",
+      "He made a pragmatic decision to compromise."
+    ],
+    "commonMistakes": "Do not confuse with \"dogmatic\" which means adhering strictly to principles.",
+    "memoryTrick": "Pragmatic sounds like \"practical magic\". Practical actions work like magic.",
+    "realLifeUsage": "Commonly used in executive business discussions, technical scoping, and everyday planning.",
+    "audioUrl": "",
+    "createdAt": "2026-06-29T07:12:39.654Z"
+  }
+]

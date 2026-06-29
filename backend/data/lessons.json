@@ -1,0 +1,176 @@
+[
+  {
+    "_id": "6a421ae7a648b5104e2cb483",
+    "type": "grammar",
+    "title": "Mastering English Tenses",
+    "category": "Tenses",
+    "content": "\n# Mastering English Tenses\n\nTenses denote the time of action. In English, there are three primary tenses, each divided into four sub-aspects (Simple, Continuous, Perfect, and Perfect Continuous).\n\n### 1. Present Tense\n- **Present Simple**: Used for habits, general facts, and timetables. \n  - *Formula*: Subject + Verb(s/es) + Object.\n  - *Example*: *\"She writes code every day.\"*\n- **Present Continuous**: Action happening right now.\n  - *Formula*: Subject + is/am/are + Verb(ing) + Object.\n  - *Example*: *\"We are practicing English speaking.\"*\n\n### 2. Past Tense\n- **Past Simple**: Completed action in the past.\n  - *Formula*: Subject + Verb(2nd form) + Object.\n  - *Example*: *\"They designed the landing page yesterday.\"*\n\n### 3. Future Tense\n- **Future Simple**: Action to happen hereafter.\n  - *Formula*: Subject + will + Verb(1st form) + Object.\n  - *Example*: *\"You will speak English fluently.\"*\n",
+    "audioUrl": "",
+    "metadata": {
+      "questions": [
+        {
+          "id": "q1",
+          "question": "Which sentence is in the Present Perfect tense?",
+          "options": [
+            "She wrote a letter.",
+            "She has written a letter.",
+            "She is writing a letter.",
+            "She will write a letter."
+          ],
+          "answer": "She has written a letter.",
+          "explanation": "Present Perfect uses \"has/have + past participle (3rd form verb)\"."
+        },
+        {
+          "id": "q2",
+          "question": "Identify the sentence showing a habitual present action:",
+          "options": [
+            "I am eating lunch.",
+            "I went to school.",
+            "I read newspapers daily.",
+            "I will play tennis tomorrow."
+          ],
+          "answer": "I read newspapers daily.",
+          "explanation": "Simple present represents habits and routines, marked by \"daily\"."
+        }
+      ]
+    },
+    "createdAt": "2026-06-29T07:12:39.656Z"
+  },
+  {
+    "_id": "6a421ae7a648b5104e2cb484",
+    "type": "grammar",
+    "title": "Prepositions of Time and Place",
+    "category": "Prepositions",
+    "content": "\n# Prepositions of Time and Place: In, On, At\n\nUsing \"in\", \"on\", and \"at\" correctly is vital for natural sounding speech. Here is a handy breakdown:\n\n### Prepositions of Time\n- **AT**: Specific point in time. (*\"at 5:00 PM\"*, *\"at midnight\"*, *\"at Christmas\"*)\n- **ON**: Specific days and dates. (*\"on Monday\"*, *\"on June 29th\"*, *\"on my birthday\"*)\n- **IN**: Unspecific times during a day, month, year, or century. (*\"in the morning\"*, *\"in July\"*, *\"in 2026\"*, *\"in the 21st century\"*)\n\n### Prepositions of Place\n- **AT**: Specific point or address. (*\"at the office\"*, *\"at the bus stop\"*, *\"at 10 Downing Street\"*)\n- **ON**: Position on a surface. (*\"on the table\"*, *\"on the floor\"*, *\"on the wall\"*)\n- **IN**: Inside an enclosed space or large geographic boundary. (*\"in the room\"*, *\"in India\"*, *\"in the swimming pool\"*)\n",
+    "audioUrl": "",
+    "metadata": {
+      "questions": [
+        {
+          "id": "q1",
+          "question": "We scheduled the kickoff meeting ____ Monday ____ 10:00 AM.",
+          "options": [
+            "in / at",
+            "on / at",
+            "at / on",
+            "on / in"
+          ],
+          "answer": "on / at",
+          "explanation": "We use \"on\" for days (Monday) and \"at\" for specific times (10:00 AM)."
+        }
+      ]
+    },
+    "createdAt": "2026-06-29T07:12:39.658Z"
+  },
+  {
+    "_id": "6a421ae7a648b5104e2cb485",
+    "type": "reading",
+    "title": "The Art of Professional Email Writing",
+    "category": "Office Documents",
+    "content": "\n# The Art of Professional Email Writing\n\nIn the modern corporate world, emails are the primary medium of formal exchange. An email can establish credibility, display competence, and resolve bottleneck debates when written clearly.\n\n### The Anatomy of a Perfect Email:\n1. **Clear Subject Line**: Make it actionable. E.g., *\"Urgent: Design Mockup Feedback Required\"* instead of *\"Hey\"*.\n2. **Professional Greeting**: Start with *\"Hi [Name]\"* or *\"Dear [Name]\"*. Avoid over-formal greetings like *\"Respected Sir\"* in modern tech organizations.\n3. **The Core Request**: Put your ask in the first two sentences. Do not bury the request under long introductory paragraphs.\n4. **Call to Action (CTA)**: Clearly define who needs to do what and by when.\n5. **Polite Sign-off**: End with *\"Best regards\"*, *\"Regards\"*, or *\"Sincerely\"*, followed by your name and signature.\n\n### Common Mistakes:\n- Writing long blocks of paragraphs. Instead, use bullet points.\n- Sounding passive-aggressive. Always review your tone before hitting send.\n",
+    "audioUrl": "",
+    "metadata": {
+      "questions": [
+        {
+          "id": "q1",
+          "question": "Which of the following is the best professional email greeting in a modern workplace?",
+          "options": [
+            "Respected Sir",
+            "Hi James",
+            "Hey buddy",
+            "To whom it may concern"
+          ],
+          "answer": "Hi James",
+          "explanation": "\"Hi James\" is friendly, professional, and standard in modern business environments."
+        },
+        {
+          "id": "q2",
+          "question": "Where should the main request of the email ideally be placed?",
+          "options": [
+            "In the last paragraph",
+            "Within the first two sentences",
+            "In a post-script (P.S.) note",
+            "Only in the signature space"
+          ],
+          "answer": "Within the first two sentences",
+          "explanation": "Placing the core request early ensures the recipient sees the action item immediately."
+        }
+      ]
+    },
+    "createdAt": "2026-06-29T07:12:39.662Z"
+  },
+  {
+    "_id": "6a421ae7a648b5104e2cb486",
+    "type": "listening",
+    "title": "Ordering Dinner at a Premium Restaurant",
+    "category": "Daily Conversations",
+    "content": "\n**Dialogue Transcript:**\n*Waitstaff:* Good evening! Welcome to The Green Bistro. Do you have a reservation?\n*Guest:* Yes, we have a table booked under the name of Miller.\n*Waitstaff:* Ah, yes, Mr. Miller! A table for two by the window. Right this way.\n*Guest:* Thank you. Could we see the drink menu first?\n*Waitstaff:* Absolutely. Tonight, our special is a fresh mint lemonade. For the main course, I highly recommend our pan-seared salmon served with wild rice.\n*Guest:* That sounds delicious. I will have the salmon, and my friend will have the vegetarian lasagna.\n*Waitstaff:* Excellent choices. I will place your order and bring your drinks shortly.\n",
+    "audioUrl": "",
+    "metadata": {
+      "questions": [
+        {
+          "id": "q1",
+          "question": "Under what name was the restaurant table booked?",
+          "options": [
+            "Smith",
+            "Miller",
+            "Green Bistro",
+            "Lasagna"
+          ],
+          "answer": "Miller",
+          "explanation": "The guest mentions \"we have a table booked under the name of Miller.\""
+        },
+        {
+          "id": "q2",
+          "question": "What is the waiter's recommendation for the main course?",
+          "options": [
+            "Vegetarian lasagna",
+            "Mint lemonade",
+            "Pan-seared salmon with wild rice",
+            "Wild mushroom pizza"
+          ],
+          "answer": "Pan-seared salmon with wild rice",
+          "explanation": "The waitstaff says \"I highly recommend our pan-seared salmon served with wild rice.\""
+        }
+      ]
+    },
+    "createdAt": "2026-06-29T07:12:39.666Z"
+  },
+  {
+    "_id": "6a421ae7a648b5104e2cb487",
+    "type": "interview",
+    "title": "How to Answer: \"Tell Me About Yourself\"",
+    "category": "Self Introduction",
+    "content": "\n# Preparing \"Tell Me About Yourself\"\n\nThis is almost always the first question asked in any interview. It sets the tone for the entire interview.\n\n### The \"Present-Past-Future\" Formula:\n1. **Present**: Talk about your current role, key accomplishments, and major responsibilities. (30 seconds)\n2. **Past**: Mention how you got there—mention key educational milestones or previous roles that are highly relevant to this job. (30 seconds)\n3. **Future**: Explain why you are sitting here today, and why this specific role at this specific company is the perfect next step for you. (30 seconds)\n\n### Key Rules:\n- Keep it under 2 minutes.\n- Do not repeat your resume line-by-line. Focus on key achievements.\n- Tailor it to the job description.\n",
+    "audioUrl": "",
+    "metadata": {
+      "suggestedAnswers": [
+        "I am currently a Software Engineer at TechCorp where I lead frontend development for our analytics dashboard. Over the past two years, I built our core UI component library which speeded up build times by 30%. Before this, I graduated with a degree in Computer Science and interned at a startup where I fell in love with React. I am looking for my next challenge, and I am excited about this role because your company is leading the path in interactive AI applications."
+      ],
+      "tips": [
+        "Focus on achievements rather than just naming duties.",
+        "Match your vocabulary with keywords mentioned in the job post.",
+        "Inject energy and smile. This is your first impression!"
+      ]
+    },
+    "createdAt": "2026-06-29T07:12:39.669Z"
+  },
+  {
+    "_id": "6a421ae7a648b5104e2cb488",
+    "type": "interview",
+    "title": "Answering: \"What are your Strengths & Weaknesses?\"",
+    "category": "Strengths & Weaknesses",
+    "content": "\n# Tackling Strengths & Weaknesses\n\nThis question tests your self-awareness, honesty, and growth mindset.\n\n### Speaking about Strengths:\n- Pick **one or two key strengths** directly listed in the job description.\n- Support them with concrete proof (a short story).\n- *E.g., \"My main strength is problem-solving. In my last job, I identified a query bottleneck that caused page timeouts and fixed it, resolving 90% of user complaints.\"*\n\n### Speaking about Weaknesses:\n- Pick a **real weakness** but make sure it is not a core requirement of the job.\n- Immediately explain how you are **actively working to overcome it**.\n- *E.g., \"Historically, I found it hard to delegate tasks because I wanted everything to be perfect. Recently, I completed a project management course and started using Trello, which helped me delegate tasks and trust my team.\"*\n",
+    "audioUrl": "",
+    "metadata": {
+      "suggestedAnswers": [
+        "My primary strength is structured communication. I can break down complex engineering concepts for marketing and sales partners. As for weaknesses, I sometimes struggle with saying 'no' to requests, which leads to taking on too many tasks. To manage this, I now log all incoming requests and sync with my manager to prioritize tasks according to our quarterly milestones."
+      ],
+      "tips": [
+        "Never say 'I have no weaknesses' or choose a fake weakness like 'I am too much of a perfectionist'.",
+        "Keep the tone positive and growth-oriented.",
+        "Make sure your strengths solve the company's pain points."
+      ]
+    },
+    "createdAt": "2026-06-29T07:12:39.671Z"
+  }
+]

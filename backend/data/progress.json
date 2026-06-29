@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "6a421bb46b5d7cb94b40a4ac",
+    "userId": "6a421ae7a648b5104e2cb47d",
+    "date": "2026-06-29",
+    "vocabWordsLearned": [],
+    "speakingTime": 0,
+    "readingTime": 60,
+    "listeningTime": 30,
+    "writingSubmissions": [],
+    "grammarQuizzesCompleted": [
+      {
+        "lessonId": "6a421ae7a648b5104e2cb486",
+        "score": 50,
+        "totalQuestions": 2,
+        "completedAt": "2026-06-29T07:17:34.203Z"
+      }
+    ],
+    "dailyChallengeCompleted": false,
+    "xpEarned": 25,
+    "coinsEarned": 2,
+    "createdAt": "2026-06-29T07:16:04.580Z"
+  }
+]
