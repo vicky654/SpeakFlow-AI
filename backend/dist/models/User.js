@@ -58,16 +58,48 @@ const UserSchema = new mongoose_1.Schema({
     createdAt: { type: String, default: () => new Date().toISOString() }
 }, { timestamps: false, toObject: { virtuals: true }, toJSON: { virtuals: true } });
 // Virtuals for legacy fields
-UserSchema.virtual('xp').get(function () {
+UserSchema.virtual('xp')
+    .get(function () {
     return this.levelProgress[this.currentLevelMode]?.xp ?? 0;
+})
+    .set(function (value) {
+    if (!this.levelProgress)
+        this.levelProgress = {};
+    if (!this.levelProgress[this.currentLevelMode])
+        this.levelProgress[this.currentLevelMode] = {};
+    this.levelProgress[this.currentLevelMode].xp = value;
 });
-UserSchema.virtual('level').get(function () {
+UserSchema.virtual('level')
+    .get(function () {
     return this.levelProgress[this.currentLevelMode]?.level ?? 1;
+})
+    .set(function (value) {
+    if (!this.levelProgress)
+        this.levelProgress = {};
+    if (!this.levelProgress[this.currentLevelMode])
+        this.levelProgress[this.currentLevelMode] = {};
+    this.levelProgress[this.currentLevelMode].level = value;
 });
-UserSchema.virtual('favorites').get(function () {
+UserSchema.virtual('favorites')
+    .get(function () {
     return this.levelProgress[this.currentLevelMode]?.favorites ?? [];
+})
+    .set(function (value) {
+    if (!this.levelProgress)
+        this.levelProgress = {};
+    if (!this.levelProgress[this.currentLevelMode])
+        this.levelProgress[this.currentLevelMode] = {};
+    this.levelProgress[this.currentLevelMode].favorites = value;
 });
-UserSchema.virtual('completedLessons').get(function () {
+UserSchema.virtual('completedLessons')
+    .get(function () {
     return this.levelProgress[this.currentLevelMode]?.completedLessons ?? [];
+})
+    .set(function (value) {
+    if (!this.levelProgress)
+        this.levelProgress = {};
+    if (!this.levelProgress[this.currentLevelMode])
+        this.levelProgress[this.currentLevelMode] = {};
+    this.levelProgress[this.currentLevelMode].completedLessons = value;
 });
 exports.default = mongoose_1.default.models.User || mongoose_1.default.model('User', UserSchema);

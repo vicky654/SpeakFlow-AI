@@ -60,7 +60,7 @@ router.post('/lessons/:id/quiz', auth_1.authenticateToken, async (req, res) => {
                 userAnswer,
                 correctAnswer: q.answer,
                 isCorrect,
-                explanation: q.explanation || ''
+                explanation: q.explanation ?? ''
             };
         });
         const score = Math.round((correctCount / questions.length) * 100);
@@ -103,15 +103,15 @@ router.post('/lessons/:id/quiz', auth_1.authenticateToken, async (req, res) => {
         // Update user profile completion & rewards
         const user = await dbService_1.dbService.users.findById(userId);
         if (user) {
-            const completed = [...user.completedLessons];
+            const completed = [...(user.completedLessons ?? [])];
             if (!completed.includes(lessonId) && passed) {
                 completed.push(lessonId);
             }
-            const totalXp = user.xp + xpGained;
-            const totalCoins = user.coins + coinsGained;
+            const totalXp = (user.xp ?? 0) + xpGained;
+            const totalCoins = (user.coins ?? 0) + coinsGained;
             const level = Math.floor(totalXp / 100) + 1;
             // Award badge if they completed 3 lessons
-            let badges = [...user.badges];
+            let badges = [...(user.badges ?? [])];
             if (completed.length >= 3 && !badges.includes('Scholar')) {
                 badges.push('Scholar');
             }
@@ -182,10 +182,10 @@ router.post('/practice/time', auth_1.authenticateToken, async (req, res) => {
         });
         const user = await dbService_1.dbService.users.findById(userId);
         if (user && xpGained > 0) {
-            const totalXp = user.xp + xpGained;
-            const totalCoins = user.coins + coinsGained;
+            const totalXp = (user.xp ?? 0) + xpGained;
+            const totalCoins = (user.coins ?? 0) + coinsGained;
             const level = Math.floor(totalXp / 100) + 1;
-            let badges = [...user.badges];
+            let badges = [...(user.badges ?? [])];
             if (skill === 'speaking' && speakingTime >= 600 && !badges.includes('Orator')) {
                 badges.push('Orator');
             }
@@ -291,8 +291,8 @@ router.post('/practice/writing', auth_1.authenticateToken, async (req, res) => {
         });
         const user = await dbService_1.dbService.users.findById(userId);
         if (user) {
-            const totalXp = user.xp + xpGained;
-            const totalCoins = user.coins + coinsGained;
+            const totalXp = (user.xp ?? 0) + xpGained;
+            const totalCoins = (user.coins ?? 0) + coinsGained;
             const level = Math.floor(totalXp / 100) + 1;
             let badges = [...user.badges];
             if (updatedSubmissions.length >= 3 && !badges.includes('Wordsmith')) {
@@ -379,8 +379,8 @@ router.post('/practice/speaking/evaluate', auth_1.authenticateToken, async (req,
         });
         const user = await dbService_1.dbService.users.findById(userId);
         if (user) {
-            const totalXp = user.xp + xpGained;
-            const totalCoins = user.coins + coinsGained;
+            const totalXp = (user.xp ?? 0) + xpGained;
+            const totalCoins = (user.coins ?? 0) + coinsGained;
             const level = Math.floor(totalXp / 100) + 1;
             let badges = [...user.badges];
             if (updatedSpeakingTime >= 300 && !badges.includes('Fluent Speaker')) {

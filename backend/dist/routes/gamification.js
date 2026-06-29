@@ -37,7 +37,7 @@ router.get('/leaderboard', auth_1.authenticateToken, async (req, res) => {
             });
         }
         // Sort descending by XP
-        leaderboard.sort((a, b) => b.xp - a.xp);
+        leaderboard.sort((a, b) => (b.xp ?? 0) - (a.xp ?? 0));
         res.json(leaderboard);
     }
     catch (error) {
@@ -100,7 +100,7 @@ router.get('/daily-challenge', auth_1.authenticateToken, async (req, res) => {
             // Update user overall rewards
             const user = await dbService_1.dbService.users.findById(userId);
             if (user) {
-                const totalXp = user.xp + xpAwarded;
+                const totalXp = (user.xp ?? 0) + xpAwarded;
                 const totalCoins = user.coins + coinsAwarded;
                 const level = Math.floor(totalXp / 100) + 1;
                 let badges = [...user.badges];
