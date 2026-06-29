@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLearningStore } from '../store/learningStore';
 import { useAuthStore } from '../store/authStore';
-import { Headset, Play, Pause, RotateCcw, CheckCircle, Award, Sparkles, HelpCircle } from 'lucide-react';
+import { Headset, Play, Pause, RotateCcw, Award, HelpCircle, CheckCircle2, BookOpen } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const ListeningPractice: React.FC = () => {
   const { lessons, fetchLessons, activeLesson, fetchLessonById, submitQuiz, loading } = useLearningStore();
@@ -10,6 +11,7 @@ export const ListeningPractice: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [quizResult, setQuizResult] = useState<any | null>(null);
+  const [showTranscript, setShowTranscript] = useState(false);
 
   useEffect(() => {
     fetchLessons('listening');
@@ -20,6 +22,7 @@ export const ListeningPractice: React.FC = () => {
     setIsPlaying(false);
     setQuizResult(null);
     setSelectedAnswers({});
+    setShowTranscript(false);
     await fetchLessonById(id);
   };
 
@@ -75,7 +78,6 @@ export const ListeningPractice: React.FC = () => {
     if (!activeLesson) return;
     const questions = activeLesson.metadata.questions || [];
     
-    // Check completeness
     if (Object.keys(selectedAnswers).length < questions.length) {
       alert('Please answer all questions before submitting.');
       return;
@@ -84,8 +86,6 @@ export const ListeningPractice: React.FC = () => {
     const result = await submitQuiz(activeLesson._id, selectedAnswers);
     if (result) {
       setQuizResult(result);
-      
-      // Log active learning time (e.g. 90 seconds for passing, 30 for failing)
       const practiceTime = result.passed ? 90 : 30;
       await useLearningStore.getState().logPracticeTime('listening', practiceTime);
     }
@@ -98,185 +98,200 @@ export const ListeningPractice: React.FC = () => {
   }, []);
 
   return (
-    <div className="space-y-6 select-none max-w-5xl mx-auto">
-      
+    <div className="space-y-5 select-none max-w-lg mx-auto pb-6">
       {/* HEADER */}
-      <div>
-        <h1 className="text-3xl font-extrabold text-white flex items-center space-x-3">
-          <Headset className="w-8 h-8 text-indigo-400" />
-          <span>Listening Practice Hub</span>
-        </h1>
-        <p className="text-xs text-slate-400 mt-1">Listen to standard English dialogues, pick up key accents, and test your retention.</p>
+      <div className="space-y-1">
+        <h2 className="text-2xl font-extrabold text-white">Listening Lab</h2>
+        <p className="text-xs text-slate-400">Improve transcription retention & decode accents.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-        
-        {/* LEFT COLUMN: LIST */}
-        <div className="flex flex-col space-y-4 lg:col-span-1">
-          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider pl-1 font-sans">Audio Dialogues</h3>
-          
-          <div className="space-y-3">
-            {lessons.map(sc => (
-              <div
-                key={sc._id}
-                onClick={() => selectScenario(sc._id)}
-                className={`p-4 rounded-2xl border text-left cursor-pointer transition-all ${
-                  activeLesson?._id === sc._id
-                    ? 'bg-indigo-600/15 border-indigo-500 text-white'
-                    : 'glass-card border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
-                }`}
-              >
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                  {sc.category}
-                </span>
-                <h4 className="font-bold text-sm mt-2 text-slate-200">{sc.title}</h4>
-              </div>
-            ))}
-          </div>
+      {/* 1. SCENARIO SELECTOR CAROUSEL */}
+      <div className="space-y-2">
+        <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 pl-1">Dialogues Playlists</span>
+        <div className="flex space-x-3 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory">
+          {lessons.map(sc => (
+            <button
+              key={sc._id}
+              onClick={() => selectScenario(sc._id)}
+              className={`snap-center shrink-0 w-60 p-4 rounded-2xl border text-left transition-all active:scale-95 ${
+                activeLesson?._id === sc._id
+                  ? 'bg-indigo-600/15 border-indigo-500 text-white'
+                  : 'glass-card border-slate-800 text-slate-400'
+              }`}
+            >
+              <span className="text-[9px] uppercase font-extrabold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                {sc.category}
+              </span>
+              <h4 className="font-extrabold text-xs mt-2 text-slate-200 line-clamp-1">{sc.title}</h4>
+            </button>
+          ))}
         </div>
+      </div>
 
-        {/* RIGHT COLUMN: DETAIL PLAYER & QUIZ */}
-        <div className="lg:col-span-2 flex flex-col space-y-6">
-          {activeLesson ? (
-            <div className="space-y-6">
-              
-              {/* AUDIO PLAYER BOARD */}
-              <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-5">
-                <div className="flex justify-between items-center border-b border-slate-800/80 pb-3">
-                  <span className="text-xs text-slate-400 uppercase font-bold tracking-widest">Listening Room</span>
-                  <span className="text-xs text-indigo-400 font-bold">{activeLesson.category}</span>
-                </div>
+      {/* 2. AUDIO PLAYER & QUIZ */}
+      {activeLesson ? (
+        <div className="space-y-4">
+          {/* AUDIO PLAYER BOARD */}
+          <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 space-y-4">
+            <div className="flex justify-between items-center border-b border-slate-900 pb-2">
+              <span className="text-[9px] text-slate-400 uppercase font-black tracking-widest">Now Playing</span>
+              <span className="text-[9px] text-indigo-400 font-extrabold uppercase">{activeLesson.category}</span>
+            </div>
 
-                <h2 className="text-xl font-extrabold text-white">{activeLesson.title}</h2>
+            <h3 className="font-extrabold text-sm text-slate-100">{activeLesson.title}</h3>
 
-                {/* Simulated Audio Player Visualizer */}
-                <div className="w-full bg-slate-950 p-4 border border-slate-900 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center space-x-4">
-                    <button
-                      onClick={handlePlaySpeech}
-                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${
-                        isPlaying 
-                          ? 'bg-indigo-600 hover:bg-indigo-500 text-white' 
-                          : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-md'
-                      }`}
-                    >
-                      {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
-                    </button>
-                    <button
-                      onClick={handleStopSpeech}
-                      className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-all"
-                    >
-                      <RotateCcw className="w-4 h-4" />
-                    </button>
-                    <div className="space-y-0.5 text-left">
-                      <p className="text-xs font-bold text-slate-200">{isPlaying ? 'Playing Dialogue' : 'Audio Ready'}</p>
-                      <p className="text-[10px] text-slate-500 font-mono">1.0x Speed • En-US Voice</p>
-                    </div>
-                  </div>
-
-                  {/* Visualizer bars */}
-                  {isPlaying && (
-                    <div className="flex items-end space-x-1 h-6">
-                      <div className="w-0.5 bg-indigo-500 h-2 animate-pulse" />
-                      <div className="w-0.5 bg-indigo-500 h-5 animate-pulse delay-75" />
-                      <div className="w-0.5 bg-indigo-500 h-3 animate-pulse delay-100" />
-                      <div className="w-0.5 bg-indigo-500 h-6 animate-pulse delay-150" />
-                      <div className="w-0.5 bg-indigo-500 h-4 animate-pulse delay-200" />
-                    </div>
-                  )}
+            {/* Simulated Audio Player Dashboard */}
+            <div className="w-full bg-slate-950/70 p-3.5 border border-slate-900 rounded-2xl flex items-center justify-between gap-3">
+              <div className="flex items-center space-x-3">
+                <button
+                  onClick={handlePlaySpeech}
+                  className="w-10 h-10 rounded-full bg-indigo-600 active:bg-indigo-500 text-white flex items-center justify-center transition-all shadow-md active:scale-90"
+                >
+                  {isPlaying ? <Pause className="w-4.5 h-4.5 fill-current" /> : <Play className="w-4.5 h-4.5 fill-current ml-0.5" />}
+                </button>
+                <button
+                  onClick={handleStopSpeech}
+                  className="p-2 rounded-full bg-slate-900 border border-slate-850 text-slate-400 active:scale-90"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                </button>
+                <div className="space-y-0.5 text-left min-w-0">
+                  <p className="text-[11px] font-bold text-slate-200 truncate">{isPlaying ? 'Streaming Audio...' : 'Audio Loaded'}</p>
+                  <p className="text-[9px] text-slate-500">0.85x speed • en-US voice</p>
                 </div>
               </div>
 
-              {/* COMPREHENSION QUIZ BOARD */}
-              <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-6">
-                <h3 className="font-extrabold text-slate-200 flex items-center space-x-2 border-b border-slate-800 pb-3">
-                  <HelpCircle className="w-5 h-5 text-indigo-400" />
-                  <span>Comprehension Quiz</span>
-                </h3>
-
-                <div className="space-y-6">
-                  {activeLesson.metadata.questions?.map((q, idx) => (
-                    <div key={q.id} className="space-y-3">
-                      <p className="text-sm font-bold text-slate-300">
-                        {idx + 1}. {q.question}
-                      </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {q.options.map((opt, i) => {
-                          const isSelected = selectedAnswers[q.id] === opt;
-                          const isCorrect = q.answer === opt;
-                          let btnClass = 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-indigo-500/40';
-
-                          if (isSelected) {
-                            btnClass = 'bg-indigo-600 border-indigo-500 text-white shadow-md';
-                          }
-
-                          // If quiz completed, show color codes
-                          if (quizResult) {
-                            if (isCorrect) {
-                              btnClass = 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-bold';
-                            } else if (isSelected) {
-                              btnClass = 'bg-rose-500/20 border-rose-500 text-rose-400 line-through';
-                            } else {
-                              btnClass = 'bg-slate-900/40 border-slate-850 text-slate-500 opacity-60';
-                            }
-                          }
-
-                          return (
-                            <button
-                              key={i}
-                              disabled={quizResult !== null}
-                              onClick={() => handleSelectOption(q.id, opt)}
-                              className={`p-3 text-left text-xs font-semibold rounded-xl border transition-all leading-relaxed ${btnClass}`}
-                            >
-                              {opt}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* SUBMIT BUTTON or RESULT METRIC */}
-                {!quizResult ? (
-                  <button
-                    onClick={handleSubmitQuiz}
-                    className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-bold transition-all shadow-md shadow-indigo-600/20 mt-4"
-                  >
-                    Submit Quiz Answers
-                  </button>
+              {/* Waveform visualizer bars */}
+              <div className="flex items-end space-x-1 h-5 w-12 justify-end">
+                {isPlaying ? (
+                  Array.from({ length: 5 }).map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="w-0.5 bg-indigo-500 rounded"
+                      animate={{ height: [4, Math.random() * 16 + 4, 4] }}
+                      transition={{ repeat: Infinity, duration: 0.5 + i * 0.1, ease: 'easeInOut' }}
+                    />
+                  ))
                 ) : (
-                  <div className={`p-5 rounded-2xl border text-center space-y-3 ${
-                    quizResult.passed 
-                      ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-400' 
-                      : 'bg-rose-500/10 border-rose-500/25 text-rose-400'
-                  }`}>
-                    <div className="flex items-center justify-center space-x-2 font-bold text-base">
-                      <Award className="w-5 h-5" />
-                      <span>{quizResult.passed ? 'Quiz Passed! 🎉' : 'Keep Practicing! 📚'}</span>
-                    </div>
-                    <p className="text-xs">
-                      You scored <span className="font-extrabold">{quizResult.score}%</span> accuracy rate.
-                      Earned <span className="font-bold text-indigo-400">+{quizResult.xpGained} XP</span> and <span className="font-bold text-amber-400">+{quizResult.coinsGained} Coins</span>!
-                    </p>
-                  </div>
+                  <div className="w-full h-0.5 bg-slate-800" />
                 )}
               </div>
+            </div>
 
+            {/* TRANSCRIPT ACCORDION */}
+            <div className="border-t border-slate-900 pt-3">
+              <button 
+                onClick={() => setShowTranscript(!showTranscript)}
+                className="flex items-center justify-between w-full text-xs font-bold text-indigo-400 active:text-indigo-300"
+              >
+                <span className="flex items-center space-x-1">
+                  <BookOpen className="w-3.5 h-3.5" />
+                  <span>{showTranscript ? 'Hide Dialogue Script' : 'Show Dialogue Script'}</span>
+                </span>
+                <span className="text-[10px] text-slate-500">{showTranscript ? 'Close' : 'Read'}</span>
+              </button>
+
+              <AnimatePresence>
+                {showTranscript && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden mt-3"
+                  >
+                    <div className="p-3 bg-slate-950/60 border border-slate-900 rounded-xl text-xs text-slate-300 max-h-40 overflow-y-auto leading-relaxed whitespace-pre-line italic">
+                      {activeLesson.content.replace(/\*\*Dialogue Transcript:\*\*/gi, '').replace(/\*/g, '')}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-          ) : (
-            <div className="h-96 glass-card rounded-3xl border border-slate-800 flex flex-col items-center justify-center text-center p-8 space-y-4">
-              <span className="text-4xl">🎧</span>
-              <h3 className="text-lg font-bold text-slate-200">Listening Panel</h3>
-              <p className="text-xs text-slate-500 max-w-sm">
-                Select an audio scenario from the list on the left to begin practicing your comprehension and listening retention.
-              </p>
+          </div>
+
+          {/* COMPREHENSION QUIZ BOARD */}
+          <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 space-y-4">
+            <h3 className="font-extrabold text-sm text-slate-200 flex items-center space-x-2 border-b border-slate-900 pb-2.5">
+              <HelpCircle className="w-4.5 h-4.5 text-indigo-400" />
+              <span>Comprehension Quiz</span>
+            </h3>
+
+            <div className="space-y-4">
+              {activeLesson.metadata.questions?.map((q, idx) => (
+                <div key={q.id} className="space-y-2">
+                  <p className="text-xs font-bold text-slate-300">
+                    {idx + 1}. {q.question}
+                  </p>
+                  <div className="grid grid-cols-1 gap-2">
+                    {q.options.map((opt, i) => {
+                      const isSelected = selectedAnswers[q.id] === opt;
+                      const isCorrect = q.answer === opt;
+                      let btnClass = 'bg-slate-950/40 border-slate-900 text-slate-300 active:scale-[0.99]';
+
+                      if (isSelected) {
+                        btnClass = 'bg-indigo-600 border-indigo-500 text-white shadow-md font-bold';
+                      }
+
+                      if (quizResult) {
+                        if (isCorrect) {
+                          btnClass = 'bg-emerald-500/15 border-emerald-500 text-emerald-400 font-extrabold';
+                        } else if (isSelected) {
+                          btnClass = 'bg-rose-500/15 border-rose-500 text-rose-400 font-bold line-through';
+                        } else {
+                          btnClass = 'bg-slate-950/20 border-slate-900/60 text-slate-600 opacity-50';
+                        }
+                      }
+
+                      return (
+                        <button
+                          key={i}
+                          disabled={quizResult !== null}
+                          onClick={() => handleSelectOption(q.id, opt)}
+                          className={`p-3 text-left text-xs rounded-xl border transition-all leading-relaxed ${btnClass}`}
+                        >
+                          {opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
-          )}
+
+            {/* SUBMIT OR RESULT */}
+            {!quizResult ? (
+              <button
+                onClick={handleSubmitQuiz}
+                className="w-full py-2.5 bg-indigo-600 active:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-600/20 mt-2"
+              >
+                Submit Quiz Answers
+              </button>
+            ) : (
+              <div className={`p-4 rounded-xl border text-center space-y-2 ${
+                quizResult.passed 
+                  ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-400' 
+                  : 'bg-rose-500/10 border-rose-500/25 text-rose-400'
+              }`}>
+                <div className="flex items-center justify-center space-x-1.5 font-bold text-xs">
+                  <Award className="w-4 h-4" />
+                  <span>{quizResult.passed ? 'Quiz Passed! 🎉' : 'Keep Studying! 📚'}</span>
+                </div>
+                <p className="text-[10px] leading-normal">
+                  Accuracy rate: <span className="font-extrabold">{quizResult.score}%</span>.<br />
+                  Earned <span className="font-bold text-indigo-400">+{quizResult.xpGained} XP</span> and <span className="font-bold text-amber-400">+{quizResult.coinsGained} Coins</span>!
+                </p>
+              </div>
+            )}
+          </div>
         </div>
-
-      </div>
-
+      ) : (
+        <div className="h-64 glass-card rounded-3xl border border-slate-200/10 flex flex-col items-center justify-center text-center p-6 space-y-3">
+          <span className="text-3xl">🎧</span>
+          <h3 className="text-sm font-bold text-slate-200">Select Scenario</h3>
+          <p className="text-[10px] text-slate-500 max-w-xs leading-normal">
+            Choose an audio dialogue scenario from the horizontal cards list above to start your listening practice.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

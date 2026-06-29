@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Word } from '../types';
 import { useAuthStore } from '../store/authStore';
 import { useLearningStore } from '../store/learningStore';
-import { Volume2, Star, CheckCircle, ArrowRight, RotateCcw } from 'lucide-react';
+import { Volume2, Star, CheckCircle2, RotateCcw, HelpCircle, ArrowRightLeft } from 'lucide-react';
 
 interface WordCardProps {
   word: Word;
@@ -18,7 +18,7 @@ export const WordCard: React.FC<WordCardProps> = ({ word, isLearned, onLearned }
 
   const isFavorited = favorites.includes(word._id);
 
-  // Web Speech Pronunciation
+  // Web Speech Pronunciation (Using native browser-native Speech API as approved)
   const speakWord = (e: React.MouseEvent) => {
     e.stopPropagation();
     if ('speechSynthesis' in window) {
@@ -39,13 +39,17 @@ export const WordCard: React.FC<WordCardProps> = ({ word, isLearned, onLearned }
   };
 
   return (
-    <div className="w-full max-w-md h-[450px] flip-card cursor-pointer group" onClick={() => setIsFlipped(!isFlipped)}>
-      <div className={`relative w-full h-full flip-card-inner rounded-2xl glass-card transition-all duration-500 ${isFlipped ? 'flip-card-flipped' : ''}`}>
+    <div 
+      className="w-full max-w-sm h-[390px] flip-card cursor-pointer select-none group" 
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <div className={`relative w-full h-full flip-card-inner rounded-3xl glass-card transition-all duration-500 border border-slate-200/10 dark:border-slate-800/80 shadow-xl ${isFlipped ? 'flip-card-flipped' : ''}`}>
         
         {/* CARD FRONT */}
-        <div className="absolute inset-0 w-full h-full flip-card-front p-6 flex flex-col justify-between">
-          <div className="flex justify-between items-start">
-            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+        <div className="absolute inset-0 w-full h-full flip-card-front p-5 flex flex-col justify-between rounded-3xl bg-slate-900/60 dark:bg-slate-950/60">
+          {/* Top Bar */}
+          <div className="flex justify-between items-center">
+            <span className="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-indigo-500/15 text-indigo-400 border border-indigo-500/20">
               {word.partOfSpeech}
             </span>
             <button
@@ -53,94 +57,109 @@ export const WordCard: React.FC<WordCardProps> = ({ word, isLearned, onLearned }
                 e.stopPropagation();
                 toggleFavorite(word._id);
               }}
-              className={`p-2 rounded-full border transition-all ${
+              className={`p-2 rounded-full border transition-all active:scale-90 ${
                 isFavorited 
                   ? 'bg-amber-500/20 border-amber-500 text-amber-500' 
-                  : 'bg-slate-800/50 border-slate-700 text-slate-400 hover:text-white'
+                  : 'bg-slate-800/50 border-slate-700/50 text-slate-400 hover:text-white'
               }`}
             >
               <Star className="w-4 h-4 fill-current" />
             </button>
           </div>
 
-          <div className="flex flex-col items-center justify-center text-center space-y-4 my-auto">
-            <h2 className="text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-indigo-200">
+          {/* Main Word */}
+          <div className="flex flex-col items-center justify-center text-center space-y-3.5 my-auto">
+            <h2 className="text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-indigo-200">
               {word.word}
             </h2>
-            <div className="flex items-center space-x-2">
-              <span className="text-slate-400 font-mono text-sm">{word.pronunciation}</span>
+            <div className="flex items-center space-x-1.5">
+              <span className="text-slate-400 font-mono text-xs">{word.pronunciation}</span>
               <button 
                 onClick={speakWord}
-                className="p-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 hover:bg-indigo-500 hover:text-white transition-all"
+                className="p-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-400 active:scale-95 transition-all"
               >
-                <Volume2 className="w-4 h-4" />
+                <Volume2 className="w-3.5 h-3.5" />
               </button>
             </div>
-            <div className="pt-6">
-              <p className="text-sm text-slate-400 uppercase tracking-widest">Hindi Meaning</p>
-              <p className="text-2xl font-bold text-slate-200 mt-1">{word.hindiMeaning}</p>
+            
+            <div className="pt-3">
+              <span className="text-[9px] text-slate-500 uppercase tracking-widest font-semibold">Hindi Meaning</span>
+              <p className="text-xl font-black text-slate-100 mt-0.5">{word.hindiMeaning}</p>
             </div>
           </div>
 
-          <div className="flex justify-between items-center text-xs text-slate-400 border-t border-slate-800/80 pt-4">
-            <span>Tap to flip and study details</span>
-            <ArrowRight className="w-4 h-4 text-indigo-400 animate-pulse" />
+          {/* Bottom Flip Indicator */}
+          <div className="flex justify-between items-center text-[10px] text-slate-500 border-t border-slate-800/80 pt-3">
+            <div className="flex items-center space-x-1">
+              <ArrowRightLeft className="w-3 h-3 text-indigo-400" />
+              <span>Tap card to flip</span>
+            </div>
+            <span className="font-semibold text-slate-600">English Meanings →</span>
           </div>
         </div>
 
         {/* CARD BACK */}
-        <div className="absolute inset-0 w-full h-full flip-card-back p-6 flex flex-col justify-between overflow-y-auto">
-          <div className="space-y-4">
+        <div className="absolute inset-0 w-full h-full flip-card-back p-5 flex flex-col justify-between overflow-y-auto rounded-3xl bg-slate-900/90 dark:bg-slate-950/90">
+          <div className="space-y-3.5">
+            {/* Top Back Header */}
             <div className="flex justify-between items-center border-b border-slate-800/80 pb-2">
-              <h3 className="font-bold text-indigo-400 text-lg">{word.word}</h3>
+              <h3 className="font-extrabold text-indigo-400 text-base">{word.word}</h3>
               <button 
-                onClick={() => setIsFlipped(false)}
-                className="p-1.5 rounded-full bg-slate-800 text-slate-400 hover:text-white transition-all"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsFlipped(false);
+                }}
+                className="p-1.5 rounded-full bg-slate-800 text-slate-400 active:scale-90 transition-all"
               >
-                <RotateCcw className="w-3.5 h-3.5" />
+                <RotateCcw className="w-3 h-3" />
               </button>
             </div>
 
+            {/* English Meaning */}
             <div>
-              <p className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Meaning</p>
-              <p className="text-sm text-slate-200 mt-0.5">{word.englishMeaning}</p>
+              <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold">English Meaning</span>
+              <p className="text-xs text-slate-200 mt-0.5 leading-normal">{word.englishMeaning}</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            {/* Synonyms & Antonyms */}
+            <div className="grid grid-cols-2 gap-3.5">
               <div>
-                <p className="text-[11px] uppercase tracking-wider text-emerald-400 font-semibold">Synonyms</p>
-                <p className="text-xs text-slate-300 mt-0.5">{word.synonyms.slice(0, 3).join(', ')}</p>
+                <span className="text-[9px] uppercase tracking-wider text-emerald-400 font-bold">Synonyms</span>
+                <p className="text-xs text-slate-300 mt-0.5 truncate">{word.synonyms.slice(0, 3).join(', ')}</p>
               </div>
               <div>
-                <p className="text-[11px] uppercase tracking-wider text-rose-400 font-semibold">Antonyms</p>
-                <p className="text-xs text-slate-300 mt-0.5">{word.antonyms.slice(0, 3).join(', ')}</p>
+                <span className="text-[9px] uppercase tracking-wider text-rose-400 font-bold">Antonyms</span>
+                <p className="text-xs text-slate-300 mt-0.5 truncate">{word.antonyms.slice(0, 3).join(', ')}</p>
               </div>
             </div>
 
+            {/* Memory Trick Box */}
             <div>
-              <p className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Memory Trick</p>
-              <p className="text-xs text-indigo-200 italic mt-0.5 bg-indigo-950/40 border border-indigo-800/30 p-2 rounded-lg">
+              <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Memory Trick</span>
+              <p className="text-xs text-indigo-200 italic mt-0.5 bg-indigo-950/40 border border-indigo-850/50 p-2.5 rounded-xl leading-normal">
                 {word.memoryTrick}
               </p>
             </div>
 
+            {/* Common Mistakes */}
             <div>
-              <p className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Common Mistake</p>
-              <p className="text-xs text-amber-200 mt-0.5">{word.commonMistakes}</p>
+              <span className="text-[9px] uppercase tracking-wider text-amber-400 font-bold">Common Mistake</span>
+              <p className="text-xs text-amber-200/80 mt-0.5 leading-normal">{word.commonMistakes}</p>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          {/* Learn Button */}
+          <div className="pt-3 border-t border-slate-800/80">
             <button
               onClick={handleLearnClick}
               disabled={isLearned}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all w-full justify-center ${
+              className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all w-full justify-center ${
                 isLearned 
-                  ? 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 cursor-not-allowed'
-                  : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/25'
+                  ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 cursor-not-allowed'
+                  : 'bg-indigo-600 active:bg-indigo-500 text-white shadow-md'
               }`}
             >
-              <CheckCircle className="w-4 h-4" />
+              <CheckCircle2 className="w-4 h-4" />
               <span>{isLearned ? 'Learned' : 'Mark as Learned (+10 XP)'}</span>
             </button>
           </div>
