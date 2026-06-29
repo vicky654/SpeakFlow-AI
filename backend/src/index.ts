@@ -107,6 +107,32 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
   });
 });
 
+function printRoutes(app: express.Express) {
+  console.log("=== REGISTERED ROUTE MAP ===");
+  const routes: string[] = [];
+  app._router.stack.forEach((middleware: any) => {
+    if (middleware.route) { // routes registered directly on the app
+      const methods = Object.keys(middleware.route.methods).join(',').toUpperCase();
+      routes.push(`${methods} ${middleware.route.path}`);
+    } else if (middleware.name === 'router') { // router middleware
+      const baseUrl = middleware.regexp.source
+        .replace('\\/?', '')
+        .replace('(?=\\/|$)', '')
+        .replace('^\\', '')
+        .replace('\\', '');
+      
+      middleware.handle.stack.forEach((handler: any) => {
+        if (handler.route) {
+          const methods = Object.keys(handler.route.methods).join(',').toUpperCase();
+          routes.push(`${methods} ${baseUrl}${handler.route.path}`);
+        }
+      });
+    }
+  });
+  routes.forEach(r => console.log(`👉 ${r}`));
+  console.log("============================");
+}
+
 // Start Server
 async function startServer() {
   // Connect to Database
@@ -117,6 +143,7 @@ async function startServer() {
 
   app.listen(PORT, () => {
     console.log(`🚀 SpeakFlow AI Server is running on http://localhost:${PORT}`);
+    printRoutes(app);
   });
 }
 

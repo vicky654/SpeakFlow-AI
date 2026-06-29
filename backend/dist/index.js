@@ -93,6 +93,31 @@ app.use((err, req, res, next) => {
         message: err.message || 'An unexpected error occurred on the server'
     });
 });
+function printRoutes(app) {
+    console.log("=== REGISTERED ROUTE MAP ===");
+    const routes = [];
+    app._router.stack.forEach((middleware) => {
+        if (middleware.route) { // routes registered directly on the app
+            const methods = Object.keys(middleware.route.methods).join(',').toUpperCase();
+            routes.push(`${methods} ${middleware.route.path}`);
+        }
+        else if (middleware.name === 'router') { // router middleware
+            const baseUrl = middleware.regexp.source
+                .replace('\\/?', '')
+                .replace('(?=\\/|$)', '')
+                .replace('^\\', '')
+                .replace('\\', '');
+            middleware.handle.stack.forEach((handler) => {
+                if (handler.route) {
+                    const methods = Object.keys(handler.route.methods).join(',').toUpperCase();
+                    routes.push(`${methods} ${baseUrl}${handler.route.path}`);
+                }
+            });
+        }
+    });
+    routes.forEach(r => console.log(`👉 ${r}`));
+    console.log("============================");
+}
 // Start Server
 async function startServer() {
     // Connect to Database
@@ -101,6 +126,7 @@ async function startServer() {
     await (0, seed_1.seedInitialData)();
     app.listen(PORT, () => {
         console.log(`🚀 SpeakFlow AI Server is running on http://localhost:${PORT}`);
+        printRoutes(app);
     });
 }
 startServer();
