@@ -14,34 +14,61 @@ const vocab_1 = __importDefault(require("./routes/vocab"));
 const learning_1 = __importDefault(require("./routes/learning"));
 const gamification_1 = __importDefault(require("./routes/gamification"));
 const admin_1 = __importDefault(require("./routes/admin"));
+// 1. Load Environment Variables first
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5000;
-// Middleware
+// Allowed Origins for CORS
 const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
+    'https://speak-flow-ai-89xe.vercel.app',
     'https://speakflow-ai.vercel.app',
-    /^https:\/\/speakflow.*\.vercel\.app$/, // any Vercel preview deploy
+    /^https:\/\/speak-flow-ai.*\.vercel\.app$/, // matches Vercel preview deploys for speak-flow-ai
+    /^https:\/\/speakflow.*\.vercel\.app$/, // matches Vercel preview deploys for speakflow
+    /^https:\/\/.*\.vercel\.app$/ // fallback to allow any vercel.app subdomain
 ];
-app.use((0, cors_1.default)({
+// CORS Options
+const corsOptions = {
     origin: (origin, callback) => {
-        // Allow requests with no origin (curl, mobile apps, Render health checks)
-        if (!origin)
+        // Print incoming origin as required by Task 8
+        console.log(`[CORS Audit] Incoming Origin: ${origin || 'No Origin (Direct/Local)'}`);
+        // Allow requests with no origin (like curl, mobile apps, local testing, Render health checks)
+        if (!origin) {
             return callback(null, true);
-        const allowed = allowedOrigins.some(o => typeof o === 'string' ? o === origin : o.test(origin));
-        if (allowed)
+        }
+        const isAllowed = allowedOrigins.some(pattern => {
+            if (typeof pattern === 'string') {
+                return pattern === origin;
+            }
+            return pattern.test(origin);
+        });
+        if (isAllowed) {
             return callback(null, true);
-        // Also allow if FRONTEND_URL env is set (for custom Vercel domain)
+        }
+        // Also support FRONTEND_URL env var if set
         if (process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL) {
             return callback(null, true);
         }
-        callback(new Error(`CORS: origin ${origin} not allowed`));
+        callback(new Error(`CORS Error: Origin ${origin} not allowed`));
     },
-    credentials: true
-}));
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    optionsSuccessStatus: 204
+};
+// 2. CORS Middleware
+app.use((0, cors_1.default)(corsOptions));
+// 3. Handle OPTIONS preflight requests globally
+app.options('*', (0, cors_1.default)(corsOptions));
+// 4. Request Logging Middleware (logs incoming requests and origin)
+app.use((req, res, next) => {
+    console.log(`[HTTP Request] ${req.method} ${req.url} - Origin: ${req.headers.origin || 'None'}`);
+    next();
+});
+// 5. Body Parser Middleware
 app.use(express_1.default.json());
-// Routes
+// 6. Mount Routes (prefixed with /api as configured in frontend stores)
 app.use('/api/auth', auth_1.default);
 app.use('/api/vocab', vocab_1.default);
 app.use('/api/learning', learning_1.default);
@@ -50,6 +77,21 @@ app.use('/api/admin', admin_1.default);
 // Health check endpoint
 app.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+// 7. Global 404 Route handler
+app.use((req, res) => {
+    res.status(404).json({
+        error: 'NotFound',
+        message: `API Route ${req.method} ${req.url} not found`
+    });
+});
+// 8. Global Error Handler Middleware
+app.use((err, req, res, next) => {
+    console.error('[Error Middleware] Catastrophic request error:', err);
+    res.status(err.status || 500).json({
+        error: err.name || 'InternalServerError',
+        message: err.message || 'An unexpected error occurred on the server'
+    });
 });
 // Start Server
 async function startServer() {
