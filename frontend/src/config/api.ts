@@ -17,10 +17,26 @@ if (import.meta.env.PROD) {
       'VITE_API_URL = https://speakflow-api-dtdn.onrender.com/api'
     );
   }
-  API_BASE_URL = import.meta.env.VITE_API_URL.trim();
+  let url = import.meta.env.VITE_API_URL.trim();
+  // Strip trailing slash if present
+  if (url.endsWith('/')) {
+    url = url.slice(0, -1);
+  }
+  // Append /api suffix if not already present
+  if (!url.endsWith('/api')) {
+    url = `${url}/api`;
+  }
+  API_BASE_URL = url;
 } else {
   // In development, fall back to localhost if not specified in .env.local
-  API_BASE_URL = import.meta.env.VITE_API_URL?.trim() || 'http://localhost:5000/api';
+  let url = import.meta.env.VITE_API_URL?.trim() || 'http://localhost:5000/api';
+  if (url.endsWith('/')) {
+    url = url.slice(0, -1);
+  }
+  if (!url.endsWith('/api')) {
+    url = `${url}/api`;
+  }
+  API_BASE_URL = url;
 }
 
 export default API_BASE_URL;
