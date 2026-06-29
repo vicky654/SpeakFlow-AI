@@ -194,7 +194,7 @@ export const VocabGame: React.FC = () => {
     const token = useAuthStore.getState().token;
     if (token && score > 0) {
       try {
-        await fetch('http://localhost:5000/api/learning/practice/time', {
+        await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/learning/practice/time`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

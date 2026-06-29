@@ -17,8 +17,27 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'https://speakflow-ai.vercel.app',
+  /^https:\/\/speakflow.*\.vercel\.app$/,   // any Vercel preview deploy
+];
+
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000'], // Vite development ports
+  origin: (origin, callback) => {
+    // Allow requests with no origin (curl, mobile apps, Render health checks)
+    if (!origin) return callback(null, true);
+    const allowed = allowedOrigins.some(o =>
+      typeof o === 'string' ? o === origin : o.test(origin)
+    );
+    if (allowed) return callback(null, true);
+    // Also allow if FRONTEND_URL env is set (for custom Vercel domain)
+    if (process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL) {
+      return callback(null, true);
+    }
+    callback(new Error(`CORS: origin ${origin} not allowed`));
+  },
   credentials: true
 }));
 app.use(express.json());
