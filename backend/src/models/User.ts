@@ -42,24 +42,26 @@ const LevelProgressSchema = new Schema({
   completedLessons: { type: [String], default: [] }
 }, { _id: false });
 
-const UserSchema: Schema = new Schema(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true, index: true },
-    passwordHash: { type: String, required: true },
-    role: { type: String, enum: ['student', 'job_seeker', 'professional', 'admin'], default: 'student' },
-    coins: { type: Number, default: 0 },
-    streak: { type: Number, default: 0 },
-    lastActive: { type: String },
-    badges: { type: [String], default: [] },
-    currentLevelMode: { type: String, enum: ['beginner', 'intermediate', 'professional'], default: 'beginner' },
-    levelProgress: {
-      beginner: { type: LevelProgressSchema, default: () => ({}) },
-      intermediate: { type: LevelProgressSchema, default: () => ({}) },
-      professional: { type: LevelProgressSchema, default: () => ({}) }
-    },
-    createdAt: { type: String, default: () => new Date().toISOString() }
+const userSchemaDefinition: any = {
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true, index: true },
+  passwordHash: { type: String, required: true },
+  role: { type: String, enum: ['student', 'job_seeker', 'professional', 'admin'], default: 'student' },
+  coins: { type: Number, default: 0 },
+  streak: { type: Number, default: 0 },
+  lastActive: { type: String },
+  badges: { type: [String], default: [] },
+  currentLevelMode: { type: String, enum: ['beginner', 'intermediate', 'professional'], default: 'beginner' },
+  levelProgress: {
+    beginner: { type: LevelProgressSchema, default: () => ({}) },
+    intermediate: { type: LevelProgressSchema, default: () => ({}) },
+    professional: { type: LevelProgressSchema, default: () => ({}) }
   },
+  createdAt: { type: String, default: () => new Date().toISOString() }
+};
+
+const UserSchema: Schema<any> = new Schema(
+  userSchemaDefinition,
   { timestamps: false, toObject: { virtuals: true }, toJSON: { virtuals: true } }
 );
 

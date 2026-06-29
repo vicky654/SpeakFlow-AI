@@ -18,7 +18,8 @@ export const dbService = {
         const users = localDb.getCollection<IUser>('users');
         return users.find(u => u.email.toLowerCase() === email.toLowerCase()) || null;
       }
-      return User.findOne({ email }).lean({ virtuals: true }) as any;
+      const result = await (User as any).findOne({ email }).lean({ virtuals: true });
+      return result as IUser | null;
     },
 
     async findById(id: string): Promise<IUser | null> {
@@ -26,7 +27,8 @@ export const dbService = {
         const users = localDb.getCollection<IUser>('users');
         return users.find(u => u._id === id) || null;
       }
-      return User.findById(id).lean({ virtuals: true }) as any;
+      const result = await (User as any).findById(id).lean({ virtuals: true });
+      return result as IUser | null;
     },
 
     async create(userData: Partial<IUser>): Promise<IUser> {
@@ -56,7 +58,7 @@ export const dbService = {
       }
       const u = new User(userData);
       const saved = await u.save();
-      return saved.toObject();
+      return saved.toObject() as unknown as IUser;
     },
 
     async update(id: string, updateData: Partial<IUser>): Promise<IUser | null> {
@@ -68,14 +70,16 @@ export const dbService = {
         localDb.saveCollection('users', users);
         return users[idx];
       }
-      return User.findByIdAndUpdate(id, { $set: updateData }, { new: true }).lean() as any;
+      const result = await (User as any).findByIdAndUpdate(id, { $set: updateData }, { new: true }).lean();
+      return result as IUser | null;
     },
 
     async getAll(): Promise<IUser[]> {
       if (useLocalDB) {
         return localDb.getCollection<IUser>('users');
       }
-      return User.find().lean() as any;
+      const result = await (User as any).find().lean();
+      return result as IUser[];
     }
   },
 
@@ -84,7 +88,8 @@ export const dbService = {
       if (useLocalDB) {
         return localDb.getCollection<IVocab>('vocabs');
       }
-      return Vocab.find().lean() as any;
+      const result = await (Vocab as any).find().lean();
+      return result as IVocab[];
     },
 
     async findById(id: string): Promise<IVocab | null> {
@@ -92,7 +97,8 @@ export const dbService = {
         const vocabs = localDb.getCollection<IVocab>('vocabs');
         return vocabs.find(v => v._id === id) || null;
       }
-      return Vocab.findById(id).lean() as any;
+      const result = await (Vocab as any).findById(id).lean();
+      return result as IVocab | null;
     },
 
     async create(vocabData: Partial<IVocab>): Promise<IVocab> {
@@ -122,7 +128,7 @@ export const dbService = {
       }
       const v = new Vocab(vocabData);
       const saved = await v.save();
-      return saved.toObject();
+      return saved.toObject() as unknown as IVocab;
     },
 
     async delete(id: string): Promise<boolean> {
@@ -133,7 +139,7 @@ export const dbService = {
         localDb.saveCollection('vocabs', filtered);
         return true;
       }
-      const result = await Vocab.findByIdAndDelete(id);
+      const result = await (Vocab as any).findByIdAndDelete(id);
       return result !== null;
     }
   },
@@ -146,7 +152,8 @@ export const dbService = {
       }
       const query: any = { type };
       if (level) query.level = level;
-      return Lesson.find(query).lean() as any;
+      const result = await (Lesson as any).find(query).lean();
+      return result as ILesson[];
     },
 
     async findById(id: string): Promise<ILesson | null> {
@@ -154,7 +161,8 @@ export const dbService = {
         const lessons = localDb.getCollection<ILesson>('lessons');
         return lessons.find(l => l._id === id) || null;
       }
-      return Lesson.findById(id).lean() as any;
+      const result = await (Lesson as any).findById(id).lean();
+      return result as ILesson | null;
     },
 
     async create(lessonData: Partial<ILesson>): Promise<ILesson> {
@@ -178,7 +186,7 @@ export const dbService = {
       }
       const l = new Lesson(lessonData);
       const saved = await l.save();
-      return saved.toObject();
+      return saved.toObject() as unknown as ILesson;
     },
 
     async delete(id: string): Promise<boolean> {
@@ -189,7 +197,7 @@ export const dbService = {
         localDb.saveCollection('lessons', filtered);
         return true;
       }
-      const result = await Lesson.findByIdAndDelete(id);
+      const result = await (Lesson as any).findByIdAndDelete(id);
       return result !== null;
     }
   },
@@ -200,7 +208,8 @@ export const dbService = {
         const prog = localDb.getCollection<IProgress>('progress');
         return prog.find(p => p.userId === userId && p.date === date) || null;
       }
-      return Progress.findOne({ userId, date }).lean() as any;
+      const result = await (Progress as any).findOne({ userId, date }).lean();
+      return result as IProgress | null;
     },
 
     async getHistory(userId: string): Promise<IProgress[]> {
@@ -208,13 +217,14 @@ export const dbService = {
         const prog = localDb.getCollection<IProgress>('progress');
         return prog.filter(p => p.userId === userId).sort((a, b) => b.date.localeCompare(a.date));
       }
-      return Progress.find({ userId }).sort({ date: -1 }).lean() as any;
+      const result = await (Progress as any).find({ userId }).sort({ date: -1 }).lean();
+      return result as IProgress[];
     },
 
     async upsert(userId: string, date: string, progressData: Partial<IProgress>): Promise<IProgress> {
       if (useLocalDB) {
         const prog = localDb.getCollection<IProgress>('progress');
-        let idx = prog.findIndex(p => p.userId === userId && p.date === date);
+        const idx = prog.findIndex(p => p.userId === userId && p.date === date);
         if (idx === -1) {
           const newProgress: IProgress = {
             _id: generateId(),
@@ -242,12 +252,12 @@ export const dbService = {
         }
       }
       
-      const updated = await Progress.findOneAndUpdate(
+      const updated = await (Progress as any).findOneAndUpdate(
         { userId, date },
         { $set: progressData },
         { new: true, upsert: true }
       ).lean();
-      return updated as any;
+      return updated as IProgress;
     }
   }
 };
