@@ -38,7 +38,7 @@ router.get('/leaderboard', authenticateToken, async (req: AuthRequest, res: Resp
     }
 
     // Sort descending by XP
-    leaderboard.sort((a, b) => b.xp - a.xp);
+    leaderboard.sort((a, b) => (b.xp ?? 0) - (a.xp ?? 0));
     res.json(leaderboard);
   } catch (error) {
     res.status(500).json({ message: 'Failed to retrieve leaderboard. Server error.' });
@@ -110,7 +110,7 @@ router.get('/daily-challenge', authenticateToken, async (req: AuthRequest, res: 
       // Update user overall rewards
       const user = await dbService.users.findById(userId);
       if (user) {
-        const totalXp = user.xp + xpAwarded;
+        const totalXp = (user.xp ?? 0) + xpAwarded;
         const totalCoins = user.coins + coinsAwarded;
         const level = Math.floor(totalXp / 100) + 1;
         

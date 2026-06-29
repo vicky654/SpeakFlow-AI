@@ -94,7 +94,7 @@ router.post('/learned', authenticateToken, async (req: AuthRequest, res: Respons
       // Update user overall stats
       const user = await dbService.users.findById(userId);
       if (user) {
-        let totalXp = user.xp + 10;
+        let totalXp = (user.xp ?? 0) + 10;
         let totalCoins = user.coins + 2;
         // Level up algorithm (every 100 XP is a level)
         let level = Math.floor(totalXp / 100) + 1;
