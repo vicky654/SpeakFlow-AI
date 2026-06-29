@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLearningStore } from '../store/learningStore';
 import { useAuthStore } from '../store/authStore';
+import API_BASE_URL from '../config/api';
 import { Gamepad2, Timer, Sparkles, Coins, HelpCircle, Trophy, RotateCcw, ArrowLeft, CheckCircle2, XCircle } from 'lucide-react';
 
 interface MatchItem {
@@ -194,7 +195,7 @@ export const VocabGame: React.FC = () => {
     const token = useAuthStore.getState().token;
     if (token && score > 0) {
       try {
-        await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/learning/practice/time`, {
+        await fetch(`${API_BASE_URL}/learning/practice/time`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { Word, Lesson, LeaderboardEntry, Badge } from '../types';
 import { useAuthStore } from './authStore';
+import API_BASE_URL from '../config/api';
 
 interface LearningState {
   dailyWords: Word[];
@@ -34,7 +35,7 @@ interface LearningState {
   fetchAdminStats: () => Promise<any>;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 
 export const useLearningStore = create<LearningState>((set, get) => ({
   dailyWords: [],
@@ -52,7 +53,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     if (!token) return;
     set({ loading: true, error: null });
     try {
-      const res = await fetch(`${API_URL}/vocab/daily`, {
+      const res = await fetch(`${API_BASE_URL}/vocab/daily`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -68,7 +69,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     if (!token) return;
     set({ loading: true, error: null });
     try {
-      const res = await fetch(`${API_URL}/vocab`, {
+      const res = await fetch(`${API_BASE_URL}/vocab`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -83,7 +84,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     const token = useAuthStore.getState().token;
     if (!token) return;
     try {
-      const res = await fetch(`${API_URL}/vocab/learned`, {
+      const res = await fetch(`${API_BASE_URL}/vocab/learned`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -108,7 +109,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     if (!token) return;
     set({ loading: true, error: null, lessons: [] });
     try {
-      const res = await fetch(`${API_URL}/learning/lessons?type=${type}`, {
+      const res = await fetch(`${API_BASE_URL}/learning/lessons?type=${type}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -124,7 +125,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     if (!token) return;
     set({ loading: true, error: null, activeLesson: null });
     try {
-      const res = await fetch(`${API_URL}/learning/lessons/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/learning/lessons/${id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -140,7 +141,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     if (!token) return null;
     set({ loading: true });
     try {
-      const res = await fetch(`${API_URL}/learning/lessons/${lessonId}/quiz`, {
+      const res = await fetch(`${API_BASE_URL}/learning/lessons/${lessonId}/quiz`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -166,7 +167,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     const token = useAuthStore.getState().token;
     if (!token) return;
     try {
-      const res = await fetch(`${API_URL}/learning/practice/time`, {
+      const res = await fetch(`${API_BASE_URL}/learning/practice/time`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -188,7 +189,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     if (!token) return null;
     set({ loading: true });
     try {
-      const res = await fetch(`${API_URL}/learning/practice/writing`, {
+      const res = await fetch(`${API_BASE_URL}/learning/practice/writing`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -214,7 +215,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     if (!token) return null;
     set({ loading: true });
     try {
-      const res = await fetch(`${API_URL}/learning/practice/speaking/evaluate`, {
+      const res = await fetch(`${API_BASE_URL}/learning/practice/speaking/evaluate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -239,7 +240,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     const token = useAuthStore.getState().token;
     if (!token) return;
     try {
-      const res = await fetch(`${API_URL}/gamification/daily-challenge`, {
+      const res = await fetch(`${API_BASE_URL}/gamification/daily-challenge`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -255,7 +256,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     const token = useAuthStore.getState().token;
     if (!token) return;
     try {
-      const res = await fetch(`${API_URL}/gamification/leaderboard`, {
+      const res = await fetch(`${API_BASE_URL}/gamification/leaderboard`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -271,7 +272,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     const token = useAuthStore.getState().token;
     if (!token) return;
     try {
-      const res = await fetch(`${API_URL}/gamification/badges-list`, {
+      const res = await fetch(`${API_BASE_URL}/gamification/badges-list`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -288,7 +289,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     const token = useAuthStore.getState().token;
     if (!token) return false;
     try {
-      const res = await fetch(`${API_URL}/admin/vocab`, {
+      const res = await fetch(`${API_BASE_URL}/admin/vocab`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -307,7 +308,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     const token = useAuthStore.getState().token;
     if (!token) return false;
     try {
-      const res = await fetch(`${API_URL}/admin/vocab/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/admin/vocab/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -322,7 +323,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     const token = useAuthStore.getState().token;
     if (!token) return false;
     try {
-      const res = await fetch(`${API_URL}/admin/lessons`, {
+      const res = await fetch(`${API_BASE_URL}/admin/lessons`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -341,7 +342,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     const token = useAuthStore.getState().token;
     if (!token) return false;
     try {
-      const res = await fetch(`${API_URL}/admin/lessons/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/admin/lessons/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -356,7 +357,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     const token = useAuthStore.getState().token;
     if (!token) return null;
     try {
-      const res = await fetch(`${API_URL}/admin/stats`, {
+      const res = await fetch(`${API_BASE_URL}/admin/stats`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();

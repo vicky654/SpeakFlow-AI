@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { User } from '../types';
+import API_BASE_URL from '../config/api';
 
 interface AuthState {
   user: User | null;
@@ -16,8 +17,6 @@ interface AuthState {
   syncUserStats: (xp: number, coins: number, level: number, completedLessonId?: string) => void;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
   token: localStorage.getItem('speakflow_token'),
@@ -28,7 +27,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   login: async (email, password) => {
     set({ loading: true, error: null });
     try {
-      const res = await fetch(`${API_URL}/auth/login`, {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -48,7 +47,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   register: async (name, email, password, role) => {
     set({ loading: true, error: null });
     try {
-      const res = await fetch(`${API_URL}/auth/register`, {
+      const res = await fetch(`${API_BASE_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password, role })
@@ -70,7 +69,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     if (!token) return;
     set({ loading: true, error: null });
     try {
-      const res = await fetch(`${API_URL}/auth/me`, {
+      const res = await fetch(`${API_BASE_URL}/auth/me`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.status === 401 || res.status === 403) {
@@ -94,7 +93,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     const { token, user } = get();
     if (!token || !user) return;
     try {
-      const res = await fetch(`${API_URL}/auth/favorite`, {
+      const res = await fetch(`${API_BASE_URL}/auth/favorite`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
