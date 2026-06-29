@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLearningStore } from '../store/learningStore';
 import { useAuthStore } from '../store/authStore';
-import { ShieldAlert, BarChart3, Plus, Trash2, CheckCircle2, ListFilter, AlertCircle, BookOpen, LayoutList } from 'lucide-react';
+import { ShieldAlert, BarChart3, Plus, Trash2, CheckCircle2, ListFilter, AlertCircle, BookOpen, LayoutList, HelpCircle } from 'lucide-react';
 import { Lesson, Word } from '../types';
 
 export const AdminPanel: React.FC = () => {
@@ -11,6 +11,7 @@ export const AdminPanel: React.FC = () => {
   } = useLearningStore();
 
   const [activeAdminTab, setActiveAdminTab] = useState<'stats' | 'vocab' | 'lesson' | 'manage'>('stats');
+  const timerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [stats, setStats] = useState<any | null>(null);
   const [alertInfo, setAlertInfo] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 

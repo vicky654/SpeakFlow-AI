@@ -24,7 +24,7 @@ export const VocabGame: React.FC = () => {
   const [speedQuestions, setSpeedQuestions] = useState<any[]>([]);
   const [currentSpeedIdx, setCurrentSpeedIdx] = useState(0);
   const [speedTimer, setSpeedTimer] = useState(30);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // 2. MATCH MATCH STATES
   const [wordsCol, setWordsCol] = useState<MatchItem[]>([]);
@@ -118,14 +118,14 @@ export const VocabGame: React.FC = () => {
     const words: MatchItem[] = chosen.map(w => ({
       id: w._id + '_w',
       text: w.word,
-      type: 'word',
+      type: 'word' as const,
       matchId: w._id
     })).sort(() => 0.5 - Math.random());
 
     const meanings: MatchItem[] = chosen.map(w => ({
       id: w._id + '_m',
       text: w.englishMeaning,
-      type: 'meaning',
+      type: 'meaning' as const,
       matchId: w._id
     })).sort(() => 0.5 - Math.random());
 
@@ -424,9 +424,9 @@ export const VocabGame: React.FC = () => {
             </button>
             <button
               onClick={() => {
-                if (gameState === 'speed') startSpeedQuiz();
-                else startWordMatcher();
-              }}
+                 // Restart with a new speed quiz by default
+                 startSpeedQuiz();
+               }}
               className="flex-grow py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-600/25 flex items-center justify-center space-x-2"
             >
               <RotateCcw className="w-4 h-4" />

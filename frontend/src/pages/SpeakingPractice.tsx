@@ -46,7 +46,7 @@ export const SpeakingPractice: React.FC = () => {
   const loading = useLearningStore(state => state.loading);
 
   const recognitionRef = useRef<any>(null);
-  const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const timerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const startTimeRef = useRef<number>(0);
 
   // Initialize Speech Recognition API

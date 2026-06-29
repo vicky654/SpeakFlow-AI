@@ -86,13 +86,13 @@ router.post('/register', async (req: express.Request, res: Response) => {
         name: newUser.name,
         email: newUser.email,
         role: newUser.role,
-        xp: newUser.xp,
+        xp: newUser.levelProgress[newUser.currentLevelMode].xp,
         coins: newUser.coins,
         streak: newUser.streak,
-        level: newUser.level,
+        level: newUser.levelProgress[newUser.currentLevelMode].level,
         badges: newUser.badges,
-        favorites: newUser.favorites,
-        completedLessons: newUser.completedLessons
+        favorites: newUser.levelProgress[newUser.currentLevelMode].favorites,
+        completedLessons: newUser.levelProgress[newUser.currentLevelMode].completedLessons
       }
     });
   } catch (error) {
@@ -137,13 +137,13 @@ router.post('/login', async (req: express.Request, res: Response) => {
         name: updatedUser!.name,
         email: updatedUser!.email,
         role: updatedUser!.role,
-        xp: updatedUser!.xp,
-        coins: updatedUser!.coins,
-        streak: updatedUser!.streak,
-        level: updatedUser!.level,
-        badges: updatedUser!.badges,
-        favorites: updatedUser!.favorites,
-        completedLessons: updatedUser!.completedLessons
+        xp: updatedUser!.xp ?? 0,
+        coins: updatedUser!.coins ?? 0,
+        streak: updatedUser!.streak ?? 0,
+        level: updatedUser!.level ?? 1,
+        badges: updatedUser!.badges ?? [],
+        favorites: updatedUser!.favorites ?? [],
+        completedLessons: updatedUser!.completedLessons ?? []
       }
     });
   } catch (error) {
@@ -169,13 +169,13 @@ router.get('/me', authenticateToken, async (req: AuthRequest, res: Response) => 
       name: refreshed!.name,
       email: refreshed!.email,
       role: refreshed!.role,
-      xp: refreshed!.xp,
-      coins: refreshed!.coins,
-      streak: refreshed!.streak,
-      level: refreshed!.level,
-      badges: refreshed!.badges,
-      favorites: refreshed!.favorites,
-      completedLessons: refreshed!.completedLessons
+      xp: refreshed!.xp ?? 0,
+      coins: refreshed!.coins ?? 0,
+      streak: refreshed!.streak ?? 0,
+      level: refreshed!.level ?? 1,
+      badges: refreshed!.badges ?? [],
+      favorites: refreshed!.favorites ?? [],
+      completedLessons: refreshed!.completedLessons ?? []
     });
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch user. Server error.' });
@@ -196,7 +196,7 @@ router.post('/favorite', authenticateToken, async (req: AuthRequest, res: Respon
       return res.status(404).json({ message: 'User not found.' });
     }
 
-    let favorites = [...user.favorites];
+    let favorites = [...(user.favorites ?? [])];
     const index = favorites.indexOf(wordId);
     
     if (index === -1) {
@@ -206,7 +206,7 @@ router.post('/favorite', authenticateToken, async (req: AuthRequest, res: Respon
     }
 
     const updated = await dbService.users.update(user._id, { favorites });
-    res.json({ favorites: updated!.favorites });
+    res.json({ favorites: updated!.favorites ?? [] });
   } catch (error) {
     res.status(500).json({ message: 'Failed to update favorites. Server error.' });
   }

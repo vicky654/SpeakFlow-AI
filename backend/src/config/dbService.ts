@@ -18,7 +18,7 @@ export const dbService = {
         const users = localDb.getCollection<IUser>('users');
         return users.find(u => u.email.toLowerCase() === email.toLowerCase()) || null;
       }
-      return User.findOne({ email }).lean() as any;
+      return User.findOne({ email }).lean({ virtuals: true }) as any;
     },
 
     async findById(id: string): Promise<IUser | null> {
@@ -26,7 +26,7 @@ export const dbService = {
         const users = localDb.getCollection<IUser>('users');
         return users.find(u => u._id === id) || null;
       }
-      return User.findById(id).lean() as any;
+      return User.findById(id).lean({ virtuals: true }) as any;
     },
 
     async create(userData: Partial<IUser>): Promise<IUser> {
@@ -38,13 +38,15 @@ export const dbService = {
           email: userData.email || '',
           passwordHash: userData.passwordHash || '',
           role: userData.role || 'student',
-          xp: 0,
-          coins: 0,
-          streak: 0,
-          level: 1,
-          badges: [],
-          favorites: [],
-          completedLessons: [],
+          coins: userData.coins ?? 0,
+          streak: userData.streak ?? 0,
+          badges: userData.badges ?? [],
+          currentLevelMode: userData.currentLevelMode || 'beginner',
+          levelProgress: userData.levelProgress || {
+            beginner: { xp: 0, level: 1, favorites: [], completedLessons: [] },
+            intermediate: { xp: 0, level: 1, favorites: [], completedLessons: [] },
+            professional: { xp: 0, level: 1, favorites: [], completedLessons: [] }
+          },
           createdAt: new Date().toISOString(),
           ...userData
         };
@@ -107,7 +109,7 @@ export const dbService = {
           synonyms: vocabData.synonyms || [],
           antonyms: vocabData.antonyms || [],
           exampleSentences: vocabData.exampleSentences || [],
-          commonMistakes: vocabForm => vocabData.commonMistakes || '',
+          commonMistakes: vocabData.commonMistakes || '',
           memoryTrick: vocabData.memoryTrick || '',
           realLifeUsage: vocabData.realLifeUsage || '',
           audioUrl: vocabData.audioUrl || '',

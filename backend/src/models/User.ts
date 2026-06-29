@@ -23,6 +23,11 @@ export interface IUser {
     intermediate: IUserLevelProgress;
     professional: IUserLevelProgress;
   };
+  // Legacy optional fields for backward compatibility
+  xp?: number;
+  level?: number;
+  favorites?: string[];
+  completedLessons?: string[];
   createdAt: string;
 }
 
@@ -55,7 +60,48 @@ const UserSchema: Schema = new Schema(
     },
     createdAt: { type: String, default: () => new Date().toISOString() }
   },
-  { timestamps: false }
+  { timestamps: false, toObject: { virtuals: true }, toJSON: { virtuals: true } }
 );
+
+// Virtuals for legacy fields
+UserSchema.virtual('xp')
+  .get(function(this: any) {
+    return this.levelProgress[this.currentLevelMode]?.xp ?? 0;
+  })
+  .set(function(this: any, value: number) {
+    if (!this.levelProgress) this.levelProgress = {};
+    if (!this.levelProgress[this.currentLevelMode]) this.levelProgress[this.currentLevelMode] = {};
+    this.levelProgress[this.currentLevelMode].xp = value;
+  });
+
+UserSchema.virtual('level')
+  .get(function(this: any) {
+    return this.levelProgress[this.currentLevelMode]?.level ?? 1;
+  })
+  .set(function(this: any, value: number) {
+    if (!this.levelProgress) this.levelProgress = {};
+    if (!this.levelProgress[this.currentLevelMode]) this.levelProgress[this.currentLevelMode] = {};
+    this.levelProgress[this.currentLevelMode].level = value;
+  });
+
+UserSchema.virtual('favorites')
+  .get(function(this: any) {
+    return this.levelProgress[this.currentLevelMode]?.favorites ?? [];
+  })
+  .set(function(this: any, value: any[]) {
+    if (!this.levelProgress) this.levelProgress = {};
+    if (!this.levelProgress[this.currentLevelMode]) this.levelProgress[this.currentLevelMode] = {};
+    this.levelProgress[this.currentLevelMode].favorites = value;
+  });
+
+UserSchema.virtual('completedLessons')
+  .get(function(this: any) {
+    return this.levelProgress[this.currentLevelMode]?.completedLessons ?? [];
+  })
+  .set(function(this: any, value: any[]) {
+    if (!this.levelProgress) this.levelProgress = {};
+    if (!this.levelProgress[this.currentLevelMode]) this.levelProgress[this.currentLevelMode] = {};
+    this.levelProgress[this.currentLevelMode].completedLessons = value;
+  });
 
 export default mongoose.models.User || mongoose.model<IUserDoc>('User', UserSchema);
