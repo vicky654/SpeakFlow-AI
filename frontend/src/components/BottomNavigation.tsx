@@ -25,7 +25,7 @@ export const BottomNavigation: React.FC = () => {
   };
 
   return (
-    <nav className="fixed bottom-4 left-4 right-4 h-14 bg-brand-card/90 backdrop-blur-lg border border-brand-border rounded-2xl flex items-center justify-around px-2 z-40 select-none shadow-level-2">
+    <nav className="fixed bottom-4 left-4 right-4 h-[68px] bg-brand-surface/90 backdrop-blur-xl border border-brand-border/60 rounded-[22px] flex items-center justify-around px-2 z-50 select-none shadow-level-3">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = currentPath === tab.to || (tab.to !== '/' && currentPath.startsWith(tab.to));
@@ -35,20 +35,24 @@ export const BottomNavigation: React.FC = () => {
             key={tab.to}
             to={tab.to}
             onClick={handleTabClick}
-            className="relative flex flex-col items-center justify-center w-12 h-10 text-brand-text-muted font-medium text-[9px] transition-all"
+            className="relative flex flex-col items-center justify-center w-14 h-12 text-brand-text-muted transition-all"
           >
             {isActive && (
               <motion.div
                 layoutId="activeTabIndicator"
-                className="absolute inset-0 bg-brand-primary/10 rounded-xl border border-brand-primary/15 z-0"
-                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                className="absolute inset-0 bg-brand-primary/10 rounded-xl border border-brand-primary/10 z-0"
+                transition={{ type: 'spring', stiffness: 350, damping: 28 }}
               />
             )}
             
-            <div className={`z-10 flex flex-col items-center space-y-0.5 ${isActive ? 'text-brand-primary font-medium scale-105' : 'text-brand-text-muted hover:text-brand-text-secondary'} transition-all duration-200`}>
-              <Icon className="w-4.5 h-4.5" />
-              <span className="text-[8px] tracking-wide mt-0.5">{tab.label}</span>
-            </div>
+            <motion.div 
+              className={`z-10 flex flex-col items-center space-y-0.5 ${isActive ? 'text-brand-primary font-semibold' : 'text-brand-text-secondary hover:text-brand-text-primary'} transition-colors duration-200`}
+              animate={{ scale: isActive ? 1.05 : 1 }}
+              whileTap={{ scale: 0.92 }}
+            >
+              <Icon className="w-5 h-5 shrink-0" />
+              <span className="text-[9px] tracking-wide mt-0.5">{tab.label}</span>
+            </motion.div>
           </NavLink>
         );
       })}

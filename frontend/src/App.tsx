@@ -69,7 +69,7 @@ const ProtectedLayout: React.FC = () => {
 
   return (
     <IonPage className="bg-brand-bg text-brand-text-primary">
-      <div className="flex h-screen w-screen overflow-hidden">
+      <div className="flex h-screen w-screen overflow-hidden bg-brand-bg">
         
         {/* 1. DESKTOP SIDEBAR NAVIGATION */}
         <div className="hidden md:block">
@@ -77,7 +77,7 @@ const ProtectedLayout: React.FC = () => {
         </div>
 
         {/* 2. MAIN APP CONTENT PANEL */}
-        <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+        <div className="flex-1 flex flex-col h-full overflow-hidden relative bg-brand-bg">
           
           {/* DESKTOP TOP BAR OR MOBILE TOP BAR */}
           <div className="hidden md:block">
@@ -88,8 +88,9 @@ const ProtectedLayout: React.FC = () => {
           </div>
           
           {/* INNER CONTENT SCROLL CONTAINER */}
-          <IonContent className="flex-1 overflow-y-auto" scrollEvents={true}>
-            <div className="px-4 md:px-8 pt-20 pb-28 md:py-6 max-w-7xl w-full mx-auto safe-bottom">
+          {/* pb-36 on mobile = 144px clearance above the 76px floating bottom nav */}
+          <IonContent className="flex-1 overflow-y-auto bg-brand-bg" scrollEvents={true}>
+            <div className="px-4 md:px-8 pt-20 pb-36 md:py-6 max-w-7xl w-full mx-auto">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/learn" element={<LearnHub />} />
@@ -123,7 +124,7 @@ const ProtectedLayout: React.FC = () => {
             </div>
           </IonContent>
 
-          {/* 3. MOBILE STICKY BOTTOM NAVIGATION BAR */}
+          {/* 3. MOBILE STICKY BOTTOM NAVIGATION BAR - renders OUTSIDE scroll area */}
           <div className="block md:hidden">
             <BottomNavigation />
           </div>

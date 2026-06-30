@@ -76,17 +76,22 @@ export const LearnHub: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6 pb-6 select-none max-w-lg mx-auto">
+    <div className="space-y-6 pb-6 select-none max-w-lg mx-auto safe-bottom px-4">
       {/* HEADER CARD */}
-      <div className="space-y-1">
-        <h2 className="text-2xl font-extrabold text-white">Curriculum Syllabus</h2>
-        <p className="text-xs text-brand-text-secondary">Complete modules daily to grow your streak and secure badge levels.</p>
+      <div className="bg-brand-surface rounded-2xl p-5 shadow-level-2">
+        <h2 className="text-2xl font-extrabold text-brand-text-primary">Curriculum Syllabus</h2>
+        <p className="text-xs text-brand-text-secondary mt-1">
+          Complete modules daily to grow your streak and secure badge levels.
+        </p>
       </div>
 
       {/* 15-DAY CHALLENGE PROMPT CARD */}
-      <div 
+      <div
         onClick={() => navigate('/challenge')}
-        className="p-4 rounded-3xl border border-indigo-500/35 bg-gradient-to-r from-indigo-950/40 via-slate-900/60 to-purple-950/20 hover:border-indigo-400 cursor-pointer active:scale-[0.99] transition-all flex items-center justify-between"
+        className="p-5 rounded-3xl bg-gradient-to-r from-indigo-950/40 via-slate-900/60 to-purple-950/20 border border-indigo-500/35 hover:border-indigo-400 cursor-pointer active:scale-[0.99] transition-all flex items-center justify-between"
+        role="button"
+        tabIndex={0}
+        aria-label="Navigate to 15-Day Guided Challenge"
       >
         <div className="flex items-center space-x-3.5 min-w-0">
           <div className="p-3 bg-indigo-650 rounded-2xl text-white shrink-0 shadow-md animate-pulse">
@@ -96,7 +101,9 @@ export const LearnHub: React.FC = () => {
             <h4 className="font-extrabold text-sm text-transparent bg-clip-text bg-gradient-to-r from-white to-indigo-250">
               15-Day Guided Challenge
             </h4>
-            <p className="text-[10px] text-brand-text-secondary mt-0.5 leading-normal">Sequential study days, weekly chests, and lucky spins.</p>
+            <p className="text-[10px] text-brand-text-secondary mt-0.5 leading-normal">
+              Sequential study days, weekly chests, and lucky spins.
+            </p>
           </div>
         </div>
         <ArrowRight className="w-4 h-4 text-indigo-400" />
@@ -110,7 +117,10 @@ export const LearnHub: React.FC = () => {
             <div
               key={idx}
               onClick={() => navigate(mod.to)}
-              className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 border border-brand-border dark:border-brand-border hover:border-indigo-500/30 transition-all flex items-center justify-between gap-4 cursor-pointer active:scale-[0.99]"
+              className="bg-brand-card border border-brand-border shadow-level-2 rounded-2xl p-4 hover:border-indigo-500/30 transition-all flex items-center justify-between gap-4 cursor-pointer active:scale-[0.99]"
+              role="button"
+              tabIndex={0}
+              aria-label={`Navigate to ${mod.title}`}
             >
               <div className="flex items-center space-x-3.5 flex-1 min-w-0">
                 <div className={`p-3 rounded-xl bg-gradient-to-tr ${mod.color} text-white shrink-0 shadow-md`}>
@@ -124,7 +134,7 @@ export const LearnHub: React.FC = () => {
                   </span>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-2 shrink-0">
                 <ProgressRing radius={16} stroke={2.5} progress={mod.progress} color={mod.strokeColor} />
                 <ArrowRight className="w-4 h-4 text-brand-text-muted" />

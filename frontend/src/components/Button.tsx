@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'ghost';
-  size?: 'sm' | 'md' | 'lg' | 'pill';
+  size?: 'primary' | 'sm' | 'lg' | 'pill';
   icon?: React.ReactNode;
   fullWidth?: boolean;
 }
@@ -10,53 +10,55 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: React.FC<ButtonProps> = ({
   children,
   variant = 'primary',
-  size = 'md',
+  size = 'primary',
   icon,
   fullWidth = false,
   className = '',
   disabled,
+  style,
   ...props
 }) => {
-  // Base classes including native reset, flex centering, transitions, active state scale micro-animations
-  const baseClass = 'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 select-none whitespace-nowrap shrink-0 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none disabled:active:scale-100 cursor-pointer border border-transparent';
+  const baseClass = [
+    'inline-flex items-center justify-center gap-2 font-semibold select-none whitespace-nowrap shrink-0',
+    'cursor-pointer transition-all duration-150 ease-out',
+    'active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none disabled:active:scale-100',
+  ].join(' ');
 
-  // Variant class mapping
   let variantClass = '';
   switch (variant) {
     case 'primary':
-      variantClass = 'bg-brand-primary hover:opacity-95 text-white shadow-sm';
+      variantClass = 'bg-gradient-to-r from-[#6D5DF6] to-[#8B5CF6] text-white shadow-sm hover:brightness-105';
       break;
     case 'secondary':
-      variantClass = 'bg-brand-surface border-brand-border text-brand-text-primary hover:bg-brand-bg';
+      variantClass = 'bg-white border border-[#E8ECF5] text-[#111827] hover:bg-[#FAFBFC]';
       break;
     case 'success':
-      variantClass = 'bg-brand-success/15 border-brand-success/20 text-brand-success hover:bg-brand-success/20';
+      variantClass = 'bg-green-50 border border-green-200 text-green-600 hover:bg-green-100';
       break;
     case 'warning':
-      variantClass = 'bg-brand-warning text-white hover:brightness-105 shadow-sm';
+      variantClass = 'bg-amber-500 text-white hover:brightness-105 shadow-sm';
       break;
     case 'error':
-      variantClass = 'bg-brand-error/15 border-brand-error/20 text-brand-error hover:bg-brand-error/20';
+      variantClass = 'bg-red-50 border border-red-200 text-red-600 hover:bg-red-100';
       break;
     case 'ghost':
-      variantClass = 'bg-transparent text-brand-text-secondary hover:bg-brand-bg hover:text-brand-text-primary border-none';
+      variantClass = 'bg-transparent text-[#6B7280] hover:bg-[#FAFBFC] hover:text-[#111827]';
       break;
   }
 
-  // Size class mapping to handle button padding and heights
   let sizeClass = '';
   switch (size) {
-    case 'sm':
-      sizeClass = 'min-h-[36px] px-4 py-2 text-xs rounded-xl';
+    case 'primary':
+      sizeClass = 'h-12 min-w-[90px] px-5 py-3 rounded-[14px] text-sm';
       break;
-    case 'md':
-      sizeClass = 'min-h-[44px] px-5 py-3 text-sm rounded-[14px]';
+    case 'sm':
+      sizeClass = 'h-11 min-w-[80px] px-5 py-2.5 rounded-[12px] text-sm';
       break;
     case 'lg':
-      sizeClass = 'min-h-[52px] px-6 py-4 text-base rounded-[14px]';
+      sizeClass = 'h-[52px] min-w-[100px] px-6 py-4 rounded-[14px] text-base';
       break;
     case 'pill':
-      sizeClass = 'min-h-[38px] px-4.5 py-2.5 text-xs rounded-full';
+      sizeClass = 'h-9 min-w-[72px] px-4 py-2 rounded-full text-xs';
       break;
   }
 
@@ -66,6 +68,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       disabled={disabled}
       className={`${baseClass} ${variantClass} ${sizeClass} ${widthClass} ${className}`}
+      style={style}
       {...props}
     >
       {icon && <span className="flex items-center justify-center shrink-0">{icon}</span>}
@@ -73,3 +76,20 @@ export const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
+
+// Dedicated StartButton component for consistency
+export const StartButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
+  children = 'Start',
+  className = '',
+  ...props
+}) => (
+  <Button
+    variant="primary"
+    size="sm"
+    className={`min-w-[80px] ${className}`}
+    {...props}
+  >
+    {children}
+  </Button>
+);
+

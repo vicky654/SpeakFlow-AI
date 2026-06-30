@@ -3,13 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { useLearningStore } from '../store/learningStore';
 import { useChallengeStore } from '../store/challengeStore';
-import { Flame, Sparkles, Target, Play, CheckCircle2, ChevronRight, Award, BookOpen, Clock, Zap } from 'lucide-react';
+import {
+  Flame, Sparkles, Target, Play, CheckCircle2, ChevronRight, Award,
+  BookOpen, Clock, Zap, MessageCircle, Headphones, Mic, Book, PenTool, GraduationCap
+} from 'lucide-react';
 import { IonRefresher, IonRefresherContent } from '@ionic/react';
+import { Button } from '../components/Button';
 
-// Inline Mini SVG Progress Ring
+// Inline Mini SVG Progress Ring formatted for premium center text layout
 const ProgressRingMini: React.FC<{ pct: number }> = ({ pct }) => {
-  const radius = 14;
-  const stroke = 3;
+  const radius = 16;
+  const stroke = 3.5;
   const normalizedRadius = radius - stroke;
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = circumference - (pct / 100) * circumference;
@@ -17,27 +21,27 @@ const ProgressRingMini: React.FC<{ pct: number }> = ({ pct }) => {
   return (
     <div className="relative flex items-center justify-center shrink-0">
       <svg height={radius * 2} width={radius * 2} className="transform -rotate-90">
-        <circle 
-          stroke="rgba(255, 255, 255, 0.05)" 
-          fill="transparent" 
-          strokeWidth={stroke} 
-          r={normalizedRadius} 
-          cx={radius} 
-          cy={radius} 
+        <circle
+          stroke="var(--color-border)"
+          fill="transparent"
+          strokeWidth={stroke}
+          r={normalizedRadius}
+          cx={radius}
+          cy={radius}
         />
-        <circle 
-          stroke="#6366f1" 
-          fill="transparent" 
-          strokeWidth={stroke} 
-          strokeDasharray={`${circumference} ${circumference}`} 
-          style={{ strokeDashoffset, transition: 'stroke-dashoffset 0.5s ease' }} 
-          strokeLinecap="round" 
-          r={normalizedRadius} 
-          cx={radius} 
-          cy={radius} 
+        <circle
+          stroke="var(--color-primary)"
+          fill="transparent"
+          strokeWidth={stroke}
+          strokeDasharray={`${circumference} ${circumference}`}
+          style={{ strokeDashoffset, transition: 'stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1)' }}
+          strokeLinecap="round"
+          r={normalizedRadius}
+          cx={radius}
+          cy={radius}
         />
       </svg>
-      <span className="absolute text-[8px] font-bold text-slate-350">{pct}%</span>
+      <span className="absolute text-[8px] font-bold text-brand-text-primary">{pct}%</span>
     </div>
   );
 };
@@ -77,7 +81,6 @@ export const Dashboard: React.FC = () => {
   };
 
   const handleContinueLearning = () => {
-    // Navigation automatically opens the active drill screen
     navigate(`/challenge/day/${currentDay}`);
   };
 
@@ -104,120 +107,155 @@ export const Dashboard: React.FC = () => {
   const completedTasks = checklistItems.filter(([_, v]: any) => v.completed).length;
   const progressPct = Math.round((completedTasks / totalTasks) * 100);
 
-  // Metadata mapping for custom interactive Daily Goals Cards
   const goalMetadata: Record<string, { label: string; time: string; xp: string; route: string }> = {
-    vocab: { label: 'Learn 10 Vocabulary Words', time: '10 min', xp: '+25 XP', route: '/vocab' },
-    speaking: { label: 'Complete 1 Speaking Drill', time: '5 min', xp: '+30 XP', route: '/speaking' },
-    listening: { label: 'Complete 1 Listening Scenario', time: '5 min', xp: '+20 XP', route: '/listening' },
-    reading: { label: 'Read 1 Practice Story', time: '8 min', xp: '+20 XP', route: '/reading' },
-    writing: { label: 'Complete 1 Writing Task', time: '12 min', xp: '+35 XP', route: '/writing' },
-    quiz: { label: 'Pass 1 Grammar Course Quiz', time: '10 min', xp: '+50 XP', route: '/grammar' }
+    vocab: { label: 'Vocabulary Flashcards', time: '10 min', xp: '+25 XP', route: '/vocab' },
+    speaking: { label: 'Speaking Challenges', time: '5 min', xp: '+30 XP', route: '/speaking' },
+    listening: { label: 'Listening Scenarios', time: '5 min', xp: '+20 XP', route: '/listening' },
+    reading: { label: 'Reading Stories', time: '8 min', xp: '+20 XP', route: '/reading' },
+    writing: { label: 'Writing Practices', time: '12 min', xp: '+35 XP', route: '/writing' },
+    quiz: { label: 'Grammar Course Quiz', time: '10 min', xp: '+50 XP', route: '/grammar' }
   };
 
+  const quickActions = [
+    { name: 'Vocabulary', route: '/vocab', icon: Book, color: 'bg-rose-500/10 text-rose-500 border-rose-500/10' },
+    { name: 'Grammar', route: '/grammar', icon: GraduationCap, color: 'bg-amber-500/10 text-amber-500 border-amber-500/10' },
+    { name: 'Speaking', route: '/speaking', icon: Mic, color: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/10' },
+    { name: 'Listening', route: '/listening', icon: Headphones, color: 'bg-blue-500/10 text-blue-500 border-blue-500/10' },
+    { name: 'Reading', route: '/reading', icon: BookOpen, color: 'bg-indigo-500/10 text-indigo-500 border-indigo-500/10' },
+    { name: 'Writing', route: '/writing', icon: PenTool, color: 'bg-teal-500/10 text-teal-500 border-teal-500/10' },
+  ];
+
   return (
-    <div className="space-y-6 select-none max-w-md mx-auto pb-10 pt-4 px-2 text-brand-text-primary font-sans">
-      
-      {/* NATIVE PULL TO REFRESH */}
+    <div className="space-y-6 select-none max-w-md mx-auto pb-12 pt-2 px-1 text-brand-text-primary">
+
       <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
-        <IonRefresherContent 
-          pullingText="Pull down to refresh study goals..." 
+        <IonRefresherContent
+          pullingText="Pull down to refresh study goals..."
           refreshingText="Updating your statistics..."
         />
       </IonRefresher>
 
-      {/* 👋 Welcome back card */}
-      <div className="text-left py-2 flex justify-between items-center">
-        <div>
-          <span className="text-xs uppercase tracking-widest font-semibold text-brand-primary">👋 Welcome back</span>
-          <h1 className="text-2xl font-semibold text-brand-text-primary mt-1">
-            Hello, {user?.name || 'Learner'}!
-          </h1>
-          <p className="text-xs text-brand-text-secondary mt-1 leading-relaxed font-normal">
-            Let's take another small step toward English fluency today.
-          </p>
-        </div>
+      {/* 👋 Welcome Header */}
+      <div className="text-left py-2">
+        <span className="text-[10px] uppercase tracking-wider font-semibold text-brand-primary">👋 Welcome back</span>
+        <h1 className="text-2xl font-bold tracking-tight text-brand-text-primary mt-0.5">
+          Hello, {user?.name || 'Learner'}!
+        </h1>
+        <p className="text-xs text-brand-text-secondary mt-1 leading-normal font-normal">
+          Let's take another small step toward English fluency today.
+        </p>
       </div>
 
-      {/* 📅 Today's Lesson Hero Card */}
-      <div className="p-6 rounded-3xl bg-gradient-to-br from-brand-primary via-indigo-650 to-brand-accent shadow-level-2 relative overflow-hidden text-left border border-white/10 select-none text-white">
-        <div className="absolute -right-6 -bottom-6 p-4 opacity-15 pointer-events-none">
+      {/* 📅 Today's Lesson Hero Gradient Card */}
+      <div className="p-6 rounded-[24px] bg-gradient-to-br from-brand-primary to-[#8B5CF6] shadow-md relative overflow-hidden text-left border border-white/5 text-white">
+        <div className="absolute -right-6 -bottom-6 p-4 opacity-10 pointer-events-none">
           <BookOpen className="w-32 h-32 text-white" />
         </div>
-        <div className="space-y-3 relative z-10">
-          <span className="inline-block text-[9px] uppercase tracking-widest font-semibold bg-white/20 text-white px-2.5 py-1 rounded-full backdrop-blur-sm">
+
+        <div className="space-y-4 relative z-10">
+          <span className="inline-block text-[9px] uppercase tracking-wider font-semibold bg-white/20 text-white px-2.5 py-1 rounded-full backdrop-blur-sm">
             📅 Today's Lesson
           </span>
           <div>
-            <h2 className="text-xl font-semibold leading-tight text-white">
+            <h2 className="text-xl font-bold leading-snug text-white">
               Day {currentDay}: {dayTopics[currentDay] || 'Daily Communication'}
             </h2>
-            <p className="text-xs text-white/80 leading-relaxed pt-1.5 max-w-[85%] font-normal">
+            <p className="text-xs text-white/85 leading-relaxed pt-1.5 max-w-[85%] font-normal">
               Unlock conversational greetings, grammar quizzes, audio repetitions, and interactive writing drills.
             </p>
           </div>
           <div className="pt-2">
             <button
               onClick={handleContinueLearning}
-              className="px-5 py-2.5 bg-white text-brand-primary hover:bg-slate-50 font-semibold rounded-xl text-xs flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 transition-all"
+              style={{ borderRadius: '999px', padding: '10px 22px' }}
+              className="inline-flex items-center gap-2 bg-white text-indigo-600 font-bold text-sm shadow-lg hover:bg-indigo-50 active:scale-95 transition-all"
             >
-              <Play className="w-3.5 h-3.5 fill-current" />
+              <Play className="w-4 h-4 fill-current shrink-0" />
               <span>Start Learning</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* 🔥 Streak, ⭐ XP, and 📈 Progress Indicators */}
-      <div className="grid grid-cols-3 gap-3 select-none">
-        {/* Current Streak */}
-        <div className="bg-brand-card rounded-2xl p-3 border border-brand-border flex flex-col items-center justify-center text-center shadow-level-1">
-          <div className="w-9 h-9 rounded-xl bg-brand-error/10 flex items-center justify-center text-brand-error mb-1.5">
-            <Flame className="w-4 h-4 fill-current animate-pulse" />
+      {/* Stats Quick Cards */}
+      <div className="grid grid-cols-3 gap-3">
+        {/* Streak */}
+        <div className="card !p-4 flex flex-col items-center justify-center text-center">
+          <div className="w-10 h-10 rounded-xl bg-brand-error/10 flex items-center justify-center text-brand-error mb-2">
+            <Flame className="w-5 h-5 fill-current" />
           </div>
-          <span className="text-[10px] text-brand-text-muted uppercase font-medium tracking-wide">Streak</span>
-          <p className="text-base font-semibold text-brand-text-primary mt-0.5">{user?.streak || 0} Days</p>
+          <span className="text-[10px] text-brand-text-muted uppercase font-semibold tracking-wide">Streak</span>
+          <p className="text-sm font-bold text-brand-text-primary mt-0.5">{user?.streak || 0} Days</p>
         </div>
 
         {/* XP */}
-        <div className="bg-brand-card rounded-2xl p-3 border border-brand-border flex flex-col items-center justify-center text-center shadow-level-1">
-          <div className="w-9 h-9 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-1.5">
-            <Sparkles className="w-4 h-4 fill-current" />
+        <div className="card !p-4 flex flex-col items-center justify-center text-center">
+          <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-2">
+            <Sparkles className="w-5 h-5 fill-current" />
           </div>
-          <span className="text-[10px] text-brand-text-muted uppercase font-medium tracking-wide">XP Points</span>
-          <p className="text-base font-semibold text-brand-text-primary mt-0.5">{user?.xp || 0}</p>
+          <span className="text-[10px] text-brand-text-muted uppercase font-semibold tracking-wide">XP</span>
+          <p className="text-sm font-bold text-brand-text-primary mt-0.5">{user?.xp || 0}</p>
         </div>
 
         {/* Progress */}
-        <div className="bg-brand-card rounded-2xl p-3 border border-brand-border flex flex-col items-center justify-center text-center shadow-level-1">
-          <div className="w-9 h-9 rounded-xl bg-brand-success/10 flex items-center justify-center text-brand-success mb-1.5">
-            <Award className="w-4 h-4" />
+        <div className="card !p-4 flex flex-col items-center justify-center text-center">
+          <div className="w-10 h-10 rounded-xl bg-brand-success/10 flex items-center justify-center text-brand-success mb-2">
+            <Award className="w-5 h-5" />
           </div>
-          <span className="text-[10px] text-brand-text-muted uppercase font-medium tracking-wide">Progress</span>
-          <p className="text-base font-semibold text-brand-success mt-0.5">{progressPct}%</p>
+          <span className="text-[10px] text-brand-text-muted uppercase font-semibold tracking-wide">Completed</span>
+          <p className="text-sm font-bold text-brand-success mt-0.5">{progressPct}%</p>
         </div>
       </div>
 
-      {/* 📈 Progress Bar representation */}
-      <div className="bg-brand-card rounded-2xl p-4.5 border border-brand-border text-left shadow-level-1">
-        <div className="flex justify-between items-center text-[10px] text-brand-text-muted font-medium uppercase tracking-wider mb-2">
+      {/* Progress Track */}
+      <div className="card !p-5 text-left space-y-3">
+        <div className="flex justify-between items-center text-[10px] text-brand-text-secondary font-semibold uppercase tracking-wider">
           <span>Today's Progress</span>
-          <span className="text-brand-success font-semibold">{completedTasks}/{totalTasks} Completed</span>
+          <span className="text-brand-success font-bold">{completedTasks}/{totalTasks} Completed</span>
         </div>
-        <div className="w-full h-2.5 bg-brand-bg border border-brand-border rounded-full overflow-hidden relative">
-          <div 
-            className="h-full bg-gradient-to-r from-brand-primary to-brand-accent rounded-full transition-all duration-500 ease-out"
+        <div className="w-full h-3 bg-brand-bg border border-brand-border rounded-full overflow-hidden relative">
+          <div
+            className="h-full bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full transition-all duration-500 ease-out"
             style={{ width: `${progressPct}%` }}
           />
         </div>
       </div>
 
-      {/* 🎯 Daily Goal Interactive Cards */}
-      <div className="space-y-3.5 text-left">
+      {/* 🎯 Quick Actions Grid */}
+      <div className="space-y-3 text-left">
+        <div className="flex items-center space-x-2 pb-1">
+          <GraduationCap className="w-4.5 h-4.5 text-brand-primary" />
+          <h3 className="font-bold text-sm text-brand-text-primary">Skills Quick Practice</h3>
+        </div>
+
+        <div className="grid grid-cols-3 gap-3">
+          {quickActions.map((action, idx) => {
+            const Icon = action.icon;
+            return (
+              <div
+                key={idx}
+                onClick={() => navigate(action.route)}
+                className="card !p-4 hover:shadow-md cursor-pointer active:scale-95 text-center flex flex-col items-center justify-center space-y-2"
+              >
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${action.color} border`}>
+                  <Icon className="w-4.5 h-4.5" />
+                </div>
+                <span className="text-[10px] font-bold text-brand-text-primary leading-none">
+                  {action.name}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 🎯 Daily Goals Checklist */}
+      <div className="space-y-4 text-left pt-2">
         <div className="flex items-center space-x-2 border-b border-brand-border pb-2">
           <Target className="w-4.5 h-4.5 text-brand-primary" />
           <div>
-            <h3 className="font-semibold text-sm text-brand-text-primary">Daily Study Objectives</h3>
-            <p className="text-[10px] text-brand-text-secondary mt-0.5 font-normal">Click Start to complete drills and earn target XP rewards</p>
+            <h3 className="font-bold text-sm text-brand-text-primary">Daily Study Objectives</h3>
+            <p className="text-[10px] text-brand-text-secondary mt-0.5 font-normal">Complete checklist items to maximize XP reward metrics</p>
           </div>
         </div>
 
@@ -229,28 +267,25 @@ export const Dashboard: React.FC = () => {
               const taskPct = Math.round((value.current / value.target) * 100);
 
               return (
-                <div 
-                  key={key} 
-                  className={`p-4.5 rounded-2xl border transition-all flex items-center justify-between gap-4 select-none ${
-                    isCompleted 
-                      ? 'bg-brand-surface/40 border-brand-border opacity-55 shadow-sm' 
-                      : 'bg-brand-card border-brand-border hover:shadow-level-2 shadow-level-1'
+                <div
+                  key={key}
+                  className={`card transition-all flex items-center justify-between gap-4 select-none ${
+                    isCompleted ? 'opacity-50' : 'hover:shadow-md'
                   }`}
                 >
                   <div className="flex items-center space-x-4 min-w-0">
-                    {/* Circle Progress Indicator */}
                     <ProgressRingMini pct={taskPct} />
 
-                    <div className="min-w-0">
-                      <h4 className={`font-semibold text-sm ${isCompleted ? 'text-brand-text-muted line-through' : 'text-brand-text-primary'} leading-snug`}>
+                    <div className="min-w-0 space-y-1">
+                      <h4 className={`font-bold text-xs sm:text-sm leading-tight ${isCompleted ? 'text-brand-text-muted line-through' : 'text-brand-text-primary'}`}>
                         {meta.label}
                       </h4>
-                      <div className="flex items-center space-x-3.5 mt-1 text-[10px] text-brand-text-secondary font-medium">
-                        <span className="flex items-center space-x-1.5">
+                      <div className="flex items-center space-x-3 text-[10px] text-brand-text-secondary font-semibold">
+                        <span className="flex items-center space-x-1">
                           <Clock className="w-3.5 h-3.5 text-brand-text-muted shrink-0" />
                           <span>{meta.time}</span>
                         </span>
-                        <span className="flex items-center space-x-1.5 text-brand-primary">
+                        <span className="flex items-center space-x-1 text-brand-primary">
                           <Zap className="w-3.5 h-3.5 text-brand-primary shrink-0" />
                           <span>{meta.xp}</span>
                         </span>
@@ -261,22 +296,23 @@ export const Dashboard: React.FC = () => {
                   <button
                     disabled={isCompleted}
                     onClick={() => navigate(meta.route)}
-                    className={`px-4.5 h-9 flex items-center justify-center rounded-full text-xs font-semibold transition-all active:scale-95 shrink-0 ${
+                    style={{ borderRadius: '999px', padding: '8px 18px' }}
+                    className={`shrink-0 inline-flex items-center gap-1.5 text-xs font-bold transition-all active:scale-95 ${
                       isCompleted
-                        ? 'bg-brand-success/15 border border-brand-success/20 text-brand-success cursor-default space-x-1.5'
-                        : 'bg-brand-primary hover:bg-brand-hover text-white shadow-sm'
+                        ? 'bg-green-100 text-green-600 cursor-default'
+                        : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm'
                     }`}
                   >
                     {isCompleted ? (
                       <>
-                        <CheckCircle2 className="w-3.5 h-3.5 animate-pulse" />
+                        <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>Done</span>
                       </>
                     ) : (
-                      <span className="flex items-center space-x-1">
+                      <>
                         <span>Start</span>
                         <ChevronRight className="w-3.5 h-3.5" />
-                      </span>
+                      </>
                     )}
                   </button>
                 </div>

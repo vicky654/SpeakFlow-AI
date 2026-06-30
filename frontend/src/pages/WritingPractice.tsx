@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useLearningStore } from '../store/learningStore';
-import { PenTool, Send, Trash, Sparkles, RefreshCw, BarChart2, CheckCircle2 } from 'lucide-react';
+import { PenTool, Send, Trash, RefreshCw, BarChart2, CheckCircle2, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface PromptOption {
   id: string;
   title: string;
   category: string;
+  categoryColor: string;
+  barColor: string;
   description: string;
   placeholder: string;
 }
@@ -16,21 +18,27 @@ const WRITING_PROMPTS: PromptOption[] = [
     id: 'w1',
     title: 'Apologizing for a Delayed Project Report',
     category: 'Office Email',
-    description: 'Write an email to your manager Sarah apologizing for a late report. Explain the reason for the delay, explain what you are doing to fix it, and provide a realistic completion date.',
+    categoryColor: 'bg-indigo-50 text-indigo-600 border-indigo-200',
+    barColor: 'bg-indigo-500',
+    description: 'Write an email to your manager Sarah apologizing for a late report. Explain the reason for the delay, what you are doing to fix it, and provide a realistic completion date.',
     placeholder: 'Subject: Update on Project Report\n\nHi Sarah,\n\nI am writing to apologize for...'
   },
   {
     id: 'w2',
     title: 'LinkedIn: "SpeakFlow AI" Brand Launch',
     category: 'Social Media Post',
-    description: 'Draft a short announcement post (approx 40-70 words) for LinkedIn detailing the launch of SpeakFlow AI. Make it engaging with active call-to-actions.',
+    categoryColor: 'bg-blue-50 text-blue-600 border-blue-200',
+    barColor: 'bg-blue-500',
+    description: 'Draft a short announcement post (approx 40–70 words) for LinkedIn detailing the launch of SpeakFlow AI. Make it engaging with an active call-to-action.',
     placeholder: 'Exciting news! We are thrilled to announce the official launch of SpeakFlow AI...'
   },
   {
     id: 'w3',
-    title: 'Resume Professional career Summary',
+    title: 'Resume Professional Career Summary',
     category: 'CV Summary',
-    description: 'Write a professional CV summary (3-4 sentences) summarizing your primary strengths, past coding achievements, and career goals.',
+    categoryColor: 'bg-emerald-50 text-emerald-600 border-emerald-200',
+    barColor: 'bg-emerald-500',
+    description: 'Write a professional CV summary (3–4 sentences) summarising your primary strengths, past coding achievements, and career goals.',
     placeholder: 'Highly motivated and results-driven Software Engineer with...'
   }
 ];
@@ -48,16 +56,12 @@ export const WritingPractice: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!text.trim()) return;
-
     if (wordCount < 10) {
       alert('Please write at least 10 words to enable detailed evaluation.');
       return;
     }
-
     const evaluation = await submitWriting(selectedPrompt.title, text);
-    if (evaluation) {
-      setResult(evaluation);
-    }
+    if (evaluation) setResult(evaluation);
   };
 
   const handleReset = () => {
@@ -66,17 +70,20 @@ export const WritingPractice: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 select-none max-w-lg mx-auto pb-10 pt-4 px-3 text-brand-text-primary font-sans">
+    <div className="space-y-5 select-none max-w-lg mx-auto pb-10 text-brand-text-primary">
+
       {/* HEADER */}
       <div className="space-y-1">
-        <h2 className="text-xl font-semibold text-brand-text-primary">Writing Workbench</h2>
-        <p className="text-xs text-brand-text-secondary font-normal">Practice emails, journals, and summary pitches. Get AI suggestions.</p>
+        <h2 className="text-2xl font-bold text-brand-text-primary">Writing Workbench</h2>
+        <p className="text-sm text-brand-text-secondary font-normal">
+          Practice emails, journals, and summary pitches. Get AI suggestions.
+        </p>
       </div>
 
-      {/* 1. HORIZONTAL EXERCISE SELECTOR */}
+      {/* 1. SCENARIO SELECTOR — vertical stacked list */}
       <div className="space-y-2">
-        <span className="text-[10px] uppercase font-medium tracking-wider text-brand-text-muted pl-1">Select Scenario</span>
-        <div className="flex space-x-3 overflow-x-auto pb-3 scrollbar-none snap-x snap-mandatory -mx-3 px-3">
+        <span className="text-[11px] uppercase font-bold tracking-wider text-brand-text-muted">Select Scenario</span>
+        <div className="space-y-2">
           {WRITING_PROMPTS.map(p => (
             <button
               key={p.id}
@@ -86,40 +93,61 @@ export const WritingPractice: React.FC = () => {
                 setResult(null);
                 setText('');
               }}
-              className={`snap-center shrink-0 w-60 p-4.5 rounded-2xl border text-left transition-all active:scale-98 flex flex-col justify-between ${
+              className={`w-full text-left card !p-4 transition-all active:scale-[0.99] flex items-center gap-3 ${
                 selectedPrompt.id === p.id
-                  ? 'bg-brand-primary/10 border-brand-primary text-brand-primary'
-                  : 'bg-brand-card border-brand-border text-brand-text-secondary hover:border-brand-primary/30'
-              }`}
+                  ? 'ring-2 ring-indigo-500 ring-offset-1 shadow-md'
+                  : 'hover:shadow-md'
+              } ${loading ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
             >
-              <span className="text-[9px] uppercase font-semibold px-2 py-0.5 rounded bg-brand-primary/10 text-brand-primary border border-brand-primary/15 self-start">
-                {p.category}
-              </span>
-              <h4 className="font-semibold text-xs mt-3 text-brand-text-primary leading-tight">{p.title}</h4>
+              {/* Colored left bar */}
+              <div className={`w-1 self-stretch rounded-full shrink-0 ${p.barColor}`} />
+
+              <div className="flex-1 min-w-0 space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${p.categoryColor}`}>
+                    {p.category}
+                  </span>
+                  {selectedPrompt.id === p.id && (
+                    <span className="text-[10px] font-bold text-indigo-600">● Active</span>
+                  )}
+                </div>
+                <h4 className="font-semibold text-[13px] text-brand-text-primary leading-snug">{p.title}</h4>
+              </div>
+
+              <ChevronRight className={`w-4 h-4 shrink-0 ${
+                selectedPrompt.id === p.id ? 'text-indigo-500' : 'text-brand-text-muted'
+              }`} />
             </button>
           ))}
         </div>
       </div>
 
-      {/* 2. EXERCISE PROMPT CARD */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 space-y-2">
-        <div className="flex justify-between items-center border-b border-brand-border pb-2.5">
-          <span className="text-[10px] uppercase font-semibold tracking-widest text-brand-text-secondary">Assignment Goal</span>
-          <span className="text-[10px] font-semibold text-brand-primary uppercase">{selectedPrompt.category}</span>
+      {/* 2. ASSIGNMENT GOAL CARD */}
+      <div className="card space-y-3">
+        <div className="flex items-center justify-between border-b border-brand-border pb-3">
+          <span className="text-[11px] uppercase font-bold tracking-wider text-brand-text-secondary">Assignment Goal</span>
+          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${selectedPrompt.categoryColor}`}>
+            {selectedPrompt.category}
+          </span>
         </div>
-        <p className="text-xs font-normal text-brand-text-primary leading-relaxed">
+        <p className="text-[13px] text-brand-text-primary leading-relaxed font-normal">
           {selectedPrompt.description}
         </p>
       </div>
 
-      {/* 3. WRITING WORKSPACE */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 space-y-4">
-        <div className="flex justify-between items-center text-[10px] font-medium text-brand-text-secondary">
-          <span className="flex items-center space-x-1.5">
-            <PenTool className="w-4 h-4 text-brand-primary" />
-            <span>Interactive Editor</span>
+      {/* 3. WRITING EDITOR CARD */}
+      <div className="card space-y-4">
+        {/* Editor header */}
+        <div className="flex justify-between items-center border-b border-brand-border pb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-indigo-100 flex items-center justify-center">
+              <PenTool className="w-4 h-4 text-indigo-600" />
+            </div>
+            <span className="text-xs font-bold text-brand-text-primary">Interactive Editor</span>
+          </div>
+          <span className="text-[11px] font-mono text-brand-text-muted bg-gray-50 border border-gray-200 px-2 py-0.5 rounded-full">
+            {wordCount} words
           </span>
-          <span className="font-mono text-brand-text-muted">{wordCount} words written</span>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -128,7 +156,7 @@ export const WritingPractice: React.FC = () => {
             placeholder={selectedPrompt.placeholder}
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="w-full min-h-[240px] h-60 p-4 bg-brand-surface border border-brand-border rounded-xl text-sm text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-brand-primary/60 focus:ring-1 focus:ring-brand-primary/20 transition-all font-sans leading-relaxed resize-none"
+            className="w-full min-h-[220px] p-4 bg-gray-50 border border-gray-200 rounded-xl text-[13px] text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all font-sans leading-relaxed resize-none"
           />
 
           <AnimatePresence mode="wait">
@@ -137,62 +165,62 @@ export const WritingPractice: React.FC = () => {
                 key="submit-btn"
                 type="submit"
                 disabled={loading || text.trim() === ''}
-                className="w-full min-h-[44px] py-3.5 bg-brand-primary hover:bg-brand-primary-hover text-white rounded-xl text-sm font-semibold transition-all shadow-sm flex items-center justify-center space-x-2 disabled:opacity-40"
+                className="w-full min-h-[48px] py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold transition-all shadow-sm flex items-center justify-center gap-2 disabled:opacity-40 active:scale-[0.99]"
               >
                 {loading ? (
                   <>
-                    <RefreshCw className="w-4.5 h-4.5 animate-spin" />
-                    <span>Analyzing grammar & syntax...</span>
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    <span>Analyzing grammar &amp; syntax…</span>
                   </>
                 ) : (
                   <>
-                    <Send className="w-4.5 h-4.5" />
+                    <Send className="w-4 h-4" />
                     <span>Submit for Evaluation (+30 XP)</span>
                   </>
                 )}
               </motion.button>
             ) : (
-              <motion.div 
+              <motion.div
                 key="feedback-result"
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-4"
               >
-                {/* Result Overview */}
-                <div className="flex justify-between items-center bg-brand-surface border border-brand-border p-4 rounded-xl">
-                  <div className="flex items-center space-x-3">
-                    <div className="p-2 rounded-xl bg-brand-primary/10 border border-brand-primary/15 text-brand-primary">
-                      <BarChart2 className="w-4.5 h-4.5" />
+                {/* Score row */}
+                <div className="flex items-center justify-between bg-indigo-50 border border-indigo-200 p-4 rounded-xl">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-indigo-100 border border-indigo-200 flex items-center justify-center">
+                      <BarChart2 className="w-4.5 h-4.5 text-indigo-600" />
                     </div>
                     <div>
-                      <span className="text-[9px] text-brand-text-muted uppercase font-semibold tracking-wider">Overall Accuracy</span>
-                      <p className="text-base font-semibold text-brand-primary mt-0.5">{result.score} / 100</p>
+                      <span className="text-[10px] text-indigo-400 uppercase font-bold tracking-wider">Overall Score</span>
+                      <p className="text-lg font-bold text-indigo-700 leading-tight">{result.score} / 100</p>
                     </div>
                   </div>
-                  <span className="text-[10px] text-brand-success font-semibold bg-brand-success/10 border border-brand-success/15 px-3 py-1.5 rounded-full shrink-0">
-                    +{result.xpGained} XP • +{result.coinsGained} Coins
+                  <span className="text-[11px] text-emerald-600 font-bold bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full">
+                    +{result.xpGained} XP · +{result.coinsGained} coins
                   </span>
                 </div>
 
-                {/* Feedback List */}
-                <div className="space-y-2 text-left">
-                  <span className="text-[10px] font-semibold text-brand-text-secondary uppercase tracking-wider block">Grammatical Insights</span>
+                {/* Feedback list */}
+                <div className="space-y-2">
+                  <span className="text-[11px] font-bold text-brand-text-muted uppercase tracking-wider block">Grammatical Insights</span>
                   {result.feedback.map((f: string, i: number) => (
-                    <div key={i} className="p-3.5 bg-brand-surface border border-brand-border rounded-xl text-xs text-brand-text-secondary flex items-start space-x-2 leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                      <span>{f}</span>
+                    <div key={i} className="flex items-start gap-2.5 p-3 bg-indigo-50 border border-indigo-100 rounded-xl">
+                      <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                      <p className="text-xs text-brand-text-secondary leading-relaxed">{f}</p>
                     </div>
                   ))}
                 </div>
 
-                {/* Reset button */}
+                {/* Reset */}
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="w-full min-h-[44px] py-3.5 bg-brand-surface border border-brand-border text-brand-text-secondary hover:bg-brand-bg rounded-xl text-xs font-semibold transition-all flex items-center justify-center space-x-1.5"
+                  className="w-full min-h-[44px] py-3 bg-gray-50 border border-gray-200 text-brand-text-secondary hover:bg-gray-100 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2"
                 >
                   <Trash className="w-3.5 h-3.5 text-brand-text-muted" />
-                  <span>Clear and Restart</span>
+                  <span>Clear &amp; Restart</span>
                 </button>
               </motion.div>
             )}

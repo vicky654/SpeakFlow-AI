@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -24,17 +25,17 @@
 }
 
 :root {
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Premium Light Theme Color Palette */
   --color-primary: #6D5DF6;
-  --color-primary-hover: #5a4ae2;
-  --color-secondary: #F3F0FF;
-  --color-accent: #8B5CF6;
-  --color-bg: #F8FAFC;
+  --color-primary-hover: #5b4ce5;
+  --color-secondary: #8B5CF6;
+  --color-accent: #3B82F6;
+  --color-bg: #FAFBFC;
   --color-surface: #FFFFFF;
   --color-card: #FFFFFF;
-  --color-border: #E8ECF4;
+  --color-border: #E8ECF5;
   --color-divider: #EEF2F7;
 
   --color-success: #22C55E;
@@ -46,12 +47,35 @@
   --color-text-secondary: #6B7280;
   --color-text-muted: #94A3B8;
 
-  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 8px 25px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.10);
+  /* Shadows — stronger for card visibility */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(109, 93, 246, 0.06);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(109, 93, 246, 0.08);
+  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.10), 0 16px 40px rgba(109, 93, 246, 0.10);
 
+  /* Glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(15, 23, 42, 0.04);
+
+  /* Spacing Tokens */
+  --spacing-screen: 16px;
+  --spacing-section: 24px;
+  --spacing-card: 16px;
+  --spacing-element: 12px;
+  --spacing-button: 16px;
+
+  /* Button Tokens */
+  --btn-height-primary: 48px;
+  --btn-radius: 14px;
+  --btn-font-weight: 600;
+  --btn-padding-x: 20px;
+  --btn-padding-y: 12px;
+
+  /* Card Tokens */
+  --card-radius: 18px;
+  --card-padding: 20px;
+
+  /* Safe area bottom padding */
+  --safe-bottom-padding: calc(env(safe-area-inset-bottom, 0px) + 100px);
 }
 
 .dark-mode {
@@ -75,15 +99,19 @@
   --color-text-secondary: #cbd5e1;
   --color-text-muted: #64748b;
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.45);
 
   --glass-bg: rgba(11, 15, 25, 0.7);
   --glass-border: rgba(255, 255, 255, 0.06);
 }
 
 @layer base {
+  html, body {
+    background-color: var(--color-bg);
+  }
+
   body {
     font-family: var(--font-sans);
     background-color: var(--color-bg);
@@ -113,20 +141,115 @@
   }
 
   button {
-    all: unset;
+    /* Surgical reset — keeps border-radius & padding settable by Tailwind */
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    margin: 0;
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     font: inherit;
+    color: inherit;
+    text-decoration: none;
     transition: all 0.2s ease;
   }
 }
 
 .button {
-
   padding: 10px !important;
+}
+
+/* ============================================
+   CARD UTILITY — applied globally to all cards
+   ============================================ */
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #E8ECF5;
+  box-shadow: 0 2px 8px rgba(109, 93, 246, 0.06), 0 1px 3px rgba(15, 23, 42, 0.05);
+  padding: 20px;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 20px rgba(109, 93, 246, 0.1), 0 2px 6px rgba(15, 23, 42, 0.06);
+}
+
+.dark-mode .card {
+  background: #1a2235;
+  border-color: #1e293b;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Card with elevated shadow (for hero cards) */
+.card-elevated {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #E8ECF5;
+  box-shadow: 0 4px 16px rgba(109, 93, 246, 0.1), 0 1px 4px rgba(15, 23, 42, 0.06);
+  padding: 20px;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.dark-mode .card-elevated {
+  background: #1a2235;
+  border-color: #1e293b;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* ============================================
+   TAB BUTTON — for segmented controls
+   ============================================ */
+.tab-bar {
+  display: flex;
+  background: #F3F4F8;
+  border: 1px solid #E8ECF5;
+  border-radius: 14px;
+  padding: 4px;
+  gap: 4px;
+  width: 100%;
+}
+
+.dark-mode .tab-bar {
+  background: #0f1623;
+  border-color: #1e293b;
+}
+
+.tab-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  color: #6B7280;
+}
+
+.tab-btn.active {
+  background: #6D5DF6;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(109, 93, 246, 0.3);
+}
+
+.tab-btn:not(.active):hover {
+  background: rgba(109, 93, 246, 0.06);
+  color: #111827;
+}
+
+.dark-mode .tab-btn:not(.active):hover {
+  background: rgba(167, 139, 250, 0.1);
+  color: #f8fafc;
 }
 
 .light-mode {
@@ -246,7 +369,7 @@ textarea {
 }
 
 .safe-bottom {
-  padding-bottom: calc(env(safe-area-inset-bottom) + 110px) !important;
+  padding-bottom: var(--safe-bottom-padding) !important;
 }
 
 /* Custom dynamic bouncing micro-animation */

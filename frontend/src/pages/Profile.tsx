@@ -33,7 +33,7 @@ export const Profile: React.FC = () => {
       </div>
 
       {/* 1. PREMIUM PROFILE HEADER CARD */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border flex flex-col items-center text-center space-y-3.5">
+      <div className="card-elevated flex flex-col items-center text-center space-y-3.5">
         <div className="relative">
           {/* Avatar with glowing ring */}
           <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-brand-primary via-brand-accent to-pink-500 flex items-center justify-center text-3xl font-extrabold text-white uppercase shadow-lg relative z-10">
@@ -68,7 +68,7 @@ export const Profile: React.FC = () => {
       </div>
 
       {/* 2. COMPLETION CERTIFICATE CARD */}
-      <div className="bg-brand-card rounded-2xl p-5 border border-brand-border space-y-4 shadow-level-1">
+      <div className="card space-y-4">
         <div>
           <h3 className="font-medium text-sm text-brand-text-primary">Certificate of Completion</h3>
           <p className="text-[10px] text-brand-text-secondary">Unlock credentials by passing at least 3 lessons.</p>
@@ -110,7 +110,7 @@ export const Profile: React.FC = () => {
       </div>
 
       {/* 3. SETTINGS & ACTIONS LIST CARD */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border space-y-4">
+      <div className="card space-y-4">
         <h3 className="font-extrabold text-sm text-brand-text-primary">System Options</h3>
         
         <div className="space-y-2.5">
@@ -164,7 +164,7 @@ export const Profile: React.FC = () => {
       </div>
 
       {/* 4. BADGES GRID CARD */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border space-y-4">
+      <div className="card space-y-4">
         <div>
           <h3 className="font-extrabold text-sm text-brand-text-primary">Earned Badges</h3>
           <p className="text-[10px] text-brand-text-secondary">Milestone rewards achieved during active learning.</p>

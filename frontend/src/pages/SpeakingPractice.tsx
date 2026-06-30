@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLearningStore } from '../store/learningStore';
-import { Mic, MicOff, Volume2, Sparkles, CheckCircle2, BarChart3, AlertCircle } from 'lucide-react';
+import { Mic, MicOff, Volume2, Sparkles, CheckCircle2, BarChart3, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Scenario {
   id: string;
   title: string;
   category: string;
+  categoryColor: string;
   prompt: string;
   helperVocabulary: string[];
 }
@@ -14,22 +15,25 @@ interface Scenario {
 const SCENARIOS: Scenario[] = [
   {
     id: 's1',
-    title: 'Introduce Yourself in an Office Setting',
+    title: 'Introduce Yourself — Office Setting',
     category: 'Office Meeting',
+    categoryColor: 'bg-indigo-50 text-indigo-600 border-indigo-200',
     prompt: 'Imagine you are joining a new team as a Software Engineer. Introduce yourself, stating your role, past experience, and what you look forward to doing.',
     helperVocabulary: ['Delighted', 'Collaborate', 'Kickoff', 'Milestones', 'Expertise']
   },
   {
     id: 's2',
-    title: 'Ordering Food at a Busy Restaurant',
+    title: 'Ordering Food at a Restaurant',
     category: 'Restaurant',
+    categoryColor: 'bg-amber-50 text-amber-600 border-amber-200',
     prompt: 'You are ordering dinner for yourself and a colleague. Practice stating your reservation, asking for recommendations, and ordering the main course.',
-    helperVocabulary: ['Pan-seared', 'Recommendation', 'lasagne', 'Beverage', 'Reservation']
+    helperVocabulary: ['Pan-seared', 'Recommendation', 'Lasagne', 'Beverage', 'Reservation']
   },
   {
     id: 's3',
     title: 'HR Interview: "Tell Me About Yourself"',
     category: 'Job Interview',
+    categoryColor: 'bg-emerald-50 text-emerald-600 border-emerald-200',
     prompt: 'Apply the Present-Past-Future framework to introduce your professional journey to the hiring managers.',
     helperVocabulary: ['Accomplished', 'Optimization', 'Framework', 'Synergy', 'Contribution']
   }
@@ -50,7 +54,6 @@ export const SpeakingPractice: React.FC = () => {
   const timerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const startTimeRef = useRef<number>(0);
 
-  // Initialize Speech Recognition API
   useEffect(() => {
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (SpeechRecognition) {
@@ -58,11 +61,9 @@ export const SpeakingPractice: React.FC = () => {
       rec.continuous = true;
       rec.interimResults = true;
       rec.lang = 'en-US';
-
       rec.onresult = (event: any) => {
         let interimTranscript = '';
         let finalTranscript = '';
-
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             finalTranscript += event.results[i][0].transcript;
@@ -70,41 +71,31 @@ export const SpeakingPractice: React.FC = () => {
             interimTranscript += event.results[i][0].transcript;
           }
         }
-        setTranscript(prev => finalTranscript || interimTranscript);
+        setTranscript(_prev => finalTranscript || interimTranscript);
       };
-
-      rec.onerror = (e: any) => {
-        console.error('Speech recognition error:', e);
-      };
-
+      rec.onerror = (e: any) => console.error('Speech recognition error:', e);
       recognitionRef.current = rec;
     }
   }, []);
 
   const handleToggleRecord = () => {
     if (!recognitionRef.current) {
-      alert('Speech recognition is not supported in this browser. Please use Google Chrome.');
+      alert('Speech recognition is not supported. Please use Google Chrome.');
       return;
     }
-
     if (isRecording) {
-      // STOP RECORDING
       recognitionRef.current.stop();
       setIsRecording(false);
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
-      
       const durationSec = Math.max(5, Math.round((Date.now() - startTimeRef.current) / 1000));
       submitForEvaluation(durationSec);
     } else {
-      // START RECORDING
       setTranscript('');
       setEvaluation(null);
       setTimer(0);
       setIsRecording(true);
       startTimeRef.current = Date.now();
-      
       recognitionRef.current.start();
-      
       timerIntervalRef.current = setInterval(() => {
         setTimer(prev => prev + 1);
       }, 1000);
@@ -112,9 +103,8 @@ export const SpeakingPractice: React.FC = () => {
   };
 
   const submitForEvaluation = async (duration: number) => {
-    const finalTranscript = transcript.trim() || 'Hello everyone, I am delighted to join the team as a software engineer. In my previous role at TechCorp, I worked on dashboard optimization and look forward to collaborating with everyone on our upcoming project milestones.';
+    const finalTranscript = transcript.trim() || 'Hello everyone, I am delighted to join the team as a software engineer.';
     setTranscript(finalTranscript);
-
     const res = await evaluateSpeaking(selectedScenario.title, finalTranscript, duration);
     if (res) {
       setEvaluation(res);
@@ -138,18 +128,22 @@ export const SpeakingPractice: React.FC = () => {
     };
   }, []);
 
+  const formatTime = (s: number) =>
+    `${Math.floor(s / 60).toString().padStart(2, '0')}:${(s % 60).toString().padStart(2, '0')}`;
+
   return (
-    <div className="space-y-6 select-none max-w-lg mx-auto pb-6">
-      {/* HEADER SECTION */}
+    <div className="space-y-5 select-none max-w-lg mx-auto pb-6">
+
+      {/* HEADER */}
       <div className="space-y-1">
-        <h2 className="text-2xl font-extrabold text-white">Speaking Coach</h2>
-        <p className="text-xs text-brand-text-secondary">Drill situational talking cards, verify accent & pacing.</p>
+        <h2 className="text-2xl font-extrabold text-brand-text-primary">Speaking Coach</h2>
+        <p className="text-sm text-brand-text-secondary">Drill situational talking cards, verify accent &amp; pacing.</p>
       </div>
 
-      {/* 1. SCENARIO SELECTOR CAROUSEL */}
+      {/* 1. DRILL SELECTOR — vertical stacked cards, no horizontal scroll */}
       <div className="space-y-2">
-        <span className="text-[10px] uppercase font-bold tracking-wider text-brand-text-muted pl-1">Choose Drill</span>
-        <div className="flex space-x-3 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory">
+        <span className="text-[11px] uppercase font-bold tracking-wider text-brand-text-muted">Choose a Drill</span>
+        <div className="space-y-2">
           {SCENARIOS.map(sc => (
             <button
               key={sc.id}
@@ -159,44 +153,70 @@ export const SpeakingPractice: React.FC = () => {
                 setEvaluation(null);
                 setTranscript('');
               }}
-              className={`snap-center shrink-0 w-64 p-4 rounded-2xl border text-left transition-all ${
+              className={`w-full text-left card !p-4 transition-all active:scale-[0.99] flex items-center gap-3 ${
                 selectedScenario.id === sc.id
-                  ? 'bg-indigo-600/15 border-indigo-500 text-white'
-                  : 'bg-brand-card border border-brand-border shadow-level-1 border-brand-border text-brand-text-secondary'
-              } ${isRecording ? 'opacity-30 cursor-not-allowed' : 'active:scale-95'}`}
+                  ? 'ring-2 ring-indigo-500 ring-offset-1 shadow-md'
+                  : 'hover:shadow-md'
+              } ${isRecording ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
             >
-              <span className="text-[9px] uppercase font-extrabold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                {sc.category}
-              </span>
-              <h4 className="font-extrabold text-xs mt-2 text-brand-text-primary line-clamp-1">{sc.title}</h4>
-              <p className="text-[10px] text-brand-text-muted line-clamp-1 mt-1">{sc.prompt}</p>
+              {/* Colored left bar */}
+              <div className={`w-1 self-stretch rounded-full shrink-0 ${
+                sc.id === 's1' ? 'bg-indigo-500' : sc.id === 's2' ? 'bg-amber-500' : 'bg-emerald-500'
+              }`} />
+
+              <div className="flex-1 min-w-0 space-y-1">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sc.categoryColor}`}>
+                    {sc.category}
+                  </span>
+                  {selectedScenario.id === sc.id && (
+                    <span className="text-[10px] font-bold text-indigo-600">● Active</span>
+                  )}
+                </div>
+                <h4 className="font-semibold text-sm text-brand-text-primary leading-tight">{sc.title}</h4>
+                <p className="text-xs text-brand-text-secondary leading-snug line-clamp-2">{sc.prompt}</p>
+              </div>
+
+              <ChevronRight className={`w-4 h-4 shrink-0 ${
+                selectedScenario.id === sc.id ? 'text-indigo-500' : 'text-brand-text-muted'
+              }`} />
             </button>
           ))}
         </div>
       </div>
 
-      {/* 2. ACTIVE SCENARIO CARD */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border dark:border-brand-border space-y-3.5">
-        <div className="flex justify-between items-center border-b border-brand-border pb-2">
-          <span className="text-[10px] font-bold text-brand-text-secondary uppercase tracking-widest">Selected Prompt</span>
-          <button 
+      {/* 2. SELECTED PROMPT CARD */}
+      <div className="card space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-indigo-100 flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-indigo-600" />
+            </div>
+            <span className="text-xs font-bold text-brand-text-primary uppercase tracking-wide">Selected Prompt</span>
+          </div>
+          <button
             onClick={playPromptText}
-            className="flex items-center space-x-1 px-2.5 py-1 bg-brand-surface border border-brand-border rounded-lg text-[9px] font-bold text-indigo-400 active:scale-95 transition-all"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 border border-indigo-200 rounded-lg text-xs font-semibold text-indigo-600 active:scale-95 transition-all hover:bg-indigo-100"
           >
-            <Volume2 className="w-3 h-3" />
-            <span>Speak Prompt</span>
+            <Volume2 className="w-3.5 h-3.5" />
+            <span>Listen</span>
           </button>
         </div>
-        <p className="text-xs font-semibold text-brand-text-primary leading-relaxed">
-          {selectedScenario.prompt}
-        </p>
 
-        {/* Helpful Vocabulary tags */}
-        <div className="pt-2">
-          <span className="text-[9px] font-bold text-brand-text-muted uppercase tracking-wider block mb-1.5">Suggested Keywords</span>
-          <div className="flex flex-wrap gap-1.5">
+        <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+          <p className="text-sm font-medium text-brand-text-primary leading-relaxed">
+            {selectedScenario.prompt}
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          <span className="text-[11px] font-bold text-brand-text-muted uppercase tracking-wider">Suggested Keywords</span>
+          <div className="flex flex-wrap gap-2">
             {selectedScenario.helperVocabulary.map((word, i) => (
-              <span key={i} className="text-[9px] font-bold px-2 py-0.5 rounded bg-brand-bg text-indigo-300 border border-brand-border">
+              <span
+                key={i}
+                className="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-200"
+              >
                 {word}
               </span>
             ))}
@@ -204,120 +224,120 @@ export const SpeakingPractice: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. HERO MICROPHONE INTERACTION */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border dark:border-brand-border flex flex-col items-center justify-center text-center space-y-5 relative overflow-hidden">
+      {/* 3. MICROPHONE CARD */}
+      <div className={`card !p-6 flex flex-col items-center text-center space-y-5 relative overflow-hidden transition-all ${
+        isRecording ? 'ring-2 ring-rose-400 ring-offset-1' : ''
+      }`}>
         {isRecording && (
-          <div className="absolute inset-0 bg-indigo-500/5 border border-indigo-500/20 animate-pulse pointer-events-none" />
+          <div className="absolute inset-0 bg-rose-500/5 animate-pulse pointer-events-none rounded-[18px]" />
         )}
 
         <div className="space-y-1 z-10">
-          <span className="text-[10px] text-brand-text-secondary uppercase tracking-widest font-black">
-            {isRecording ? 'Capturing Vocals...' : 'Tap Mic to Start Speaking'}
-          </span>
+          <p className="text-xs font-bold text-brand-text-secondary uppercase tracking-widest">
+            {isRecording ? '🔴 Recording…' : '🎙️ Tap to Start Speaking'}
+          </p>
           {isRecording && (
-            <div className="text-xl font-extrabold text-white font-mono">{timer}s</div>
+            <p className="text-2xl font-mono font-bold text-brand-text-primary">{formatTime(timer)}</p>
           )}
         </div>
 
-        {/* Waveform Animation */}
-        <div className="h-10 flex items-center justify-center space-x-1.5 z-10">
+        {/* Waveform */}
+        <div className="h-12 flex items-center justify-center gap-1 z-10">
           {isRecording ? (
-            Array.from({ length: 9 }).map((_, i) => (
+            Array.from({ length: 11 }).map((_, i) => (
               <motion.div
                 key={i}
-                className="w-1 bg-indigo-500 rounded-full"
-                animate={{
-                  height: [10, Math.random() * 40 + 10, 10]
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 0.6 + i * 0.08,
-                  ease: 'easeInOut'
-                }}
+                className="w-1.5 bg-rose-500 rounded-full"
+                animate={{ height: [6, Math.random() * 36 + 8, 6] }}
+                transition={{ repeat: Infinity, duration: 0.5 + i * 0.07, ease: 'easeInOut' }}
               />
             ))
           ) : (
-            <div className="w-24 h-0.5 bg-brand-surface rounded" />
+            <div className="flex items-end gap-1 opacity-30">
+              {[14, 22, 30, 22, 18, 30, 22, 14, 22, 18, 14].map((h, i) => (
+                <div key={i} className="w-1.5 bg-indigo-400 rounded-full" style={{ height: h }} />
+              ))}
+            </div>
           )}
         </div>
 
-        {/* RECORD MIC TRIGGER */}
+        {/* Mic button */}
         <button
           onClick={handleToggleRecord}
-          className={`w-20 h-20 rounded-full border-4 flex items-center justify-center transition-all z-10 active:scale-90 ${
-            isRecording 
-              ? 'bg-rose-600 border-rose-500 shadow-lg shadow-rose-600/20 glow-active' 
-              : 'bg-indigo-600 border-indigo-500 shadow-lg shadow-indigo-600/20'
+          className={`w-20 h-20 rounded-full flex items-center justify-center transition-all z-10 active:scale-90 shadow-lg ${
+            isRecording ? 'bg-rose-500 shadow-rose-300' : 'bg-indigo-600 shadow-indigo-200'
           }`}
         >
-          {isRecording ? <MicOff className="w-7 h-7 text-white" /> : <Mic className="w-7 h-7 text-white" />}
+          {isRecording ? <MicOff className="w-8 h-8 text-white" /> : <Mic className="w-8 h-8 text-white" />}
         </button>
 
-        {/* Dynamic Transcript Container */}
+        <p className="text-xs text-brand-text-muted z-10">
+          {isRecording ? 'Tap again to stop & get AI feedback' : 'Speak naturally for at least 15 seconds'}
+        </p>
+
         <AnimatePresence>
           {(transcript || isRecording) && (
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="w-full text-left space-y-1.5 pt-2 border-t border-brand-border z-10"
+              className="w-full z-10 space-y-1.5 border-t border-brand-border pt-4"
             >
-              <span className="text-[9px] uppercase font-extrabold text-brand-text-muted tracking-wider">Live Transcript</span>
-              <div className="w-full h-20 p-2.5 bg-brand-bg/60 border border-brand-border rounded-xl text-xs text-brand-text-secondary overflow-y-auto leading-relaxed italic">
-                {transcript || 'Awaiting spoken voice input...'}
+              <span className="text-[10px] font-bold text-brand-text-muted uppercase tracking-wider">Live Transcript</span>
+              <div className="w-full min-h-[60px] max-h-[100px] p-3 bg-gray-50 border border-gray-200 rounded-xl text-xs text-brand-text-secondary overflow-y-auto leading-relaxed">
+                {transcript || <span className="italic opacity-60">Listening for your voice…</span>}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* 4. ANALYTICS REPORT */}
+      {/* 4. AI LOADING STATE */}
       {loading && (
-        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border dark:border-brand-border text-center flex flex-col items-center justify-center space-y-3 h-52">
-          <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-xs text-brand-text-secondary leading-normal max-w-xs">Analyzing pitch accuracy, syntax structure, and speed...</p>
+        <div className="card flex flex-col items-center justify-center text-center space-y-3 py-10">
+          <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+          <p className="text-sm text-brand-text-secondary leading-relaxed max-w-xs">
+            Analyzing pitch, syntax &amp; speaking speed…
+          </p>
         </div>
       )}
 
+      {/* 5. AI FEEDBACK SCORECARD */}
       {evaluation && !loading && (
-        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border dark:border-brand-border space-y-5 bg-gradient-to-br from-indigo-950/15 to-slate-950/10">
-          <h3 className="font-extrabold text-sm text-brand-text-primary flex items-center space-x-2 border-b border-brand-border pb-2.5">
-            <BarChart3 className="w-4.5 h-4.5 text-indigo-400" />
-            <span>AI Feedback Scorecard</span>
-          </h3>
-
-          {/* Scores details list */}
-          <div className="grid grid-cols-3 gap-2">
-            <div className="bg-brand-bg/50 border border-brand-border/60 p-2.5 rounded-xl text-center">
-              <span className="text-[9px] text-brand-text-muted uppercase font-bold">Overall</span>
-              <p className="text-lg font-black text-indigo-400 mt-0.5">{evaluation.overallScore}%</p>
+        <div className="card space-y-5">
+          <div className="flex items-center gap-2 border-b border-brand-border pb-3">
+            <div className="w-8 h-8 rounded-xl bg-indigo-100 flex items-center justify-center">
+              <BarChart3 className="w-4.5 h-4.5 text-indigo-600" />
             </div>
-            <div className="bg-brand-bg/50 border border-brand-border/60 p-2.5 rounded-xl text-center">
-              <span className="text-[9px] text-brand-text-muted uppercase font-bold">Fluency</span>
-              <p className="text-lg font-black text-emerald-400 mt-0.5">{evaluation.fluencyScore}%</p>
-            </div>
-            <div className="bg-brand-bg/50 border border-brand-border/60 p-2.5 rounded-xl text-center">
-              <span className="text-[9px] text-brand-text-muted uppercase font-bold">Accent</span>
-              <p className="text-lg font-black text-amber-400 mt-0.5">{evaluation.pronunciationScore}%</p>
-            </div>
-            <div className="bg-brand-bg/50 border border-brand-border/60 p-2.5 rounded-xl text-center">
-              <span className="text-[9px] text-brand-text-muted uppercase font-bold">Grammar</span>
-              <p className="text-lg font-black text-purple-400 mt-0.5">{evaluation.grammarScore}%</p>
-            </div>
-            <div className="bg-brand-bg/50 border border-brand-border/60 p-2.5 rounded-xl text-center col-span-2 flex flex-col justify-center items-center">
-              <span className="text-[9px] text-brand-text-muted uppercase font-bold">Speed</span>
-              <p className="text-sm font-black text-brand-text-primary mt-0.5">{evaluation.speakingSpeed} WPM</p>
-            </div>
+            <h3 className="font-bold text-sm text-brand-text-primary">AI Feedback Scorecard</h3>
           </div>
 
-          {/* Suggestions checklist */}
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { label: 'Overall',       value: `${evaluation.overallScore}%`,       color: 'text-indigo-600',  bg: 'bg-indigo-50  border-indigo-100'  },
+              { label: 'Fluency',       value: `${evaluation.fluencyScore}%`,        color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-100' },
+              { label: 'Pronunciation', value: `${evaluation.pronunciationScore}%`,  color: 'text-amber-600',   bg: 'bg-amber-50   border-amber-100'   },
+              { label: 'Grammar',       value: `${evaluation.grammarScore}%`,        color: 'text-purple-600',  bg: 'bg-purple-50  border-purple-100'  },
+            ].map((s, i) => (
+              <div key={i} className={`${s.bg} border rounded-xl p-3 text-center`}>
+                <p className="text-[10px] text-brand-text-muted uppercase font-bold tracking-wide">{s.label}</p>
+                <p className={`text-xl font-black ${s.color} mt-1`}>{s.value}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-gray-50 border border-gray-100 rounded-xl p-3 flex items-center justify-between">
+            <span className="text-xs font-bold text-brand-text-secondary">Speaking Speed</span>
+            <span className="text-sm font-black text-brand-text-primary">{evaluation.speakingSpeed} WPM</span>
+          </div>
+
           <div className="space-y-2">
-            <span className="text-[9px] font-bold text-brand-text-secondary uppercase tracking-wider block">Actionable Suggestions</span>
+            <span className="text-[11px] font-bold text-brand-text-muted uppercase tracking-wider block">Improvement Tips</span>
             <div className="space-y-2">
               {evaluation.suggestedImprovements.map((imp: string, i: number) => (
-                <div key={i} className="p-3 bg-brand-bg/50 border border-brand-border rounded-xl text-xs text-brand-text-secondary flex items-start space-x-2 leading-relaxed">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                  <span>{imp}</span>
+                <div key={i} className="flex items-start gap-2.5 p-3 bg-indigo-50 border border-indigo-100 rounded-xl">
+                  <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                  <p className="text-xs text-brand-text-secondary leading-relaxed">{imp}</p>
                 </div>
               ))}
             </div>

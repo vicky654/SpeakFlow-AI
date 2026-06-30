@@ -69,26 +69,18 @@ export const Vocabulary: React.FC = () => {
         )}
       </div>
 
-      {/* 2. TAB TOGGLER (FULL WIDTH ON MOBILE) */}
-      <div className="flex bg-brand-card border border-brand-border p-1 rounded-xl w-full">
+      {/* 2. TAB TOGGLER */}
+      <div className="tab-bar">
         <button
           onClick={() => { setActiveTab('daily'); setCarouselIndex(0); }}
-          className={`flex-1 flex items-center justify-center space-x-2 py-2 rounded-lg text-xs font-bold transition-all ${
-            activeTab === 'daily' 
-              ? 'bg-indigo-600 text-white' 
-              : 'text-brand-text-secondary hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeTab === 'daily' ? 'active' : ''}`}
         >
           <Sparkles className="w-3.5 h-3.5" />
           <span>Daily 10 Words</span>
         </button>
         <button
           onClick={() => { setActiveTab('favorites'); setCarouselIndex(0); }}
-          className={`flex-1 flex items-center justify-center space-x-2 py-2 rounded-lg text-xs font-bold transition-all ${
-            activeTab === 'favorites' 
-              ? 'bg-indigo-600 text-white' 
-              : 'text-brand-text-secondary hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeTab === 'favorites' ? 'active' : ''}`}
         >
           <Star className="w-3.5 h-3.5 fill-current" />
           <span>Starred ({favoritesList.length})</span>
@@ -166,7 +158,7 @@ export const Vocabulary: React.FC = () => {
       )}
 
       {/* 4. DAILY STUDY TARGET OVERVIEW & GAME UNLOCK */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 border border-brand-border space-y-4">
+      <div className="card space-y-4">
         {/* Study targets progress */}
         <div className="space-y-1.5">
           <div className="flex justify-between text-xs font-bold">
