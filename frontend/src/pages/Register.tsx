@@ -42,7 +42,7 @@ export const Register: React.FC = () => {
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-xl shadow-indigo-500/25">
             <Sparkles className="w-6 h-6 text-white" />
           </div>
-          <h2 className="text-2xl font-extrabold tracking-tight text-white mt-3">Start Your Journey</h2>
+          <h2 className="text-2xl font-extrabold tracking-tight text-brand-text-primary mt-3">Start Your Journey</h2>
           <p className="text-sm text-brand-text-secondary">Join SpeakFlow AI and master English today.</p>
         </div>
 
@@ -125,12 +125,14 @@ export const Register: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-indigo-600/20 flex items-center justify-center space-x-2 mt-2 disabled:opacity-50"
+            style={{ borderRadius: '999px', padding: '12px 24px' }}
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold transition-all shadow-lg shadow-indigo-600/20 flex items-center justify-center space-x-2 mt-2 disabled:opacity-50 active:scale-[0.98]"
           >
             <span>{loading ? 'Creating Account...' : 'Get Started'}</span>
             {!loading && <ArrowRight className="w-4 h-4" />}
           </button>
         </form>
+
 
         <div className="text-center text-xs text-brand-text-secondary pt-1">
           <span>Already have an account? </span>

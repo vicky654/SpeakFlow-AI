@@ -41,7 +41,7 @@ export const Login: React.FC = () => {
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-xl shadow-indigo-500/25">
             <Sparkles className="w-6 h-6 text-white" />
           </div>
-          <h2 className="text-2xl font-extrabold tracking-tight text-white mt-3">Welcome Back to SpeakFlow</h2>
+          <h2 className="text-2xl font-extrabold tracking-tight text-brand-text-primary mt-3">Welcome Back to SpeakFlow</h2>
           <p className="text-sm text-brand-text-secondary">Log in to continue your gamified language journey.</p>
         </div>
 
@@ -88,12 +88,14 @@ export const Login: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-indigo-600/20 flex items-center justify-center space-x-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ borderRadius: '999px', padding: '12px 24px' }}
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold transition-all shadow-lg shadow-indigo-600/20 flex items-center justify-center space-x-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]"
           >
             <span>{loading ? 'Logging in...' : 'Sign In'}</span>
             {!loading && <ArrowRight className="w-4 h-4" />}
           </button>
         </form>
+
 
         {/* Demo Credentials Alert */}
         <div className="p-3 bg-brand-surface/60 border border-brand-border rounded-xl text-[11px] text-brand-text-secondary space-y-1">
