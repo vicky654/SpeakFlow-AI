@@ -742,6 +742,28 @@ export const AdminPanel: React.FC = () => {
                 </div>
               </div>
 
+              {/* Mission Title & Certificate requirements */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 pb-2 border-t border-brand-border">
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Mission Title (Real-Life context)</label>
+                  <input
+                    type="text"
+                    value={editingGrammarConcept ? `${editingGrammarConcept} Scenario` : 'Real-life Mission'}
+                    readOnly
+                    className="w-full p-2.5 bg-brand-card/50 border border-brand-border rounded-xl text-xs text-brand-text-muted focus:outline-none"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Accreditation Certificate Threshold</label>
+                  <input
+                    type="text"
+                    placeholder="Minimum completed lessons: 3"
+                    defaultValue="3 lessons minimum"
+                    className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
+                  />
+                </div>
+              </div>
+
               {/* Submit triggers */}
               <button
                 type="button"

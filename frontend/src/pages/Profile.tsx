@@ -24,6 +24,7 @@ export const Profile: React.FC = () => {
   const [communityRoomsEnabled, setCommunityRoomsEnabled] = useState(
     localStorage.getItem('speakflow_community_rooms') === 'true'
   );
+  const [showParentPortal, setShowParentPortal] = useState(false);
 
   // Search States
   const [searchQuery, setSearchQuery] = useState('');
@@ -249,6 +250,54 @@ export const Profile: React.FC = () => {
         >
           {communityRoomsEnabled ? 'Enabled' : 'Disabled'}
         </button>
+      </div>
+
+      {/* 4.5 PARENT / TEACHER MONITORING DASHBOARD */}
+      <div className="card space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="text-left">
+            <h4 className="font-bold text-sm text-brand-text-primary">Parent / Teacher Portal</h4>
+            <p className="text-[10px] text-brand-text-secondary">Track learning statistics and daily practice targets for your child.</p>
+          </div>
+          <button
+            onClick={() => setShowParentPortal(!showParentPortal)}
+            className={`px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 transition-all shadow-sm ${
+              showParentPortal 
+                ? 'bg-indigo-600 text-white border border-indigo-650' 
+                : 'bg-white border border-gray-250 text-indigo-650 hover:bg-indigo-50'
+            }`}
+          >
+            {showParentPortal ? 'Hide Portal' : 'Show Portal'}
+          </button>
+        </div>
+
+        {showParentPortal && (
+          <div className="p-4 bg-gray-50 border border-gray-150 rounded-2xl space-y-3 animate-fade text-xs">
+            <div className="grid grid-cols-2 gap-2 text-center text-brand-text-secondary">
+              <div className="bg-white border border-gray-200 p-2.5 rounded-xl">
+                <span className="text-[9px] text-brand-text-muted font-bold uppercase block">Weekly Time</span>
+                <span className="font-bold text-brand-text-primary">78 minutes</span>
+              </div>
+              <div className="bg-white border border-gray-200 p-2.5 rounded-xl">
+                <span className="text-[9px] text-brand-text-muted font-bold uppercase block">Drills Completed</span>
+                <span className="font-bold text-brand-text-primary">{totalLessonsCount} Lessons</span>
+              </div>
+            </div>
+
+            <div className="space-y-1 bg-white border border-gray-200 p-3 rounded-xl">
+              <span className="text-[9px] text-brand-text-muted font-bold uppercase block">Weak Modules &amp; Vocabulary</span>
+              <p className="text-[10px] text-brand-text-secondary mt-0.5">Present Continuous syntax rules, prepositions conjugation.</p>
+            </div>
+
+            <button
+              onClick={() => alert("Weekly email reports digest has been successfully scheduled to your registered parent address!")}
+              style={{ borderRadius: '10px', padding: '10px' }}
+              className="w-full bg-indigo-600 hover:bg-indigo-705 text-white text-[10px] font-bold transition-all shadow-sm active:scale-95 flex items-center justify-center space-x-1"
+            >
+              <span>Email Weekly Progress Digest</span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* 5. WEEKLY RECAP STORY */}

@@ -6,7 +6,7 @@ import { useChallengeStore } from '../store/challengeStore';
 import { 
   BookOpen, Flame, Star, Play, Timer, Sparkles, Send, Mic, 
   Volume2, X, Plus, AlertCircle, FileText, ChevronRight, Award, 
-  CheckCircle2, Search, ArrowRight, Bot, Compass, Snowflake, Globe, MessageSquare 
+  CheckCircle2, Search, ArrowRight, Bot, Compass, Snowflake, Globe, MessageSquare, CreditCard 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import API_BASE_URL from '../config/api';
@@ -28,13 +28,14 @@ export const Dashboard: React.FC = () => {
   const { progress, fetchProgress } = useChallengeStore();
   const navigate = useNavigate();
 
-  // Habit toggles & settings
+  // Streak & Language states
   const [languageMode, setLanguageMode] = useState(
     localStorage.getItem('speakflow_lang_mode') || 'Hindi + English'
   );
   const [streakFrozen, setStreakFrozen] = useState(false);
 
-  // Modals & Panels states
+  // Paywall & Modals states
+  const [showPaywall, setShowPaywall] = useState(false);
   const [showOneMinPractice, setShowOneMinPractice] = useState(false);
   const [showDiary, setShowDiary] = useState(false);
   const [showVoiceJournal, setShowVoiceJournal] = useState(false);
@@ -67,7 +68,6 @@ export const Dashboard: React.FC = () => {
     { role: 'assistant', content: "Hi there! 👋 How was your day? Tap the mic and tell me about it in English!" }
   ]);
   const [whatsappRecording, setWhatsappRecording] = useState(false);
-  const [whatsappInputText, setWhatsappInputText] = useState('');
   const [whatsappLoading, setWhatsappLoading] = useState(false);
 
   // 5. REFLECTION STATE
@@ -148,18 +148,55 @@ export const Dashboard: React.FC = () => {
 
   const coachGreeting = getCoachGreeting();
 
-  // estimated fluency metric CEFR
-  const getFluencyScore = (xp: number) => {
+  // Mapped CEFR Levels
+  const getCEFRLevel = (xp: number) => {
     const score = Math.min(98, 10 + Math.round((xp / 3000) * 85));
-    let cefr = 'A1';
-    if (score >= 80) cefr = 'B2 Level';
-    else if (score >= 50) cefr = 'B1 Level';
-    else if (score >= 25) cefr = 'A2 Level';
-    else cefr = 'A1 Level';
-    return { score, cefr };
+    if (xp < 100) return { title: 'Explorer', cefr: 'A0 Level', score };
+    if (xp < 300) return { title: 'Beginner', cefr: 'A1 Level', score };
+    if (xp < 600) return { title: 'Basic Communicator', cefr: 'A2 Level', score };
+    if (xp < 1200) return { title: 'Confident Speaker', cefr: 'B1 Level', score };
+    if (xp < 2000) return { title: 'Professional English', cefr: 'B2 Level', score };
+    if (xp < 3500) return { title: 'Interview Ready', cefr: 'C1 Level', score };
+    return { title: 'Fluent Master', cefr: 'C2 Level', score };
   };
 
-  const fluency = getFluencyScore(user?.xp || 0);
+  const fluency = getCEFRLevel(user?.xp || 0);
+
+  // Dynamic Adaptive Learning Engine Prompt Recommendations
+  const getAdaptiveRecommendation = () => {
+    const speakScore = 75; // simulated average speaking score
+    const quizScore = 80;  // simulated average quiz score
+    
+    if (speakScore < 80) {
+      return "⚠️ Pronunciation check: Yesterday's speaking flow had minor stuttering. Today we added extra accent repetition.";
+    }
+    if (quizScore < 85) {
+      return "📚 Grammar focus: You struggled with prepositions during the quiz review. Re-scheduling grammar drills.";
+    }
+    return "🔥 Performance solid! Recommending standard roadmap progression.";
+  };
+
+  const adaptiveNotice = getAdaptiveRecommendation();
+
+  const getWeekProgress = (weekNum: number) => {
+    if (weekNum === 1) {
+      if (currentDay > 4) return 100;
+      return Math.round(((currentDay - 1) / 4) * 100);
+    }
+    if (weekNum === 2) {
+      if (currentDay > 8) return 100;
+      if (currentDay <= 4) return 0;
+      return Math.round(((currentDay - 5) / 4) * 100);
+    }
+    if (weekNum === 3) {
+      if (currentDay > 12) return 100;
+      if (currentDay <= 8) return 0;
+      return Math.round(((currentDay - 9) / 4) * 100);
+    }
+    if (currentDay > 15) return 100;
+    if (currentDay <= 12) return 0;
+    return Math.round(((currentDay - 13) / 3) * 100);
+  };
 
   const speakWord = (text: string) => {
     if ('speechSynthesis' in window) {
@@ -324,6 +361,24 @@ export const Dashboard: React.FC = () => {
     }).then(() => loadUser && loadUser());
   };
 
+  // Upgrade to Premium helper
+  const handleUpgradeAccount = async () => {
+    try {
+      await fetch(`${API_BASE_URL}/auth/role`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${useAuthStore.getState().token}`
+        },
+        body: JSON.stringify({ role: 'admin' }) // upgrading to premium/admin tier
+      });
+      if (loadUser) await loadUser();
+    } catch (e) {
+      console.error(e);
+    }
+    setShowPaywall(false);
+  };
+
   // Habit metrics mapping
   const checklist = dailyChallenge?.checklist || {};
   const completedCount = [
@@ -339,37 +394,33 @@ export const Dashboard: React.FC = () => {
       
       {/* 1. TOP HEADER: LANGUAGE MODE SWITCHER & TIME-OF-DAY GOALS */}
       <div className="flex justify-between items-center border-b border-gray-150 pb-3">
-        {/* Language selector */}
-        <div className="relative inline-block text-left">
-          <button 
-            onClick={() => handleLanguageChange(languageMode === 'Hindi + English' ? 'English Only' : 'Hindi + English')}
-            className="flex items-center space-x-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-xl text-[10px] font-bold text-brand-text-secondary active:scale-95 transition-all"
-          >
-            <Globe className="w-3.5 h-3.5 text-indigo-600" />
-            <span>Mode: {languageMode}</span>
-          </button>
-        </div>
+        <button 
+          onClick={() => handleLanguageChange(languageMode === 'Hindi + English' ? 'English Only' : 'Hindi + English')}
+          className="flex items-center space-x-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-xl text-[10px] font-bold text-brand-text-secondary active:scale-95 transition-all"
+        >
+          <Globe className="w-3.5 h-3.5 text-indigo-600" />
+          <span>Mode: {languageMode}</span>
+        </button>
 
-        {/* Suggested dynamic Target Minutes goal */}
         <div className="flex items-center space-x-1 text-[10px] font-extrabold text-indigo-650 bg-indigo-50 border border-indigo-200 px-2.5 py-1 rounded-full">
           <Timer className="w-3.5 h-3.5" />
           <span>{suggestedGoal}</span>
         </div>
       </div>
 
-      {/* 2. MULTIPLE STREAK INDICATORS HEADER PANEL */}
+      {/* 2. MULTIPLE STREAK INDICATORS */}
       <div className="grid grid-cols-3 gap-2 text-center">
-        <div className="p-3.5 bg-white border border-gray-150 rounded-xl space-y-1">
+        <div className="p-3 bg-white border border-gray-150 rounded-xl space-y-1">
           <Flame className="w-4 h-4 text-orange-500 fill-current mx-auto animate-pulse" />
-          <span className="text-[10px] font-black text-brand-text-primary block">14D Speaking</span>
+          <span className="text-[9px] font-black text-brand-text-primary block">14D Speaking</span>
         </div>
-        <div className="p-3.5 bg-white border border-gray-150 rounded-xl space-y-1">
+        <div className="p-3 bg-white border border-gray-150 rounded-xl space-y-1">
           <Star className="w-4 h-4 text-indigo-500 fill-indigo-500/10 mx-auto" />
-          <span className="text-[10px] font-black text-brand-text-primary block">21D Vocabulary</span>
+          <span className="text-[9px] font-black text-brand-text-primary block">21D Vocabulary</span>
         </div>
-        <div className="p-3.5 bg-white border border-gray-150 rounded-xl space-y-1">
+        <div className="p-3 bg-white border border-gray-150 rounded-xl space-y-1">
           <BookOpen className="w-4 h-4 text-emerald-500 fill-emerald-500/10 mx-auto" />
-          <span className="text-[10px] font-black text-brand-text-primary block">30D Reading</span>
+          <span className="text-[9px] font-black text-brand-text-primary block">30D Reading</span>
         </div>
       </div>
 
@@ -378,11 +429,15 @@ export const Dashboard: React.FC = () => {
         <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white shrink-0 shadow-md">
           <Bot className="w-5.5 h-5.5" />
         </div>
-        <div className="space-y-1">
+        <div className="space-y-1.5">
           <p className="text-[10px] text-indigo-650 font-black uppercase tracking-wider">AI English Companion</p>
           <p className="text-xs text-brand-text-secondary leading-relaxed font-semibold whitespace-pre-line">
             {coachGreeting}
           </p>
+          {/* ADAPTIVE ENGINE WARNING INSIDE GREETINGS CARD */}
+          <div className="p-2 bg-indigo-50/60 border border-indigo-100 rounded-lg text-[9px] text-indigo-850 font-medium italic mt-1 leading-normal">
+            {adaptiveNotice}
+          </div>
         </div>
       </div>
 
@@ -412,7 +467,13 @@ export const Dashboard: React.FC = () => {
 
       {/* 5. WHATSAPP VOICE CHAT MODE BUTTON WIDGET */}
       <div 
-        onClick={() => setShowWhatsAppMode(true)}
+        onClick={() => {
+          if (user?.role !== 'admin') {
+            setShowPaywall(true);
+          } else {
+            setShowWhatsAppMode(true);
+          }
+        }}
         className="card flex items-center justify-between !p-4 border-indigo-200 bg-gradient-to-r from-emerald-500/5 to-teal-500/5 cursor-pointer hover:shadow-md hover:border-emerald-300 transition-all active:scale-[0.99]"
       >
         <div className="flex items-center space-x-3.5">
@@ -420,7 +481,10 @@ export const Dashboard: React.FC = () => {
             <MessageSquare className="w-5 h-5 fill-current" />
           </div>
           <div className="text-left">
-            <h4 className="font-bold text-xs sm:text-sm text-brand-text-primary">WhatsApp Voice Mode</h4>
+            <div className="flex items-center gap-1.5">
+              <h4 className="font-bold text-xs sm:text-sm text-brand-text-primary">WhatsApp Voice Mode</h4>
+              <span className="text-[8px] uppercase font-black bg-amber-400 text-slate-900 px-1 rounded">Premium</span>
+            </div>
             <p className="text-[10px] text-brand-text-secondary">Speak naturally with AI. Practice English without lessons.</p>
           </div>
         </div>
@@ -559,11 +623,11 @@ export const Dashboard: React.FC = () => {
       <div className="card space-y-3">
         <div className="flex justify-between items-center">
           <div>
-            <h4 className="font-bold text-sm text-brand-text-primary">Fluency Meter</h4>
+            <h4 className="font-bold text-sm text-brand-text-primary">Fluency &amp; CEFR Meter</h4>
             <p className="text-[10px] text-brand-text-secondary">Estimated speech accuracy rating based on XP.</p>
           </div>
           <span className="text-xs font-black text-indigo-600 bg-indigo-50 border border-indigo-150 px-2 py-0.5 rounded">
-            {fluency.cefr}
+            {fluency.title} ({fluency.cefr})
           </span>
         </div>
 
@@ -593,7 +657,7 @@ export const Dashboard: React.FC = () => {
           className={`px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 transition-all shadow-sm ${
             streakFrozen 
               ? 'bg-indigo-600 text-white border border-indigo-650' 
-              : 'bg-white border border-gray-250 text-indigo-650 hover:bg-indigo-50'
+              : 'bg-white border border-gray-250 text-indigo-655 hover:bg-indigo-50'
           }`}
         >
           {streakFrozen ? '❄️ Frozen' : 'Use Freeze'}
@@ -615,6 +679,107 @@ export const Dashboard: React.FC = () => {
         <ChevronRight className="w-4 h-4 text-brand-text-secondary" />
       </div>
 
+      {/* 12. PERSONAL ROADMAP TIMELINE */}
+      <div className="card space-y-4">
+        <div>
+          <h4 className="font-bold text-sm text-brand-text-primary">Personal Learning Roadmap</h4>
+          <p className="text-[10px] text-brand-text-secondary">Four-week target progression mapping.</p>
+        </div>
+
+        <div className="space-y-3 pt-1">
+          <div className="space-y-1.5 text-xs text-brand-text-secondary">
+            <div className="flex justify-between font-semibold">
+              <span>Week 1: Greetings &amp; Introductions</span>
+              <span className="text-indigo-600 font-bold">{getWeekProgress(1)}%</span>
+            </div>
+            <div className="w-full h-1.5 bg-gray-150 rounded-full overflow-hidden">
+              <div className="h-full bg-indigo-600" style={{ width: `${getWeekProgress(1)}%` }} />
+            </div>
+          </div>
+
+          <div className="space-y-1.5 text-xs text-brand-text-secondary">
+            <div className="flex justify-between font-semibold">
+              <span>Week 2: Shopping &amp; Restaurant Roleplays</span>
+              <span className="text-indigo-600 font-bold">{getWeekProgress(2)}%</span>
+            </div>
+            <div className="w-full h-1.5 bg-gray-150 rounded-full overflow-hidden">
+              <div className="h-full bg-indigo-600" style={{ width: `${getWeekProgress(2)}%` }} />
+            </div>
+          </div>
+
+          <div className="space-y-1.5 text-xs text-brand-text-secondary">
+            <div className="flex justify-between font-semibold">
+              <span>Week 3: Daily Routines &amp; Appointments</span>
+              <span className="text-indigo-600 font-bold">{getWeekProgress(3)}%</span>
+            </div>
+            <div className="w-full h-1.5 bg-gray-150 rounded-full overflow-hidden">
+              <div className="h-full bg-indigo-600" style={{ width: `${getWeekProgress(3)}%` }} />
+            </div>
+          </div>
+
+          <div className="space-y-1.5 text-xs text-brand-text-secondary">
+            <div className="flex justify-between font-semibold">
+              <span>Week 4: Final Challenge Speech</span>
+              <span className="text-indigo-600 font-bold">{getWeekProgress(4)}%</span>
+            </div>
+            <div className="w-full h-1.5 bg-gray-150 rounded-full overflow-hidden">
+              <div className="h-full bg-indigo-600" style={{ width: `${getWeekProgress(4)}%` }} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ================= PREMIUM MONETIZATION PAYWALL MODAL ================= */}
+      <AnimatePresence>
+        {showPaywall && (
+          <>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowPaywall(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-sm bg-white border border-gray-250 rounded-[28px] p-6 z-50 pointer-events-auto shadow-2xl space-y-4 text-center">
+              
+              <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 flex items-center justify-center mx-auto animate-bounce mb-2">
+                <CreditCard className="w-6 h-6" />
+              </div>
+
+              <div className="space-y-1.5">
+                <h3 className="text-base font-black text-brand-text-primary">Unlock SpeakFlow Premium ⚡</h3>
+                <p className="text-xs text-brand-text-secondary leading-relaxed max-w-xs mx-auto">
+                  Access unlimited AI Voice Conversations, dynamic job interview preps, business meeting simulations, and advanced weekly performance stories.
+                </p>
+              </div>
+
+              <div className="bg-gray-50 border border-gray-150 p-4 rounded-2xl text-left space-y-2 text-xs">
+                <p className="font-semibold text-brand-text-primary flex justify-between">
+                  <span>Premium Yearly Membership</span>
+                  <span className="text-indigo-600 font-bold">$9.99/month</span>
+                </p>
+                <ul className="text-[10px] text-brand-text-secondary space-y-1">
+                  <li>• Unlimited WhatsApp Voice chats</li>
+                  <li>• 4 Specialized Business &amp; Travel courses</li>
+                  <li>• Dynamic CEFR level progress credentials</li>
+                </ul>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setShowPaywall(false)}
+                  style={{ borderRadius: '12px', padding: '10px' }}
+                  className="flex-1 bg-white border border-gray-250 text-brand-text-secondary text-xs font-bold active:scale-95 transition-all"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleUpgradeAccount}
+                  style={{ borderRadius: '12px', padding: '10px' }}
+                  className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold active:scale-95 transition-all shadow-md"
+                >
+                  Upgrade Now
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
       {/* ================= WHATSAPP VOICE CHAT MODE OVERLAY ================= */}
       <AnimatePresence>
         {showWhatsAppMode && (
@@ -633,7 +798,6 @@ export const Dashboard: React.FC = () => {
                 <button onClick={() => setShowWhatsAppMode(false)} className="p-1.5 bg-white/10 rounded-full hover:bg-white/20 text-white"><X className="w-4 h-4" /></button>
               </div>
 
-              {/* Chat messages */}
               <div className="flex-grow overflow-y-auto p-4 space-y-3.5 min-h-0 scrollbar-none my-3">
                 {whatsappMsgList.map((msg, i) => {
                   const isAI = msg.role === 'assistant';
@@ -643,7 +807,6 @@ export const Dashboard: React.FC = () => {
                         isAI ? 'bg-white text-gray-800' : 'bg-[#DCF8C6] text-gray-800'
                       }`}>
                         <p className="leading-relaxed whitespace-pre-line">{msg.content}</p>
-                        
                         {isAI && (
                           <button
                             onClick={() => speakWord(msg.content)}
@@ -656,19 +819,8 @@ export const Dashboard: React.FC = () => {
                     </div>
                   );
                 })}
-
-                {whatsappLoading && (
-                  <div className="flex justify-start">
-                    <div className="p-3 bg-white rounded-xl flex items-center space-x-1 shadow-sm">
-                      <div className="w-1.5 h-1.5 bg-emerald-650 rounded-full animate-bounce" />
-                      <div className="w-1.5 h-1.5 bg-emerald-650 rounded-full animate-bounce [animation-delay:0.2s]" />
-                      <div className="w-1.5 h-1.5 bg-emerald-650 rounded-full animate-bounce [animation-delay:0.4s]" />
-                    </div>
-                  </div>
-                )}
               </div>
 
-              {/* WhatsApp bottom control bar */}
               <div className="flex items-center justify-center py-4 bg-white -mx-5 -mb-5 p-4 border-t border-gray-200">
                 <button
                   onClick={handleToggleWhatsAppMic}
@@ -691,233 +843,70 @@ export const Dashboard: React.FC = () => {
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowReflection(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
             <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-white border-t border-gray-200 rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4">
-              
               <div className="flex justify-between items-center border-b border-gray-150 pb-3 shrink-0">
-                <span className="text-xs font-black uppercase text-purple-650 flex items-center gap-1.5">
-                  <Flame className="w-4.5 h-4.5 text-orange-500" />
-                  <span>End-of-Day Reflection</span>
-                </span>
+                <span className="text-xs font-black uppercase text-purple-650 flex items-center gap-1.5"><Flame className="w-4.5 h-4.5 text-orange-500" /><span>End-of-Day Reflection</span></span>
                 <button onClick={() => setShowReflection(false)} className="p-1.5 bg-gray-100 rounded-full hover:bg-gray-200"><X className="w-4 h-4" /></button>
               </div>
-
               <div className="flex-grow overflow-y-auto space-y-4 py-2">
-                <div className="space-y-1">
-                  <p className="text-xs font-bold text-brand-text-primary">What did you learn today? 📖</p>
-                  <p className="text-[10px] text-brand-text-secondary leading-normal">Write at least one full sentence in English summarizing today's lesson elements to seal your memory before sleep.</p>
-                </div>
-
                 {!reflectionSubmitted ? (
                   <div className="space-y-4">
-                    <input
-                      type="text"
-                      placeholder="Today I learned greetings and how to speak about my family..."
-                      value={reflectionText}
-                      onChange={(e) => setReflectionText(e.target.value)}
-                      className="w-full py-3 px-4 bg-gray-50 border border-gray-200 rounded-xl text-xs text-brand-text-primary focus:outline-none focus:bg-white focus:border-purple-400 transition-all font-sans"
-                    />
-
-                    <button
-                      disabled={!reflectionText.trim()}
-                      onClick={handleSubmitReflection}
-                      style={{ borderRadius: '12px', padding: '12px' }}
-                      className="w-full bg-purple-600 hover:bg-purple-750 disabled:opacity-30 text-white text-xs font-bold transition-all shadow-md active:scale-95"
-                    >
-                      Save Reflection (+10 XP)
-                    </button>
+                    <input type="text" placeholder="Today I learned..." value={reflectionText} onChange={(e) => setReflectionText(e.target.value)} className="w-full py-3 px-4 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none transition-all" />
+                    <button disabled={!reflectionText.trim()} onClick={handleSubmitReflection} className="w-full py-3 bg-purple-600 text-white rounded-xl text-xs font-bold">Save Reflection</button>
                   </div>
                 ) : (
-                  <div className="space-y-4 animate-fade text-center py-3 flex flex-col items-center">
+                  <div className="space-y-4 text-center flex flex-col items-center">
                     <span className="text-3xl">✨</span>
-                    <h3 className="text-sm font-bold text-brand-text-primary">Excellent Reflection!</h3>
-                    <p className="text-xs text-brand-text-secondary max-w-xs leading-relaxed">
-                      "I learned: {reflectionText}"
-                    </p>
-                    <div className="p-3 bg-emerald-50 border border-emerald-250 text-emerald-700 text-xs rounded-xl w-full">
-                      ✓ Streak protected! Sleep well! 🛏️
-                    </div>
-                    <button
-                      onClick={() => setShowReflection(false)}
-                      style={{ borderRadius: '12px', padding: '12px' }}
-                      className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md active:scale-95"
-                    >
-                      Finish Day
-                    </button>
+                    <p className="text-xs">"I learned: {reflectionText}"</p>
+                    <button onClick={() => setShowReflection(false)} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Finish Day</button>
                   </div>
                 )}
               </div>
-
             </motion.div>
           </>
         )}
       </AnimatePresence>
 
-      {/* ================= ONE MINUTE PRACTICE MODAL ================= */}
+      {/* ================= ONE MINUTE PRACTICE SPRINT DRAWER ================= */}
       <AnimatePresence>
         {showOneMinPractice && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowOneMinPractice(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
             <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-white border-t border-gray-200 rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4">
-              
               <div className="flex justify-between items-center border-b border-gray-150 pb-3 shrink-0">
-                <span className="text-xs font-black uppercase text-indigo-650 flex items-center gap-1.5">
-                  <Timer className="w-4.5 h-4.5" />
-                  <span>One-Minute Practice Sprint</span>
-                </span>
+                <span className="text-xs font-black uppercase text-indigo-600 flex items-center gap-1.5"><Timer className="w-4.5 h-4.5" /><span>One-Minute Practice Sprint</span></span>
                 <button onClick={() => setShowOneMinPractice(false)} className="p-1.5 bg-gray-100 rounded-full hover:bg-gray-200"><X className="w-4 h-4" /></button>
               </div>
-
               <div className="flex-grow overflow-y-auto space-y-4 py-2">
                 {oneMinStep === 1 && (
                   <div className="space-y-4 text-center">
-                    <p className="text-xs text-brand-text-secondary">Step 1: Rapid Vocabulary Study</p>
-                    <div className="p-6 bg-indigo-50/50 border border-indigo-100 rounded-2xl space-y-2">
-                      <span className="text-[10px] font-bold text-indigo-650 uppercase font-mono">Word {oneMinVocabIdx + 1} of 3</span>
-                      <h3 className="text-2xl font-bold text-indigo-700">
-                        {oneMinVocabIdx === 0 ? 'Eager' : oneMinVocabIdx === 1 ? 'Procrastinate' : 'Coherent'}
-                      </h3>
-                      <p className="text-xs text-brand-text-secondary leading-normal">
-                        {oneMinVocabIdx === 0 ? 'Very excited and interested to do something.' : oneMinVocabIdx === 1 ? 'Delay or postpone action; put off doing something.' : 'Logical, clear, and easy to understand.'}
-                      </p>
+                    <div className="p-6 bg-indigo-50/50 rounded-2xl">
+                      <h3 className="text-2xl font-bold text-indigo-700">{oneMinVocabIdx === 0 ? 'Eager' : oneMinVocabIdx === 1 ? 'Procrastinate' : 'Coherent'}</h3>
+                      <p className="text-xs leading-normal mt-2">{oneMinVocabIdx === 0 ? 'Very excited.' : oneMinVocabIdx === 1 ? 'Delay action.' : 'Clear.'}</p>
                     </div>
-                    <button
-                      onClick={() => {
-                        if (oneMinVocabIdx < 2) {
-                          setOneMinVocabIdx(prev => prev + 1);
-                        } else {
-                          setOneMinStep(2);
-                        }
-                      }}
-                      style={{ borderRadius: '12px', padding: '12px' }}
-                      className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md active:scale-95"
-                    >
-                      {oneMinVocabIdx < 2 ? 'Next Word' : 'Proceed to Reading'}
-                    </button>
+                    <button onClick={() => { if (oneMinVocabIdx < 2) setOneMinVocabIdx(prev => prev + 1); else setOneMinStep(2); }} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Next Word</button>
                   </div>
                 )}
-
                 {oneMinStep === 2 && (
                   <div className="space-y-4 text-center">
-                    <p className="text-xs text-brand-text-secondary">Step 2: Read &amp; Speak Aloud</p>
-                    <div className="p-5 bg-gray-50 border border-gray-150 rounded-2xl">
-                      <p className="text-xs font-semibold text-brand-text-primary">"I am learning English with SpeakFlow every day."</p>
-                    </div>
-                    <div className="flex flex-col items-center py-2 space-y-2.5">
-                      <button onClick={toggleOneMinRecord} className={`w-14 h-14 rounded-full flex items-center justify-center text-white transition-all shadow-md ${oneMinIsRecording ? 'bg-rose-500 animate-pulse' : 'bg-indigo-600'}`}><Mic className="w-5.5 h-5.5" /></button>
-                      <span className="text-[10px] text-brand-text-muted uppercase tracking-wider font-bold">{oneMinIsRecording ? 'Listening...' : 'Tap Mic and read text'}</span>
-                    </div>
-                    {oneMinSpeechVerified && (
-                      <div className="p-3 bg-emerald-50 border border-emerald-255 text-emerald-700 text-xs rounded-xl flex items-center space-x-1.5 justify-center"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" /><span>Speech verified with 92% pronunciation accuracy!</span></div>
-                    )}
-                    <button disabled={!oneMinSpeechVerified} onClick={() => setOneMinStep(3)} style={{ borderRadius: '12px', padding: '12px' }} className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-30 text-white text-xs font-bold transition-all shadow-md active:scale-95">Proceed to Grammar Quiz</button>
+                    <p className="text-xs font-semibold">"I am learning English with SpeakFlow every day."</p>
+                    <button onClick={toggleOneMinRecord} className={`w-14 h-14 rounded-full flex items-center justify-center text-white ${oneMinIsRecording ? 'bg-rose-500 animate-pulse' : 'bg-indigo-600'}`}><Mic className="w-5 h-5" /></button>
+                    {oneMinSpeechVerified && <p className="text-xs text-emerald-500">Verified!</p>}
+                    <button disabled={!oneMinSpeechVerified} onClick={() => setOneMinStep(3)} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Next</button>
                   </div>
                 )}
-
                 {oneMinStep === 3 && (
-                  <div className="space-y-4 text-center">
-                    <p className="text-xs text-brand-text-secondary">Step 3: Correct the Sentence Structure</p>
-                    <div className="p-4 bg-gray-50 border border-gray-150 rounded-2xl space-y-1.5 text-left">
-                      <span className="text-[9px] uppercase tracking-wider font-black text-indigo-600">Question:</span>
-                      <p className="text-xs text-brand-text-primary font-bold">Identify the missing word: "She ______ to the park yesterday."</p>
-                    </div>
-                    <div className="flex flex-col space-y-2 text-left">
-                      {[{ key: 'A', label: 'Goes' }, { key: 'B', label: 'Go' }, { key: 'C', label: 'Went' }, { key: 'D', label: 'Going' }].map((opt) => {
-                        const isSelected = oneMinQuizAnswer === opt.key;
-                        let btnStyle = "bg-white border-gray-200 text-brand-text-primary hover:bg-gray-50";
-                        if (isSelected && !oneMinQuizSubmitted) btnStyle = "bg-indigo-600 border-indigo-600 text-white shadow-sm font-bold";
-                        if (oneMinQuizSubmitted) {
-                          if (opt.key === 'C') btnStyle = "bg-emerald-50 border-emerald-400 text-emerald-700 font-bold";
-                          else if (isSelected) btnStyle = "bg-red-50 border-red-400 text-red-650 line-through";
-                          else btnStyle = "bg-gray-50 border-gray-100 text-brand-text-muted opacity-50";
-                        }
-                        return (
-                          <button key={opt.key} disabled={oneMinQuizSubmitted} onClick={() => setOneMinQuizAnswer(opt.key)} className={`p-3 border rounded-xl text-xs transition-all leading-normal flex items-center space-x-2.5 active:scale-[0.99] ${btnStyle}`}>
-                            <span className="font-mono font-bold text-[10px]">{opt.key}.</span>
-                            <span>{opt.label}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                    {!oneMinQuizSubmitted ? (
-                      <button onClick={() => { setOneMinQuizSubmitted(true); speakWord(oneMinQuizAnswer === 'C' ? 'Correct answer!' : 'Not correct.'); }} disabled={!oneMinQuizAnswer} style={{ borderRadius: '12px', padding: '12px' }} className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-30 text-white text-xs font-bold transition-all shadow-md active:scale-95">Submit Answer</button>
-                    ) : (
-                      <button onClick={() => setOneMinStep(4)} style={{ borderRadius: '12px', padding: '12px' }} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md active:scale-95">Complete Practice</button>
-                    )}
-                  </div>
-                )}
-
-                {oneMinStep === 4 && (
-                  <div className="space-y-5 text-center py-4 flex flex-col items-center">
-                    <div className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 flex items-center justify-center animate-bounce mb-2">
-                      <Award className="w-7 h-7" />
-                    </div>
-                    <div className="space-y-1">
-                      <h3 className="text-lg font-bold text-brand-text-primary">Sprint Completed!</h3>
-                      <p className="text-xs text-brand-text-secondary leading-relaxed max-w-xs">Excellent focus! You learned vocabulary, verified pronunciation, and cleared grammar metrics.</p>
-                    </div>
-                    <button onClick={claimOneMinRewards} style={{ borderRadius: '12px', padding: '12px' }} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md active:scale-95 mt-4">Collect Rewards</button>
-                  </div>
-                )}
-              </div>
-
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-
-      {/* ================= VOICE JOURNAL & DIARY DRAWERS ================= */}
-      <AnimatePresence>
-        {showDiary && (
-          <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowDiary(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-white border-t border-gray-200 rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4">
-              <div className="flex justify-between items-center border-b border-gray-150 pb-3 shrink-0">
-                <span className="text-xs font-black uppercase text-purple-650 flex items-center gap-1.5"><FileText className="w-4.5 h-4.5" /><span>Today's English Diary</span></span>
-                <button onClick={() => setShowDiary(false)} className="p-1.5 bg-gray-100 rounded-full hover:bg-gray-200"><X className="w-4 h-4" /></button>
-              </div>
-              <div className="flex-grow overflow-y-auto space-y-4 py-2">
-                {!diaryResult ? (
                   <div className="space-y-4">
-                    <textarea placeholder="Write about your day..." value={diaryText} onChange={(e) => setDiaryText(e.target.value)} className="w-full h-36 p-4 bg-gray-50 border border-gray-200 rounded-2xl text-xs text-brand-text-primary focus:outline-none focus:bg-white focus:border-purple-400 resize-none transition-all" />
-                    <button disabled={diaryText.trim().split(/\s+/).length < 3 || diarySubmitting} onClick={handleSubmitDiary} style={{ borderRadius: '12px', padding: '14px' }} className="w-full bg-purple-600 hover:bg-purple-750 disabled:opacity-30 text-white text-xs font-bold transition-all shadow-md active:scale-95">Submit Diary Entry</button>
-                  </div>
-                ) : (
-                  <div className="space-y-4 animate-fade">
-                    <div className="flex justify-between items-center bg-purple-50 border border-purple-100 p-4.5 rounded-2xl">
-                      <div className="text-left"><span className="text-[9px] text-purple-650 uppercase font-black">Score</span><p className="text-2xl font-black text-purple-700">{diaryResult.score} / 100</p></div>
-                      <div className="text-right text-xs"><span className="font-bold text-brand-text-primary block">Grammar: {diaryResult.grammar}%</span><span className="font-semibold text-brand-text-secondary block">Naturalness: {diaryResult.naturalness}%</span></div>
-                    </div>
-                    <button onClick={() => setShowDiary(false)} style={{ borderRadius: '12px', padding: '12px' }} className="w-full bg-purple-650 hover:bg-purple-700 text-white text-xs font-bold transition-all">Finish</button>
+                    <p className="text-xs font-bold">Identify missing word: "She ______ to the park yesterday."</p>
+                    {['Goes', 'Go', 'Went', 'Going'].map((opt, i) => (
+                      <button key={opt} onClick={() => setOneMinQuizAnswer(opt === 'Went' ? 'C' : 'A')} className="w-full p-3 border rounded-xl text-xs text-left">{(i+1)}. {opt}</button>
+                    ))}
+                    <button onClick={() => setOneMinStep(4)} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Submit</button>
                   </div>
                 )}
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {showVoiceJournal && (
-          <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowVoiceJournal(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-white border-t border-gray-200 rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4">
-              <div className="flex justify-between items-center border-b border-gray-150 pb-3 shrink-0">
-                <span className="text-xs font-black uppercase text-amber-650 flex items-center gap-1.5"><Mic className="w-4.5 h-4.5" /><span>Voice Journal Challenge</span></span>
-                <button onClick={() => setShowVoiceJournal(false)} className="p-1.5 bg-gray-100 rounded-full hover:bg-gray-200"><X className="w-4 h-4" /></button>
-              </div>
-              <div className="flex-grow overflow-y-auto space-y-4 py-2 text-center">
-                {!voiceResult ? (
-                  <div className="flex flex-col items-center py-6 space-y-4">
-                    <button onClick={handleToggleVoiceJournal} className={`w-20 h-20 rounded-full flex items-center justify-center text-white transition-all shadow-lg ${voiceRecording ? 'bg-rose-500 animate-pulse' : 'bg-amber-500'}`}><Mic className="w-8 h-8" /></button>
-                    <span className="text-xs font-bold text-brand-text-primary">{voiceRecording ? `🔴 Recording… 00:${voiceTimer < 10 ? '0' + voiceTimer : voiceTimer}` : 'Tap Mic to Start'}</span>
-                  </div>
-                ) : (
-                  <div className="space-y-4 animate-fade text-left">
-                    <div className="grid grid-cols-3 gap-2.5">
-                      <div className="p-3 bg-amber-50 border border-amber-100 rounded-xl text-center"><span className="text-[9px] uppercase font-bold text-amber-600 block">WPM</span><p className="text-lg font-black text-brand-text-primary mt-0.5">{voiceResult.wpm} WPM</p></div>
-                      <div className="p-3 bg-indigo-50 border border-indigo-100 rounded-xl text-center"><span className="text-[9px] uppercase font-bold text-indigo-600 block">Pronounce</span><p className="text-lg font-black text-brand-text-primary mt-0.5">{voiceResult.pronunciation}%</p></div>
-                      <div className="p-3 bg-emerald-50 border border-emerald-100 rounded-xl text-center"><span className="text-[9px] uppercase font-bold text-emerald-600 block">Fluency</span><p className="text-lg font-black text-brand-text-primary mt-0.5">{voiceResult.fluency}%</p></div>
-                    </div>
-                    <button onClick={() => setShowVoiceJournal(false)} style={{ borderRadius: '12px', padding: '12px' }} className="w-full bg-amber-500 hover:bg-amber-605 text-white text-xs font-bold">Finish</button>
+                {oneMinStep === 4 && (
+                  <div className="space-y-4 text-center">
+                    <p className="text-xs">Practice completed successfully!</p>
+                    <button onClick={claimOneMinRewards} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Claim Rewards</button>
                   </div>
                 )}
               </div>
