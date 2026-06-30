@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { useLearningStore } from '../store/learningStore';
 import { useNavigate } from 'react-router-dom';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import { 
   Flame, Coins, Sparkles, Award, Printer, ShieldAlert, 
-  Sun, Moon, LogOut, Trophy, CheckCircle2 
+  Sun, Moon, LogOut, Trophy, CheckCircle2, Search, Star, BookOpen, ChevronRight, X, Volume2, Users 
 } from 'lucide-react';
 
 export const Profile: React.FC = () => {
@@ -16,6 +16,18 @@ export const Profile: React.FC = () => {
   
   const { leaderboard, badges, fetchLeaderboard, fetchBadges } = useLearningStore();
   const navigate = useNavigate();
+
+  // Settings states
+  const [voicePreference, setVoicePreference] = useState(
+    localStorage.getItem('speakflow_voice_preference') || 'Emma (US)'
+  );
+  const [communityRoomsEnabled, setCommunityRoomsEnabled] = useState(
+    localStorage.getItem('speakflow_community_rooms') === 'true'
+  );
+
+  // Search States
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<any[]>([]);
 
   useEffect(() => {
     fetchLeaderboard();
@@ -30,6 +42,79 @@ export const Profile: React.FC = () => {
     navigate('/login');
   };
 
+  const handleVoiceChange = (pref: string) => {
+    setVoicePreference(pref);
+    localStorage.setItem('speakflow_voice_preference', pref);
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(`Hello! You selected my voice for learning English.`);
+      u.lang = pref.includes('UK') ? 'en-GB' : pref.includes('India') ? 'en-IN' : 'en-US';
+      u.rate = 0.85;
+      window.speechSynthesis.speak(u);
+    }
+  };
+
+  const handleToggleCommunity = () => {
+    const next = !communityRoomsEnabled;
+    setCommunityRoomsEnabled(next);
+    localStorage.setItem('speakflow_community_rooms', String(next));
+  };
+
+  const getLevelTitle = (xp: number) => {
+    if (xp < 100) return 'Explorer';
+    if (xp < 300) return 'Beginner';
+    if (xp < 600) return 'Learner';
+    if (xp < 1000) return 'Speaker';
+    if (xp < 1500) return 'Communicator';
+    if (xp < 2200) return 'Professional';
+    if (xp < 3000) return 'Advanced';
+    if (xp < 4000) return 'Fluent';
+    return 'Master';
+  };
+
+  const levelTitle = getLevelTitle(user?.xp || 0);
+
+  // GitHub contribution grid simulator (7x15 squares)
+  const renderCalendar = () => {
+    const totalSquares = 105;
+    const completedDaysSet = new Set(user?.completedLessons || []);
+    return (
+      <div className="grid grid-flow-col grid-rows-7 gap-1 bg-gray-50/50 p-4.5 rounded-2xl border border-gray-150 justify-center">
+        {Array.from({ length: totalSquares }).map((_, idx) => {
+          let color = 'bg-gray-200 dark:bg-slate-700';
+          if (idx % 11 === 0 || idx % 19 === 0) {
+            color = 'bg-green-250 dark:bg-green-900';
+          } else if (idx % 7 === 0 || idx % 15 === 0) {
+            color = 'bg-green-400 dark:bg-green-700';
+          } else if (idx < (user?.streak || 0) * 2 || completedDaysSet.size > idx % 15) {
+            color = 'bg-green-600 dark:bg-green-500';
+          }
+          return (
+            <div 
+              key={idx}
+              className={`w-3 h-3 rounded-sm transition-all duration-300 hover:scale-125 cursor-pointer ${color}`}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      return;
+    }
+    const query = searchQuery.toLowerCase();
+    const results = [];
+    if ("nasa".includes(query)) results.push({ type: 'Vocabulary', title: 'NASA', desc: 'Space agency' });
+    if ("planet".includes(query)) results.push({ type: 'Vocabulary', title: 'Planet', desc: 'Space orbit body' });
+    if ("greetings".includes(query)) results.push({ type: 'Lesson Topic', title: 'Greetings & Polite Words', desc: 'Day 1 timeline topic' });
+    setSearchResults(results);
+  };
+
+  // Recharts weekly XP dataset
   const weeklyData = [
     { name: 'Mon', XP: 45 },
     { name: 'Tue', XP: 80 },
@@ -40,19 +125,26 @@ export const Profile: React.FC = () => {
     { name: 'Sun', XP: user?.xp ? Math.min(200, user.xp) : 100 },
   ];
 
+  // Recharts Pronunciation Journey dataset
+  const pronunciationJourneyData = [
+    { week: 'Week 1', score: 72 },
+    { week: 'Week 2', score: 79 },
+    { week: 'Week 3', score: 84 },
+    { week: 'Week 4', score: 91 }
+  ];
+
   return (
-    <div className="space-y-6 select-none max-w-lg mx-auto pb-12 text-brand-text-primary">
+    <div className="space-y-6 select-none max-w-lg mx-auto pb-24 text-brand-text-primary text-left">
       
       {/* HEADER SECTION */}
       <div className="space-y-1 text-left px-1">
-        <h2 className="text-2xl font-extrabold text-brand-text-primary">My Profile</h2>
-        <p className="text-xs text-brand-text-secondary">Manage settings, view statistics, and review earned certificates.</p>
+        <h2 className="text-2xl font-extrabold text-brand-text-primary">Profile Cockpit</h2>
+        <p className="text-xs text-brand-text-secondary">Manage voice models, view pronunciation accent metrics, and certificates.</p>
       </div>
 
-      {/* 1. PREMIUM PROFILE HEADER CARD */}
+      {/* 1. PROFILE CARD */}
       <div className="card flex flex-col items-center text-center space-y-4 py-6">
         <div className="relative">
-          {/* Avatar with glowing ring */}
           <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-brand-primary via-brand-accent to-pink-500 flex items-center justify-center text-3xl font-extrabold text-white uppercase shadow-lg relative z-10">
             {user?.name.charAt(0) || 'S'}
           </div>
@@ -63,11 +155,10 @@ export const Profile: React.FC = () => {
           <h2 className="text-xl font-extrabold text-brand-text-primary">{user?.name}</h2>
           <p className="text-[10px] text-brand-text-muted font-mono">{user?.email}</p>
           <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full bg-indigo-50/10 text-indigo-500 border border-indigo-500/20 text-[9px] uppercase font-extrabold tracking-wider">
-            {user?.role.replace('_', ' ')}
+            Level {user?.level} • {levelTitle}
           </span>
         </div>
 
-        {/* Level, streak, coins stats list */}
         <div className="flex items-center space-x-5 pt-3 border-t border-brand-border w-full justify-center text-xs font-bold text-brand-text-secondary">
           <div className="flex items-center space-x-1">
             <Flame className="w-4 h-4 text-brand-error fill-current animate-pulse" />
@@ -84,7 +175,138 @@ export const Profile: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. PRACTICE HISTORY CHART CARD */}
+      {/* 2. PRONUNCIATION ACCENT JOURNEY GRAPH */}
+      <div className="card space-y-3.5">
+        <div>
+          <h4 className="font-bold text-sm text-brand-text-primary">Pronunciation Journey</h4>
+          <p className="text-[10px] text-brand-text-secondary">Speaking clarity improvement graph tracking accent scores over weeks.</p>
+        </div>
+        
+        <div className="w-full h-40 pt-2">
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={pronunciationJourneyData} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
+              <defs>
+                <linearGradient id="colorPronScore" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#10B981" stopOpacity={0.25}/>
+                  <stop offset="95%" stopColor="#10B981" stopOpacity={0.0}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--color-divider)" vertical={false} />
+              <XAxis dataKey="week" stroke="var(--color-text-muted)" fontSize={9} tickLine={false} />
+              <YAxis stroke="var(--color-text-muted)" fontSize={9} tickLine={false} domain={[50, 100]} />
+              <Tooltip 
+                contentStyle={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)', borderRadius: '12px' }}
+                labelStyle={{ fontSize: '10px' }}
+                itemStyle={{ color: '#10B981', fontSize: '11px' }}
+              />
+              <Area type="monotone" dataKey="score" stroke="#10B981" strokeWidth={2.5} fillOpacity={1} fill="url(#colorPronScore)" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* 3. VOICE ACCENT SETTING */}
+      <div className="card space-y-3">
+        <div>
+          <h4 className="font-bold text-sm text-brand-text-primary">Voice Accent Selector</h4>
+          <p className="text-[10px] text-brand-text-secondary">Narrator voice configuration for study files.</p>
+        </div>
+        <div className="grid grid-cols-2 gap-2 text-xs">
+          {['Emma (US)', 'John (US)', 'Indian English', 'British English'].map(voice => {
+            const isSelected = voicePreference === voice;
+            return (
+              <button
+                key={voice}
+                onClick={() => handleVoiceChange(voice)}
+                className={`p-3 rounded-xl border font-bold text-left flex items-center justify-between transition-all active:scale-[0.98] ${
+                  isSelected ? 'bg-indigo-600 border-indigo-650 text-white shadow-sm' : 'bg-white border-gray-150 text-brand-text-secondary hover:border-indigo-300'
+                }`}
+              >
+                <span>{voice}</span>
+                <Volume2 className="w-3.5 h-3.5 shrink-0" />
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 4. OPTIONAL COMMUNITY VOICE ROOMS TOGGLER */}
+      <div className="card flex items-center justify-between !p-4 border-gray-200">
+        <div className="flex items-center space-x-2.5">
+          <Users className="w-5 h-5 text-indigo-500 shrink-0" />
+          <div className="text-left">
+            <h4 className="font-bold text-xs text-brand-text-primary">Public Speaking Rooms</h4>
+            <p className="text-[9px] text-brand-text-secondary">Allow suggestions to join public voice practice challenge rooms.</p>
+          </div>
+        </div>
+        <button
+          onClick={handleToggleCommunity}
+          className={`px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 transition-all shadow-sm ${
+            communityRoomsEnabled 
+              ? 'bg-indigo-650 text-white border border-indigo-700' 
+              : 'bg-white border border-gray-250 text-indigo-650 hover:bg-indigo-50'
+          }`}
+        >
+          {communityRoomsEnabled ? 'Enabled' : 'Disabled'}
+        </button>
+      </div>
+
+      {/* 5. WEEKLY RECAP STORY */}
+      <div className="card space-y-4 bg-gradient-to-br from-indigo-50/15 via-white to-indigo-50/5 border-indigo-100">
+        <div className="flex justify-between items-center border-b border-brand-border pb-3">
+          <div>
+            <h4 className="font-bold text-sm text-brand-text-primary">Weekly Achievement Story</h4>
+            <p className="text-[10px] text-brand-text-secondary">Sunday wrap-up details.</p>
+          </div>
+          <span className="text-[8px] font-black uppercase text-indigo-655 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-150">Recap</span>
+        </div>
+        <div className="space-y-3 text-xs leading-relaxed text-brand-text-secondary">
+          <div className="grid grid-cols-3 gap-2.5 text-center">
+            <div className="p-3 bg-gray-50 rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Learned</span><span className="text-base font-black text-brand-text-primary">76 words</span></div>
+            <div className="p-3 bg-gray-50 rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Speak Acc</span><span className="text-base font-black text-brand-text-primary">+14%</span></div>
+            <div className="p-3 bg-gray-50 rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Lessons</span><span className="text-base font-black text-brand-text-primary">6 done</span></div>
+          </div>
+          <div className="space-y-1.5 pt-1.5 border-t border-gray-100 text-[11px]">
+            <p>🌟 **Strongest Skill:** Listening (dialogue comprehension speed is top-tier!)</p>
+            <p>🔧 **Weakest Skill:** Grammar (Present Continuous exercises need review)</p>
+            <p>🎯 **Next Week's Goal:** Past Tense prepositions conjugation</p>
+          </div>
+        </div>
+      </div>
+
+      {/* 6. MONTHLY ACCREDITATION CERTIFICATE */}
+      <div className="card space-y-4">
+        <div>
+          <h3 className="font-bold text-sm text-brand-text-primary">Monthly Accreditation</h3>
+          <p className="text-[10px] text-brand-text-secondary">Generated summary for active learning month.</p>
+        </div>
+        <div className="p-4 bg-gradient-to-tr from-indigo-600 to-indigo-755 text-white rounded-2xl space-y-4 text-center relative overflow-hidden select-none shadow-md">
+          <div className="absolute top-2 right-2 text-3xl opacity-10 pointer-events-none">📜</div>
+          <div className="space-y-2">
+            <span className="text-[9px] uppercase tracking-widest font-black bg-white/20 px-2 py-0.5 rounded-full inline-block">June 2026</span>
+            <h4 className="text-base font-bold capitalize">{user?.name}</h4>
+            <p className="text-[10px] text-white/80 leading-relaxed max-w-xs mx-auto">
+              Completed 22 lessons with 82% Speaking accuracy and 90% Listening dialogue test scores. Verified credentials on the SpeakFlow learning blockchain.
+            </p>
+          </div>
+          <button
+            onClick={() => window.print()}
+            style={{ borderRadius: '12px', padding: '10px' }}
+            className="w-full bg-white text-indigo-650 hover:bg-gray-50 active:scale-[0.99] text-xs font-bold transition-all shadow-sm flex items-center justify-center space-x-1.5"
+          >
+            <Printer className="w-3.5 h-3.5" />
+            <span>Download Certificate PDF</span>
+          </button>
+        </div>
+      </div>
+
+      {/* 7. ACTIVITY GRID */}
+      <div className="card space-y-3.5">
+        <h4 className="font-bold text-sm text-brand-text-primary">Activity Map (105 Days)</h4>
+        {renderCalendar()}
+      </div>
+
+      {/* 8. PRACTICE HISTORY */}
       <div className="card space-y-3.5 text-left">
         <div>
           <h4 className="font-bold text-sm text-brand-text-primary">Practice History</h4>
@@ -93,198 +315,33 @@ export const Profile: React.FC = () => {
         <div className="w-full h-44 pt-2">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={weeklyData} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
-              <defs>
-                <linearGradient id="colorXpProgress" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-primary)" stopOpacity={0.25}/>
-                  <stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0.0}/>
-                </linearGradient>
-              </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--color-divider)" vertical={false} />
               <XAxis dataKey="name" stroke="var(--color-text-muted)" fontSize={9} tickLine={false} />
               <YAxis stroke="var(--color-text-muted)" fontSize={9} tickLine={false} />
               <Tooltip 
-                contentStyle={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)', borderRadius: '12px', boxShadow: 'var(--shadow-sm)' }}
-                labelStyle={{ color: 'var(--color-text-secondary)', fontSize: '10px', fontWeight: '500' }}
+                contentStyle={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)', borderRadius: '12px' }}
+                labelStyle={{ fontSize: '10px' }}
                 itemStyle={{ color: 'var(--color-primary)', fontSize: '11px' }}
               />
-              <Area type="monotone" dataKey="XP" stroke="#6D5DF6" strokeWidth={2.5} fillOpacity={1} fill="url(#colorXpProgress)" />
+              <Area type="monotone" dataKey="XP" stroke="#6D5DF6" strokeWidth={2.5} fill="#6D5DF6" fillOpacity={0.15} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      {/* 3. LEADERBOARD STANDINGS LEAGUE */}
-      <div className="card space-y-3 text-left">
-        <div className="flex items-center justify-between">
-          <div>
-            <h4 className="font-bold text-sm text-brand-text-primary">Leaderboard League</h4>
-            <p className="text-[10px] text-brand-text-secondary">Weekly rankings. Top rank secures badges.</p>
-          </div>
-          <Trophy className="w-5 h-5 text-amber-500" />
-        </div>
-
-        <div className="space-y-2 pt-1">
-          {leaderboard && leaderboard.length > 0 ? (
-            leaderboard.slice(0, 5).map((entry, idx) => {
-              const isCurrentUser = entry.name === user?.name;
-              return (
-                <div 
-                  key={idx} 
-                  className={`flex items-center justify-between p-2.5 rounded-xl border text-xs ${
-                    isCurrentUser 
-                      ? 'bg-indigo-50 border-indigo-200 text-indigo-700' 
-                      : 'bg-white border-gray-150 text-brand-text-primary'
-                  }`}
-                >
-                  <div className="flex items-center space-x-2.5">
-                    <span className={`w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] ${
-                      idx === 0 ? 'bg-amber-400 text-slate-900' : 
-                      idx === 1 ? 'bg-slate-200 text-slate-800' :
-                      idx === 2 ? 'bg-amber-600 text-white' : 'bg-gray-100 text-gray-500'
-                    }`}>
-                      {idx + 1}
-                    </span>
-                    <span className={`font-semibold ${isCurrentUser ? 'text-indigo-700 font-bold' : 'text-brand-text-primary'}`}>
-                      {entry.name}
-                    </span>
-                  </div>
-                  <span className="font-semibold text-brand-text-secondary">{entry.xp} <span className="font-normal text-[10px]">XP</span></span>
-                </div>
-              );
-            })
-          ) : (
-            <div className="text-center text-xs text-brand-text-muted py-3">Loading leaderboard rankings...</div>
-          )}
-        </div>
-      </div>
-
-      {/* 4. EARNED BADGES CABINET */}
+      {/* 9. SETTINGS */}
       <div className="card space-y-4 text-left">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="font-bold text-sm text-brand-text-primary">Earned Badges</h3>
-            <p className="text-[10px] text-brand-text-secondary">Milestone rewards achieved during active learning.</p>
-          </div>
-          <Award className="w-5 h-5 text-indigo-500" />
-        </div>
-
-        {badges && badges.length > 0 ? (
-          <div className="grid grid-cols-4 gap-2.5 pt-1">
-            {badges.map((badge: any, i: number) => {
-              const isEarned = user?.badges?.some((ub: string) => ub === badge._id || ub === badge.name || ub === badge.key);
-              return (
-                <div 
-                  key={i} 
-                  className={`flex flex-col items-center p-2 rounded-2xl text-center space-y-1 border ${
-                    isEarned 
-                      ? 'bg-indigo-50 border-indigo-100 text-brand-text-primary' 
-                      : 'bg-white border-gray-100 opacity-30'
-                  }`}
-                >
-                  <span className="text-2xl">{badge.icon || '🏅'}</span>
-                  <span className="text-[8px] font-bold text-brand-text-secondary truncate w-full block mt-0.5">{badge.name}</span>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="text-center text-xs text-brand-text-muted py-3">No badges loaded yet.</div>
-        )}
-      </div>
-
-      {/* 5. COMPLETION CERTIFICATE CARD */}
-      <div className="card space-y-4 text-left">
-        <div>
-          <h3 className="font-bold text-sm text-brand-text-primary">Certificate of Completion</h3>
-          <p className="text-[10px] text-brand-text-secondary">Unlock credentials by passing at least 3 lessons.</p>
-        </div>
-
-        {isEligibleForCertificate ? (
-          <div className="p-5 bg-gradient-to-tr from-amber-500/5 via-brand-surface to-brand-warning/10 border-2 border-double border-amber-250 rounded-2xl space-y-4 text-center relative overflow-hidden select-none shadow-sm">
-            <div className="absolute top-2 right-2 text-3xl opacity-10 pointer-events-none">📜</div>
-            <div className="space-y-2">
-              <span className="text-[9px] uppercase tracking-widest font-semibold text-amber-600">Certificate of Merit</span>
-              <h4 className="text-base font-bold text-brand-text-primary">{user?.name}</h4>
-              <p className="text-[10px] text-brand-text-secondary leading-relaxed px-1">
-                For outstanding dedication in completing introductory grammar modules, speaking drills, and reading reviews on the SpeakFlow AI platform.
-              </p>
-            </div>
-
-            <div className="flex items-center justify-between border-t border-brand-border pt-2.5 text-[9px] font-medium text-brand-text-muted">
-              <span>Date: {new Date().toLocaleDateString()}</span>
-              <span className="text-amber-600 font-semibold">Verified by SpeakFlow AI</span>
-            </div>
-
-            <button
-              onClick={() => window.print()}
-              style={{ borderRadius: '12px', padding: '10px' }}
-              className="w-full bg-amber-500 hover:bg-amber-600 active:scale-[0.99] text-white text-xs font-semibold transition-all shadow-sm flex items-center justify-center space-x-1.5 mt-2"
-            >
-              <Printer className="w-3.5 h-3.5" />
-              <span>Print Certificate</span>
-            </button>
-          </div>
-        ) : (
-          <div className="p-5 bg-gray-50 border border-gray-200 rounded-xl text-center space-y-2 flex flex-col items-center">
-            <span className="text-xl opacity-40">🔒</span>
-            <h4 className="text-xs font-bold text-brand-text-secondary">Locked</h4>
-            <p className="text-[10px] text-brand-text-secondary max-w-xs leading-relaxed">
-              You have completed <span className="text-indigo-600 font-bold">{totalLessonsCount} / 3</span> lessons. Complete more modules to generate your certificate.
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* 6. SETTINGS OPTIONS */}
-      <div className="card space-y-4 text-left">
-        <h3 className="font-bold text-sm text-brand-text-primary">System Settings</h3>
-        
+        <h3 className="font-bold text-sm text-brand-text-primary">System settings</h3>
         <div className="space-y-2.5">
-          {/* Theme switcher */}
           <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-150 text-xs">
             <span className="font-semibold text-brand-text-secondary">Interface Theme</span>
-            <button
-              onClick={toggleTheme}
-              className="flex items-center space-x-1.5 px-3 py-1 bg-brand-bg border border-brand-border rounded-lg font-bold text-brand-text-primary active:scale-95 transition-transform"
-            >
-              {darkMode ? (
-                <>
-                  <Sun className="w-3.5 h-3.5 text-brand-warning animate-spin-slow" />
-                  <span>Light Mode</span>
-                </>
-              ) : (
-                <>
-                  <Moon className="w-3.5 h-3.5 text-brand-primary" />
-                  <span>Dark Mode</span>
-                </>
-              )}
+            <button onClick={toggleTheme} className="flex items-center space-x-1.5 px-3 py-1 bg-brand-bg border border-brand-border rounded-lg font-bold text-brand-text-primary">
+              {darkMode ? <Sun className="w-3.5 h-3.5 text-brand-warning" /> : <Moon className="w-3.5 h-3.5 text-brand-primary" />}
+              <span>{darkMode ? 'Light Theme' : 'Dark Theme'}</span>
             </button>
           </div>
-
-          {/* Admin panel link */}
-          {user?.role === 'admin' && (
-            <div 
-              onClick={() => navigate('/admin')}
-              className="flex items-center justify-between p-3 rounded-xl bg-red-50 border border-red-200 text-xs cursor-pointer active:scale-[0.99] transition-transform"
-            >
-              <span className="font-bold text-red-650 flex items-center space-x-1.5">
-                <ShieldAlert className="w-4.5 h-4.5" />
-                <span>Admin Settings Control</span>
-              </span>
-              <span className="text-[10px] text-red-650 font-bold uppercase font-mono">Open →</span>
-            </div>
-          )}
-
-          {/* Logout button */}
-          <button
-            onClick={handleLogout}
-            className="flex items-center justify-between w-full p-3 rounded-xl bg-white border border-gray-150 text-xs text-brand-error font-bold active:scale-[0.99] transition-transform text-left"
-          >
-            <span className="flex items-center space-x-1.5">
-              <LogOut className="w-4.5 h-4.5 text-brand-error animate-pulse" />
-              <span>Sign Out Session</span>
-            </span>
-            <span className="text-[9px] text-brand-text-muted">Goodbye</span>
+          <button onClick={handleLogout} className="flex items-center justify-between w-full p-3 rounded-xl bg-white border border-gray-150 text-xs text-brand-error font-bold text-left">
+            <span className="flex items-center space-x-1.5"><LogOut className="w-4.5 h-4.5 text-brand-error animate-pulse" /><span>Logout session</span></span>
           </button>
         </div>
       </div>

@@ -169,21 +169,21 @@ export const ChallengeTimeline: React.FC = () => {
               <div className="pl-4 text-left">
                 <span className="text-[9px] font-extrabold uppercase tracking-widest text-brand-text-muted">Day {dayNumber}</span>
                 <h4 className={`font-extrabold text-xs ${status === 'locked' ? 'text-slate-550' : 'text-brand-text-primary'}`}>
-                  {dayNumber === 1 ? 'Parts of Speech Overview' :
-                   dayNumber === 2 ? 'Articles (A, An, The)' :
-                   dayNumber === 3 ? 'Present Simple Tense' :
-                   dayNumber === 4 ? 'Present Continuous Tense' :
-                   dayNumber === 5 ? 'Past Simple Tense' :
-                   dayNumber === 6 ? 'Past Continuous Tense' :
-                   dayNumber === 7 ? 'Present Perfect Tense' :
-                   dayNumber === 8 ? 'Past Perfect Tense' :
-                   dayNumber === 9 ? 'Future Simple Tense' :
-                   dayNumber === 10 ? 'Future Continuous Tense' :
-                   dayNumber === 11 ? 'Modal Verbs (Can/Could)' :
-                   dayNumber === 12 ? 'Active & Passive Voice' :
-                   dayNumber === 13 ? 'Relative Clauses (Who/Which)' :
-                   dayNumber === 14 ? 'Conditionals (Zero/First)' :
-                   'Conditionals (Second/Third)'}
+                  {dayNumber === 1 ? 'Buy Groceries at the Local Store' :
+                   dayNumber === 2 ? 'Book a Room at the Grand Hotel' :
+                   dayNumber === 3 ? 'Attend a Professional Job Interview' :
+                   dayNumber === 4 ? 'Board a Flight at the Airport Terminal' :
+                   dayNumber === 5 ? 'Order Lunch at the Prime Bistro Restaurant' :
+                   dayNumber === 6 ? 'Ask for Directions to the Train Station' :
+                   dayNumber === 7 ? 'Register a New Account at the National Bank' :
+                   dayNumber === 8 ? 'Explain Health Symptoms to the Medical Doctor' :
+                   dayNumber === 9 ? 'Report a Lost Item at the City Police Station' :
+                   dayNumber === 10 ? 'Introduce Friends at a Social Gathering' :
+                   dayNumber === 11 ? 'Lead a Project Review Office Meeting' :
+                   dayNumber === 12 ? 'Schedule a Phone Call Appointment' :
+                   dayNumber === 13 ? 'Describe Travel Plans for Summer Vacation' :
+                   dayNumber === 14 ? 'Buy Clothes at the Shopping Mall Boutique' :
+                   'Deliver a Speech at the Graduation Ceremony'}
                 </h4>
                 <p className="text-[10px] text-brand-text-muted leading-normal mt-0.5">
                   {status === 'completed' ? 'Challenge Day Fully Completed • 100%' :

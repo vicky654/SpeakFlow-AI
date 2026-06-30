@@ -652,27 +652,28 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
           </div>
 
           {speakingScore && (
-            <div className="card space-y-4">
-              <h4 className="font-extrabold text-xs uppercase tracking-wider text-brand-text-secondary">Speech Scorecard</h4>
+            <div className="card space-y-3.5 bg-gradient-to-br from-indigo-50/20 via-white to-purple-50/5 border-indigo-150">
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-650 shrink-0">
+                  <Bot className="w-4.5 h-4.5" />
+                </div>
+                <span className="text-xs font-black uppercase text-indigo-600 tracking-wider">Coach Speech Feedback</span>
+              </div>
               
-              <div className="grid grid-cols-3 gap-2.5">
-                <div className="bg-brand-bg border border-brand-border p-2.5 rounded-xl text-center">
-                  <span className="text-[8px] text-brand-text-muted uppercase font-black">Pronounce</span>
-                  <p className="text-base font-black text-brand-primary mt-0.5">{speakingScore.pronunciationScore}%</p>
-                </div>
-                <div className="bg-brand-bg border border-brand-border p-2.5 rounded-xl text-center">
-                  <span className="text-[8px] text-brand-text-muted uppercase font-black">Fluency</span>
-                  <p className="text-base font-black text-brand-success mt-0.5">{speakingScore.fluencyScore}%</p>
-                </div>
-                <div className="bg-brand-bg border border-brand-border p-2.5 rounded-xl text-center">
-                  <span className="text-[8px] text-brand-text-muted uppercase font-black">Confidence</span>
-                  <p className="text-base font-black text-brand-warning mt-0.5">{speakingScore.confidenceScore}%</p>
-                </div>
+              <div className="p-4 bg-gray-50 border border-gray-150 rounded-2xl space-y-2 text-xs leading-relaxed text-brand-text-secondary">
+                <p className="font-bold text-brand-text-primary">
+                  {speakingScore.pronunciationScore >= 85 
+                    ? "Excellent pacing and speech flow! You nailed the accent rhythm."
+                    : "Great effort! Your pronunciation is solid."}
+                </p>
+                <p>
+                  {speakingScore.improvements} Let's practice together to build confidence.
+                </p>
               </div>
 
-              <div className="p-3 bg-brand-bg border border-brand-border rounded-xl text-[10px] text-brand-text-secondary leading-normal flex items-start space-x-2">
-                <Sparkles className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                <p>{speakingScore.improvements}</p>
+              <div className="flex justify-between items-center text-[10px] text-brand-text-muted font-bold px-1">
+                <span>Fluency: {speakingScore.fluencyScore >= 80 ? 'Good Pacing' : 'Slow Pacing'}</span>
+                <span>Confidence rating: {speakingScore.confidenceScore}%</span>
               </div>
             </div>
           )}
