@@ -17,7 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleMobileSidebar }) => {
       <div className="flex items-center space-x-3">
         <button
           onClick={onToggleMobileSidebar}
-          className="p-2 rounded-lg bg-slate-800/40 border border-slate-700/40 text-slate-300 hover:text-white md:hidden transition-all"
+          className="p-2 rounded-lg bg-brand-surface/40 border border-brand-border/40 text-brand-text-secondary hover:text-white md:hidden transition-all"
         >
           <Menu className="w-5 h-5" />
         </button>
@@ -31,9 +31,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleMobileSidebar }) => {
         {user && (
           <div className="flex items-center space-x-3">
             {/* XP Points */}
-            <div className="flex items-center space-x-1.5 bg-slate-800/40 dark:bg-slate-900/60 border border-slate-800 px-3 py-1.5 rounded-full text-xs font-bold text-slate-300">
+            <div className="flex items-center space-x-1.5 bg-brand-surface/40 dark:bg-brand-surface/60 border border-brand-border px-3 py-1.5 rounded-full text-xs font-bold text-brand-text-secondary">
               <Sparkles className="w-3.5 h-3.5 text-indigo-400 fill-current" />
-              <span>{user.xp} <span className="text-slate-500 font-normal">XP</span></span>
+              <span>{user.xp} <span className="text-brand-text-muted font-normal">XP</span></span>
             </div>
 
             {/* Coins */}
@@ -53,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleMobileSidebar }) => {
         {/* THEME TOGGLE */}
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-xl bg-slate-800/40 border border-slate-800 text-slate-300 hover:text-white transition-all hover:scale-105"
+          className="p-2 rounded-xl bg-brand-surface/40 border border-brand-border text-brand-text-secondary hover:text-white transition-all hover:scale-105"
           title="Toggle Light/Dark Theme"
         >
           {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-400" />}

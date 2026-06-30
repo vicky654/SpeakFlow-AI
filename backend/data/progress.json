@@ -20,5 +20,22 @@
     "xpEarned": 25,
     "coinsEarned": 2,
     "createdAt": "2026-06-29T07:16:04.580Z"
+  },
+  {
+    "_id": "6a43758cf053902da4edf74e",
+    "userId": "6a421ae7a648b5104e2cb47d",
+    "date": "2026-06-30",
+    "vocabWordsLearned": [
+      "6a421ae7a648b5104e2cb47e"
+    ],
+    "speakingTime": 0,
+    "readingTime": 0,
+    "listeningTime": 0,
+    "writingSubmissions": [],
+    "grammarQuizzesCompleted": [],
+    "dailyChallengeCompleted": false,
+    "xpEarned": 10,
+    "coinsEarned": 2,
+    "createdAt": "2026-06-30T07:51:40.001Z"
   }
 ]

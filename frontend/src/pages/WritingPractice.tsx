@@ -66,17 +66,17 @@ export const WritingPractice: React.FC = () => {
   };
 
   return (
-    <div className="space-y-5 select-none max-w-lg mx-auto pb-6">
+    <div className="space-y-6 select-none max-w-lg mx-auto pb-10 pt-4 px-3 text-brand-text-primary font-sans">
       {/* HEADER */}
       <div className="space-y-1">
-        <h2 className="text-2xl font-extrabold text-white">Writing Workbench</h2>
-        <p className="text-xs text-slate-400">Practice emails, journals, and summary pitches. Get AI suggestions.</p>
+        <h2 className="text-xl font-semibold text-brand-text-primary">Writing Workbench</h2>
+        <p className="text-xs text-brand-text-secondary font-normal">Practice emails, journals, and summary pitches. Get AI suggestions.</p>
       </div>
 
       {/* 1. HORIZONTAL EXERCISE SELECTOR */}
       <div className="space-y-2">
-        <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 pl-1">Select Scenario</span>
-        <div className="flex space-x-3 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory">
+        <span className="text-[10px] uppercase font-medium tracking-wider text-brand-text-muted pl-1">Select Scenario</span>
+        <div className="flex space-x-3 overflow-x-auto pb-3 scrollbar-none snap-x snap-mandatory -mx-3 px-3">
           {WRITING_PROMPTS.map(p => (
             <button
               key={p.id}
@@ -86,40 +86,40 @@ export const WritingPractice: React.FC = () => {
                 setResult(null);
                 setText('');
               }}
-              className={`snap-center shrink-0 w-60 p-4 rounded-2xl border text-left transition-all active:scale-95 ${
+              className={`snap-center shrink-0 w-60 p-4.5 rounded-2xl border text-left transition-all active:scale-98 flex flex-col justify-between ${
                 selectedPrompt.id === p.id
-                  ? 'bg-indigo-600/15 border-indigo-500 text-white'
-                  : 'glass-card border-slate-800 text-slate-400'
+                  ? 'bg-brand-primary/10 border-brand-primary text-brand-primary'
+                  : 'bg-brand-card border-brand-border text-brand-text-secondary hover:border-brand-primary/30'
               }`}
             >
-              <span className="text-[9px] uppercase font-extrabold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+              <span className="text-[9px] uppercase font-semibold px-2 py-0.5 rounded bg-brand-primary/10 text-brand-primary border border-brand-primary/15 self-start">
                 {p.category}
               </span>
-              <h4 className="font-extrabold text-xs mt-2 text-slate-200 line-clamp-1">{p.title}</h4>
+              <h4 className="font-semibold text-xs mt-3 text-brand-text-primary leading-tight">{p.title}</h4>
             </button>
           ))}
         </div>
       </div>
 
       {/* 2. EXERCISE PROMPT CARD */}
-      <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 space-y-2">
-        <div className="flex justify-between items-center border-b border-slate-900 pb-2">
-          <span className="text-[10px] uppercase font-bold tracking-widest text-slate-400">Assignment Goal</span>
-          <span className="text-[10px] font-bold text-indigo-400 uppercase">{selectedPrompt.category}</span>
+      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 space-y-2">
+        <div className="flex justify-between items-center border-b border-brand-border pb-2.5">
+          <span className="text-[10px] uppercase font-semibold tracking-widest text-brand-text-secondary">Assignment Goal</span>
+          <span className="text-[10px] font-semibold text-brand-primary uppercase">{selectedPrompt.category}</span>
         </div>
-        <p className="text-xs font-semibold text-slate-200 leading-relaxed">
+        <p className="text-xs font-normal text-brand-text-primary leading-relaxed">
           {selectedPrompt.description}
         </p>
       </div>
 
       {/* 3. WRITING WORKSPACE */}
-      <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 space-y-3.5">
-        <div className="flex justify-between items-center text-[10px] font-extrabold text-slate-400">
-          <span className="flex items-center space-x-1">
-            <PenTool className="w-3.5 h-3.5 text-indigo-400" />
+      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 space-y-4">
+        <div className="flex justify-between items-center text-[10px] font-medium text-brand-text-secondary">
+          <span className="flex items-center space-x-1.5">
+            <PenTool className="w-4 h-4 text-brand-primary" />
             <span>Interactive Editor</span>
           </span>
-          <span className="font-mono text-slate-500">{wordCount} words written</span>
+          <span className="font-mono text-brand-text-muted">{wordCount} words written</span>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -128,7 +128,7 @@ export const WritingPractice: React.FC = () => {
             placeholder={selectedPrompt.placeholder}
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="w-full h-44 p-3 bg-slate-950/70 border border-slate-900 rounded-2xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/20 transition-all font-sans leading-relaxed resize-none"
+            className="w-full min-h-[240px] h-60 p-4 bg-brand-surface border border-brand-border rounded-xl text-sm text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-brand-primary/60 focus:ring-1 focus:ring-brand-primary/20 transition-all font-sans leading-relaxed resize-none"
           />
 
           <AnimatePresence mode="wait">
@@ -137,16 +137,16 @@ export const WritingPractice: React.FC = () => {
                 key="submit-btn"
                 type="submit"
                 disabled={loading || text.trim() === ''}
-                className="w-full py-2.5 bg-indigo-600 active:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-600/20 flex items-center justify-center space-x-2 disabled:opacity-40"
+                className="w-full min-h-[44px] py-3.5 bg-brand-primary hover:bg-brand-primary-hover text-white rounded-xl text-sm font-semibold transition-all shadow-sm flex items-center justify-center space-x-2 disabled:opacity-40"
               >
                 {loading ? (
                   <>
-                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    <RefreshCw className="w-4.5 h-4.5 animate-spin" />
                     <span>Analyzing grammar & syntax...</span>
                   </>
                 ) : (
                   <>
-                    <Send className="w-4 h-4" />
+                    <Send className="w-4.5 h-4.5" />
                     <span>Submit for Evaluation (+30 XP)</span>
                   </>
                 )}
@@ -159,27 +159,27 @@ export const WritingPractice: React.FC = () => {
                 className="space-y-4"
               >
                 {/* Result Overview */}
-                <div className="flex justify-between items-center bg-slate-950/80 border border-slate-900 p-3.5 rounded-2xl">
+                <div className="flex justify-between items-center bg-brand-surface border border-brand-border p-4 rounded-xl">
                   <div className="flex items-center space-x-3">
-                    <div className="p-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+                    <div className="p-2 rounded-xl bg-brand-primary/10 border border-brand-primary/15 text-brand-primary">
                       <BarChart2 className="w-4.5 h-4.5" />
                     </div>
                     <div>
-                      <span className="text-[9px] text-slate-500 uppercase font-black tracking-wider">Overall Accuracy</span>
-                      <p className="text-lg font-black text-indigo-400 mt-0.5">{result.score} / 100</p>
+                      <span className="text-[9px] text-brand-text-muted uppercase font-semibold tracking-wider">Overall Accuracy</span>
+                      <p className="text-base font-semibold text-brand-primary mt-0.5">{result.score} / 100</p>
                     </div>
                   </div>
-                  <span className="text-[10px] text-emerald-400 font-extrabold bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full shrink-0">
+                  <span className="text-[10px] text-brand-success font-semibold bg-brand-success/10 border border-brand-success/15 px-3 py-1.5 rounded-full shrink-0">
                     +{result.xpGained} XP • +{result.coinsGained} Coins
                   </span>
                 </div>
 
                 {/* Feedback List */}
                 <div className="space-y-2 text-left">
-                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider block">Grammatical Insights</span>
+                  <span className="text-[10px] font-semibold text-brand-text-secondary uppercase tracking-wider block">Grammatical Insights</span>
                   {result.feedback.map((f: string, i: number) => (
-                    <div key={i} className="p-3 bg-slate-950/40 border border-slate-900 rounded-xl text-xs text-slate-300 flex items-start space-x-2 leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
+                    <div key={i} className="p-3.5 bg-brand-surface border border-brand-border rounded-xl text-xs text-brand-text-secondary flex items-start space-x-2 leading-relaxed">
+                      <CheckCircle2 className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
                       <span>{f}</span>
                     </div>
                   ))}
@@ -189,9 +189,9 @@ export const WritingPractice: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="w-full py-2 bg-slate-900 border border-slate-800 text-slate-400 hover:text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1.5"
+                  className="w-full min-h-[44px] py-3.5 bg-brand-surface border border-brand-border text-brand-text-secondary hover:bg-brand-bg rounded-xl text-xs font-semibold transition-all flex items-center justify-center space-x-1.5"
                 >
-                  <Trash className="w-3.5 h-3.5 text-slate-500" />
+                  <Trash className="w-3.5 h-3.5 text-brand-text-muted" />
                   <span>Clear and Restart</span>
                 </button>
               </motion.div>

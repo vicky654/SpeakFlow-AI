@@ -60,15 +60,15 @@ const ProtectedLayout: React.FC = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen w-full flex items-center justify-center bg-slate-950 flex-col space-y-3">
+      <div className="min-h-screen w-full flex items-center justify-center bg-brand-bg flex-col space-y-3 text-brand-text-primary">
         <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-        <p className="text-xs text-slate-400">Restoring learning session...</p>
+        <p className="text-xs text-brand-text-secondary">Restoring learning session...</p>
       </div>
     );
   }
 
   return (
-    <IonPage className="bg-slate-950 text-slate-100">
+    <IonPage className="bg-brand-bg text-brand-text-primary">
       <div className="flex h-screen w-screen overflow-hidden">
         
         {/* 1. DESKTOP SIDEBAR NAVIGATION */}

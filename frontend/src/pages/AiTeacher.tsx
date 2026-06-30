@@ -125,21 +125,21 @@ export const AiTeacher: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-[calc(100vh-10rem)] max-w-lg mx-auto pb-6 select-none">
+    <div className="flex flex-col h-[calc(100vh-10rem)] max-w-lg mx-auto pb-6 select-none text-brand-text-primary">
       
       {/* Top Header Card */}
-      <div className="flex items-center justify-between pb-3 border-b border-slate-900 bg-slate-950/20 px-1 shrink-0">
+      <div className="flex items-center justify-between pb-3 border-b border-brand-border bg-brand-surface/20 px-1 shrink-0">
         <button
-          onClick={() => navigate('/practice')}
-          className="flex items-center space-x-1.5 text-xs text-slate-400 hover:text-white transition-all active:scale-95"
+          onClick={() => navigate('/')}
+          className="flex items-center space-x-1.5 text-xs text-brand-text-secondary hover:text-brand-text-primary transition-all active:scale-95"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Practice Hub</span>
+          <span>Exit Chat</span>
         </button>
         
         <div className="flex items-center space-x-2">
-          <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping" />
-          <span className="text-[10px] uppercase tracking-widest font-black text-indigo-400">AI Teacher Mode</span>
+          <div className="w-2.5 h-2.5 bg-brand-success rounded-full animate-ping" />
+          <span className="text-[10px] uppercase tracking-widest font-black text-brand-primary">AI Teacher Mode</span>
         </div>
       </div>
 
@@ -153,7 +153,7 @@ export const AiTeacher: React.FC = () => {
               className={`flex items-start gap-2.5 ${isAI ? 'justify-start' : 'justify-end'}`}
             >
               {isAI && (
-                <div className="w-8 h-8 rounded-xl bg-indigo-650 border border-indigo-500/30 flex items-center justify-center text-white shrink-0 mt-0.5 shadow-md shadow-indigo-600/10">
+                <div className="w-8 h-8 rounded-xl bg-brand-primary border border-brand-primary/20 flex items-center justify-center text-white shrink-0 mt-0.5 shadow-sm">
                   <Bot className="w-4.5 h-4.5" />
                 </div>
               )}
@@ -163,8 +163,8 @@ export const AiTeacher: React.FC = () => {
                 <div
                   className={`p-3.5 rounded-2xl text-xs leading-relaxed whitespace-pre-line relative group border ${
                     isAI
-                      ? 'bg-slate-900/80 border-slate-800 text-slate-200'
-                      : 'bg-indigo-600 border-indigo-500 text-white shadow-md shadow-indigo-600/5'
+                      ? 'bg-brand-card border-brand-border text-brand-text-primary shadow-sm'
+                      : 'bg-brand-primary border-brand-primary text-white shadow-sm'
                   }`}
                 >
                   {msg.content}
@@ -175,8 +175,8 @@ export const AiTeacher: React.FC = () => {
                       onClick={() => handleSpeakText(msg.content, idx)}
                       className={`absolute -right-3 top-3 p-1.5 rounded-full border transition-all active:scale-90 shadow-sm ${
                         isPlaying === idx
-                          ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 animate-pulse'
-                          : 'bg-slate-950/90 border-slate-800 text-slate-400 hover:text-white'
+                          ? 'bg-brand-success/20 border-brand-success text-brand-success animate-pulse'
+                          : 'bg-brand-surface border-brand-border text-brand-text-secondary hover:text-brand-text-primary'
                       }`}
                     >
                       <Volume2 className="w-3.5 h-3.5" />
@@ -188,7 +188,7 @@ export const AiTeacher: React.FC = () => {
                 {isAI && (msg.suggestions?.length || 0) > 0 && (
                   <div className="space-y-1 pl-1">
                     {msg.suggestions?.map((sug, i) => (
-                      <span key={i} className="text-[10px] text-amber-400 block font-medium">
+                      <span key={i} className="text-[10px] text-brand-warning block font-medium">
                         💡 Suggestion: {sug}
                       </span>
                     ))}
@@ -197,7 +197,7 @@ export const AiTeacher: React.FC = () => {
               </div>
 
               {!isAI && (
-                <div className="w-8 h-8 rounded-xl bg-slate-800 border border-slate-700/50 flex items-center justify-center text-slate-300 shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded-xl bg-brand-secondary border border-brand-border flex items-center justify-center text-brand-text-secondary shrink-0 mt-0.5">
                   <User className="w-4.5 h-4.5" />
                 </div>
               )}
@@ -207,13 +207,13 @@ export const AiTeacher: React.FC = () => {
 
         {loading && (
           <div className="flex items-start gap-2.5 justify-start">
-            <div className="w-8 h-8 rounded-xl bg-indigo-650 flex items-center justify-center text-white shrink-0 animate-pulse">
+            <div className="w-8 h-8 rounded-xl bg-brand-primary flex items-center justify-center text-white shrink-0 animate-pulse">
               <Bot className="w-4.5 h-4.5" />
             </div>
-            <div className="p-3 bg-slate-900 border border-slate-800 rounded-2xl flex items-center space-x-1.5">
-              <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" />
-              <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce [animation-delay:0.2s]" />
-              <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce [animation-delay:0.4s]" />
+            <div className="p-3 bg-brand-card border border-brand-border rounded-2xl flex items-center space-x-1.5">
+              <div className="w-1.5 h-1.5 bg-brand-primary rounded-full animate-bounce" />
+              <div className="w-1.5 h-1.5 bg-brand-primary rounded-full animate-bounce [animation-delay:0.2s]" />
+              <div className="w-1.5 h-1.5 bg-brand-primary rounded-full animate-bounce [animation-delay:0.4s]" />
             </div>
           </div>
         )}
@@ -228,7 +228,7 @@ export const AiTeacher: React.FC = () => {
             <button
               key={i}
               onClick={() => handleSendMessage(p.text)}
-              className="inline-block px-3 py-1.5 rounded-full bg-slate-900/60 border border-slate-800/80 text-[10px] font-bold text-slate-350 hover:border-indigo-500 hover:text-white transition-all active:scale-95"
+              className="inline-block px-3 py-1.5 rounded-full bg-brand-surface border border-brand-border text-[10px] font-bold text-brand-text-secondary hover:border-brand-primary hover:text-brand-text-primary transition-all active:scale-95"
             >
               {p.label}
             </button>
@@ -242,19 +242,19 @@ export const AiTeacher: React.FC = () => {
           e.preventDefault();
           handleSendMessage(inputText);
         }}
-        className="flex items-center gap-2 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl shrink-0"
+        className="flex items-center gap-2 p-1.5 bg-brand-surface border border-brand-border rounded-2xl shrink-0 shadow-level-1"
       >
         <input
           type="text"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder="Ask me a question or type English here..."
-          className="flex-1 min-w-0 bg-transparent py-2 px-3 text-xs text-slate-100 placeholder-slate-500 focus:outline-none"
+          className="flex-1 min-w-0 bg-transparent py-2 px-3 text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none"
         />
         <button
           type="submit"
           disabled={!inputText.trim() || loading}
-          className="p-2.5 rounded-xl bg-indigo-650 active:bg-indigo-600 disabled:opacity-20 text-white shrink-0 active:scale-95 transition-all shadow-md"
+          className="p-2.5 rounded-xl bg-brand-primary hover:bg-brand-hover disabled:opacity-20 text-white shrink-0 active:scale-95 transition-all shadow-sm"
         >
           <Send className="w-4 h-4" />
         </button>

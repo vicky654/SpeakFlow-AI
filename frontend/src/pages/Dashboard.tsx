@@ -115,7 +115,7 @@ export const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 select-none max-w-md mx-auto pb-10 pt-4 px-2 relative">
+    <div className="space-y-6 select-none max-w-md mx-auto pb-10 pt-4 px-2 text-brand-text-primary font-sans">
       
       {/* NATIVE PULL TO REFRESH */}
       <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
@@ -128,94 +128,96 @@ export const Dashboard: React.FC = () => {
       {/* 👋 Welcome back card */}
       <div className="text-left py-2 flex justify-between items-center">
         <div>
-          <span className="text-xs uppercase tracking-widest font-black text-indigo-400">👋 Welcome back</span>
-          <h1 className="text-3xl font-black text-white mt-1">
+          <span className="text-xs uppercase tracking-widest font-semibold text-brand-primary">👋 Welcome back</span>
+          <h1 className="text-2xl font-semibold text-brand-text-primary mt-1">
             Hello, {user?.name || 'Learner'}!
           </h1>
-          <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+          <p className="text-xs text-brand-text-secondary mt-1 leading-relaxed font-normal">
             Let's take another small step toward English fluency today.
           </p>
         </div>
       </div>
 
-      {/* 📅 Today's Lesson Banner */}
-      <div className="p-5 rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-950/40 via-slate-900/80 to-purple-950/30 shadow-lg shadow-indigo-950/20 relative overflow-hidden text-left">
-        <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
-          <BookOpen className="w-24 h-24 text-indigo-400" />
+      {/* 📅 Today's Lesson Hero Card */}
+      <div className="p-6 rounded-3xl bg-gradient-to-br from-brand-primary via-indigo-650 to-brand-accent shadow-level-2 relative overflow-hidden text-left border border-white/10 select-none text-white">
+        <div className="absolute -right-6 -bottom-6 p-4 opacity-15 pointer-events-none">
+          <BookOpen className="w-32 h-32 text-white" />
         </div>
-        <div className="space-y-1">
-          <span className="text-[10px] uppercase tracking-widest font-bold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
+        <div className="space-y-3 relative z-10">
+          <span className="inline-block text-[9px] uppercase tracking-widest font-semibold bg-white/20 text-white px-2.5 py-1 rounded-full backdrop-blur-sm">
             📅 Today's Lesson
           </span>
-          <h2 className="text-xl font-extrabold text-white pt-2 leading-tight">
-            Day {currentDay}: {dayTopics[currentDay] || 'Daily Communication'}
-          </h2>
-          <p className="text-[11px] text-slate-400 leading-normal pt-1">
-            Unlock greetings, grammar concept quizzes, oral vocabulary repetition and writing exercises.
-          </p>
+          <div>
+            <h2 className="text-xl font-semibold leading-tight text-white">
+              Day {currentDay}: {dayTopics[currentDay] || 'Daily Communication'}
+            </h2>
+            <p className="text-xs text-white/80 leading-relaxed pt-1.5 max-w-[85%] font-normal">
+              Unlock conversational greetings, grammar quizzes, audio repetitions, and interactive writing drills.
+            </p>
+          </div>
+          <div className="pt-2">
+            <button
+              onClick={handleContinueLearning}
+              className="px-5 py-2.5 bg-white text-brand-primary hover:bg-slate-50 font-semibold rounded-xl text-xs flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 transition-all"
+            >
+              <Play className="w-3.5 h-3.5 fill-current" />
+              <span>Start Learning</span>
+            </button>
+          </div>
         </div>
       </div>
 
       {/* 🔥 Streak, ⭐ XP, and 📈 Progress Indicators */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-3 select-none">
         {/* Current Streak */}
-        <div className="glass-card rounded-2xl p-3 border border-slate-205/10 flex flex-col items-center justify-center text-center">
-          <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-500 mb-1.5">
+        <div className="bg-brand-card rounded-2xl p-3 border border-brand-border flex flex-col items-center justify-center text-center shadow-level-1">
+          <div className="w-9 h-9 rounded-xl bg-brand-error/10 flex items-center justify-center text-brand-error mb-1.5">
             <Flame className="w-4 h-4 fill-current animate-pulse" />
           </div>
-          <span className="text-[9px] text-slate-500 uppercase font-extrabold">Streak</span>
-          <p className="text-sm font-black text-white mt-0.5">{user?.streak || 0} Days</p>
+          <span className="text-[10px] text-brand-text-muted uppercase font-medium tracking-wide">Streak</span>
+          <p className="text-base font-semibold text-brand-text-primary mt-0.5">{user?.streak || 0} Days</p>
         </div>
 
         {/* XP */}
-        <div className="glass-card rounded-2xl p-3 border border-slate-205/10 flex flex-col items-center justify-center text-center">
-          <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-1.5">
+        <div className="bg-brand-card rounded-2xl p-3 border border-brand-border flex flex-col items-center justify-center text-center shadow-level-1">
+          <div className="w-9 h-9 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-1.5">
             <Sparkles className="w-4 h-4 fill-current" />
           </div>
-          <span className="text-[9px] text-slate-500 uppercase font-extrabold">XP Points</span>
-          <p className="text-sm font-black text-white mt-0.5">{user?.xp || 0} XP</p>
+          <span className="text-[10px] text-brand-text-muted uppercase font-medium tracking-wide">XP Points</span>
+          <p className="text-base font-semibold text-brand-text-primary mt-0.5">{user?.xp || 0}</p>
         </div>
 
         {/* Progress */}
-        <div className="glass-card rounded-2xl p-3 border border-slate-205/10 flex flex-col items-center justify-center text-center">
-          <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-450 mb-1.5">
+        <div className="bg-brand-card rounded-2xl p-3 border border-brand-border flex flex-col items-center justify-center text-center shadow-level-1">
+          <div className="w-9 h-9 rounded-xl bg-brand-success/10 flex items-center justify-center text-brand-success mb-1.5">
             <Award className="w-4 h-4" />
           </div>
-          <span className="text-[9px] text-slate-500 uppercase font-extrabold">Progress</span>
-          <p className="text-sm font-black text-emerald-400 mt-0.5">{progressPct}%</p>
+          <span className="text-[10px] text-brand-text-muted uppercase font-medium tracking-wide">Progress</span>
+          <p className="text-base font-semibold text-brand-success mt-0.5">{progressPct}%</p>
         </div>
       </div>
 
       {/* 📈 Progress Bar representation */}
-      <div className="glass-card rounded-2xl p-4 border border-slate-205/10 text-left space-y-1.5">
-        <div className="flex justify-between text-[10px] text-slate-400 font-bold uppercase">
+      <div className="bg-brand-card rounded-2xl p-4.5 border border-brand-border text-left shadow-level-1">
+        <div className="flex justify-between items-center text-[10px] text-brand-text-muted font-medium uppercase tracking-wider mb-2">
           <span>Today's Progress</span>
-          <span>{completedTasks}/{totalTasks} Completed</span>
+          <span className="text-brand-success font-semibold">{completedTasks}/{totalTasks} Completed</span>
         </div>
-        <div className="w-full h-3 bg-slate-950 border border-slate-900 rounded-full overflow-hidden">
+        <div className="w-full h-2.5 bg-brand-bg border border-brand-border rounded-full overflow-hidden relative">
           <div 
-            className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500"
+            className="h-full bg-gradient-to-r from-brand-primary to-brand-accent rounded-full transition-all duration-500 ease-out"
             style={{ width: `${progressPct}%` }}
           />
         </div>
       </div>
 
-      {/* ▶️ Continue Learning Button */}
-      <button
-        onClick={handleContinueLearning}
-        className="w-full py-4 bg-gradient-to-r from-indigo-650 via-purple-650 to-pink-650 active:scale-[0.99] hover:brightness-110 text-white font-extrabold rounded-2xl transition-all shadow-lg shadow-indigo-650/20 text-sm flex items-center justify-center space-x-2 animate-bounce-subtle"
-      >
-        <Play className="w-4.5 h-4.5 fill-current" />
-        <span>Continue Learning (Day {currentDay})</span>
-      </button>
-
       {/* 🎯 Daily Goal Interactive Cards */}
       <div className="space-y-3.5 text-left">
-        <div className="flex items-center space-x-2 border-b border-slate-900 pb-2">
-          <Target className="w-4.5 h-4.5 text-indigo-400" />
+        <div className="flex items-center space-x-2 border-b border-brand-border pb-2">
+          <Target className="w-4.5 h-4.5 text-brand-primary" />
           <div>
-            <h3 className="font-extrabold text-sm text-slate-200">Daily Study Objectives</h3>
-            <p className="text-[10px] text-slate-500 mt-0.5">Click Start to complete drills and earn target XP rewards</p>
+            <h3 className="font-semibold text-sm text-brand-text-primary">Daily Study Objectives</h3>
+            <p className="text-[10px] text-brand-text-secondary mt-0.5 font-normal">Click Start to complete drills and earn target XP rewards</p>
           </div>
         </div>
 
@@ -229,27 +231,27 @@ export const Dashboard: React.FC = () => {
               return (
                 <div 
                   key={key} 
-                  className={`p-4 rounded-3xl border transition-all flex items-center justify-between gap-4 select-none ${
+                  className={`p-4.5 rounded-2xl border transition-all flex items-center justify-between gap-4 select-none ${
                     isCompleted 
-                      ? 'bg-slate-900/40 border-slate-900/60 opacity-60' 
-                      : 'glass-card border-slate-205/10 glow-active'
+                      ? 'bg-brand-surface/40 border-brand-border opacity-55 shadow-sm' 
+                      : 'bg-brand-card border-brand-border hover:shadow-level-2 shadow-level-1'
                   }`}
                 >
-                  <div className="flex items-center space-x-3.5 text-xs min-w-0">
+                  <div className="flex items-center space-x-4 min-w-0">
                     {/* Circle Progress Indicator */}
                     <ProgressRingMini pct={taskPct} />
 
                     <div className="min-w-0">
-                      <h4 className={`font-extrabold text-xs truncate ${isCompleted ? 'text-slate-500 line-through' : 'text-slate-250'}`}>
+                      <h4 className={`font-semibold text-sm ${isCompleted ? 'text-brand-text-muted line-through' : 'text-brand-text-primary'} leading-snug`}>
                         {meta.label}
                       </h4>
-                      <div className="flex items-center space-x-3 mt-1.5 text-[10px] text-slate-500 font-medium">
-                        <span className="flex items-center space-x-1">
-                          <Clock className="w-3 h-3 text-slate-500 shrink-0" />
+                      <div className="flex items-center space-x-3.5 mt-1 text-[10px] text-brand-text-secondary font-medium">
+                        <span className="flex items-center space-x-1.5">
+                          <Clock className="w-3.5 h-3.5 text-brand-text-muted shrink-0" />
                           <span>{meta.time}</span>
                         </span>
-                        <span className="flex items-center space-x-1 text-indigo-400">
-                          <Zap className="w-3 h-3 text-indigo-400 shrink-0" />
+                        <span className="flex items-center space-x-1.5 text-brand-primary">
+                          <Zap className="w-3.5 h-3.5 text-brand-primary shrink-0" />
                           <span>{meta.xp}</span>
                         </span>
                       </div>
@@ -259,21 +261,21 @@ export const Dashboard: React.FC = () => {
                   <button
                     disabled={isCompleted}
                     onClick={() => navigate(meta.route)}
-                    className={`px-3.5 py-1.5 rounded-full text-[10px] font-black tracking-wide transition-all active:scale-95 shrink-0 ${
+                    className={`px-4.5 h-9 flex items-center justify-center rounded-full text-xs font-semibold transition-all active:scale-95 shrink-0 ${
                       isCompleted
-                        ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 cursor-default'
-                        : 'bg-indigo-650 hover:bg-indigo-600 text-white shadow-sm shadow-indigo-600/10'
+                        ? 'bg-brand-success/15 border border-brand-success/20 text-brand-success cursor-default space-x-1.5'
+                        : 'bg-brand-primary hover:bg-brand-hover text-white shadow-sm'
                     }`}
                   >
                     {isCompleted ? (
-                      <span className="flex items-center space-x-1">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
+                      <>
+                        <CheckCircle2 className="w-3.5 h-3.5 animate-pulse" />
                         <span>Done</span>
-                      </span>
+                      </>
                     ) : (
-                      <span className="flex items-center space-x-0.5">
+                      <span className="flex items-center space-x-1">
                         <span>Start</span>
-                        <ChevronRight className="w-3 h-3" />
+                        <ChevronRight className="w-3.5 h-3.5" />
                       </span>
                     )}
                   </button>
@@ -281,7 +283,7 @@ export const Dashboard: React.FC = () => {
               );
             })
           ) : (
-            <div className="text-center text-xs text-slate-500 py-3">Loading study objectives...</div>
+            <div className="text-center text-xs text-brand-text-muted py-3">Loading study objectives...</div>
           )}
         </div>
       </div>

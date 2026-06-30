@@ -227,7 +227,7 @@ export const VocabGame: React.FC = () => {
             <Gamepad2 className="w-8 h-8 text-indigo-400" />
             <span>Vocab Game Arcade</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">Play matches, race against timers, and claim bonus coins.</p>
+          <p className="text-xs text-brand-text-secondary mt-1">Play matches, race against timers, and claim bonus coins.</p>
         </div>
         
         {gameState !== 'menu' && (
@@ -236,7 +236,7 @@ export const VocabGame: React.FC = () => {
               if (timerRef.current) clearInterval(timerRef.current);
               setGameState('menu');
             }}
-            className="flex items-center space-x-2 px-3.5 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs font-bold text-slate-300 hover:text-white"
+            className="flex items-center space-x-2 px-3.5 py-2 bg-brand-card border border-brand-border rounded-xl text-xs font-bold text-brand-text-secondary hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Quit Game</span>
@@ -250,13 +250,13 @@ export const VocabGame: React.FC = () => {
       {gameState === 'menu' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
           {/* Speed Quiz Card */}
-          <div className="glass-card rounded-3xl p-6 border border-slate-800 flex flex-col justify-between h-[300px] hover:border-indigo-500/40 hover:-translate-y-1 transition-all">
+          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border flex flex-col justify-between h-[300px] hover:border-indigo-500/40 hover:-translate-y-1 transition-all">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
                 <Timer className="w-6 h-6 animate-pulse" />
               </div>
               <h3 className="text-xl font-extrabold text-white">30-Second Speed Quiz</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-brand-text-secondary leading-relaxed">
                 A high-speed sprint! Read vocabulary words and identify their correct meanings before the 30-second clock hits zero.
               </p>
             </div>
@@ -269,13 +269,13 @@ export const VocabGame: React.FC = () => {
           </div>
 
           {/* Word Matcher Card */}
-          <div className="glass-card rounded-3xl p-6 border border-slate-800 flex flex-col justify-between h-[300px] hover:border-indigo-500/40 hover:-translate-y-1 transition-all">
+          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border flex flex-col justify-between h-[300px] hover:border-indigo-500/40 hover:-translate-y-1 transition-all">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
                 <Sparkles className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-extrabold text-white">Meaning Matcher</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-brand-text-secondary leading-relaxed">
                 Connect shuffled word columns with their English definitions. Requires analytical pairing and accuracy.
               </p>
             </div>
@@ -291,13 +291,13 @@ export const VocabGame: React.FC = () => {
 
       {/* 2. SPEED QUIZ ACTIVE BOARD */}
       {gameState === 'speed' && speedQuestions[currentSpeedIdx] && (
-        <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-6">
-          <div className="flex justify-between items-center border-b border-slate-800/80 pb-4">
+        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-6">
+          <div className="flex justify-between items-center border-b border-brand-border pb-4">
             <div className="flex items-center space-x-2 text-indigo-400">
               <Timer className="w-5 h-5 text-indigo-500 fill-indigo-500/10" />
               <span className="font-mono font-bold text-xl">{speedTimer}s</span>
             </div>
-            <div className="text-xs font-bold text-slate-400">
+            <div className="text-xs font-bold text-brand-text-secondary">
               QUESTION {currentSpeedIdx + 1} OF {speedQuestions.length}
             </div>
             <div className="flex items-center space-x-1.5 text-xs text-emerald-400 font-bold">
@@ -307,7 +307,7 @@ export const VocabGame: React.FC = () => {
           </div>
 
           <div className="flex flex-col items-center justify-center text-center space-y-3 py-6">
-            <span className="text-slate-400 uppercase tracking-widest text-[10px] font-bold">What is the meaning of:</span>
+            <span className="text-brand-text-secondary uppercase tracking-widest text-[10px] font-bold">What is the meaning of:</span>
             <h2 className="text-4xl font-extrabold tracking-wide text-white font-sans">{speedQuestions[currentSpeedIdx].word}</h2>
           </div>
 
@@ -316,10 +316,10 @@ export const VocabGame: React.FC = () => {
               <button
                 key={i}
                 onClick={() => handleSpeedAnswer(opt)}
-                className="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl text-left text-xs font-semibold text-slate-300 hover:border-indigo-500/60 hover:bg-indigo-950/20 hover:text-white transition-all duration-150 leading-relaxed"
+                className="p-4 bg-brand-surface/60 border border-brand-border rounded-2xl text-left text-xs font-semibold text-brand-text-secondary hover:border-indigo-500/60 hover:bg-indigo-950/20 hover:text-white transition-all duration-150 leading-relaxed"
               >
                 <div className="flex space-x-3 items-start">
-                  <span className="px-1.5 py-0.5 rounded bg-slate-855 text-slate-500 font-mono font-bold">{i + 1}</span>
+                  <span className="px-1.5 py-0.5 rounded bg-brand-surface text-brand-text-muted font-mono font-bold">{i + 1}</span>
                   <span>{opt}</span>
                 </div>
               </button>
@@ -330,9 +330,9 @@ export const VocabGame: React.FC = () => {
 
       {/* 3. WORD MATCHER ACTIVE BOARD */}
       {gameState === 'match' && (
-        <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-6">
-          <div className="flex justify-between items-center border-b border-slate-800/80 pb-4">
-            <span className="text-xs text-slate-400 font-bold">MATCH WORDS TO MEANINGS</span>
+        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-6">
+          <div className="flex justify-between items-center border-b border-brand-border pb-4">
+            <span className="text-xs text-brand-text-secondary font-bold">MATCH WORDS TO MEANINGS</span>
             <div className="flex items-center space-x-1 text-xs text-emerald-400 font-bold">
               <CheckCircle2 className="w-4 h-4" />
               <span>Pairs: {matchedIds.length}/4</span>
@@ -356,7 +356,7 @@ export const VocabGame: React.FC = () => {
                         ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400/60 line-through cursor-not-allowed'
                         : isSelected
                           ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/25 scale-[1.02]'
-                          : 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white'
+                          : 'bg-brand-surface/60 border-brand-border text-brand-text-secondary hover:border-brand-border hover:text-white'
                     }`}
                   >
                     {item.text}
@@ -381,7 +381,7 @@ export const VocabGame: React.FC = () => {
                         ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400/60 line-through cursor-not-allowed'
                         : isSelected
                           ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/25 scale-[1.02]'
-                          : 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white'
+                          : 'bg-brand-surface/60 border-brand-border text-brand-text-secondary hover:border-brand-border hover:text-white'
                     }`}
                   >
                     {item.text}
@@ -395,23 +395,23 @@ export const VocabGame: React.FC = () => {
 
       {/* 4. RESULT MODAL VIEWER */}
       {gameState === 'result' && (
-        <div className="glass-card rounded-3xl p-8 border border-slate-800 text-center max-w-md mx-auto space-y-6 flex flex-col items-center">
+        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-8 border border-brand-border text-center max-w-md mx-auto space-y-6 flex flex-col items-center">
           <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 flex items-center justify-center animate-bounce">
             <Trophy className="w-8 h-8" />
           </div>
 
           <div className="space-y-2">
             <h2 className="text-2xl font-extrabold text-white">Game Finished!</h2>
-            <p className="text-xs text-slate-400 leading-relaxed">{resultMsg}</p>
+            <p className="text-xs text-brand-text-secondary leading-relaxed">{resultMsg}</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4 w-full pt-2">
             <div className="bg-indigo-950/30 border border-indigo-900/30 p-4 rounded-2xl">
-              <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">XP gained</span>
+              <span className="text-[10px] text-brand-text-secondary uppercase font-bold tracking-wider">XP gained</span>
               <p className="text-2xl font-extrabold text-indigo-400">+{earnedXp} XP</p>
             </div>
             <div className="bg-amber-950/30 border border-amber-900/30 p-4 rounded-2xl">
-              <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Coins Claimed</span>
+              <span className="text-[10px] text-brand-text-secondary uppercase font-bold tracking-wider">Coins Claimed</span>
               <p className="text-2xl font-extrabold text-amber-400">+{earnedCoins} Coins</p>
             </div>
           </div>
@@ -419,7 +419,7 @@ export const VocabGame: React.FC = () => {
           <div className="flex gap-4 w-full pt-4">
             <button
               onClick={() => setGameState('menu')}
-              className="flex-1 py-3 bg-slate-900 border border-slate-800 text-slate-300 hover:text-white rounded-xl text-xs font-bold transition-all"
+              className="flex-1 py-3 bg-brand-card border border-brand-border text-brand-text-secondary hover:text-white rounded-xl text-xs font-bold transition-all"
             >
               Menu
             </button>

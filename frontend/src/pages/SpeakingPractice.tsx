@@ -143,12 +143,12 @@ export const SpeakingPractice: React.FC = () => {
       {/* HEADER SECTION */}
       <div className="space-y-1">
         <h2 className="text-2xl font-extrabold text-white">Speaking Coach</h2>
-        <p className="text-xs text-slate-400">Drill situational talking cards, verify accent & pacing.</p>
+        <p className="text-xs text-brand-text-secondary">Drill situational talking cards, verify accent & pacing.</p>
       </div>
 
       {/* 1. SCENARIO SELECTOR CAROUSEL */}
       <div className="space-y-2">
-        <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 pl-1">Choose Drill</span>
+        <span className="text-[10px] uppercase font-bold tracking-wider text-brand-text-muted pl-1">Choose Drill</span>
         <div className="flex space-x-3 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory">
           {SCENARIOS.map(sc => (
             <button
@@ -162,41 +162,41 @@ export const SpeakingPractice: React.FC = () => {
               className={`snap-center shrink-0 w-64 p-4 rounded-2xl border text-left transition-all ${
                 selectedScenario.id === sc.id
                   ? 'bg-indigo-600/15 border-indigo-500 text-white'
-                  : 'glass-card border-slate-800 text-slate-400'
+                  : 'bg-brand-card border border-brand-border shadow-level-1 border-brand-border text-brand-text-secondary'
               } ${isRecording ? 'opacity-30 cursor-not-allowed' : 'active:scale-95'}`}
             >
               <span className="text-[9px] uppercase font-extrabold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                 {sc.category}
               </span>
-              <h4 className="font-extrabold text-xs mt-2 text-slate-200 line-clamp-1">{sc.title}</h4>
-              <p className="text-[10px] text-slate-500 line-clamp-1 mt-1">{sc.prompt}</p>
+              <h4 className="font-extrabold text-xs mt-2 text-brand-text-primary line-clamp-1">{sc.title}</h4>
+              <p className="text-[10px] text-brand-text-muted line-clamp-1 mt-1">{sc.prompt}</p>
             </button>
           ))}
         </div>
       </div>
 
       {/* 2. ACTIVE SCENARIO CARD */}
-      <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 space-y-3.5">
-        <div className="flex justify-between items-center border-b border-slate-900 pb-2">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Selected Prompt</span>
+      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border dark:border-brand-border space-y-3.5">
+        <div className="flex justify-between items-center border-b border-brand-border pb-2">
+          <span className="text-[10px] font-bold text-brand-text-secondary uppercase tracking-widest">Selected Prompt</span>
           <button 
             onClick={playPromptText}
-            className="flex items-center space-x-1 px-2.5 py-1 bg-slate-800 border border-slate-700/50 rounded-lg text-[9px] font-bold text-indigo-400 active:scale-95 transition-all"
+            className="flex items-center space-x-1 px-2.5 py-1 bg-brand-surface border border-brand-border rounded-lg text-[9px] font-bold text-indigo-400 active:scale-95 transition-all"
           >
             <Volume2 className="w-3 h-3" />
             <span>Speak Prompt</span>
           </button>
         </div>
-        <p className="text-xs font-semibold text-slate-200 leading-relaxed">
+        <p className="text-xs font-semibold text-brand-text-primary leading-relaxed">
           {selectedScenario.prompt}
         </p>
 
         {/* Helpful Vocabulary tags */}
         <div className="pt-2">
-          <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider block mb-1.5">Suggested Keywords</span>
+          <span className="text-[9px] font-bold text-brand-text-muted uppercase tracking-wider block mb-1.5">Suggested Keywords</span>
           <div className="flex flex-wrap gap-1.5">
             {selectedScenario.helperVocabulary.map((word, i) => (
-              <span key={i} className="text-[9px] font-bold px-2 py-0.5 rounded bg-slate-950 text-indigo-300 border border-slate-900">
+              <span key={i} className="text-[9px] font-bold px-2 py-0.5 rounded bg-brand-bg text-indigo-300 border border-brand-border">
                 {word}
               </span>
             ))}
@@ -205,13 +205,13 @@ export const SpeakingPractice: React.FC = () => {
       </div>
 
       {/* 3. HERO MICROPHONE INTERACTION */}
-      <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 flex flex-col items-center justify-center text-center space-y-5 relative overflow-hidden">
+      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border dark:border-brand-border flex flex-col items-center justify-center text-center space-y-5 relative overflow-hidden">
         {isRecording && (
           <div className="absolute inset-0 bg-indigo-500/5 border border-indigo-500/20 animate-pulse pointer-events-none" />
         )}
 
         <div className="space-y-1 z-10">
-          <span className="text-[10px] text-slate-400 uppercase tracking-widest font-black">
+          <span className="text-[10px] text-brand-text-secondary uppercase tracking-widest font-black">
             {isRecording ? 'Capturing Vocals...' : 'Tap Mic to Start Speaking'}
           </span>
           {isRecording && (
@@ -237,7 +237,7 @@ export const SpeakingPractice: React.FC = () => {
               />
             ))
           ) : (
-            <div className="w-24 h-0.5 bg-slate-800 rounded" />
+            <div className="w-24 h-0.5 bg-brand-surface rounded" />
           )}
         </div>
 
@@ -260,10 +260,10 @@ export const SpeakingPractice: React.FC = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="w-full text-left space-y-1.5 pt-2 border-t border-slate-900 z-10"
+              className="w-full text-left space-y-1.5 pt-2 border-t border-brand-border z-10"
             >
-              <span className="text-[9px] uppercase font-extrabold text-slate-500 tracking-wider">Live Transcript</span>
-              <div className="w-full h-20 p-2.5 bg-slate-950/60 border border-slate-900 rounded-xl text-xs text-slate-300 overflow-y-auto leading-relaxed italic">
+              <span className="text-[9px] uppercase font-extrabold text-brand-text-muted tracking-wider">Live Transcript</span>
+              <div className="w-full h-20 p-2.5 bg-brand-bg/60 border border-brand-border rounded-xl text-xs text-brand-text-secondary overflow-y-auto leading-relaxed italic">
                 {transcript || 'Awaiting spoken voice input...'}
               </div>
             </motion.div>
@@ -273,49 +273,49 @@ export const SpeakingPractice: React.FC = () => {
 
       {/* 4. ANALYTICS REPORT */}
       {loading && (
-        <div className="glass-card rounded-3xl p-6 border border-slate-200/10 dark:border-slate-800/80 text-center flex flex-col items-center justify-center space-y-3 h-52">
+        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border dark:border-brand-border text-center flex flex-col items-center justify-center space-y-3 h-52">
           <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-xs text-slate-400 leading-normal max-w-xs">Analyzing pitch accuracy, syntax structure, and speed...</p>
+          <p className="text-xs text-brand-text-secondary leading-normal max-w-xs">Analyzing pitch accuracy, syntax structure, and speed...</p>
         </div>
       )}
 
       {evaluation && !loading && (
-        <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 space-y-5 bg-gradient-to-br from-indigo-950/15 to-slate-950/10">
-          <h3 className="font-extrabold text-sm text-slate-200 flex items-center space-x-2 border-b border-slate-900 pb-2.5">
+        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border dark:border-brand-border space-y-5 bg-gradient-to-br from-indigo-950/15 to-slate-950/10">
+          <h3 className="font-extrabold text-sm text-brand-text-primary flex items-center space-x-2 border-b border-brand-border pb-2.5">
             <BarChart3 className="w-4.5 h-4.5 text-indigo-400" />
             <span>AI Feedback Scorecard</span>
           </h3>
 
           {/* Scores details list */}
           <div className="grid grid-cols-3 gap-2">
-            <div className="bg-slate-950/50 border border-slate-900/60 p-2.5 rounded-xl text-center">
-              <span className="text-[9px] text-slate-500 uppercase font-bold">Overall</span>
+            <div className="bg-brand-bg/50 border border-brand-border/60 p-2.5 rounded-xl text-center">
+              <span className="text-[9px] text-brand-text-muted uppercase font-bold">Overall</span>
               <p className="text-lg font-black text-indigo-400 mt-0.5">{evaluation.overallScore}%</p>
             </div>
-            <div className="bg-slate-950/50 border border-slate-900/60 p-2.5 rounded-xl text-center">
-              <span className="text-[9px] text-slate-500 uppercase font-bold">Fluency</span>
+            <div className="bg-brand-bg/50 border border-brand-border/60 p-2.5 rounded-xl text-center">
+              <span className="text-[9px] text-brand-text-muted uppercase font-bold">Fluency</span>
               <p className="text-lg font-black text-emerald-400 mt-0.5">{evaluation.fluencyScore}%</p>
             </div>
-            <div className="bg-slate-950/50 border border-slate-900/60 p-2.5 rounded-xl text-center">
-              <span className="text-[9px] text-slate-500 uppercase font-bold">Accent</span>
+            <div className="bg-brand-bg/50 border border-brand-border/60 p-2.5 rounded-xl text-center">
+              <span className="text-[9px] text-brand-text-muted uppercase font-bold">Accent</span>
               <p className="text-lg font-black text-amber-400 mt-0.5">{evaluation.pronunciationScore}%</p>
             </div>
-            <div className="bg-slate-950/50 border border-slate-900/60 p-2.5 rounded-xl text-center">
-              <span className="text-[9px] text-slate-500 uppercase font-bold">Grammar</span>
+            <div className="bg-brand-bg/50 border border-brand-border/60 p-2.5 rounded-xl text-center">
+              <span className="text-[9px] text-brand-text-muted uppercase font-bold">Grammar</span>
               <p className="text-lg font-black text-purple-400 mt-0.5">{evaluation.grammarScore}%</p>
             </div>
-            <div className="bg-slate-950/50 border border-slate-900/60 p-2.5 rounded-xl text-center col-span-2 flex flex-col justify-center items-center">
-              <span className="text-[9px] text-slate-500 uppercase font-bold">Speed</span>
-              <p className="text-sm font-black text-slate-200 mt-0.5">{evaluation.speakingSpeed} WPM</p>
+            <div className="bg-brand-bg/50 border border-brand-border/60 p-2.5 rounded-xl text-center col-span-2 flex flex-col justify-center items-center">
+              <span className="text-[9px] text-brand-text-muted uppercase font-bold">Speed</span>
+              <p className="text-sm font-black text-brand-text-primary mt-0.5">{evaluation.speakingSpeed} WPM</p>
             </div>
           </div>
 
           {/* Suggestions checklist */}
           <div className="space-y-2">
-            <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider block">Actionable Suggestions</span>
+            <span className="text-[9px] font-bold text-brand-text-secondary uppercase tracking-wider block">Actionable Suggestions</span>
             <div className="space-y-2">
               {evaluation.suggestedImprovements.map((imp: string, i: number) => (
-                <div key={i} className="p-3 bg-slate-950/50 border border-slate-900 rounded-xl text-xs text-slate-300 flex items-start space-x-2 leading-relaxed">
+                <div key={i} className="p-3 bg-brand-bg/50 border border-brand-border rounded-xl text-xs text-brand-text-secondary flex items-start space-x-2 leading-relaxed">
                   <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                   <span>{imp}</span>
                 </div>

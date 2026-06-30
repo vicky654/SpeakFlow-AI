@@ -28,65 +28,65 @@ export const ProgressHub: React.FC = () => {
       {/* HEADER SECTION */}
       <div className="space-y-1">
         <h2 className="text-2xl font-extrabold text-white">Your Progress</h2>
-        <p className="text-xs text-slate-400">Track stats, view active badges, and check leaderboard standings.</p>
+        <p className="text-xs text-brand-text-secondary">Track stats, view active badges, and check leaderboard standings.</p>
       </div>
 
       {/* STATS OVERVIEW CARDS */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="glass-card rounded-2xl p-3 border border-slate-200/10 text-center space-y-1">
+        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-3 border border-brand-border text-center space-y-1">
           <Flame className="w-5 h-5 text-orange-500 fill-current mx-auto" />
-          <p className="text-[10px] text-slate-400 font-bold uppercase">Streak</p>
+          <p className="text-[10px] text-brand-text-secondary font-bold uppercase">Streak</p>
           <p className="text-base font-extrabold text-white">{user?.streak} days</p>
         </div>
         
-        <div className="glass-card rounded-2xl p-3 border border-slate-200/10 text-center space-y-1">
+        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-3 border border-brand-border text-center space-y-1">
           <Sparkles className="w-5 h-5 text-indigo-400 fill-current mx-auto" />
-          <p className="text-[10px] text-slate-400 font-bold uppercase">Total XP</p>
+          <p className="text-[10px] text-brand-text-secondary font-bold uppercase">Total XP</p>
           <p className="text-base font-extrabold text-white">{user?.xp} XP</p>
         </div>
 
-        <div className="glass-card rounded-2xl p-3 border border-slate-200/10 text-center space-y-1">
+        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-3 border border-brand-border text-center space-y-1">
           <Coins className="w-5 h-5 text-amber-400 fill-current mx-auto" />
-          <p className="text-[10px] text-slate-400 font-bold uppercase">Coins</p>
+          <p className="text-[10px] text-brand-text-secondary font-bold uppercase">Coins</p>
           <p className="text-base font-extrabold text-white">{user?.coins}</p>
         </div>
       </div>
 
       {/* RECHARTS CHART SECTION */}
-      <div className="glass-card rounded-2xl p-4 border border-slate-200/10 space-y-3">
+      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 border border-brand-border space-y-3">
         <div>
-          <h4 className="font-bold text-sm text-slate-200">Practice History</h4>
-          <p className="text-[10px] text-slate-400">XP points earned during lessons this week.</p>
+          <h4 className="font-bold text-sm text-brand-text-primary">Practice History</h4>
+          <p className="text-[10px] text-brand-text-secondary">XP points earned during lessons this week.</p>
         </div>
         <div className="w-full h-44">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={weeklyData} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorXpProgress" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#6366f1" stopOpacity={0.4}/>
-                  <stop offset="95%" stopColor="#6366f1" stopOpacity={0.0}/>
+                  <stop offset="5%" stopColor="var(--color-primary)" stopOpacity={0.25}/>
+                  <stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0.0}/>
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-              <XAxis dataKey="name" stroke="#64748b" fontSize={9} tickLine={false} />
-              <YAxis stroke="#64748b" fontSize={9} tickLine={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--color-divider)" vertical={false} />
+              <XAxis dataKey="name" stroke="var(--color-text-muted)" fontSize={9} tickLine={false} />
+              <YAxis stroke="var(--color-text-muted)" fontSize={9} tickLine={false} />
               <Tooltip 
-                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '12px' }}
-                labelStyle={{ color: '#94a3b8', fontSize: '10px', fontWeight: 'bold' }}
-                itemStyle={{ color: '#fff', fontSize: '11px' }}
+                contentStyle={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)', borderRadius: '12px', boxShadow: 'var(--shadow-sm)' }}
+                labelStyle={{ color: 'var(--color-text-secondary)', fontSize: '10px', fontWeight: '500' }}
+                itemStyle={{ color: 'var(--color-primary)', fontSize: '11px' }}
               />
-              <Area type="monotone" dataKey="XP" stroke="#6366f1" strokeWidth={2.5} fillOpacity={1} fill="url(#colorXpProgress)" />
+              <Area type="monotone" dataKey="XP" stroke="#6D5DF6" strokeWidth={2.5} fillOpacity={1} fill="url(#colorXpProgress)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>
       </div>
 
       {/* LEADERBOARD STANDINGS */}
-      <div className="glass-card rounded-2xl p-4 border border-slate-200/10 space-y-3">
+      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 space-y-3">
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="font-bold text-sm text-slate-200">Leaderboard League</h4>
-            <p className="text-[10px] text-slate-400">Weekly rankings. Top rank secures badges.</p>
+            <h4 className="font-bold text-sm text-brand-text-primary">Leaderboard League</h4>
+            <p className="text-[10px] text-brand-text-secondary">Weekly rankings. Top rank secures badges.</p>
           </div>
           <Trophy className="w-5 h-5 text-amber-400" />
         </div>
@@ -100,38 +100,38 @@ export const ProgressHub: React.FC = () => {
                   key={idx} 
                   className={`flex items-center justify-between p-2 rounded-xl border text-xs ${
                     isCurrentUser 
-                      ? 'bg-indigo-600/20 border-indigo-500/30' 
-                      : 'bg-slate-950/20 border-slate-800/80'
+                      ? 'bg-brand-primary/10 border-brand-primary/20 text-brand-primary' 
+                      : 'bg-brand-surface border-brand-border text-brand-text-primary'
                   }`}
                 >
                   <div className="flex items-center space-x-2.5">
                     <span className={`w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] ${
-                      idx === 0 ? 'bg-amber-400 text-slate-950' : 
-                      idx === 1 ? 'bg-slate-300 text-slate-950' :
-                      idx === 2 ? 'bg-amber-700 text-white' : 'bg-slate-800 text-slate-400'
+                      idx === 0 ? 'bg-amber-400 text-slate-900' : 
+                      idx === 1 ? 'bg-slate-200 text-slate-800' :
+                      idx === 2 ? 'bg-amber-600 text-white' : 'bg-brand-bg text-brand-text-secondary border border-brand-border'
                     }`}>
                       {idx + 1}
                     </span>
-                    <span className={`font-bold ${isCurrentUser ? 'text-indigo-400' : 'text-slate-200'}`}>
+                    <span className={`font-semibold ${isCurrentUser ? 'text-brand-primary' : 'text-brand-text-primary'}`}>
                       {entry.name}
                     </span>
                   </div>
-                  <span className="font-extrabold text-slate-400">{entry.xp} <span className="font-normal text-[10px]">XP</span></span>
+                  <span className="font-semibold text-brand-text-secondary">{entry.xp} <span className="font-normal text-[10px]">XP</span></span>
                 </div>
               );
             })
           ) : (
-            <div className="text-center text-xs text-slate-500 py-3">Loading leaderboard rankings...</div>
+            <div className="text-center text-xs text-brand-text-muted py-3">Loading leaderboard rankings...</div>
           )}
         </div>
       </div>
 
       {/* BADGES / ACHIEVEMENTS */}
-      <div className="glass-card rounded-2xl p-4 border border-slate-200/10 space-y-3">
+      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 border border-brand-border space-y-3">
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="font-bold text-sm text-slate-200">Badges Unlocked</h4>
-            <p className="text-[10px] text-slate-400">Unlocks through daily streaks and scoring.</p>
+            <h4 className="font-bold text-sm text-brand-text-primary">Badges Unlocked</h4>
+            <p className="text-[10px] text-brand-text-secondary">Unlocks through daily streaks and scoring.</p>
           </div>
           <Award className="w-5 h-5 text-indigo-400" />
         </div>
@@ -145,8 +145,8 @@ export const ProgressHub: React.FC = () => {
                   key={badge.id}
                   className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center space-y-1.5 ${
                     hasBadge 
-                      ? 'bg-indigo-600/10 border-indigo-500/20 text-slate-200' 
-                      : 'bg-slate-950/20 border-slate-800/80 opacity-40'
+                      ? 'bg-indigo-600/10 border-indigo-500/20 text-brand-text-primary' 
+                      : 'bg-brand-bg/20 border-brand-border opacity-40'
                   }`}
                 >
                   <span className="text-2xl">{badge.icon || '🏅'}</span>
@@ -158,7 +158,7 @@ export const ProgressHub: React.FC = () => {
               );
             })
           ) : (
-            <div className="col-span-2 text-center text-xs text-slate-500 py-3">Loading achievements...</div>
+            <div className="col-span-2 text-center text-xs text-brand-text-muted py-3">Loading achievements...</div>
           )}
         </div>
       </div>

@@ -42,18 +42,18 @@ export const ChallengeTimeline: React.FC = () => {
       {/* HEADER SECTION */}
       <div className="space-y-1">
         <h2 className="text-2xl font-extrabold text-white">15-Day Master Challenge</h2>
-        <p className="text-xs text-slate-400">Complete curriculum blocks sequentially to unlock fluency credentials.</p>
+        <p className="text-xs text-brand-text-secondary">Complete curriculum blocks sequentially to unlock fluency credentials.</p>
       </div>
 
       {/* STATS OVERVIEW CARD */}
-      <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 bg-gradient-to-r from-indigo-950/20 via-slate-900/60 to-purple-950/15 flex items-center justify-between">
+      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border dark:border-brand-border bg-gradient-to-r from-indigo-950/20 via-slate-900/60 to-purple-950/15 flex items-center justify-between">
         <div className="flex items-center space-x-3.5">
           <div className="p-3 bg-indigo-500/15 rounded-2xl text-indigo-405 shrink-0">
             <Trophy className="w-6 h-6 animate-pulse text-indigo-400" />
           </div>
           <div className="min-w-0">
-            <h3 className="font-extrabold text-sm text-slate-200">Overall Progress</h3>
-            <p className="text-xs text-slate-400 font-bold">
+            <h3 className="font-extrabold text-sm text-brand-text-primary">Overall Progress</h3>
+            <p className="text-xs text-brand-text-secondary font-bold">
               {progress ? Math.round((progress.completedDays.length / 15) * 100) : 0}% Complete
             </p>
           </div>
@@ -74,12 +74,12 @@ export const ChallengeTimeline: React.FC = () => {
       {progress && (
         <div className={`p-4 rounded-3xl border flex flex-col justify-between items-center text-center space-y-3.5 transition-all ${
           canClaimChest 
-            ? 'bg-indigo-950/20 border-indigo-500/30 text-slate-200' 
-            : 'bg-slate-950/30 border-slate-900 text-slate-500 opacity-60'
+            ? 'bg-indigo-950/20 border-indigo-500/30 text-brand-text-primary' 
+            : 'bg-brand-bg/30 border-brand-border text-brand-text-muted opacity-60'
         }`}>
           <div className="flex flex-col items-center space-y-1">
-            <Gift className={`w-8 h-8 ${canClaimChest ? 'text-indigo-400 animate-bounce' : 'text-slate-600'}`} />
-            <h4 className="font-extrabold text-xs text-slate-200">Daily Treasure Chest</h4>
+            <Gift className={`w-8 h-8 ${canClaimChest ? 'text-indigo-400 animate-bounce' : 'text-brand-text-muted'}`} />
+            <h4 className="font-extrabold text-xs text-brand-text-primary">Daily Treasure Chest</h4>
             <p className="text-[10px] text-slate-405 leading-normal">
               {canClaimChest ? 'Claim +50 XP and +20 Coins daily reward bonus!' : 'Already claimed today. Chest resets tomorrow!'}
             </p>
@@ -104,20 +104,20 @@ export const ChallengeTimeline: React.FC = () => {
       {/* LUCKY SPIN MINI LINK */}
       <div 
         onClick={() => navigate('/lucky-spin')}
-        className="glass-card rounded-2xl p-4 border border-slate-250/10 dark:border-slate-800/80 cursor-pointer hover:border-indigo-500/30 active:scale-[0.99] transition-all flex items-center justify-between"
+        className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 cursor-pointer hover:border-brand-primary/45 active:scale-[0.99] transition-all flex items-center justify-between"
       >
         <div className="flex items-center space-x-3">
           <span className="text-xl">🎡</span>
           <div className="text-left">
-            <h4 className="font-extrabold text-xs text-slate-200">Lucky Spin Wheel</h4>
-            <p className="text-[10px] text-slate-500 leading-normal">Roll the wheel to win XP multipliers, badges, or coins.</p>
+            <h4 className="font-extrabold text-xs text-brand-text-primary">Lucky Spin Wheel</h4>
+            <p className="text-[10px] text-brand-text-muted leading-normal">Roll the wheel to win XP multipliers, badges, or coins.</p>
           </div>
         </div>
         <span className="text-[10px] text-indigo-400 font-extrabold font-mono uppercase">Spin →</span>
       </div>
 
       {/* TIMELINE PATH (SEQUENTIAL NODES) */}
-      <div className="space-y-4 relative pl-8 border-l border-slate-900 my-4 ml-6 pt-2">
+      <div className="space-y-4 relative pl-8 border-l border-brand-border my-4 ml-6 pt-2">
         {Array.from({ length: 15 }).map((_, idx) => {
           const dayNumber = idx + 1;
           
@@ -134,7 +134,7 @@ export const ChallengeTimeline: React.FC = () => {
             status = 'current';
           }
 
-          let nodeClass = 'bg-slate-950 border-slate-900 text-slate-650';
+          let nodeClass = 'bg-brand-bg border-brand-border text-slate-650';
           let ringClass = 'border-transparent';
 
           if (status === 'completed') {
@@ -159,7 +159,7 @@ export const ChallengeTimeline: React.FC = () => {
                 {status === 'completed' ? (
                   <CheckCircle2 className="w-4.5 h-4.5" />
                 ) : status === 'locked' ? (
-                  <Lock className="w-3.5 h-3.5 text-slate-600" />
+                  <Lock className="w-3.5 h-3.5 text-brand-text-muted" />
                 ) : (
                   <Play className="w-3.5 h-3.5 text-white ml-0.5 fill-current" />
                 )}
@@ -167,8 +167,8 @@ export const ChallengeTimeline: React.FC = () => {
 
               {/* Node Details Description */}
               <div className="pl-4 text-left">
-                <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-500">Day {dayNumber}</span>
-                <h4 className={`font-extrabold text-xs ${status === 'locked' ? 'text-slate-550' : 'text-slate-200'}`}>
+                <span className="text-[9px] font-extrabold uppercase tracking-widest text-brand-text-muted">Day {dayNumber}</span>
+                <h4 className={`font-extrabold text-xs ${status === 'locked' ? 'text-slate-550' : 'text-brand-text-primary'}`}>
                   {dayNumber === 1 ? 'Parts of Speech Overview' :
                    dayNumber === 2 ? 'Articles (A, An, The)' :
                    dayNumber === 3 ? 'Present Simple Tense' :
@@ -185,7 +185,7 @@ export const ChallengeTimeline: React.FC = () => {
                    dayNumber === 14 ? 'Conditionals (Zero/First)' :
                    'Conditionals (Second/Third)'}
                 </h4>
-                <p className="text-[10px] text-slate-500 leading-normal mt-0.5">
+                <p className="text-[10px] text-brand-text-muted leading-normal mt-0.5">
                   {status === 'completed' ? 'Challenge Day Fully Completed • 100%' :
                    status === 'current' ? 'Available. Click to start practice modules' :
                    'Prerequisite: complete previous days to unlock'}

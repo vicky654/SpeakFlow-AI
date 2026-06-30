@@ -140,14 +140,14 @@ export const InterviewPrep: React.FC = () => {
           <Briefcase className="w-8 h-8 text-indigo-400" />
           <span>Interview Prep Center</span>
         </h1>
-        <p className="text-xs text-slate-400 mt-1">Practice common HR questions, study suggested templates, and try speaking drills.</p>
+        <p className="text-xs text-brand-text-secondary mt-1">Practice common HR questions, study suggested templates, and try speaking drills.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
         
         {/* LEFT COLUMN: LIST */}
         <div className="flex flex-col space-y-4 lg:col-span-1">
-          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider pl-1 font-sans">Common HR Questions</h3>
+          <h3 className="text-xs font-bold text-brand-text-secondary uppercase tracking-wider pl-1 font-sans">Common HR Questions</h3>
           
           <div className="space-y-3">
             {lessons.map(sc => (
@@ -157,13 +157,13 @@ export const InterviewPrep: React.FC = () => {
                 className={`p-4 rounded-2xl border text-left cursor-pointer transition-all ${
                   activeLesson?._id === sc._id
                     ? 'bg-indigo-600/15 border-indigo-500 text-white'
-                    : 'glass-card border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                    : 'bg-brand-card border border-brand-border shadow-level-1 border-brand-border text-brand-text-secondary hover:border-brand-border hover:text-brand-text-primary'
                 }`}
               >
                 <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                   {sc.category}
                 </span>
-                <h4 className="font-bold text-sm mt-2 text-slate-200">{sc.title}</h4>
+                <h4 className="font-bold text-sm mt-2 text-brand-text-primary">{sc.title}</h4>
               </div>
             ))}
           </div>
@@ -175,10 +175,10 @@ export const InterviewPrep: React.FC = () => {
             <div className="space-y-6">
               
               {/* DETAILS CARD */}
-              <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-4">
-                <span className="text-[10px] uppercase font-bold tracking-widest text-slate-400">Coaching Strategy</span>
+              <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-4">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-brand-text-secondary">Coaching Strategy</span>
                 <h2 className="text-xl font-extrabold text-white">{activeLesson.title}</h2>
-                <div className="text-slate-300 text-sm leading-relaxed whitespace-pre-line border-t border-slate-800/80 pt-4 font-sans max-h-56 overflow-y-auto pr-1">
+                <div className="text-brand-text-secondary text-sm leading-relaxed whitespace-pre-line border-t border-brand-border pt-4 font-sans max-h-56 overflow-y-auto pr-1">
                   {activeLesson.content.replace(/#\s+.+/g, '')}
                 </div>
               </div>
@@ -186,12 +186,12 @@ export const InterviewPrep: React.FC = () => {
               {/* TIPS & SUGGESTED ANSWER BOARD */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Interview Tips */}
-                <div className="glass-card rounded-2xl p-5 border border-slate-800 space-y-3">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 border border-brand-border space-y-3">
                   <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center space-x-1.5">
                     <Star className="w-4 h-4 fill-current" />
                     <span>Hiring Manager Tips</span>
                   </h4>
-                  <ul className="space-y-2 text-xs text-slate-300 list-disc pl-4 leading-relaxed">
+                  <ul className="space-y-2 text-xs text-brand-text-secondary list-disc pl-4 leading-relaxed">
                     {activeLesson.metadata.tips?.map((t, idx) => (
                       <li key={idx}>{t}</li>
                     ))}
@@ -199,17 +199,17 @@ export const InterviewPrep: React.FC = () => {
                 </div>
 
                 {/* Suggested template answer */}
-                <div className="glass-card rounded-2xl p-5 border border-slate-800 space-y-3 flex flex-col justify-between">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 border border-brand-border space-y-3 flex flex-col justify-between">
                   <div className="space-y-2">
                     <h4 className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Suggested Answer</h4>
-                    <p className="text-[11px] text-slate-300 italic leading-relaxed line-clamp-4">
+                    <p className="text-[11px] text-brand-text-secondary italic leading-relaxed line-clamp-4">
                       "{activeLesson.metadata.suggestedAnswers?.[0]}"
                     </p>
                   </div>
 
                   <button
                     onClick={playSuggestedAnswer}
-                    className="flex items-center space-x-2 px-3 py-2 bg-slate-800 border border-slate-700/50 rounded-xl text-xs font-bold text-slate-300 hover:text-white transition-all w-full justify-center mt-3"
+                    className="flex items-center space-x-2 px-3 py-2 bg-brand-surface border border-brand-border rounded-xl text-xs font-bold text-brand-text-secondary hover:text-white transition-all w-full justify-center mt-3"
                   >
                     {isPlayingAnswer ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
                     <span>{isPlayingAnswer ? 'Pause Sample Audio' : 'Listen Sample Audio'}</span>
@@ -218,14 +218,14 @@ export const InterviewPrep: React.FC = () => {
               </div>
 
               {/* PRACTICE AUDIO DRILL */}
-              <div className="glass-card rounded-3xl p-6 border border-slate-800 flex flex-col items-center text-center space-y-5 relative overflow-hidden">
+              <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border flex flex-col items-center text-center space-y-5 relative overflow-hidden">
                 {isRecording && (
                   <div className="absolute inset-0 bg-indigo-500/5 border border-indigo-500/20 animate-pulse pointer-events-none" />
                 )}
 
                 <div className="space-y-1">
-                  <h4 className="font-bold text-slate-200">Interactive Response Practice</h4>
-                  <p className="text-[10px] text-slate-400">Record yourself answering. We will evaluate your pace (WPM), hesitation, and pronunciation confidence.</p>
+                  <h4 className="font-bold text-brand-text-primary">Interactive Response Practice</h4>
+                  <p className="text-[10px] text-brand-text-secondary">Record yourself answering. We will evaluate your pace (WPM), hesitation, and pronunciation confidence.</p>
                 </div>
 
                 <div className="flex flex-col items-center space-y-4">
@@ -247,8 +247,8 @@ export const InterviewPrep: React.FC = () => {
 
                 {transcript && (
                   <div className="w-full text-left space-y-1">
-                    <span className="text-[10px] uppercase font-bold text-slate-500">Recorded Answer Transcript</span>
-                    <p className="w-full p-3 bg-slate-950/60 border border-slate-900 rounded-xl text-xs text-slate-300 italic max-h-24 overflow-y-auto leading-relaxed">
+                    <span className="text-[10px] uppercase font-bold text-brand-text-muted">Recorded Answer Transcript</span>
+                    <p className="w-full p-3 bg-brand-bg/60 border border-brand-border rounded-xl text-xs text-brand-text-secondary italic max-h-24 overflow-y-auto leading-relaxed">
                       {transcript}
                     </p>
                   </div>
@@ -257,43 +257,43 @@ export const InterviewPrep: React.FC = () => {
 
               {/* REPORT CARD */}
               {loading && (
-                <div className="glass-card rounded-3xl p-8 border border-slate-800 text-center flex flex-col items-center justify-center space-y-3 h-48">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-8 border border-brand-border text-center flex flex-col items-center justify-center space-y-3 h-48">
                   <div className="w-6 h-6 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-                  <p className="text-xs text-slate-400">Speech coach is analyzing your answer pacing and fluency...</p>
+                  <p className="text-xs text-brand-text-secondary">Speech coach is analyzing your answer pacing and fluency...</p>
                 </div>
               )}
 
               {evaluation && !loading && (
-                <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-5 bg-gradient-to-br from-indigo-950/20 to-slate-950/20 text-left">
-                  <h3 className="font-extrabold text-slate-200 flex items-center space-x-2 border-b border-slate-850 pb-2">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-5 bg-gradient-to-br from-indigo-950/20 to-slate-950/20 text-left">
+                  <h3 className="font-extrabold text-brand-text-primary flex items-center space-x-2 border-b border-brand-border pb-2">
                     <BarChart3 className="w-4 h-4 text-indigo-400" />
                     <span>Interview Delivery Analytics</span>
                   </h3>
 
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
-                    <div className="bg-slate-950/50 border border-slate-900 p-3 rounded-xl">
-                      <span className="text-[9px] text-slate-500 uppercase font-bold">Overall Rating</span>
+                    <div className="bg-brand-bg/50 border border-brand-border p-3 rounded-xl">
+                      <span className="text-[9px] text-brand-text-muted uppercase font-bold">Overall Rating</span>
                       <p className="text-xl font-extrabold text-indigo-400 mt-0.5">{evaluation.overallScore}%</p>
                     </div>
-                    <div className="bg-slate-950/50 border border-slate-900 p-3 rounded-xl">
-                      <span className="text-[9px] text-slate-500 uppercase font-bold">Fluency</span>
+                    <div className="bg-brand-bg/50 border border-brand-border p-3 rounded-xl">
+                      <span className="text-[9px] text-brand-text-muted uppercase font-bold">Fluency</span>
                       <p className="text-xl font-extrabold text-emerald-400 mt-0.5">{evaluation.fluencyScore}%</p>
                     </div>
-                    <div className="bg-slate-950/50 border border-slate-900 p-3 rounded-xl">
-                      <span className="text-[9px] text-slate-500 uppercase font-bold">Confidence</span>
+                    <div className="bg-brand-bg/50 border border-brand-border p-3 rounded-xl">
+                      <span className="text-[9px] text-brand-text-muted uppercase font-bold">Confidence</span>
                       <p className="text-xl font-extrabold text-amber-400 mt-0.5">{evaluation.confidenceScore}%</p>
                     </div>
-                    <div className="bg-slate-950/50 border border-slate-900 p-3 rounded-xl">
-                      <span className="text-[9px] text-slate-500 uppercase font-bold">Pacing speed</span>
-                      <p className="text-sm font-extrabold text-slate-200 mt-1">{evaluation.speakingSpeed} WPM</p>
+                    <div className="bg-brand-bg/50 border border-brand-border p-3 rounded-xl">
+                      <span className="text-[9px] text-brand-text-muted uppercase font-bold">Pacing speed</span>
+                      <p className="text-sm font-extrabold text-brand-text-primary mt-1">{evaluation.speakingSpeed} WPM</p>
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold text-slate-300">Coach Feedback:</h4>
+                    <h4 className="text-xs font-bold text-brand-text-secondary">Coach Feedback:</h4>
                     <div className="space-y-2">
                       {evaluation.suggestedImprovements.map((imp: string, i: number) => (
-                        <div key={i} className="p-3 bg-slate-900/60 border border-slate-800 rounded-xl text-xs text-slate-300 flex items-start space-x-2 leading-relaxed">
+                        <div key={i} className="p-3 bg-brand-surface/60 border border-brand-border rounded-xl text-xs text-brand-text-secondary flex items-start space-x-2 leading-relaxed">
                           <AlertCircle className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                           <span>{imp}</span>
                         </div>
@@ -305,10 +305,10 @@ export const InterviewPrep: React.FC = () => {
 
             </div>
           ) : (
-            <div className="h-96 glass-card rounded-3xl border border-slate-800 flex flex-col items-center justify-center text-center p-8 space-y-4">
+            <div className="h-96 bg-brand-card border border-brand-border shadow-level-1 rounded-3xl border border-brand-border flex flex-col items-center justify-center text-center p-8 space-y-4">
               <span className="text-4xl">💼</span>
-              <h3 className="text-lg font-bold text-slate-200">Prep Board</h3>
-              <p className="text-xs text-slate-500 max-w-sm">
+              <h3 className="text-lg font-bold text-brand-text-primary">Prep Board</h3>
+              <p className="text-xs text-brand-text-muted max-w-sm">
                 Select an interview topic from the list on the left to review study strategies, check templates, and drill your audio delivery.
               </p>
             </div>

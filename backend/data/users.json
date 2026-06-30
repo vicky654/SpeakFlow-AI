@@ -25,16 +25,18 @@
     "email": "student@speakflow.com",
     "passwordHash": "$2a$10$AsuaLhfHe.49169J7ZaVSO47OgBiWqw2SYpo8co6b.znCkhd61T1e",
     "role": "student",
-    "xp": 145,
-    "coins": 16,
-    "streak": 3,
+    "xp": 155,
+    "coins": 18,
+    "streak": 4,
     "level": 2,
     "badges": [
       "Vocab Starter"
     ],
-    "favorites": [],
+    "favorites": [
+      "6a421ae7a648b5104e2cb47f"
+    ],
     "completedLessons": [],
     "createdAt": "2026-06-29T07:12:39.645Z",
-    "lastActive": "2026-06-29"
+    "lastActive": "2026-06-30"
   }
 ]

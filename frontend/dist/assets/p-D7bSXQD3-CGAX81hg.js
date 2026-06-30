@@ -1,3 +1,3 @@
-import{H as r,m as s,e as i,P as a,c as m}from"./index-DdZ5AWH4.js";/*!
+import{H as r,m as s,e as i,P as a,c as m}from"./index-CV3jB7up.js";/*!
  * (C) Ionic http://ionicframework.com - MIT License
  */const d=()=>{const e=window;e.addEventListener("statusTap",()=>{r(()=>{const n=document.elementFromPoint(e.innerWidth/2,e.innerHeight/2);if(!n)return;const t=s(n);t&&new Promise(o=>i(t,o)).then(()=>{a(async()=>{t.style.setProperty("--overflow","hidden"),await m(t,300),t.style.removeProperty("--overflow")})})})})};export{d as startStatusTap};

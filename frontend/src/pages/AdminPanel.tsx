@@ -205,7 +205,7 @@ export const AdminPanel: React.FC = () => {
         </div>
         <div>
           <h1 className="text-3xl font-extrabold text-white">Admin Control Center</h1>
-          <p className="text-xs text-slate-400 mt-1">Manage dictionary bases, append course curriculums, and audit stats metrics.</p>
+          <p className="text-xs text-brand-text-secondary mt-1">Manage dictionary bases, append course curriculums, and audit stats metrics.</p>
         </div>
       </div>
 
@@ -221,11 +221,11 @@ export const AdminPanel: React.FC = () => {
       )}
 
       {/* ADMIN TABS */}
-      <div className="flex bg-slate-900 border border-slate-800 p-1 rounded-2xl">
+      <div className="flex bg-brand-card border border-brand-border p-1 rounded-2xl">
         <button
           onClick={() => setActiveAdminTab('stats')}
           className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeAdminTab === 'stats' ? 'bg-rose-600 text-white' : 'text-slate-400 hover:text-slate-200'
+            activeAdminTab === 'stats' ? 'bg-rose-600 text-white' : 'text-brand-text-secondary hover:text-brand-text-primary'
           }`}
         >
           Platform Stats
@@ -233,7 +233,7 @@ export const AdminPanel: React.FC = () => {
         <button
           onClick={() => setActiveAdminTab('vocab')}
           className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeAdminTab === 'vocab' ? 'bg-rose-600 text-white' : 'text-slate-400 hover:text-slate-200'
+            activeAdminTab === 'vocab' ? 'bg-rose-600 text-white' : 'text-brand-text-secondary hover:text-brand-text-primary'
           }`}
         >
           Add Vocabulary
@@ -241,7 +241,7 @@ export const AdminPanel: React.FC = () => {
         <button
           onClick={() => setActiveAdminTab('lesson')}
           className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeAdminTab === 'lesson' ? 'bg-rose-600 text-white' : 'text-slate-400 hover:text-slate-200'
+            activeAdminTab === 'lesson' ? 'bg-rose-600 text-white' : 'text-brand-text-secondary hover:text-brand-text-primary'
           }`}
         >
           Add Course Lesson
@@ -249,7 +249,7 @@ export const AdminPanel: React.FC = () => {
         <button
           onClick={() => setActiveAdminTab('manage')}
           className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeAdminTab === 'manage' ? 'bg-rose-600 text-white' : 'text-slate-400 hover:text-slate-200'
+            activeAdminTab === 'manage' ? 'bg-rose-600 text-white' : 'text-brand-text-secondary hover:text-brand-text-primary'
           }`}
         >
           Manage Content
@@ -257,7 +257,7 @@ export const AdminPanel: React.FC = () => {
         <button
           onClick={() => setActiveAdminTab('challenge')}
           className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeAdminTab === 'challenge' ? 'bg-rose-600 text-white' : 'text-slate-400 hover:text-slate-200'
+            activeAdminTab === 'challenge' ? 'bg-rose-600 text-white' : 'text-brand-text-secondary hover:text-brand-text-primary'
           }`}
         >
           Challenge Days
@@ -270,60 +270,60 @@ export const AdminPanel: React.FC = () => {
           {stats ? (
             <>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div className="glass-card rounded-2xl p-5 border border-slate-800 text-left">
-                  <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Registered Users</span>
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 border border-brand-border text-left">
+                  <span className="text-[10px] text-brand-text-muted uppercase font-bold tracking-wider">Registered Users</span>
                   <p className="text-3xl font-extrabold text-white mt-1">{stats.summary.users}</p>
                 </div>
-                <div className="glass-card rounded-2xl p-5 border border-slate-800 text-left">
-                  <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Vocabulary base</span>
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 border border-brand-border text-left">
+                  <span className="text-[10px] text-brand-text-muted uppercase font-bold tracking-wider">Vocabulary base</span>
                   <p className="text-3xl font-extrabold text-white mt-1">{stats.summary.vocabulary} words</p>
                 </div>
-                <div className="glass-card rounded-2xl p-5 border border-slate-800 text-left">
-                  <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Curriculum Lessons</span>
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 border border-brand-border text-left">
+                  <span className="text-[10px] text-brand-text-muted uppercase font-bold tracking-wider">Curriculum Lessons</span>
                   <p className="text-3xl font-extrabold text-white mt-1">{stats.summary.lessons} units</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Users Roles Breakdown */}
-                <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-4 text-left">
-                  <h3 className="font-extrabold text-sm text-slate-200 flex items-center space-x-1.5">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-4 text-left">
+                  <h3 className="font-extrabold text-sm text-brand-text-primary flex items-center space-x-1.5">
                     <LayoutList className="w-4.5 h-4.5 text-rose-500" />
                     <span>User Roles Distribution</span>
                   </h3>
                   <div className="space-y-3">
-                    <div className="flex justify-between text-xs pb-1 border-b border-slate-850">
-                      <span className="text-slate-400">Students</span>
+                    <div className="flex justify-between text-xs pb-1 border-b border-brand-border">
+                      <span className="text-brand-text-secondary">Students</span>
                       <span className="font-bold text-white">{stats.roles.student}</span>
                     </div>
-                    <div className="flex justify-between text-xs pb-1 border-b border-slate-850">
-                      <span className="text-slate-400">Working Professionals</span>
+                    <div className="flex justify-between text-xs pb-1 border-b border-brand-border">
+                      <span className="text-brand-text-secondary">Working Professionals</span>
                       <span className="font-bold text-white">{stats.roles.professional}</span>
                     </div>
-                    <div className="flex justify-between text-xs pb-1 border-b border-slate-850">
-                      <span className="text-slate-400">Job Seekers</span>
+                    <div className="flex justify-between text-xs pb-1 border-b border-brand-border">
+                      <span className="text-brand-text-secondary">Job Seekers</span>
                       <span className="font-bold text-white">{stats.roles.jobSeeker}</span>
                     </div>
                     <div className="flex justify-between text-xs">
-                      <span className="text-slate-400">Administrators</span>
+                      <span className="text-brand-text-secondary">Administrators</span>
                       <span className="font-bold text-white">{stats.roles.admin}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Engagement indicators */}
-                <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-4 text-left">
-                  <h3 className="font-extrabold text-sm text-slate-200 flex items-center space-x-1.5">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-4 text-left">
+                  <h3 className="font-extrabold text-sm text-brand-text-primary flex items-center space-x-1.5">
                     <BarChart3 className="w-4.5 h-4.5 text-rose-500" />
                     <span>Engagement Metrics</span>
                   </h3>
                   <div className="space-y-3">
-                    <div className="flex justify-between text-xs pb-1 border-b border-slate-850">
-                      <span className="text-slate-400">Platform Total XP</span>
+                    <div className="flex justify-between text-xs pb-1 border-b border-brand-border">
+                      <span className="text-brand-text-secondary">Platform Total XP</span>
                       <span className="font-bold text-indigo-400">{stats.metrics.totalXp} XP</span>
                     </div>
                     <div className="flex justify-between text-xs">
-                      <span className="text-slate-400">Average Streak Duration</span>
+                      <span className="text-brand-text-secondary">Average Streak Duration</span>
                       <span className="font-bold text-orange-500">{stats.metrics.averageStreak} Days</span>
                     </div>
                   </div>
@@ -331,7 +331,7 @@ export const AdminPanel: React.FC = () => {
               </div>
             </>
           ) : (
-            <div className="h-40 flex items-center justify-center text-xs text-slate-500">
+            <div className="h-40 flex items-center justify-center text-xs text-brand-text-muted">
               Loading platform data logs...
             </div>
           )}
@@ -340,34 +340,34 @@ export const AdminPanel: React.FC = () => {
 
       {/* 2. ADD VOCABULARY FORM */}
       {activeAdminTab === 'vocab' && (
-        <form onSubmit={handleCreateVocab} className="glass-card rounded-3xl p-6 border border-slate-800 space-y-4 text-left">
-          <h3 className="font-bold text-slate-200 text-sm border-b border-slate-800 pb-2">Add New Word details</h3>
+        <form onSubmit={handleCreateVocab} className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-4 text-left">
+          <h3 className="font-bold text-brand-text-primary text-sm border-b border-brand-border pb-2">Add New Word details</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Word</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Word</label>
               <input
                 type="text" required placeholder="Resilience"
                 value={vocabForm.word}
                 onChange={e => setVocabForm({...vocabForm, word: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-rose-500/60"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none focus:border-rose-500/60"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Pronunciation Guide</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Pronunciation Guide</label>
               <input
                 type="text" placeholder="/rɪˈzɪlɪəns/"
                 value={vocabForm.pronunciation}
                 onChange={e => setVocabForm({...vocabForm, pronunciation: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Part of Speech</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Part of Speech</label>
               <select
                 value={vocabForm.partOfSpeech}
                 onChange={e => setVocabForm({...vocabForm, partOfSpeech: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               >
                 <option value="Adjective">Adjective</option>
                 <option value="Noun">Noun</option>
@@ -379,93 +379,93 @@ export const AdminPanel: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">English Definition</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">English Definition</label>
               <input
                 type="text" required placeholder="The capacity to recover quickly from difficulties."
                 value={vocabForm.englishMeaning}
                 onChange={e => setVocabForm({...vocabForm, englishMeaning: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Hindi Definition</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Hindi Definition</label>
               <input
                 type="text" required placeholder="लचीलापन"
                 value={vocabForm.hindiMeaning}
                 onChange={e => setVocabForm({...vocabForm, hindiMeaning: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Synonyms (comma separated)</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Synonyms (comma separated)</label>
               <input
                 type="text" placeholder="Grit, Toughness, Flexibility"
                 value={vocabForm.synonyms}
                 onChange={e => setVocabForm({...vocabForm, synonyms: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Antonyms (comma separated)</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Antonyms (comma separated)</label>
               <input
                 type="text" placeholder="Fragility, Weakness"
                 value={vocabForm.antonyms}
                 onChange={e => setVocabForm({...vocabForm, antonyms: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Example Sentence 1</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Example Sentence 1</label>
               <input
                 type="text" placeholder="The team showed great resilience after losing."
                 value={vocabForm.example1}
                 onChange={e => setVocabForm({...vocabForm, example1: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Example Sentence 2</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Example Sentence 2</label>
               <input
                 type="text" placeholder="Nylon is notable for its resilience."
                 value={vocabForm.example2}
                 onChange={e => setVocabForm({...vocabForm, example2: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Memory Trick</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Memory Trick</label>
               <input
                 type="text" placeholder="re-silence (pause to recover calm)"
                 value={vocabForm.memoryTrick}
                 onChange={e => setVocabForm({...vocabForm, memoryTrick: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Common Mistake</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Common Mistake</label>
               <input
                 type="text" placeholder="Do not write with an 'a' - resiliance."
                 value={vocabForm.commonMistakes}
                 onChange={e => setVocabForm({...vocabForm, commonMistakes: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Real-life Usage</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Real-life Usage</label>
               <input
                 type="text" placeholder="performance evaluations, retro reviews"
                 value={vocabForm.realLifeUsage}
                 onChange={e => setVocabForm({...vocabForm, realLifeUsage: e.target.value})}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
           </div>
@@ -482,16 +482,16 @@ export const AdminPanel: React.FC = () => {
 
       {/* 3. ADD LESSON FORM */}
       {activeAdminTab === 'lesson' && (
-        <form onSubmit={handleCreateLesson} className="glass-card rounded-3xl p-6 border border-slate-800 space-y-4 text-left">
-          <h3 className="font-bold text-slate-200 text-sm border-b border-slate-800 pb-2">Add New Lesson Unit</h3>
+        <form onSubmit={handleCreateLesson} className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-4 text-left">
+          <h3 className="font-bold text-brand-text-primary text-sm border-b border-brand-border pb-2">Add New Lesson Unit</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-1">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Lesson Category Type</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Lesson Category Type</label>
               <select
                 value={lessonType}
                 onChange={e => setLessonType(e.target.value as any)}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               >
                 <option value="grammar">Grammar Course</option>
                 <option value="reading">Reading Practice</option>
@@ -500,50 +500,50 @@ export const AdminPanel: React.FC = () => {
               </select>
             </div>
             <div className="space-y-1 md:col-span-2">
-              <label className="text-[10px] uppercase font-bold text-slate-400">Lesson Title</label>
+              <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Lesson Title</label>
               <input
                 type="text" required placeholder="e.g. Master Subject-Verb Agreement"
                 value={lessonTitle}
                 onChange={e => setLessonTitle(e.target.value)}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-[10px] uppercase font-bold text-slate-400">Syllabus Topic Category</label>
+            <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Syllabus Topic Category</label>
             <input
               type="text" required placeholder="e.g. Tenses, Business Presentations, Office Emails"
               value={lessonCategory}
               onChange={e => setLessonCategory(e.target.value)}
-              className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+              className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
             />
           </div>
 
           <div className="space-y-1">
-            <label className="text-[10px] uppercase font-bold text-slate-400">Lesson Content (Supports Text / Markdown)</label>
+            <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Lesson Content (Supports Text / Markdown)</label>
             <textarea
               required placeholder="# Title Here&#10;&#10;Use markdown headers and list points to build structured courses."
               value={lessonContent}
               onChange={e => setLessonContent(e.target.value)}
-              className="w-full h-36 p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none resize-none"
+              className="w-full h-36 p-3 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none resize-none"
             />
           </div>
 
           {/* QUIZ FORM WIDGET */}
-          <div className="p-4 bg-slate-950/60 border border-slate-900 rounded-2xl space-y-4">
+          <div className="p-4 bg-brand-bg/60 border border-brand-border rounded-2xl space-y-4">
             <h4 className="text-xs font-bold text-indigo-400 flex items-center space-x-1.5">
               <HelpCircle className="w-4 h-4" />
               <span>Configure Lesson Question 1 (Optional)</span>
             </h4>
 
             <div className="space-y-1">
-              <label className="text-[9px] uppercase font-bold text-slate-500">Question Text</label>
+              <label className="text-[9px] uppercase font-bold text-brand-text-muted">Question Text</label>
               <input
                 type="text" placeholder="Identify the correct sentence structure:"
                 value={q1Question}
                 onChange={e => setQ1Question(e.target.value)}
-                className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               />
             </div>
 
@@ -552,45 +552,45 @@ export const AdminPanel: React.FC = () => {
                 type="text" placeholder="Option A"
                 value={q1Opt1}
                 onChange={e => setQ1Opt1(e.target.value)}
-                className="p-2 bg-slate-900 border border-slate-800 rounded-xl text-[11px] text-slate-250 focus:outline-none"
+                className="p-2 bg-brand-card border border-brand-border rounded-xl text-[11px] text-slate-250 focus:outline-none"
               />
               <input
                 type="text" placeholder="Option B"
                 value={q1Opt2}
                 onChange={e => setQ1Opt2(e.target.value)}
-                className="p-2 bg-slate-900 border border-slate-800 rounded-xl text-[11px] text-slate-250 focus:outline-none"
+                className="p-2 bg-brand-card border border-brand-border rounded-xl text-[11px] text-slate-250 focus:outline-none"
               />
               <input
                 type="text" placeholder="Option C"
                 value={q1Opt3}
                 onChange={e => setQ1Opt3(e.target.value)}
-                className="p-2 bg-slate-900 border border-slate-800 rounded-xl text-[11px] text-slate-250 focus:outline-none"
+                className="p-2 bg-brand-card border border-brand-border rounded-xl text-[11px] text-slate-250 focus:outline-none"
               />
               <input
                 type="text" placeholder="Option D"
                 value={q1Opt4}
                 onChange={e => setQ1Opt4(e.target.value)}
-                className="p-2 bg-slate-900 border border-slate-800 rounded-xl text-[11px] text-slate-250 focus:outline-none"
+                className="p-2 bg-brand-card border border-brand-border rounded-xl text-[11px] text-slate-250 focus:outline-none"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-[9px] uppercase font-bold text-slate-500">Correct Option Match Text</label>
+                <label className="text-[9px] uppercase font-bold text-brand-text-muted">Correct Option Match Text</label>
                 <input
                   type="text" placeholder="Must exactly match correct option text"
                   value={q1Answer}
                   onChange={e => setQ1Answer(e.target.value)}
-                  className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                  className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-[9px] uppercase font-bold text-slate-500">Explanation Note</label>
+                <label className="text-[9px] uppercase font-bold text-brand-text-muted">Explanation Note</label>
                 <input
                   type="text" placeholder="E.g. We use singular verbs for collective singular nouns."
                   value={q1Explanation}
                   onChange={e => setQ1Explanation(e.target.value)}
-                  className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                  className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
                 />
               </div>
             </div>
@@ -611,7 +611,7 @@ export const AdminPanel: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
           
           {/* DICTIONARY MANAGEMENT */}
-          <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-4">
+          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-4">
             <h3 className="font-extrabold text-sm text-slate-250 flex items-center space-x-2">
               <BookOpen className="w-4.5 h-4.5 text-rose-400" />
               <span>Vocabulary Dictionary ({allWords.length})</span>
@@ -619,9 +619,9 @@ export const AdminPanel: React.FC = () => {
             
             <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
               {allWords.map(w => (
-                <div key={w._id} className="p-3 bg-slate-950/40 border border-slate-900 rounded-xl flex items-center justify-between gap-3 text-xs">
-                  <div className="text-left font-bold text-slate-200">
-                    {w.word} <span className="text-[10px] text-slate-500 font-normal">({w.partOfSpeech})</span>
+                <div key={w._id} className="p-3 bg-brand-surface/40 border border-brand-border rounded-xl flex items-center justify-between gap-3 text-xs">
+                  <div className="text-left font-bold text-brand-text-primary">
+                    {w.word} <span className="text-[10px] text-brand-text-muted font-normal">({w.partOfSpeech})</span>
                   </div>
                   <button
                     onClick={() => handleDeleteVocabItem(w._id)}
@@ -635,7 +635,7 @@ export const AdminPanel: React.FC = () => {
           </div>
 
           {/* CURRICULUM MANAGEMENT */}
-          <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-4">
+          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-4">
             <h3 className="font-extrabold text-sm text-slate-250 flex items-center space-x-2">
               <LayoutList className="w-4.5 h-4.5 text-rose-400" />
               <span>Curriculum Syllabus Chapters ({lessons.length})</span>
@@ -643,10 +643,10 @@ export const AdminPanel: React.FC = () => {
             
             <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
               {lessons.map(les => (
-                <div key={les._id} className="p-3 bg-slate-950/40 border border-slate-900 rounded-xl flex items-center justify-between gap-3 text-xs">
+                <div key={les._id} className="p-3 bg-brand-surface/40 border border-brand-border rounded-xl flex items-center justify-between gap-3 text-xs">
                   <div className="text-left">
-                    <p className="font-bold text-slate-200 truncate max-w-xs">{les.title}</p>
-                    <span className="text-[10px] text-slate-500 uppercase font-mono">{les.type} • {les.category}</span>
+                    <p className="font-bold text-brand-text-primary truncate max-w-xs">{les.title}</p>
+                    <span className="text-[10px] text-brand-text-muted uppercase font-mono">{les.type} • {les.category}</span>
                   </div>
                   <button
                     onClick={() => handleDeleteLessonItem(les._id)}
@@ -664,19 +664,19 @@ export const AdminPanel: React.FC = () => {
 
       {/* 5. CHALLENGE DAYS EDIT PANEL */}
       {activeAdminTab === 'challenge' && (
-        <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-6 text-left">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-850 pb-3">
+        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-6 text-left">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-brand-border pb-3">
             <div>
-              <h3 className="font-bold text-slate-200 text-sm">Curriculum Challenge Days Management</h3>
+              <h3 className="font-bold text-brand-text-primary text-sm">Curriculum Challenge Days Management</h3>
               <p className="text-[10px] text-slate-450 leading-normal mt-0.5">Select a day index to audit vocabulary sets and edit curriculum prompts.</p>
             </div>
             
             <div className="flex items-center space-x-2 shrink-0">
-              <span className="text-xs text-slate-400">Select Day:</span>
+              <span className="text-xs text-brand-text-secondary">Select Day:</span>
               <select
                 value={selectedChallengeDay}
                 onChange={e => setSelectedChallengeDay(parseInt(e.target.value))}
-                className="p-2 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                className="p-2 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
               >
                 {Array.from({ length: 15 }).map((_, i) => (
                   <option key={i + 1} value={i + 1}>Day {i + 1}</option>
@@ -689,55 +689,55 @@ export const AdminPanel: React.FC = () => {
             <div className="space-y-5">
               {/* Day Vocabulary items view */}
               <div className="space-y-2">
-                <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block">Vocabulary Items Seeding (10 Words)</span>
+                <span className="text-[9px] uppercase font-bold text-brand-text-secondary tracking-wider block">Vocabulary Items Seeding (10 Words)</span>
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
                   {dayDetails.vocabulary?.map((v: any, idx: number) => (
-                    <div key={idx} className="p-2 bg-slate-950/60 border border-slate-900 rounded-xl text-[10px] text-center">
+                    <div key={idx} className="p-2 bg-brand-bg/60 border border-brand-border rounded-xl text-[10px] text-center">
                       <p className="font-bold text-slate-205 truncate">{v.word}</p>
-                      <span className="text-slate-500 font-mono">{v.partOfSpeech}</span>
+                      <span className="text-brand-text-muted font-mono">{v.partOfSpeech}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Day details edit inputs */}
-              <div className="space-y-4 pt-2 border-t border-slate-850">
+              <div className="space-y-4 pt-2 border-t border-brand-border">
                 <div className="space-y-1">
-                  <label className="text-[10px] uppercase font-bold text-slate-400">Grammar Concept Title</label>
+                  <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Grammar Concept Title</label>
                   <input
                     type="text"
                     value={editingGrammarConcept}
                     onChange={e => setEditingGrammarConcept(e.target.value)}
-                    className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                    className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] uppercase font-bold text-slate-400">Grammar Explanation</label>
+                  <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Grammar Explanation</label>
                   <textarea
                     value={editingGrammarExplanation}
                     onChange={e => setEditingGrammarExplanation(e.target.value)}
-                    className="w-full h-24 p-3 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none resize-none leading-relaxed"
+                    className="w-full h-24 p-3 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none resize-none leading-relaxed"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] uppercase font-bold text-slate-400">Speaking Challenge Prompt</label>
+                  <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Speaking Challenge Prompt</label>
                   <input
                     type="text"
                     value={editingSpeakingPrompt}
                     onChange={e => setEditingSpeakingPrompt(e.target.value)}
-                    className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                    className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[10px] uppercase font-bold text-slate-400">Writing prompt</label>
+                  <label className="text-[10px] uppercase font-bold text-brand-text-secondary">Writing prompt</label>
                   <input
                     type="text"
                     value={editingWritingPrompt}
                     onChange={e => setEditingWritingPrompt(e.target.value)}
-                    className="w-full p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none"
+                    className="w-full p-2.5 bg-brand-card border border-brand-border rounded-xl text-xs text-brand-text-primary focus:outline-none"
                   />
                 </div>
               </div>
@@ -785,7 +785,7 @@ export const AdminPanel: React.FC = () => {
               </button>
             </div>
           ) : (
-            <div className="text-xs text-slate-500 py-3">Fetching day metadata...</div>
+            <div className="text-xs text-brand-text-muted py-3">Fetching day metadata...</div>
           )}
         </div>
       )}

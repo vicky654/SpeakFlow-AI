@@ -60,7 +60,7 @@ export const PracticeHub: React.FC = () => {
       {/* HEADER CARD */}
       <div className="space-y-1">
         <h2 className="text-2xl font-extrabold text-white">Interactive Practice</h2>
-        <p className="text-xs text-slate-400">Drill pronunciations, accents, and communication scripts with real-time AI advice.</p>
+        <p className="text-xs text-brand-text-secondary">Drill pronunciations, accents, and communication scripts with real-time AI advice.</p>
       </div>
 
       {/* PRACTICE LIST */}
@@ -71,16 +71,16 @@ export const PracticeHub: React.FC = () => {
             <div
               key={idx}
               onClick={() => navigate(mod.to)}
-              className="glass-card rounded-2xl p-4 border border-slate-200/10 dark:border-slate-800/80 hover:border-indigo-500/30 transition-all flex items-center justify-between gap-4 cursor-pointer active:scale-[0.99]"
+              className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 border border-brand-border dark:border-brand-border hover:border-indigo-500/30 transition-all flex items-center justify-between gap-4 cursor-pointer active:scale-[0.99]"
             >
               <div className="flex items-center space-x-3.5 flex-1 min-w-0">
                 <div className={`p-3 rounded-xl bg-gradient-to-tr ${mod.color} text-white shrink-0 shadow-md`}>
                   <Icon className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <h4 className="font-bold text-sm text-slate-100 truncate">{mod.title}</h4>
-                  <p className="text-[11px] text-slate-400 line-clamp-1 leading-normal mt-0.5">{mod.desc}</p>
-                  <span className="text-[9px] uppercase tracking-wider font-extrabold text-slate-500 mt-1 block">
+                  <h4 className="font-bold text-sm text-brand-text-primary truncate">{mod.title}</h4>
+                  <p className="text-[11px] text-brand-text-secondary line-clamp-1 leading-normal mt-0.5">{mod.desc}</p>
+                  <span className="text-[9px] uppercase tracking-wider font-extrabold text-brand-text-muted mt-1 block">
                     {mod.label}
                   </span>
                 </div>
@@ -88,7 +88,7 @@ export const PracticeHub: React.FC = () => {
               
               <div className="flex items-center space-x-2 shrink-0">
                 <ProgressRing radius={16} stroke={2.5} progress={mod.progress} color={mod.strokeColor} />
-                <ArrowRight className="w-4 h-4 text-slate-600" />
+                <ArrowRight className="w-4 h-4 text-brand-text-muted" />
               </div>
             </div>
           );

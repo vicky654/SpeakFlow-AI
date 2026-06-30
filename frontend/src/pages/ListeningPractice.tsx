@@ -102,12 +102,12 @@ export const ListeningPractice: React.FC = () => {
       {/* HEADER */}
       <div className="space-y-1">
         <h2 className="text-2xl font-extrabold text-white">Listening Lab</h2>
-        <p className="text-xs text-slate-400">Improve transcription retention & decode accents.</p>
+        <p className="text-xs text-brand-text-secondary">Improve transcription retention & decode accents.</p>
       </div>
 
       {/* 1. SCENARIO SELECTOR CAROUSEL */}
       <div className="space-y-2">
-        <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 pl-1">Dialogues Playlists</span>
+        <span className="text-[10px] uppercase font-bold tracking-wider text-brand-text-muted pl-1">Dialogues Playlists</span>
         <div className="flex space-x-3 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory">
           {lessons.map(sc => (
             <button
@@ -116,13 +116,13 @@ export const ListeningPractice: React.FC = () => {
               className={`snap-center shrink-0 w-60 p-4 rounded-2xl border text-left transition-all active:scale-95 ${
                 activeLesson?._id === sc._id
                   ? 'bg-indigo-600/15 border-indigo-500 text-white'
-                  : 'glass-card border-slate-800 text-slate-400'
+                  : 'bg-brand-card border border-brand-border shadow-level-1 border-brand-border text-brand-text-secondary'
               }`}
             >
               <span className="text-[9px] uppercase font-extrabold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                 {sc.category}
               </span>
-              <h4 className="font-extrabold text-xs mt-2 text-slate-200 line-clamp-1">{sc.title}</h4>
+              <h4 className="font-extrabold text-xs mt-2 text-brand-text-primary line-clamp-1">{sc.title}</h4>
             </button>
           ))}
         </div>
@@ -132,16 +132,16 @@ export const ListeningPractice: React.FC = () => {
       {activeLesson ? (
         <div className="space-y-4">
           {/* AUDIO PLAYER BOARD */}
-          <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 space-y-4">
-            <div className="flex justify-between items-center border-b border-slate-900 pb-2">
-              <span className="text-[9px] text-slate-400 uppercase font-black tracking-widest">Now Playing</span>
+          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border dark:border-brand-border space-y-4">
+            <div className="flex justify-between items-center border-b border-brand-border pb-2">
+              <span className="text-[9px] text-brand-text-secondary uppercase font-black tracking-widest">Now Playing</span>
               <span className="text-[9px] text-indigo-400 font-extrabold uppercase">{activeLesson.category}</span>
             </div>
 
-            <h3 className="font-extrabold text-sm text-slate-100">{activeLesson.title}</h3>
+            <h3 className="font-extrabold text-sm text-brand-text-primary">{activeLesson.title}</h3>
 
             {/* Simulated Audio Player Dashboard */}
-            <div className="w-full bg-slate-950/70 p-3.5 border border-slate-900 rounded-2xl flex items-center justify-between gap-3">
+            <div className="w-full bg-brand-surface p-3.5 border border-brand-border rounded-2xl flex items-center justify-between gap-3">
               <div className="flex items-center space-x-3">
                 <button
                   onClick={handlePlaySpeech}
@@ -151,13 +151,13 @@ export const ListeningPractice: React.FC = () => {
                 </button>
                 <button
                   onClick={handleStopSpeech}
-                  className="p-2 rounded-full bg-slate-900 border border-slate-850 text-slate-400 active:scale-90"
+                  className="p-2 rounded-full bg-brand-card border border-brand-border text-brand-text-secondary active:scale-90"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                 </button>
                 <div className="space-y-0.5 text-left min-w-0">
-                  <p className="text-[11px] font-bold text-slate-200 truncate">{isPlaying ? 'Streaming Audio...' : 'Audio Loaded'}</p>
-                  <p className="text-[9px] text-slate-500">0.85x speed • en-US voice</p>
+                  <p className="text-[11px] font-bold text-brand-text-primary truncate">{isPlaying ? 'Streaming Audio...' : 'Audio Loaded'}</p>
+                  <p className="text-[9px] text-brand-text-muted">0.85x speed • en-US voice</p>
                 </div>
               </div>
 
@@ -173,13 +173,13 @@ export const ListeningPractice: React.FC = () => {
                     />
                   ))
                 ) : (
-                  <div className="w-full h-0.5 bg-slate-800" />
+                  <div className="w-full h-0.5 bg-brand-surface" />
                 )}
               </div>
             </div>
 
             {/* TRANSCRIPT ACCORDION */}
-            <div className="border-t border-slate-900 pt-3">
+            <div className="border-t border-brand-border pt-3">
               <button 
                 onClick={() => setShowTranscript(!showTranscript)}
                 className="flex items-center justify-between w-full text-xs font-bold text-indigo-400 active:text-indigo-300"
@@ -188,7 +188,7 @@ export const ListeningPractice: React.FC = () => {
                   <BookOpen className="w-3.5 h-3.5" />
                   <span>{showTranscript ? 'Hide Dialogue Script' : 'Show Dialogue Script'}</span>
                 </span>
-                <span className="text-[10px] text-slate-500">{showTranscript ? 'Close' : 'Read'}</span>
+                <span className="text-[10px] text-brand-text-muted">{showTranscript ? 'Close' : 'Read'}</span>
               </button>
 
               <AnimatePresence>
@@ -199,7 +199,7 @@ export const ListeningPractice: React.FC = () => {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden mt-3"
                   >
-                    <div className="p-3 bg-slate-950/60 border border-slate-900 rounded-xl text-xs text-slate-300 max-h-40 overflow-y-auto leading-relaxed whitespace-pre-line italic">
+                    <div className="p-3 bg-brand-bg/60 border border-brand-border rounded-xl text-xs text-brand-text-secondary max-h-40 overflow-y-auto leading-relaxed whitespace-pre-line italic">
                       {activeLesson.content.replace(/\*\*Dialogue Transcript:\*\*/gi, '').replace(/\*/g, '')}
                     </div>
                   </motion.div>
@@ -209,8 +209,8 @@ export const ListeningPractice: React.FC = () => {
           </div>
 
           {/* COMPREHENSION QUIZ BOARD */}
-          <div className="glass-card rounded-3xl p-5 border border-slate-200/10 dark:border-slate-800/80 space-y-4">
-            <h3 className="font-extrabold text-sm text-slate-200 flex items-center space-x-2 border-b border-slate-900 pb-2.5">
+          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border dark:border-brand-border space-y-4">
+            <h3 className="font-extrabold text-sm text-brand-text-primary flex items-center space-x-2 border-b border-brand-border pb-2.5">
               <HelpCircle className="w-4.5 h-4.5 text-indigo-400" />
               <span>Comprehension Quiz</span>
             </h3>
@@ -218,14 +218,14 @@ export const ListeningPractice: React.FC = () => {
             <div className="space-y-4">
               {activeLesson.metadata.questions?.map((q, idx) => (
                 <div key={q.id} className="space-y-2">
-                  <p className="text-xs font-bold text-slate-300">
+                  <p className="text-xs font-bold text-brand-text-secondary">
                     {idx + 1}. {q.question}
                   </p>
                   <div className="grid grid-cols-1 gap-2">
                     {q.options.map((opt, i) => {
                       const isSelected = selectedAnswers[q.id] === opt;
                       const isCorrect = q.answer === opt;
-                      let btnClass = 'bg-slate-950/40 border-slate-900 text-slate-300 active:scale-[0.99]';
+                      let btnClass = 'bg-brand-surface/40 border-brand-border text-brand-text-secondary active:scale-[0.99]';
 
                       if (isSelected) {
                         btnClass = 'bg-indigo-600 border-indigo-500 text-white shadow-md font-bold';
@@ -237,7 +237,7 @@ export const ListeningPractice: React.FC = () => {
                         } else if (isSelected) {
                           btnClass = 'bg-rose-500/15 border-rose-500 text-rose-400 font-bold line-through';
                         } else {
-                          btnClass = 'bg-slate-950/20 border-slate-900/60 text-slate-600 opacity-50';
+                          btnClass = 'bg-brand-bg/20 border-brand-border/60 text-brand-text-muted opacity-50';
                         }
                       }
 
@@ -284,10 +284,10 @@ export const ListeningPractice: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="h-64 glass-card rounded-3xl border border-slate-200/10 flex flex-col items-center justify-center text-center p-6 space-y-3">
+        <div className="h-64 bg-brand-card border border-brand-border shadow-level-1 rounded-3xl border border-brand-border flex flex-col items-center justify-center text-center p-6 space-y-3">
           <span className="text-3xl">🎧</span>
-          <h3 className="text-sm font-bold text-slate-200">Select Scenario</h3>
-          <p className="text-[10px] text-slate-500 max-w-xs leading-normal">
+          <h3 className="text-sm font-bold text-brand-text-primary">Select Scenario</h3>
+          <p className="text-[10px] text-brand-text-muted max-w-xs leading-normal">
             Choose an audio dialogue scenario from the horizontal cards list above to start your listening practice.
           </p>
         </div>

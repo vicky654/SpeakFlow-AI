@@ -80,14 +80,14 @@ export const ReadingPractice: React.FC = () => {
           <BookOpenCheck className="w-8 h-8 text-indigo-400" />
           <span>Reading Practice Hub</span>
         </h1>
-        <p className="text-xs text-slate-400 mt-1">Read curated articles, complete vocabulary quizzes, and write brief reviews.</p>
+        <p className="text-xs text-brand-text-secondary mt-1">Read curated articles, complete vocabulary quizzes, and write brief reviews.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
         
         {/* LEFT COLUMN: LIST */}
         <div className="flex flex-col space-y-4 lg:col-span-1">
-          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider pl-1 font-sans">Articles & Stories</h3>
+          <h3 className="text-xs font-bold text-brand-text-secondary uppercase tracking-wider pl-1 font-sans">Articles & Stories</h3>
           
           <div className="space-y-3">
             {lessons.map(sc => (
@@ -97,13 +97,13 @@ export const ReadingPractice: React.FC = () => {
                 className={`p-4 rounded-2xl border text-left cursor-pointer transition-all ${
                   activeLesson?._id === sc._id
                     ? 'bg-indigo-600/15 border-indigo-500 text-white'
-                    : 'glass-card border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                    : 'bg-brand-card border border-brand-border shadow-level-1 border-brand-border text-brand-text-secondary hover:border-brand-border hover:text-brand-text-primary'
                 }`}
               >
                 <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                   {sc.category}
                 </span>
-                <h4 className="font-bold text-sm mt-2 text-slate-200">{sc.title}</h4>
+                <h4 className="font-bold text-sm mt-2 text-brand-text-primary">{sc.title}</h4>
               </div>
             ))}
           </div>
@@ -115,26 +115,26 @@ export const ReadingPractice: React.FC = () => {
             <div className="space-y-6">
               
               {/* READING STORY TEXT VIEW */}
-              <div className="glass-card rounded-3xl p-6 md:p-8 border border-slate-800 space-y-4">
+              <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 md:p-8 border border-brand-border space-y-4">
                 <span className="text-[10px] uppercase font-extrabold tracking-widest text-indigo-400">
                   {activeLesson.category}
                 </span>
                 <h2 className="text-2xl font-extrabold text-white leading-tight">{activeLesson.title}</h2>
                 
                 {/* Readable format content box */}
-                <div className="text-slate-300 text-sm leading-relaxed whitespace-pre-line border-t border-slate-800/80 pt-4 font-sans max-h-80 overflow-y-auto pr-2">
+                <div className="text-brand-text-secondary text-sm leading-relaxed whitespace-pre-line border-t border-brand-border pt-4 font-sans max-h-80 overflow-y-auto pr-2">
                   {activeLesson.content.replace(/#\s+.+/g, '')} {/* strip out duplicates headers if any */}
                 </div>
               </div>
 
               {/* STUDY TABS */}
-              <div className="flex bg-slate-900 border border-slate-800 p-1 rounded-2xl">
+              <div className="flex bg-brand-card border border-brand-border p-1 rounded-2xl">
                 <button
                   onClick={() => setActiveWorkspaceTab('quiz')}
                   className={`flex-1 flex items-center justify-center space-x-2 py-2.5 rounded-xl text-xs font-bold transition-all ${
                     activeWorkspaceTab === 'quiz' 
                       ? 'bg-indigo-600 text-white shadow-md' 
-                      : 'text-slate-400 hover:text-slate-200'
+                      : 'text-brand-text-secondary hover:text-brand-text-primary'
                   }`}
                 >
                   <HelpCircle className="w-3.5 h-3.5" />
@@ -145,7 +145,7 @@ export const ReadingPractice: React.FC = () => {
                   className={`flex-1 flex items-center justify-center space-x-2 py-2.5 rounded-xl text-xs font-bold transition-all ${
                     activeWorkspaceTab === 'summary' 
                       ? 'bg-indigo-600 text-white shadow-md' 
-                      : 'text-slate-400 hover:text-slate-200'
+                      : 'text-brand-text-secondary hover:text-brand-text-primary'
                   }`}
                 >
                   <Edit3 className="w-3.5 h-3.5" />
@@ -155,18 +155,18 @@ export const ReadingPractice: React.FC = () => {
 
               {/* COMPREHENSION QUIZ TAB */}
               {activeWorkspaceTab === 'quiz' && (
-                <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-6">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-6">
                   <div className="space-y-6">
                     {activeLesson.metadata.questions?.map((q, idx) => (
                       <div key={q.id} className="space-y-3">
-                        <p className="text-sm font-bold text-slate-300">
+                        <p className="text-sm font-bold text-brand-text-secondary">
                           {idx + 1}. {q.question}
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {q.options.map((opt, i) => {
                             const isSelected = selectedAnswers[q.id] === opt;
                             const isCorrect = q.answer === opt;
-                            let btnClass = 'bg-slate-900/60 border-slate-800 text-slate-300 hover:border-indigo-500/40';
+                            let btnClass = 'bg-brand-surface/60 border-brand-border text-brand-text-secondary hover:border-indigo-500/40';
 
                             if (isSelected) {
                               btnClass = 'bg-indigo-600 border-indigo-500 text-white shadow-md';
@@ -178,7 +178,7 @@ export const ReadingPractice: React.FC = () => {
                               } else if (isSelected) {
                                 btnClass = 'bg-rose-500/20 border-rose-500 text-rose-400 line-through';
                               } else {
-                                btnClass = 'bg-slate-900/40 border-slate-850 text-slate-500 opacity-60';
+                                btnClass = 'bg-brand-surface/40 border-brand-border text-brand-text-muted opacity-60';
                               }
                             }
 
@@ -226,10 +226,10 @@ export const ReadingPractice: React.FC = () => {
 
               {/* SUMMARY WRITING TAB */}
               {activeWorkspaceTab === 'summary' && (
-                <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-5">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-5">
                   <div className="space-y-1">
-                    <h3 className="font-bold text-slate-200">Submit a Story Summary</h3>
-                    <p className="text-[11px] text-slate-400">Write a brief 1-3 sentence summary of what you read. Our parser will evaluate sentence spelling, case structure, and length.</p>
+                    <h3 className="font-bold text-brand-text-primary">Submit a Story Summary</h3>
+                    <p className="text-[11px] text-brand-text-secondary">Write a brief 1-3 sentence summary of what you read. Our parser will evaluate sentence spelling, case structure, and length.</p>
                   </div>
 
                   <form onSubmit={handleSubmitSummary} className="space-y-4">
@@ -238,7 +238,7 @@ export const ReadingPractice: React.FC = () => {
                       placeholder="Write your summary here... (e.g. Emails are essential in corporate systems. We should construct neat subject lines and keep requests direct.)"
                       value={summaryText}
                       onChange={(e) => setSummaryText(e.target.value)}
-                      className="w-full h-32 p-4 bg-slate-905 border border-slate-800 rounded-2xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/30 transition-all font-sans leading-relaxed resize-none"
+                      className="w-full h-32 p-4 bg-brand-surface border border-brand-border rounded-2xl text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/30 transition-all font-sans leading-relaxed resize-none"
                     />
 
                     {!writingResult ? (
@@ -252,9 +252,9 @@ export const ReadingPractice: React.FC = () => {
                       </button>
                     ) : (
                       <div className="space-y-4 pt-2">
-                        <div className="flex justify-between items-center bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+                        <div className="flex justify-between items-center bg-brand-card border border-brand-border p-4 rounded-2xl">
                           <div className="text-left">
-                            <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Evaluation Score</span>
+                            <span className="text-[10px] text-brand-text-muted uppercase font-bold tracking-wider">Evaluation Score</span>
                             <p className="text-xl font-extrabold text-indigo-400 mt-0.5">{writingResult.score} / 100</p>
                           </div>
                           <span className="text-xs text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
@@ -263,9 +263,9 @@ export const ReadingPractice: React.FC = () => {
                         </div>
 
                         <div className="space-y-2 text-left">
-                          <h4 className="text-xs font-bold text-slate-300">Writing Analysis Details:</h4>
+                          <h4 className="text-xs font-bold text-brand-text-secondary">Writing Analysis Details:</h4>
                           {writingResult.feedback.map((f: string, i: number) => (
-                            <div key={i} className="p-3 bg-slate-950/40 border border-slate-900 rounded-xl text-xs text-slate-300 leading-relaxed">
+                            <div key={i} className="p-3 bg-brand-surface/40 border border-brand-border rounded-xl text-xs text-brand-text-secondary leading-relaxed">
                               {f}
                             </div>
                           ))}
@@ -274,7 +274,7 @@ export const ReadingPractice: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => { setWritingResult(null); setSummaryText(''); }}
-                          className="w-full py-2.5 bg-slate-900 border border-slate-800 text-slate-300 hover:text-white rounded-xl text-xs font-bold transition-all"
+                          className="w-full py-2.5 bg-brand-card border border-brand-border text-brand-text-secondary hover:text-white rounded-xl text-xs font-bold transition-all"
                         >
                           Rewrite / Practice Again
                         </button>
@@ -286,10 +286,10 @@ export const ReadingPractice: React.FC = () => {
 
             </div>
           ) : (
-            <div className="h-96 glass-card rounded-3xl border border-slate-800 flex flex-col items-center justify-center text-center p-8 space-y-4">
+            <div className="h-96 bg-brand-card border border-brand-border shadow-level-1 rounded-3xl border border-brand-border flex flex-col items-center justify-center text-center p-8 space-y-4">
               <span className="text-4xl">📖</span>
-              <h3 className="text-lg font-bold text-slate-200">Reader Workspace</h3>
-              <p className="text-xs text-slate-500 max-w-sm">
+              <h3 className="text-lg font-bold text-brand-text-primary">Reader Workspace</h3>
+              <p className="text-xs text-brand-text-muted max-w-sm">
                 Select an article or business report from the list on the left to start reading and test your analytical vocabulary skills.
               </p>
             </div>

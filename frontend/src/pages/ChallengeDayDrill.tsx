@@ -9,6 +9,8 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import API_BASE_URL from '../config/api';
+import { WordCard } from '../components/WordCard';
+import { motion } from 'framer-motion';
 
 export const ChallengeDayDrill: React.FC = () => {
   const { dayNumber } = useParams<{ dayNumber: string }>();
@@ -110,9 +112,9 @@ export const ChallengeDayDrill: React.FC = () => {
 
   if (!activeDayContent) {
     return (
-      <div className="min-h-screen w-full flex items-center justify-center bg-slate-950 flex-col space-y-3">
+      <div className="min-h-screen w-full flex items-center justify-center bg-brand-bg flex-col space-y-3">
         <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-        <p className="text-xs text-slate-400">Loading today's learning journey...</p>
+        <p className="text-xs text-brand-text-secondary">Loading today's learning journey...</p>
       </div>
     );
   }
@@ -266,27 +268,27 @@ export const ChallengeDayDrill: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 select-none max-w-md mx-auto pb-12 pt-4 px-2">
+    <div className="space-y-6 select-none max-w-md mx-auto pb-12 pt-4 px-2 text-brand-text-primary">
       
       {/* Top Header Navigation */}
-      <div className="flex items-center justify-between border-b border-slate-900 pb-3 shrink-0">
+      <div className="flex items-center justify-between border-b border-brand-border pb-3 shrink-0">
         <button
           onClick={() => navigate('/')}
-          className="flex items-center space-x-1.5 text-xs text-slate-400 hover:text-white transition-all active:scale-95"
+          className="flex items-center space-x-1.5 text-xs text-brand-text-secondary hover:text-brand-text-primary transition-all active:scale-95"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Exit Lesson</span>
         </button>
-        <span className="text-[10px] uppercase font-black px-2.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+        <span className="text-[10px] uppercase font-black px-2.5 py-0.5 rounded bg-brand-primary/10 text-brand-primary border border-brand-primary/20">
           Day {dayNum} Learning Flow
         </span>
       </div>
 
       {/* Step Progress indicators */}
       <div className="space-y-1.5 text-left">
-        <div className="flex justify-between text-[9px] font-black text-slate-500 uppercase tracking-widest">
+        <div className="flex justify-between text-[9px] font-black text-brand-text-secondary uppercase tracking-widest">
           <span>Drill Step {step} of 6</span>
-          <span className="text-indigo-400">
+          <span className="text-brand-primary">
             {step === 1 ? '1. Learn 10 Words' :
              step === 2 ? '2. Listen Pronunciation' :
              step === 3 ? '3. Read Examples' :
@@ -295,9 +297,9 @@ export const ChallengeDayDrill: React.FC = () => {
              '6. Earn Rewards'}
           </span>
         </div>
-        <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-900">
+        <div className="w-full h-2 bg-brand-bg rounded-full overflow-hidden border border-brand-border">
           <div 
-            className="h-full bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-300"
+            className="h-full bg-brand-primary transition-all duration-300"
             style={{ width: `${(step / 6) * 100}%` }}
           />
         </div>
@@ -308,101 +310,45 @@ export const ChallengeDayDrill: React.FC = () => {
         <div className="space-y-5 text-left">
           <div className="flex justify-between items-center px-1">
             <div>
-              <h3 className="font-extrabold text-white text-base">Step 1: Vocabulary Cards</h3>
-              <p className="text-[10px] text-slate-400">Tap cards to flip. Mark all words as learned.</p>
+              <h3 className="font-extrabold text-brand-text-primary text-base">Step 1: Vocabulary Cards</h3>
+              <p className="text-[10px] text-brand-text-secondary">Tap cards to flip. Mark all words as learned.</p>
             </div>
             <button
               onClick={handleRefreshVocab}
               disabled={refreshingVocab}
-              className="flex items-center space-x-1 px-2.5 py-1 bg-slate-900 border border-slate-800 rounded-lg text-[9px] font-bold text-slate-400 hover:text-white disabled:opacity-30 active:scale-95"
+              className="flex items-center space-x-1 px-2.5 py-1 bg-brand-surface border border-brand-border rounded-lg text-[9px] font-bold text-brand-text-secondary hover:text-brand-text-primary disabled:opacity-30 active:scale-95"
             >
               <RefreshCw className={`w-3 h-3 ${refreshingVocab ? 'animate-spin' : ''}`} />
               <span>Refresh words</span>
             </button>
           </div>
 
-          {/* Flashcard container */}
-          <div 
-            className="w-full h-[370px] cursor-pointer flip-card"
-            onClick={() => setIsFlipped(!isFlipped)}
-          >
-            <div className={`relative w-full h-full flip-card-inner rounded-3xl border border-slate-205/10 dark:border-slate-800/80 shadow-xl ${isFlipped ? 'flip-card-flipped' : ''}`}>
-              
-              {/* Card Front */}
-              <div className="absolute inset-0 w-full h-full p-6 flex flex-col justify-between rounded-3xl bg-slate-900/85 dark:bg-slate-950/85 flip-card-front text-center">
-                <div className="flex justify-between items-center">
-                  <span className="text-[9px] font-extrabold px-2.5 py-0.5 rounded-full bg-indigo-500/15 text-indigo-400 border border-indigo-500/20">
-                    {currentVocabulary[vocabIndex].partOfSpeech}
-                  </span>
-                  
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleFavorite(currentVocabulary[vocabIndex]._id);
-                    }}
-                    className="text-slate-400 hover:text-white transition-all active:scale-90"
-                  >
-                    {favorites.includes(currentVocabulary[vocabIndex]._id) ? (
-                      <Star className="w-4 h-4 text-amber-400 fill-current" />
-                    ) : (
-                      <StarOff className="w-4 h-4" />
-                    )}
-                  </button>
-                </div>
-
-                <div className="my-auto space-y-3">
-                  <h2 className="text-3xl font-black text-white tracking-wide">
-                    {currentVocabulary[vocabIndex].word}
-                  </h2>
-                  <div className="flex items-center justify-center space-x-1.5">
-                    <span className="text-slate-400 font-mono text-xs">{currentVocabulary[vocabIndex].pronunciation}</span>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); handleSpeakWord(currentVocabulary[vocabIndex].word); }}
-                      className="p-1 rounded-full bg-indigo-500/15 border border-indigo-500/20 text-indigo-400 active:scale-95"
-                    >
-                      <Volume2 className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                  
-                  <div className="pt-2">
-                    <span className="text-[8px] text-slate-500 uppercase tracking-widest block font-bold">Hindi Meaning</span>
-                    <p className="text-xl font-bold text-slate-105">{currentVocabulary[vocabIndex].hindiMeaning}</p>
-                  </div>
-                </div>
-
-                <p className="text-[9px] text-slate-550 italic">Tap card to see explanations & memory trick</p>
-              </div>
-
-              {/* Card Back */}
-              <div className="absolute inset-0 w-full h-full p-6 flex flex-col justify-between overflow-y-auto rounded-3xl bg-slate-900/95 dark:bg-slate-950/95 flip-card-back">
-                <div className="space-y-3 text-left">
-                  <div>
-                    <span className="text-[8px] uppercase tracking-wider text-slate-500 font-bold">English Meaning</span>
-                    <p className="text-xs text-slate-200 mt-0.5 leading-normal">{currentVocabulary[vocabIndex].englishMeaning}</p>
-                  </div>
-                  <div>
-                    <span className="text-[8px] uppercase tracking-wider text-indigo-400 font-bold">Easy Explanation</span>
-                    <p className="text-xs text-indigo-200/90 mt-0.5 leading-normal">{currentVocabulary[vocabIndex].easyExplanation || 'A very simple term to remember.'}</p>
-                  </div>
-                  <div>
-                    <span className="text-[8px] uppercase tracking-wider text-slate-500 font-bold">Memory Trick</span>
-                    <p className="text-xs text-slate-350 italic mt-0.5 leading-normal bg-slate-950/50 p-2.5 rounded-xl border border-slate-900">
-                      {currentVocabulary[vocabIndex].memoryTrick}
-                    </p>
-                  </div>
-                </div>
-                <span className="text-[8px] text-slate-600 text-center pt-2">Tap to flip card back</span>
-              </div>
-
-            </div>
+          {/* Reusable WordCard component with full gestures */}
+          <div className="flex justify-center">
+            <WordCard
+              word={currentVocabulary[vocabIndex]}
+              isLearned={learnedWords.has(currentVocabulary[vocabIndex]._id)}
+              onLearned={() => handleMarkAsLearned(currentVocabulary[vocabIndex]._id)}
+              onNext={() => {
+                if (vocabIndex < currentVocabulary.length - 1) {
+                  setVocabIndex(prev => prev + 1);
+                }
+              }}
+              onPrev={() => {
+                if (vocabIndex > 0) {
+                  setVocabIndex(prev => prev - 1);
+                }
+              }}
+              isFirstCard={vocabIndex === 0}
+            />
           </div>
 
           {/* Flashcard actions & markers */}
           <div className="flex justify-between items-center text-xs px-1">
             <button
               disabled={vocabIndex === 0}
-              onClick={() => { setVocabIndex(prev => prev - 1); setIsFlipped(false); }}
-              className="p-2.5 bg-slate-905 border border-slate-800 rounded-xl text-slate-300 disabled:opacity-20 active:scale-95 transition-all font-bold"
+              onClick={() => { setVocabIndex(prev => prev - 1); }}
+              className="px-5 py-3 min-h-[44px] bg-brand-surface border border-brand-border rounded-xl text-brand-text-primary disabled:opacity-20 active:scale-95 transition-all font-semibold text-xs flex items-center justify-center shadow-sm"
             >
               Back
             </button>
@@ -410,10 +356,10 @@ export const ChallengeDayDrill: React.FC = () => {
             <button
               onClick={() => handleMarkAsLearned(currentVocabulary[vocabIndex]._id)}
               disabled={learnedWords.has(currentVocabulary[vocabIndex]._id)}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
+              className={`px-5 py-3 min-h-[44px] rounded-xl text-xs font-semibold transition-all flex items-center justify-center ${
                 learnedWords.has(currentVocabulary[vocabIndex]._id)
-                  ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 cursor-default'
-                  : 'bg-indigo-600 active:bg-indigo-500 text-white shadow-md'
+                  ? 'bg-brand-success/15 border border-brand-success/20 text-brand-success cursor-default'
+                  : 'bg-brand-primary hover:bg-brand-hover text-white shadow-sm'
               }`}
             >
               {learnedWords.has(currentVocabulary[vocabIndex]._id) ? '✓ Learned' : '✅ Mark as Learned'}
@@ -421,24 +367,25 @@ export const ChallengeDayDrill: React.FC = () => {
 
             <button
               disabled={vocabIndex === 9}
-              onClick={() => { setVocabIndex(prev => prev + 1); setIsFlipped(false); }}
-              className="p-2.5 bg-slate-905 border border-slate-800 rounded-xl text-slate-300 disabled:opacity-20 active:scale-95 transition-all font-bold"
+              onClick={() => { setVocabIndex(prev => prev + 1); }}
+              className="px-5 py-3 min-h-[44px] bg-brand-surface border border-brand-border rounded-xl text-brand-text-primary disabled:opacity-20 active:scale-95 transition-all font-semibold text-xs flex items-center justify-center shadow-sm"
             >
               Next
             </button>
           </div>
 
-          {/* Progress dots */}
+          {/* Progress dots with animated layout width */}
           <div className="flex space-x-1.5 justify-center py-2 max-w-[200px] mx-auto overflow-hidden">
             {currentVocabulary.map((v: any, idx: number) => (
-              <div
+              <motion.div
                 key={idx}
-                className={`w-1.5 h-1.5 rounded-full transition-all shrink-0 ${
+                layout
+                className={`h-1.5 rounded-full transition-all duration-300 ${
                   idx === vocabIndex 
-                    ? 'bg-indigo-550 w-3.5' 
+                    ? 'bg-brand-primary w-3.5' 
                     : learnedWords.has(v._id) 
-                      ? 'bg-emerald-500' 
-                      : 'bg-slate-800'
+                      ? 'bg-brand-success w-1.5' 
+                      : 'bg-brand-border w-1.5'
                 }`}
               />
             ))}
@@ -446,7 +393,7 @@ export const ChallengeDayDrill: React.FC = () => {
 
           <button
             onClick={handleNextStep}
-            className="w-full py-3.5 bg-indigo-650 hover:bg-indigo-600 text-white font-extrabold rounded-2xl transition-all shadow-md mt-2 flex items-center justify-center space-x-1.5 text-xs"
+            className="w-full min-h-[44px] py-3.5 px-6 bg-brand-primary hover:bg-brand-hover text-white font-semibold rounded-xl transition-all shadow-sm mt-2 flex items-center justify-center space-x-2 text-xs"
           >
             <span>Proceed to Step 2: Listen Pronunciation</span>
             <ChevronRight className="w-4 h-4" />
@@ -458,19 +405,19 @@ export const ChallengeDayDrill: React.FC = () => {
       {step === 2 && (
         <div className="space-y-5 text-left">
           <div>
-            <h3 className="font-extrabold text-white text-base">Step 2: Listening Practice</h3>
-            <p className="text-[10px] text-slate-404">Listen to today's dialogue at different speeds.</p>
+            <h3 className="font-extrabold text-brand-text-primary text-base">Step 2: Listening Practice</h3>
+            <p className="text-[10px] text-brand-text-secondary">Listen to today's dialogue at different speeds.</p>
           </div>
 
-          <div className="glass-card rounded-3xl p-5 border border-slate-205/10 space-y-4">
-            <h4 className="font-bold text-xs uppercase tracking-wider text-indigo-400">Dialogue Audio player</h4>
+          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border space-y-4">
+            <h4 className="font-bold text-xs uppercase tracking-wider text-brand-primary">Dialogue Audio player</h4>
             
             {/* Speed toggle */}
-            <div className="flex bg-slate-950 p-1.5 rounded-xl border border-slate-900 justify-around text-xs">
+            <div className="flex bg-brand-bg p-1.5 rounded-xl border border-brand-border justify-around text-xs">
               <button
                 onClick={() => setSlowMode(true)}
                 className={`flex-1 py-1.5 rounded-lg font-bold transition-all ${
-                  slowMode ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
+                  slowMode ? 'bg-brand-primary text-white shadow-sm' : 'text-brand-text-secondary hover:text-brand-text-primary'
                 }`}
               >
                 Slow Mode (0.55x)
@@ -478,7 +425,7 @@ export const ChallengeDayDrill: React.FC = () => {
               <button
                 onClick={() => setSlowMode(false)}
                 className={`flex-1 py-1.5 rounded-lg font-bold transition-all ${
-                  !slowMode ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
+                  !slowMode ? 'bg-brand-primary text-white shadow-sm' : 'text-brand-text-secondary hover:text-brand-text-primary'
                 }`}
               >
                 Normal Mode (0.85x)
@@ -486,23 +433,23 @@ export const ChallengeDayDrill: React.FC = () => {
             </div>
 
             {/* Audio interface button */}
-            <div className="p-4 bg-slate-950/70 border border-slate-900 rounded-2xl flex items-center justify-between gap-3">
+            <div className="p-4 bg-brand-surface border border-brand-border rounded-2xl flex items-center justify-between gap-3">
               <div className="flex items-center space-x-3.5">
                 <button
                   onClick={handleSpeakDialogue}
-                  className="w-12 h-12 rounded-full bg-indigo-600 active:scale-95 hover:brightness-110 text-white flex items-center justify-center shadow-md"
+                  className="w-12 h-12 rounded-full bg-brand-primary active:scale-95 hover:brightness-110 text-white flex items-center justify-center shadow-md"
                 >
                   {isPlayingText ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
                 </button>
                 <div>
-                  <p className="text-xs font-bold text-slate-100">{isPlayingText ? 'Streaming dialogue...' : 'Dialogue transcript'}</p>
-                  <p className="text-[10px] text-slate-500">Native narrator voice • USA</p>
+                  <p className="text-xs font-bold text-brand-text-primary">{isPlayingText ? 'Streaming dialogue...' : 'Dialogue transcript'}</p>
+                  <p className="text-[10px] text-brand-text-secondary">Native narrator voice • USA</p>
                 </div>
               </div>
             </div>
 
             {/* Script preview */}
-            <div className="p-3.5 bg-slate-950/30 border border-slate-900/60 rounded-2xl text-xs text-slate-350 leading-relaxed italic max-h-36 overflow-y-auto">
+            <div className="p-3.5 bg-brand-surface border border-brand-border rounded-2xl text-xs text-brand-text-secondary leading-relaxed italic max-h-36 overflow-y-auto">
               "{activeDayContent.listening.transcript}"
             </div>
           </div>
@@ -510,13 +457,13 @@ export const ChallengeDayDrill: React.FC = () => {
           <div className="flex space-x-3 pt-2">
             <button
               onClick={handlePrevStep}
-              className="flex-1 py-3 border border-slate-800 rounded-xl text-xs font-bold text-slate-300 active:scale-95"
+              className="flex-1 min-h-[44px] py-3.5 px-6 border border-brand-border rounded-xl text-xs font-semibold text-brand-text-secondary active:scale-95 flex items-center justify-center space-x-1.5 transition-all"
             >
               Go Back
             </button>
             <button
               onClick={handleNextStep}
-              className="flex-1 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold active:scale-95 shadow-md flex items-center justify-center space-x-1"
+              className="flex-1 min-h-[44px] py-3.5 px-6 bg-brand-primary hover:bg-brand-hover text-white rounded-xl text-xs font-semibold active:scale-95 shadow-sm flex items-center justify-center space-x-1.5 transition-all"
             >
               <span>Step 3: Read Examples</span>
               <ChevronRight className="w-4 h-4" />
@@ -529,18 +476,18 @@ export const ChallengeDayDrill: React.FC = () => {
       {step === 3 && (
         <div className="space-y-5 text-left">
           <div>
-            <h3 className="font-extrabold text-white text-base">Step 3: Reading Practice</h3>
-            <p className="text-[10px] text-slate-400">Start simple and grow from single words to paragraphs.</p>
+            <h3 className="font-extrabold text-brand-text-primary text-base">Step 3: Reading Practice</h3>
+            <p className="text-[10px] text-brand-text-secondary">Start simple and grow from single words to paragraphs.</p>
           </div>
 
           {/* Progressive reading boards */}
           <div className="space-y-3.5">
             {/* Stage A: Single Words */}
-            <div className="glass-card rounded-2xl p-4 border border-slate-200/10 space-y-1.5">
-              <span className="text-[9px] uppercase font-black text-indigo-400 tracking-wider">Level 1: Today's Words</span>
+            <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 border border-brand-border space-y-1.5">
+              <span className="text-[9px] uppercase font-black text-brand-primary tracking-wider">Level 1: Today's Words</span>
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {currentVocabulary.slice(0, 4).map((v: any, i: number) => (
-                  <span key={i} className="text-xs px-2.5 py-1 bg-slate-950 border border-slate-900 text-slate-200 rounded-lg">
+                  <span key={i} className="text-xs px-2.5 py-1 bg-brand-bg border border-brand-border text-brand-text-secondary rounded-lg">
                     {v.word} ({v.hindiMeaning})
                   </span>
                 ))}
@@ -548,21 +495,21 @@ export const ChallengeDayDrill: React.FC = () => {
             </div>
 
             {/* Stage B: Short Sentences */}
-            <div className="glass-card rounded-2xl p-4 border border-slate-200/10 space-y-1.5">
-              <span className="text-[9px] uppercase font-black text-amber-500 tracking-wider">Level 2: Short Sentences</span>
-              <div className="space-y-1.5 text-xs text-slate-200 italic pt-1">
+            <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 border border-brand-border space-y-1.5">
+              <span className="text-[9px] uppercase font-black text-brand-warning tracking-wider">Level 2: Short Sentences</span>
+              <div className="space-y-1.5 text-xs text-brand-text-secondary italic pt-1">
                 <p>• "Hello, my name is John."</p>
                 <p>• "Good morning, how are you today?"</p>
               </div>
             </div>
 
             {/* Stage C: Full story / Paragraph */}
-            <div className="glass-card rounded-2xl p-4 border border-slate-200/10 space-y-2">
-              <span className="text-[9px] uppercase font-black text-emerald-500 tracking-wider">Level 3: Lesson Scenario</span>
-              <h4 className="font-bold text-xs text-slate-200 border-b border-slate-900 pb-1.5">
+            <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 border border-brand-border space-y-2">
+              <span className="text-[9px] uppercase font-black text-brand-success tracking-wider">Level 3: Lesson Scenario</span>
+              <h4 className="font-bold text-xs text-brand-text-secondary border-b border-brand-border pb-1.5">
                 {activeDayContent.grammar.conceptName}
               </h4>
-              <p className="text-xs text-slate-350 leading-relaxed font-sans max-h-36 overflow-y-auto pr-1">
+              <p className="text-xs text-brand-text-secondary leading-relaxed font-sans max-h-36 overflow-y-auto pr-1">
                 {activeDayContent.grammar.explanation}
               </p>
             </div>
@@ -571,13 +518,13 @@ export const ChallengeDayDrill: React.FC = () => {
           <div className="flex space-x-3 pt-2">
             <button
               onClick={handlePrevStep}
-              className="flex-1 py-3 border border-slate-800 rounded-xl text-xs font-bold text-slate-300 active:scale-95"
+              className="flex-1 min-h-[44px] py-3.5 px-6 border border-brand-border rounded-xl text-xs font-semibold text-brand-text-secondary active:scale-95 flex items-center justify-center space-x-1.5 transition-all"
             >
               Go Back
             </button>
             <button
               onClick={handleNextStep}
-              className="flex-1 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold active:scale-95 shadow-md flex items-center justify-center space-x-1"
+              className="flex-1 min-h-[44px] py-3.5 px-6 bg-brand-primary hover:bg-brand-hover text-white rounded-xl text-xs font-semibold active:scale-95 shadow-sm flex items-center justify-center space-x-1.5 transition-all"
             >
               <span>Step 4: Practice Speaking</span>
               <ChevronRight className="w-4 h-4" />
@@ -590,31 +537,31 @@ export const ChallengeDayDrill: React.FC = () => {
       {step === 4 && (
         <div className="space-y-5 text-left">
           <div>
-            <h3 className="font-extrabold text-white text-base">Step 4: Speaking Practice</h3>
-            <p className="text-[10px] text-slate-400">Speak today's target phrases clearly. Repeat after audio.</p>
+            <h3 className="font-extrabold text-brand-text-primary text-base">Step 4: Speaking Practice</h3>
+            <p className="text-[10px] text-brand-text-secondary">Speak today's target phrases clearly. Repeat after audio.</p>
           </div>
 
           {/* Active Speaking Prompt */}
-          <div className="glass-card rounded-3xl p-5 border border-slate-200/10 space-y-4">
+          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Speaking Drill Prompt</span>
+              <span className="text-[9px] font-bold text-brand-text-secondary uppercase tracking-widest">Speaking Drill Prompt</span>
               
               <button
                 onClick={() => speakText(activeDayContent.speaking.prompt)}
-                className="flex items-center space-x-1 px-2 py-0.5 bg-slate-950 border border-slate-900 rounded-lg text-[9px] font-bold text-indigo-400 active:scale-95"
+                className="flex items-center space-x-1 px-2 py-0.5 bg-brand-bg border border-brand-border rounded-lg text-[9px] font-bold text-brand-primary active:scale-95"
               >
                 <Volume2 className="w-3 h-3" />
                 <span>Listen Prompt</span>
               </button>
             </div>
 
-            <p className="text-xs font-bold text-slate-200 leading-relaxed italic bg-slate-950/40 p-3.5 border border-slate-900/60 rounded-2xl">
+            <p className="text-xs font-bold text-brand-text-secondary leading-relaxed italic bg-brand-bg p-3.5 border border-brand-border rounded-2xl">
               "{activeDayContent.speaking.prompt}"
             </p>
 
             {/* Speech Wave visualizer */}
-            <div className="flex flex-col items-center justify-center space-y-3.5 py-4 border-t border-slate-900">
-              <span className="text-[9px] uppercase tracking-widest text-slate-500 font-bold">
+            <div className="flex flex-col items-center justify-center space-y-3.5 py-4 border-t border-brand-border">
+              <span className="text-[9px] uppercase tracking-widest text-brand-text-muted font-bold">
                 {isRecording ? 'Listening to your voice...' : 'Tap Mic to Start Speaking'}
               </span>
 
@@ -622,8 +569,8 @@ export const ChallengeDayDrill: React.FC = () => {
                 onClick={handleToggleRecord}
                 className={`w-16 h-16 rounded-full border-4 flex items-center justify-center transition-all ${
                   isRecording 
-                    ? 'bg-rose-600 border-rose-500 shadow-md shadow-rose-650/20 animate-pulse' 
-                    : 'bg-indigo-650 border-indigo-550 shadow-md shadow-indigo-600/10'
+                    ? 'bg-brand-error border-brand-error shadow-md shadow-brand-error/20 animate-pulse' 
+                    : 'bg-brand-primary border-brand-primary shadow-md shadow-brand-primary/10'
                 }`}
               >
                 <Mic className="w-6 h-6 text-white" />
@@ -632,34 +579,34 @@ export const ChallengeDayDrill: React.FC = () => {
 
             {/* Live translation text */}
             {transcript && (
-              <div className="space-y-1 bg-slate-950/60 border border-slate-900 p-3 rounded-2xl">
-                <span className="text-[8px] uppercase tracking-wider text-slate-500 block font-bold">Your Speech</span>
-                <p className="text-xs text-slate-300 italic">"{transcript}"</p>
+              <div className="space-y-1 bg-brand-bg border border-brand-border p-3 rounded-2xl">
+                <span className="text-[8px] uppercase tracking-wider text-brand-text-muted block font-bold">Your Speech</span>
+                <p className="text-xs text-brand-text-secondary italic">"{transcript}"</p>
               </div>
             )}
           </div>
 
           {/* AI Score results */}
           {speakingScore && (
-            <div className="glass-card rounded-3xl p-5 border border-slate-200/10 space-y-4 bg-gradient-to-tr from-indigo-950/20 to-slate-950/10">
-              <h4 className="font-extrabold text-xs uppercase tracking-wider text-slate-300">Speech Scorecard</h4>
+            <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border space-y-4 bg-brand-card">
+              <h4 className="font-extrabold text-xs uppercase tracking-wider text-brand-text-secondary">Speech Scorecard</h4>
               
               <div className="grid grid-cols-3 gap-2.5">
-                <div className="bg-slate-950/60 border border-slate-900 p-2.5 rounded-xl text-center">
-                  <span className="text-[8px] text-slate-550 uppercase font-black">Pronounce</span>
-                  <p className="text-base font-black text-indigo-400 mt-0.5">{speakingScore.pronunciationScore}%</p>
+                <div className="bg-brand-bg border border-brand-border p-2.5 rounded-xl text-center">
+                  <span className="text-[8px] text-brand-text-muted uppercase font-black">Pronounce</span>
+                  <p className="text-base font-black text-brand-primary mt-0.5">{speakingScore.pronunciationScore}%</p>
                 </div>
-                <div className="bg-slate-950/60 border border-slate-900 p-2.5 rounded-xl text-center">
-                  <span className="text-[8px] text-slate-550 uppercase font-black">Fluency</span>
-                  <p className="text-base font-black text-emerald-400 mt-0.5">{speakingScore.fluencyScore}%</p>
+                <div className="bg-brand-bg border border-brand-border p-2.5 rounded-xl text-center">
+                  <span className="text-[8px] text-brand-text-muted uppercase font-black">Fluency</span>
+                  <p className="text-base font-black text-brand-success mt-0.5">{speakingScore.fluencyScore}%</p>
                 </div>
-                <div className="bg-slate-950/60 border border-slate-900 p-2.5 rounded-xl text-center">
-                  <span className="text-[8px] text-slate-550 uppercase font-black">Confidence</span>
-                  <p className="text-base font-black text-amber-500 mt-0.5">{speakingScore.confidenceScore}%</p>
+                <div className="bg-brand-bg border border-brand-border p-2.5 rounded-xl text-center">
+                  <span className="text-[8px] text-brand-text-muted uppercase font-black">Confidence</span>
+                  <p className="text-base font-black text-brand-warning mt-0.5">{speakingScore.confidenceScore}%</p>
                 </div>
               </div>
 
-              <div className="p-3 bg-slate-950/60 border border-slate-900 rounded-2xl text-[11px] text-slate-350 leading-relaxed">
+              <div className="p-3 bg-brand-bg border border-brand-border rounded-2xl text-[11px] text-brand-text-secondary leading-relaxed">
                 📢 **AI Suggestion:** {speakingScore.improvements}
               </div>
             </div>
@@ -668,13 +615,13 @@ export const ChallengeDayDrill: React.FC = () => {
           <div className="flex space-x-3 pt-2">
             <button
               onClick={handlePrevStep}
-              className="flex-1 py-3 border border-slate-800 rounded-xl text-xs font-bold text-slate-300 active:scale-95"
+              className="flex-1 min-h-[44px] py-3.5 px-6 border border-brand-border rounded-xl text-xs font-semibold text-brand-text-secondary active:scale-95 flex items-center justify-center space-x-1.5 transition-all"
             >
               Go Back
             </button>
             <button
               onClick={handleNextStep}
-              className="flex-1 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold active:scale-95 shadow-md flex items-center justify-center space-x-1"
+              className="flex-1 min-h-[44px] py-3.5 px-6 bg-brand-primary hover:bg-brand-hover text-white rounded-xl text-xs font-semibold active:scale-95 shadow-sm flex items-center justify-center space-x-1.5 transition-all"
             >
               <span>Step 5: Complete Quiz</span>
               <ChevronRight className="w-4 h-4" />
@@ -687,14 +634,14 @@ export const ChallengeDayDrill: React.FC = () => {
       {step === 5 && (
         <div className="space-y-5 text-left">
           <div>
-            <h3 className="font-extrabold text-white text-base">Step 5: Lesson Quiz</h3>
-            <p className="text-[10px] text-slate-400">Answer these quick questions to check your knowledge.</p>
+            <h3 className="font-extrabold text-brand-text-primary text-base">Step 5: Lesson Quiz</h3>
+            <p className="text-[10px] text-brand-text-secondary">Answer these quick questions to check your knowledge.</p>
           </div>
 
           <div className="space-y-5">
             {activeDayContent.quiz?.map((q: any, idx: number) => (
-              <div key={q.id} className="glass-card rounded-2xl p-5 border border-slate-200/10 space-y-3">
-                <p className="text-xs font-extrabold text-slate-200">
+              <div key={q.id} className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 border border-brand-border space-y-3">
+                <p className="text-xs font-extrabold text-brand-text-primary">
                   {idx + 1}. {q.question}
                 </p>
                 
@@ -702,19 +649,19 @@ export const ChallengeDayDrill: React.FC = () => {
                   {q.options.map((opt: string, i: number) => {
                     const isSelected = quizAnswers[q.id] === opt;
                     const isCorrect = q.answer === opt;
-                    let btnClass = 'bg-slate-950/40 border-slate-900 text-slate-300 hover:border-slate-800';
+                    let btnClass = 'bg-brand-bg/40 border-brand-border text-brand-text-secondary hover:border-brand-border';
 
                     if (isSelected) {
-                      btnClass = 'bg-indigo-600 border-indigo-500 text-white font-bold shadow-md';
+                      btnClass = 'bg-brand-primary border-brand-primary text-white font-semibold shadow-sm';
                     }
 
                     if (quizSubmitted) {
                       if (isCorrect) {
-                        btnClass = 'bg-emerald-500/10 border-emerald-500 text-emerald-400 font-extrabold';
+                        btnClass = 'bg-brand-success/10 border-brand-success text-brand-success font-semibold';
                       } else if (isSelected) {
-                        btnClass = 'bg-rose-500/10 border-rose-500 text-rose-400 font-bold line-through';
+                        btnClass = 'bg-brand-error/10 border-brand-error text-brand-error font-semibold line-through';
                       } else {
-                        btnClass = 'bg-slate-950/20 border-slate-900/60 text-slate-600 opacity-40';
+                        btnClass = 'bg-brand-bg/20 border-brand-border/60 text-brand-text-muted opacity-40';
                       }
                     }
 
@@ -723,7 +670,7 @@ export const ChallengeDayDrill: React.FC = () => {
                         key={i}
                         disabled={quizSubmitted}
                         onClick={() => handleSelectQuizAnswer(q.id, opt)}
-                        className={`p-3 text-left text-xs rounded-xl border transition-all leading-relaxed ${btnClass}`}
+                        className={`p-3.5 min-h-[44px] text-left text-xs rounded-xl border transition-all leading-relaxed font-medium ${btnClass}`}
                       >
                         {opt}
                       </button>
@@ -732,7 +679,7 @@ export const ChallengeDayDrill: React.FC = () => {
                 </div>
 
                 {quizSubmitted && (
-                  <div className="text-[10px] text-slate-500 mt-2">
+                  <div className="text-[10px] text-brand-text-muted mt-2">
                     💡 **Explanation:** {q.explanation}
                   </div>
                 )}
@@ -744,14 +691,14 @@ export const ChallengeDayDrill: React.FC = () => {
             <button
               onClick={handleSubmitQuiz}
               disabled={Object.keys(quizAnswers).length < activeDayContent.quiz.length}
-              className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-30 text-white font-extrabold rounded-2xl transition-all shadow-md flex items-center justify-center space-x-1.5 text-xs"
+              className="w-full min-h-[44px] py-3.5 px-6 bg-brand-primary hover:bg-brand-hover disabled:opacity-30 text-white font-semibold rounded-xl transition-all shadow-sm flex items-center justify-center space-x-2 text-xs"
             >
               <span>Submit Quiz Answers (+150 XP)</span>
             </button>
           ) : (
             <button
               onClick={handleNextStep}
-              className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold rounded-2xl transition-all shadow-md flex items-center justify-center space-x-1.5 text-xs"
+              className="w-full min-h-[44px] py-3.5 px-6 bg-brand-primary hover:bg-brand-hover text-white font-semibold rounded-xl transition-all shadow-sm flex items-center justify-center space-x-2 text-xs"
             >
               <span>Proceed to Rewards</span>
               <ChevronRight className="w-4 h-4" />
@@ -763,40 +710,43 @@ export const ChallengeDayDrill: React.FC = () => {
       {/* ================= STEP 6: CHALLENGE COMPLETE ================= */}
       {step === 6 && (
         <div className="space-y-6 text-center py-6">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-amber-400 to-orange-500 flex items-center justify-center text-white shadow-xl shadow-amber-500/20 mx-auto animate-bounce">
+          <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-brand-warning to-brand-error flex items-center justify-center text-white shadow-level-2 mx-auto animate-bounce">
             <Award className="w-10 h-10" />
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-2xl font-black text-white">Day {dayNum} Completed!</h2>
-            <p className="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed">
+            <h2 className="text-2xl font-semibold text-brand-text-primary">Day {dayNum} Completed!</h2>
+            <p className="text-xs text-brand-text-secondary max-w-xs mx-auto leading-relaxed">
               Fantastic job! You have unlocked greetings, practiced speaking, completed listening drills, and finished today's quiz checklist.
             </p>
           </div>
 
-          {/* Motivational Encouragements */}
-          <div className="glass-card rounded-2xl p-4 border border-slate-200/10 text-center space-y-1.5 max-w-xs mx-auto">
-            <p className="text-xs font-black text-indigo-400">🎉 Great job!</p>
-            <p className="text-[11px] text-slate-200">👏 You're improving every day!</p>
-            <p className="text-[11px] text-orange-400">🔥 Streak preserved! Keep it alive!</p>
-            <p className="text-[10px] text-slate-500 italic mt-2 block">🚀 Tomorrow you'll learn even more!</p>
+          {/* Motivational Encouragements Card with gold borders */}
+          <div className="bg-brand-card rounded-3xl p-5 border-2 border-double border-brand-warning/30 text-center space-y-2 max-w-xs mx-auto shadow-level-2 relative overflow-hidden select-none">
+            <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+              <Award className="w-16 h-16 text-brand-warning" />
+            </div>
+            <p className="text-xs font-semibold text-brand-primary">🎉 Milestone Unlocked!</p>
+            <p className="text-sm font-semibold text-brand-text-primary">👏 You're improving every day!</p>
+            <p className="text-xs text-brand-error font-medium">🔥 Streak preserved! Keep it alive!</p>
+            <p className="text-[10px] text-brand-text-muted italic mt-1 block">🚀 Tomorrow you'll learn even more!</p>
           </div>
 
           {/* Rewards overview */}
           <div className="grid grid-cols-2 gap-3 max-w-xs mx-auto">
-            <div className="p-3 rounded-xl bg-indigo-950/40 border border-indigo-900 text-center">
-              <span className="text-[9px] uppercase font-bold text-indigo-400">XP Gained</span>
-              <p className="text-lg font-black text-white mt-0.5">+150 XP</p>
+            <div className="p-3.5 rounded-xl bg-brand-primary/10 border border-brand-primary/20 text-center shadow-sm">
+              <span className="text-[10px] uppercase font-medium text-brand-primary">XP Gained</span>
+              <p className="text-lg font-semibold text-brand-text-primary mt-0.5">+150 XP</p>
             </div>
-            <div className="p-3 rounded-xl bg-amber-950/40 border border-amber-900 text-center">
-              <span className="text-[9px] uppercase font-bold text-amber-400">Coins Gained</span>
-              <p className="text-lg font-black text-white mt-0.5">+25 Coins</p>
+            <div className="p-3.5 rounded-xl bg-brand-warning/10 border border-brand-warning/20 text-center shadow-sm">
+              <span className="text-[10px] uppercase font-medium text-brand-warning">Coins Gained</span>
+              <p className="text-lg font-semibold text-brand-text-primary mt-0.5">+25 Coins</p>
             </div>
           </div>
 
           <button
             onClick={() => navigate('/')}
-            className="w-full max-w-xs py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold rounded-2xl transition-all shadow-md mx-auto block text-xs"
+            className="w-full max-w-xs py-3.5 bg-brand-primary hover:bg-brand-hover text-white font-semibold rounded-xl transition-all shadow-sm mx-auto block text-xs"
           >
             Go back to Home Screen
           </button>

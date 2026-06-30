@@ -1,0 +1,61 @@
+[
+  {
+    "_id": "6a436c98f053902da4edf74d",
+    "userId": "6a421ae7a648b5104e2cb47d",
+    "currentDay": 1,
+    "completedDays": [],
+    "dailyStatus": {
+      "1": {
+        "status": "current"
+      },
+      "2": {
+        "status": "locked"
+      },
+      "3": {
+        "status": "locked"
+      },
+      "4": {
+        "status": "locked"
+      },
+      "5": {
+        "status": "locked"
+      },
+      "6": {
+        "status": "locked"
+      },
+      "7": {
+        "status": "locked"
+      },
+      "8": {
+        "status": "locked"
+      },
+      "9": {
+        "status": "locked"
+      },
+      "10": {
+        "status": "locked"
+      },
+      "11": {
+        "status": "locked"
+      },
+      "12": {
+        "status": "locked"
+      },
+      "13": {
+        "status": "locked"
+      },
+      "14": {
+        "status": "locked"
+      },
+      "15": {
+        "status": "locked"
+      }
+    },
+    "answersSaved": {},
+    "xpEarned": 0,
+    "coinsEarned": 0,
+    "longestStreak": 0,
+    "luckySpinsLeftToday": 1,
+    "updatedAt": "2026-06-30T07:13:28.835Z"
+  }
+]

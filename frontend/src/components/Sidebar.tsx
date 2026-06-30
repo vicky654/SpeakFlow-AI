@@ -30,7 +30,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
   ];
 
   return (
-    <aside className="w-64 h-full bg-slate-900 border-r border-slate-800/80 flex flex-col justify-between py-6 select-none shrink-0">
+    <aside className="w-64 h-full bg-brand-card border-r border-brand-border flex flex-col justify-between py-6 select-none shrink-0">
       <div className="flex flex-col space-y-7">
         {/* LOGO */}
         <div className="px-6 flex items-center space-x-3">
@@ -39,7 +39,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
           </div>
           <div>
             <h1 className="text-lg font-extrabold tracking-tight text-white font-sans">SpeakFlow <span className="text-indigo-400">AI</span></h1>
-            <span className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold font-mono">MVP Edition</span>
+            <span className="text-[10px] text-brand-text-muted uppercase tracking-widest font-semibold font-mono">MVP Edition</span>
           </div>
         </div>
 
@@ -56,7 +56,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
                   flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200
                   ${isActive 
                     ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/10' 
-                    : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-100'}
+                    : 'text-brand-text-secondary hover:bg-brand-surface/60 hover:text-brand-text-primary'}
                 `}
               >
                 <Icon className="w-4 h-4" />
@@ -87,21 +87,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
       {/* USER STATS & LOGOUT */}
       <div className="px-4 space-y-4">
         {user && (
-          <div className="p-3.5 rounded-2xl bg-slate-950/50 border border-slate-800/80 flex flex-col space-y-3">
+          <div className="p-3.5 rounded-2xl bg-brand-bg/50 border border-brand-border flex flex-col space-y-3">
             <div className="flex items-center space-x-3">
               <div className="w-9 h-9 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 font-bold uppercase">
                 {user.name.charAt(0)}
               </div>
               <div className="min-w-0">
-                <p className="text-xs font-bold text-slate-200 truncate">{user.name}</p>
-                <span className="text-[10px] text-slate-500 capitalize">{user.role.replace('_', ' ')}</span>
+                <p className="text-xs font-bold text-brand-text-primary truncate">{user.name}</p>
+                <span className="text-[10px] text-brand-text-muted capitalize">{user.role.replace('_', ' ')}</span>
               </div>
             </div>
             
-            <div className="flex items-center justify-between text-xs pt-1.5 border-t border-slate-900">
+            <div className="flex items-center justify-between text-xs pt-1.5 border-t border-brand-border">
               <div className="flex items-center space-x-1 hover:text-orange-400 transition-colors">
                 <Flame className="w-3.5 h-3.5 text-orange-500 fill-current animate-pulse" />
-                <span className="font-bold text-slate-300">{user.streak} days</span>
+                <span className="font-bold text-brand-text-secondary">{user.streak} days</span>
               </div>
               <div className="flex items-center space-x-1">
                 <span className="px-1.5 py-0.5 rounded bg-indigo-950 text-indigo-400 font-mono text-[10px] border border-indigo-800/30 font-bold">
@@ -114,7 +114,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
 
         <button
           onClick={handleLogout}
-          className="flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:bg-rose-950/15 hover:text-rose-400 transition-all duration-200 w-full"
+          className="flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold text-brand-text-secondary hover:bg-rose-950/15 hover:text-rose-400 transition-all duration-200 w-full"
         >
           <LogOut className="w-4 h-4" />
           <span>Sign Out</span>
