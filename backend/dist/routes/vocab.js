@@ -17,30 +17,85 @@ router.get('/', auth_1.authenticateToken, async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch vocabulary. Server error.' });
     }
 });
-// GET DAILY 10 WORDS (Rotates daily based on calendar date seed)
+function shuffle(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+async function getSmartVocabList(userId, forceRefresh = false) {
+    const allVocabs = await dbService_1.dbService.vocab.getAll();
+    if (allVocabs.length === 0)
+        return [];
+    const progressHistory = await dbService_1.dbService.progress.getHistory(userId);
+    const learnedWordIds = new Set();
+    progressHistory.forEach(p => {
+        if (p.vocabWordsLearned) {
+            p.vocabWordsLearned.forEach(id => learnedWordIds.add(id.toString()));
+        }
+    });
+    // Filter unlearned
+    const unlearned = allVocabs.filter(v => !learnedWordIds.has(v._id.toString()) && !learnedWordIds.has(v.word));
+    // Spaced repetition review pool: words learned >= 3 days ago
+    const reviewWords = [];
+    const today = new Date();
+    progressHistory.forEach(p => {
+        const logDate = new Date(p.date);
+        const diffTime = today.getTime() - logDate.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if (diffDays >= 3 && p.vocabWordsLearned) {
+            p.vocabWordsLearned.forEach(wId => {
+                const match = allVocabs.find(v => v._id.toString() === wId.toString() || v.word === wId);
+                if (match && !reviewWords.some(r => r._id.toString() === match._id.toString())) {
+                    reviewWords.push(match);
+                }
+            });
+        }
+    });
+    // For forceRefresh, we randomize. Otherwise, we use a date-stable ordering
+    let poolUnlearned = forceRefresh ? shuffle(unlearned) : unlearned;
+    let poolReview = forceRefresh ? shuffle(reviewWords) : reviewWords;
+    const result = [];
+    // 1. Add unlearned words first
+    result.push(...poolUnlearned.slice(0, 10));
+    // 2. Pad with review words if needed
+    if (result.length < 10 && poolReview.length > 0) {
+        const needed = 10 - result.length;
+        result.push(...poolReview.slice(0, needed));
+    }
+    // 3. Pad with any learned words if we still don't have 10
+    if (result.length < 10) {
+        const learned = allVocabs.filter(v => learnedWordIds.has(v._id.toString()) || learnedWordIds.has(v.word));
+        const poolLearned = forceRefresh ? shuffle(learned) : learned;
+        const needed = 10 - result.length;
+        result.push(...poolLearned.slice(0, needed));
+    }
+    return result.slice(0, 10);
+}
+// GET DAILY 10 WORDS
 router.get('/daily', auth_1.authenticateToken, async (req, res) => {
     try {
-        const vocabs = await dbService_1.dbService.vocab.getAll();
-        if (vocabs.length === 0) {
-            return res.json([]);
-        }
-        // Get calendar day index seed
-        const todayStr = new Date().toISOString().split('T')[0];
-        const hash = todayStr.split('-').reduce((acc, num) => acc + parseInt(num, 10), 0);
-        // Chunk size is 10
-        const totalChunks = Math.ceil(vocabs.length / 10);
-        const selectedChunk = hash % totalChunks;
-        const startIndex = selectedChunk * 10;
-        const dailyWords = vocabs.slice(startIndex, startIndex + 10);
-        // If we have fewer than 10 words, pad it with words from the beginning
-        if (dailyWords.length < 10 && vocabs.length >= 10) {
-            const extraNeeded = 10 - dailyWords.length;
-            dailyWords.push(...vocabs.slice(0, extraNeeded));
-        }
+        const userId = req.user.id;
+        const dailyWords = await getSmartVocabList(userId, false);
         res.json(dailyWords);
     }
     catch (error) {
+        console.error('Error fetching daily vocab:', error);
         res.status(500).json({ message: 'Failed to fetch daily vocabulary. Server error.' });
+    }
+});
+// POST REFRESH VOCABULARY WORDS
+router.post('/refresh', auth_1.authenticateToken, async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const freshWords = await getSmartVocabList(userId, true);
+        res.json(freshWords);
+    }
+    catch (error) {
+        console.error('Error refreshing vocab:', error);
+        res.status(500).json({ message: 'Failed to refresh vocabulary. Server error.' });
     }
 });
 // MARK WORD AS LEARNED

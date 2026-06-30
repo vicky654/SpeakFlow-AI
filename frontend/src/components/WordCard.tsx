@@ -121,6 +121,12 @@ export const WordCard: React.FC<WordCardProps> = ({ word, isLearned, onLearned }
               <p className="text-xs text-slate-200 mt-0.5 leading-normal">{word.englishMeaning}</p>
             </div>
 
+            {/* Easy Explanation */}
+            <div>
+              <span className="text-[9px] uppercase tracking-wider text-indigo-400 font-bold">Easy Explanation</span>
+              <p className="text-xs text-indigo-200/95 mt-0.5 leading-normal">{word.easyExplanation || 'A simple word to learn.'}</p>
+            </div>
+
             {/* Synonyms & Antonyms */}
             <div className="grid grid-cols-2 gap-3.5">
               <div>

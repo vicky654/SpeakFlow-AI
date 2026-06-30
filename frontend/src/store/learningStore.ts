@@ -15,6 +15,7 @@ interface LearningState {
   error: string | null;
   
   fetchDailyWords: () => Promise<void>;
+  refreshDailyWords: () => Promise<void>;
   fetchAllWords: () => Promise<void>;
   learnWord: (wordId: string) => Promise<void>;
   fetchLessons: (type: 'grammar' | 'reading' | 'listening' | 'interview') => Promise<void>;
@@ -58,6 +59,23 @@ export const useLearningStore = create<LearningState>((set, get) => ({
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Failed to fetch daily vocabulary');
+      set({ dailyWords: data, loading: false });
+    } catch (err: any) {
+      set({ error: err.message, loading: false });
+    }
+  },
+
+  refreshDailyWords: async () => {
+    const token = useAuthStore.getState().token;
+    if (!token) return;
+    set({ loading: true, error: null });
+    try {
+      const res = await fetch(`${API_BASE_URL}/vocab/refresh`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Failed to refresh vocabulary');
       set({ dailyWords: data, loading: false });
     } catch (err: any) {
       set({ error: err.message, loading: false });

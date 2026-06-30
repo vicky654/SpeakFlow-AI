@@ -14,6 +14,7 @@ export interface IVocab {
   commonMistakes: string;
   memoryTrick: string;
   realLifeUsage: string;
+  easyExplanation: string;
   audioUrl?: string;
   createdAt: string;
 }
@@ -36,6 +37,7 @@ const VocabSchema: Schema = new Schema(
     commonMistakes: { type: String, default: '' },
     memoryTrick: { type: String, default: '' },
     realLifeUsage: { type: String, default: '' },
+    easyExplanation: { type: String, default: '' },
     audioUrl: { type: String, default: '' },
     createdAt: { type: String, default: () => new Date().toISOString() }
   },

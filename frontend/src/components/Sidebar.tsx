@@ -2,9 +2,8 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { 
-  LayoutDashboard, BookOpen, Gamepad2, Mic, Headset, 
-  BookOpenCheck, PenTool, Award, Briefcase, User, 
-  Settings, LogOut, Flame, ShieldAlert
+  LayoutDashboard, BookOpen, Mic, BarChart3, User, 
+  LogOut, Flame, ShieldAlert
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -23,16 +22,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
   };
 
   const navItems = [
-    { to: '/', label: 'Dashboard', icon: LayoutDashboard },
-    { to: '/vocab', label: 'Vocabulary', icon: BookOpen },
-    { to: '/game', label: 'Vocab Game', icon: Gamepad2 },
-    { to: '/speaking', label: 'Speaking', icon: Mic },
-    { to: '/listening', label: 'Listening', icon: Headset },
-    { to: '/reading', label: 'Reading', icon: BookOpenCheck },
-    { to: '/writing', label: 'Writing', icon: PenTool },
-    { to: '/grammar', label: 'Grammar Course', icon: Award },
-    { to: '/interview', label: 'Interview Prep', icon: Briefcase },
-    { to: '/profile', label: 'My Profile', icon: User },
+    { to: '/', label: 'Home', icon: LayoutDashboard },
+    { to: '/learn', label: 'Learn', icon: BookOpen },
+    { to: '/practice', label: 'Practice', icon: Mic },
+    { to: '/progress', label: 'Progress', icon: BarChart3 },
+    { to: '/profile', label: 'Profile', icon: User },
   ];
 
   return (

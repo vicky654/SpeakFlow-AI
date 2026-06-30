@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLearningStore } from '../store/learningStore';
-import { Mic, Headset, Briefcase, ArrowRight } from 'lucide-react';
+import { Mic, Headset, Briefcase, ArrowRight, MessageSquare } from 'lucide-react';
 import { ProgressRing } from '../components/ProgressRing';
 
 export const PracticeHub: React.FC = () => {
@@ -13,6 +13,16 @@ export const PracticeHub: React.FC = () => {
   }, [fetchDailyChallenge]);
 
   const practices = [
+    {
+      title: 'AI English Teacher',
+      desc: 'Chat, ask questions, define vocabulary, or correct your grammar in simple English.',
+      progress: 0,
+      label: 'Practice Conversations',
+      icon: MessageSquare,
+      color: 'from-indigo-600 to-purple-600',
+      strokeColor: 'stroke-indigo-500',
+      to: '/ai-teacher'
+    },
     {
       title: 'Speaking Practice',
       desc: 'Talk aloud in real-world scenarios. Our AI parses and evaluates your pitch.',

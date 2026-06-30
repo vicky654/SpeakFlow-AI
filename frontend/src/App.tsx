@@ -24,6 +24,7 @@ import { ProgressHub } from './pages/ProgressHub';
 import { ChallengeTimeline } from './pages/ChallengeTimeline';
 import { ChallengeDayDrill } from './pages/ChallengeDayDrill';
 import { LuckySpin } from './pages/LuckySpin';
+import { AiTeacher } from './pages/AiTeacher';
 
 const ProtectedLayout: React.FC = () => {
   const token = useAuthStore(state => state.token);
@@ -90,6 +91,7 @@ const ProtectedLayout: React.FC = () => {
             <Route path="/learn" element={<LearnHub />} />
             <Route path="/practice" element={<PracticeHub />} />
             <Route path="/progress" element={<ProgressHub />} />
+            <Route path="/ai-teacher" element={<AiTeacher />} />
             
              <Route path="/vocab" element={<Vocabulary />} />
             <Route path="/game" element={<VocabGame />} />

@@ -14,6 +14,16 @@ export const LearnHub: React.FC = () => {
 
   const modules = [
     {
+      title: 'AI English Teacher',
+      desc: 'Ask questions, correct sentences, or speak with your digital personal tutor.',
+      progress: 0,
+      label: 'Ask AI Any Question',
+      icon: Sparkles,
+      color: 'from-indigo-650 to-purple-600',
+      strokeColor: 'stroke-indigo-500',
+      to: '/ai-teacher'
+    },
+    {
       title: 'Vocabulary Booster',
       desc: 'Master 10 high-frequency words daily with memory triggers & phonetic guides.',
       progress: dailyChallenge?.checklist?.vocab?.completed ? 100 : Math.round(((dailyChallenge?.checklist?.vocab?.current || 0) / 10) * 100),

@@ -47,6 +47,7 @@ const VocabSchema = new mongoose_1.Schema({
     commonMistakes: { type: String, default: '' },
     memoryTrick: { type: String, default: '' },
     realLifeUsage: { type: String, default: '' },
+    easyExplanation: { type: String, default: '' },
     audioUrl: { type: String, default: '' },
     createdAt: { type: String, default: () => new Date().toISOString() }
 }, { timestamps: false });

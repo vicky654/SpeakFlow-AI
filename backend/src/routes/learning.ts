@@ -467,44 +467,239 @@ router.post('/chat/message', authenticateToken, async (req: AuthRequest, res: Re
     return res.status(400).json({ message: 'Category and messages array are required.' });
   }
 
-  // Mock AI response (replace with real LLM integration later)
-  const aiReply = `This is a mock reply for category "${category}".`;
-
-  // Simple grammar suggestion mock – demo purpose
   const lastUserMsg = messages.filter(m => m.role === 'user').slice(-1)[0];
+  const userText = lastUserMsg?.content?.toLowerCase() || '';
+
+  let aiReply = '';
   let suggestions: string[] = [];
-  if (lastUserMsg?.content?.includes('go office yesterday')) {
-    suggestions.push('Use past tense "went" instead of "go" for past actions.');
+  let difficultWords: string[] = [];
+
+  // Fetch current user progress to know which day of the challenge they are on
+  const userId = req.user!.id;
+  let currentDayNum = 1;
+  try {
+    const challengeProgress = await dbService.challengeProgress.findByUserId(userId);
+    if (challengeProgress) {
+      currentDayNum = challengeProgress.currentDay;
+    }
+  } catch (e) {
+    console.error('Error fetching challenge progress for AI teacher:', e);
   }
 
-  // Identify difficult words (mock: words longer than 8 characters)
-  const difficultWords = aiReply.split(' ').filter(w => w.length > 8);
+  let dayContent: any = null;
+  try {
+    dayContent = await dbService.challengeDays.findByDayNumber(currentDayNum);
+  } catch (e) {
+    console.error('Error loading challenge day content:', e);
+  }
 
-  // Reward XP for chat interaction
-  const userId = req.user!.id;
-  const todayStr = new Date().toISOString().split('T')[0];
-  const progress = await dbService.progress.findByUserAndDate(userId, todayStr) || {
-    userId,
-    date: todayStr,
-    vocabWordsLearned: [] as string[],
-    speakingTime: 0,
-    readingTime: 0,
-    listeningTime: 0,
-    writingSubmissions: [] as any[],
-    grammarQuizzesCompleted: [] as any[],
-    dailyChallengeCompleted: false,
-    xpEarned: 0,
-    coinsEarned: 0
-  };
-  const xpGained = 10;
-  await dbService.progress.upsert(userId, todayStr, { xpEarned: progress.xpEarned + xpGained });
+  // Parse questions
+  if (userText.includes('mean') || userText.includes('meaning') || userText.includes('what is') || userText.includes('define')) {
+    // 1. Definition Request
+    let targetWord = '';
+    const match = userText.match(/(?:mean|meaning of|what is|what does|define)\s+([a-zA-Z0-9_\-\s]+)/);
+    if (match && match[1]) {
+      targetWord = match[1].trim().replace(/\?|!/g, '');
+    } else {
+      // Fallback: extract last word
+      const words = userText.split(/\s+/).filter(w => w.length > 2);
+      targetWord = words[words.length - 1] || 'hello';
+    }
 
-  res.json({
-    reply: aiReply,
-    suggestions,
-    difficultWords,
-    xpGained
-  });
+    try {
+      const allVocab = await dbService.vocab.getAll();
+      const found = allVocab.find(v => v.word.toLowerCase() === targetWord.toLowerCase() || targetWord.toLowerCase().includes(v.word.toLowerCase()));
+      
+      if (found) {
+        aiReply = `The word **"${found.word}"** means:
+👉 **English Meaning:** ${found.englishMeaning}
+👉 **Easy Explanation:** ${found.easyExplanation || 'A simple word to learn.'}
+👉 **Hindi Meaning:** ${found.hindiMeaning}
+👉 **Example Sentence:** "${found.exampleSentences[0] || 'No example sentence loaded.'}"
+👉 **Memory Trick:** ${found.memoryTrick || 'N/A'}`;
+        difficultWords.push(found.word);
+      } else {
+        // Look up in day vocabulary
+        let dayFound = null;
+        if (dayContent && dayContent.vocabulary) {
+          dayFound = dayContent.vocabulary.find((v: any) => v.word.toLowerCase() === targetWord.toLowerCase() || targetWord.toLowerCase().includes(v.word.toLowerCase()));
+        }
+        if (dayFound) {
+          aiReply = `The word **"${dayFound.word}"** means:
+👉 **English Meaning:** ${dayFound.englishMeaning}
+👉 **Easy Explanation:** ${dayFound.easyExplanation || 'A simple word to learn.'}
+👉 **Hindi Meaning:** ${dayFound.hindiMeaning}
+👉 **Example Sentence:** "${dayFound.exampleSentences[0] || 'No example sentence loaded.'}"
+👉 **Memory Trick:** ${dayFound.memoryTrick || 'N/A'}`;
+          difficultWords.push(dayFound.word);
+        } else {
+          aiReply = `I couldn't find the word **"${targetWord}"** in our dictionary.
+In simple English: to define something is to explain what it is.
+For example: **"Friend"** (दोस्त) is a person you like and know well. 😊
+Ask me about another word from today's lesson!`;
+        }
+      }
+    } catch (err) {
+      aiReply = `Sorry, I couldn't search the dictionary right now. But in simple English, words have definitions to explain their meaning. Try asking again!`;
+    }
+
+  } else if (userText.includes('correct') || userText.includes('grammar') || userText.includes('sentence') || userText.includes('check')) {
+    // 2. Sentence Correction Request
+    let sentence = '';
+    const match = lastUserMsg?.content?.match(/(?:correct my sentence|correct|sentence|check)\s*[:"']\s*(.+)/i);
+    if (match && match[1]) {
+      sentence = match[1].replace(/["']/g, '').trim();
+    } else {
+      const index = lastUserMsg?.content?.toLowerCase().indexOf('correct');
+      if (index !== -1) {
+        sentence = lastUserMsg?.content?.slice(index + 7).trim().replace(/^my sentence:|^sentence:|^check:/i, '').trim() || '';
+      }
+    }
+
+    if (!sentence || sentence.length < 2) {
+      sentence = 'I go office yesterday';
+    }
+
+    let corrected = sentence;
+    let explanation = '';
+    let hindi = '';
+
+    const cleanText = sentence.toLowerCase();
+    if (cleanText.includes('go office yesterday')) {
+      corrected = 'I went to the office yesterday.';
+      explanation = 'Since "yesterday" is in the past, use the past tense verb "went" instead of "go". Also, add the preposition "to" before the noun "office".';
+      hindi = 'मैं कल ऑफिस गया था।';
+    } else if (cleanText.includes('she don\'t') || cleanText.includes('she dont')) {
+      corrected = sentence.replace(/don't|dont/i, "doesn't");
+      explanation = 'For third-person singular pronouns (He, She, It), use "doesn\'t" instead of "don\'t".';
+      hindi = 'वह नहीं करती है।';
+    } else if (cleanText.includes('i am agree')) {
+      corrected = sentence.replace(/am agree/i, 'agree');
+      explanation = '"Agree" is already a verb. Do not put "am" before it. Just say "I agree".';
+      hindi = 'मैं सहमत हूँ।';
+    } else {
+      corrected = sentence.charAt(0).toUpperCase() + sentence.slice(1);
+      if (!corrected.endsWith('.') && !corrected.endsWith('?') && !corrected.endsWith('!')) {
+        corrected += '.';
+      }
+      explanation = 'Your sentence looks mostly correct! Make sure it starts with a capital letter and ends with a punctuation mark.';
+      hindi = 'आपका वाक्य काफी हद तक सही है। हमेशा बड़े अक्षर से शुरू करें और पूर्ण विराम पर समाप्त करें।';
+    }
+
+    aiReply = `Here is the correction for your sentence:
+❌ **Original:** "${sentence}"
+✅ **Corrected:** "${corrected}"
+
+💡 **Explanation:**
+${explanation}
+
+🇮🇳 **Hindi Meaning:**
+"${hindi}"`;
+    suggestions.push(`Try reading: "${corrected}"`);
+
+  } else if (userText.includes('pronounce') || userText.includes('pronunciation') || userText.includes('say')) {
+    // 3. Pronunciation Guide Request
+    let targetWord = 'hello';
+    const match = userText.match(/(?:pronounce|pronunciation of|say|speak)\s+([a-zA-Z0-9_\-]+)/);
+    if (match && match[1]) {
+      targetWord = match[1].trim();
+    }
+
+    try {
+      const allVocab = await dbService.vocab.getAll();
+      const found = allVocab.find(v => v.word.toLowerCase() === targetWord.toLowerCase());
+      
+      if (found) {
+        aiReply = `Here is how you pronounce **"${found.word}"**:
+🔊 **Pronunciation Guide:** ${found.pronunciation}
+🗣️ **Sound Guide:** Try saying it slowly: *"${found.word.toUpperCase()}"*.
+💡 **Hint:** Tap the Speaker icon 🔊 on this message to hear it spoken aloud!`;
+      } else {
+        aiReply = `To pronounce **"${targetWord}"** correctly, split it into parts and speak each part slowly.
+For example, for **"Excuse Me"** say: *ik-SKYOOS mee* (/ɪkˈskjuːz miː/).
+Click the Speaker button to hear me say it!`;
+      }
+    } catch (e) {
+      aiReply = `To pronounce it correctly, say: *"${targetWord}"*. Tap the Speaker button to hear it aloud!`;
+    }
+
+  } else if (userText.includes('teach') || userText.includes('lesson') || userText.includes('today')) {
+    // 4. Teach Today's Lesson Request
+    if (dayContent) {
+      aiReply = `Welcome to **Day ${currentDayNum} Lesson: ${dayContent.grammar.conceptName}** 📚
+
+💡 **Daily Concept:**
+${dayContent.grammar.explanation}
+
+📝 **Example Phrases:**
+${dayContent.grammar.examples.map((ex: string) => `• ${ex}`).join('\n')}
+
+Let's do a quick quiz!
+👉 **Question:** *${dayContent.grammar.interactiveQuiz[0].question}*
+Reply to me with your answer option!`;
+    } else {
+      aiReply = `Let's learn basic greetings! We say **"Hello"** to start, and **"Goodbye"** when leaving.
+Would you like to practice? Ask me: "What does Hello mean?"`;
+    }
+
+  } else if (userText.includes('talk') || userText.includes('simple english') || userText.includes('chat')) {
+    // 5. Talk in simple English request
+    aiReply = `Hello! I would love to talk to you in simple English.
+Let's start! How was your day? Tell me in a simple sentence, like: "My day was good" or "I am happy today". 😊`;
+  } else {
+    // 6. Generic response listing possibilities
+    aiReply = `Hello! I am your AI English Teacher. I can help you learn English from scratch. 
+
+You can ask me to do things like:
+• "What does Welcome mean?" 📖
+• "Correct my sentence: She don't like tea" ✍️
+• "How do I pronounce Hello?" 🔊
+• "Teach me today's lesson" 📚
+• "Talk to me in simple English" 💬
+
+Tell me, what would you like to practice first? 😊`;
+  }
+
+  // Record progress XP for chatting
+  try {
+    const todayStr = new Date().toISOString().split('T')[0];
+    const progress = await dbService.progress.findByUserAndDate(userId, todayStr) || {
+      userId,
+      date: todayStr,
+      vocabWordsLearned: [] as string[],
+      speakingTime: 0,
+      readingTime: 0,
+      listeningTime: 0,
+      writingSubmissions: [] as any[],
+      grammarQuizzesCompleted: [] as any[],
+      dailyChallengeCompleted: false,
+      xpEarned: 0,
+      coinsEarned: 0
+    };
+    const xpGained = 10;
+    await dbService.progress.upsert(userId, todayStr, { xpEarned: progress.xpEarned + xpGained });
+    
+    // Update user stats
+    const user = await dbService.users.findById(userId);
+    if (user) {
+      await dbService.users.update(userId, { xp: (user.xp ?? 0) + xpGained });
+    }
+
+    res.json({
+      reply: aiReply,
+      suggestions,
+      difficultWords,
+      xpGained
+    });
+  } catch (error) {
+    console.error('AI chat progress tracking error:', error);
+    res.json({
+      reply: aiReply,
+      suggestions,
+      difficultWords,
+      xpGained: 0
+    });
+  }
 });
 
 export default router;

@@ -71,6 +71,7 @@ export async function seedInitialData() {
           commonMistakes: 'Don\'t confuse "confident" (sure of self) with "confidant" (a close friend to share secrets with).',
           memoryTrick: 'Break it into "Con" + "Fi" (fidelity/trust) + "Dent". Think of a confident dentist who has full trust in fixing your teeth.',
           realLifeUsage: 'Used extensively in professional workplaces, performance reviews, self-help books, and job interview settings.',
+          easyExplanation: 'Feeling sure about yourself and what you can do.',
           audioUrl: ''
         },
         {
@@ -88,6 +89,7 @@ export async function seedInitialData() {
           commonMistakes: 'Do not write "resiliance" with an "a". It is always spelled with an "e" - "resilience".',
           memoryTrick: 'Sounds like "re-silence". When obstacles make noise, you recover quickly to find your calm silence again.',
           realLifeUsage: 'Discussed during team retro meetings, career growth reviews, and psychological discussions on stress management.',
+          easyExplanation: 'The ability to stay strong and recover quickly when bad things happen.',
           audioUrl: ''
         },
         {
@@ -105,6 +107,7 @@ export async function seedInitialData() {
           commonMistakes: 'Avoid pronouncing it as "elo-cunt". The correct pronunciation ends with a soft "kwent".',
           memoryTrick: 'Think of "Elephant speech" - an elephant speaking so beautifully that everyone listens in awe.',
           realLifeUsage: 'Used to describe great speakers, politicians, writers, or well-written emails and proposals.',
+          easyExplanation: 'Speaking or writing in a very clear, beautiful, and persuasive way.',
           audioUrl: ''
         },
         {
@@ -122,6 +125,7 @@ export async function seedInitialData() {
           commonMistakes: 'Often misspelled as "procrastnate". Do not miss the "i" after "t".',
           memoryTrick: 'Pro-crast-inate. "Pro" at putting things off until "tomorrow" (crust/tomorrow in Latin).',
           realLifeUsage: 'Often used when discussing time management, study habits, workflow struggles, and productivity.',
+          easyExplanation: 'To delay or put off doing something that needs to be done until a later time.',
           audioUrl: ''
         },
         {
@@ -139,6 +143,7 @@ export async function seedInitialData() {
           commonMistakes: 'Do not confuse with "dogmatic" which means adhering strictly to principles.',
           memoryTrick: 'Pragmatic sounds like "practical magic". Practical actions work like magic.',
           realLifeUsage: 'Commonly used in executive business discussions, technical scoping, and everyday planning.',
+          easyExplanation: 'Thinking about practical results and sensible facts rather than theories.',
           audioUrl: ''
         }
       ];

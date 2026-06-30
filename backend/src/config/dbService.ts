@@ -120,6 +120,7 @@ export const dbService = {
           commonMistakes: vocabData.commonMistakes || '',
           memoryTrick: vocabData.memoryTrick || '',
           realLifeUsage: vocabData.realLifeUsage || '',
+          easyExplanation: vocabData.easyExplanation || '',
           audioUrl: vocabData.audioUrl || '',
           createdAt: new Date().toISOString(),
           ...vocabData

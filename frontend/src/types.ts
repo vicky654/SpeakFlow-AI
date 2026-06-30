@@ -25,6 +25,7 @@ export interface Word {
   commonMistakes: string;
   memoryTrick: string;
   realLifeUsage: string;
+  easyExplanation: string;
   audioUrl?: string;
 }
 

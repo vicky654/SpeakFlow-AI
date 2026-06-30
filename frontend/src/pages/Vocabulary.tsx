@@ -3,20 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { useLearningStore } from '../store/learningStore';
 import { WordCard } from '../components/WordCard';
-import { Star, Sparkles, Gamepad2, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Star, Sparkles, Gamepad2, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
 
 export const Vocabulary: React.FC = () => {
-  const { dailyWords, allWords, fetchDailyWords, fetchAllWords, loading } = useLearningStore();
+  const { dailyWords, allWords, fetchDailyWords, fetchAllWords, refreshDailyWords, loading } = useLearningStore();
   const user = useAuthStore(state => state.user);
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState<'daily' | 'favorites'>('daily');
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     fetchDailyWords();
     fetchAllWords();
   }, [fetchDailyWords, fetchAllWords]);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await refreshDailyWords();
+    setRefreshing(false);
+    setCarouselIndex(0);
+  };
 
   const favoritesList = allWords.filter(w => user?.favorites.includes(w._id));
   const dailyChallenge = useLearningStore(state => state.dailyChallenge);
@@ -43,9 +51,21 @@ export const Vocabulary: React.FC = () => {
     <div className="space-y-5 select-none max-w-lg mx-auto pb-6">
       
       {/* 1. COMPACT HEADER */}
-      <div className="space-y-1">
-        <h2 className="text-2xl font-extrabold text-white">Vocabulary Cards</h2>
-        <p className="text-xs text-slate-400">Drill flashcards, pronunciation tips, and examples daily.</p>
+      <div className="flex justify-between items-start">
+        <div className="space-y-1 text-left">
+          <h2 className="text-2xl font-extrabold text-white">Vocabulary Cards</h2>
+          <p className="text-xs text-slate-400">Drill flashcards, pronunciation tips, and examples daily.</p>
+        </div>
+        {activeTab === 'daily' && (
+          <button
+            onClick={handleRefresh}
+            disabled={refreshing || loading}
+            className="flex items-center space-x-1.5 px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-xl text-[10px] font-bold text-slate-400 hover:text-white disabled:opacity-20 active:scale-95 transition-all"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
+            <span>Refresh</span>
+          </button>
+        )}
       </div>
 
       {/* 2. TAB TOGGLER (FULL WIDTH ON MOBILE) */}
