@@ -94,7 +94,7 @@ const ProtectedLayout: React.FC = () => {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/learn" element={<LearnHub />} />
-                <Route path="/practice" element={<PracticeHub />} />
+                <Route path="/speak" element={<PracticeHub />} />
                 <Route path="/progress" element={<ProgressHub />} />
                 <Route path="/ai-teacher" element={<AiTeacher />} />
                 

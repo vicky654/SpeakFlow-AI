@@ -51,9 +51,7 @@ export const VocabGame: React.FC = () => {
     const sourceList = allWords.length >= 4 ? allWords : dailyWords;
     if (sourceList.length === 0) return;
 
-    // Generate questions
     const generated = sourceList.map(word => {
-      // Pick 3 random incorrect meanings
       const incorrects = sourceList
         .filter(w => w._id !== word._id)
         .map(w => w.englishMeaning);
@@ -74,7 +72,6 @@ export const VocabGame: React.FC = () => {
     setSpeedTimer(30);
     setGameState('speed');
 
-    // Start running clock
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setSpeedTimer(prev => {
@@ -103,112 +100,100 @@ export const VocabGame: React.FC = () => {
     if (currentSpeedIdx < speedQuestions.length - 1) {
       setCurrentSpeedIdx(prev => prev + 1);
     } else {
-      clearInterval(timerRef.current!);
-      endGame(`Clean sweep! You finished all ${speedQuestions.length} questions.`);
+      if (timerRef.current) clearInterval(timerRef.current);
+      endGame(`Great job! You finished all questions.`);
     }
   };
 
   // INITIALIZE WORD MATCHER
   const startWordMatcher = () => {
     const sourceList = allWords.length >= 4 ? allWords : dailyWords;
-    if (sourceList.length === 0) return;
+    if (sourceList.length < 4) {
+      alert("Study at least 4 words in vocabulary first to unlock matching game!");
+      return;
+    }
 
-    // Pick 4 words
-    const chosen = sourceList.sort(() => 0.5 - Math.random()).slice(0, 4);
+    const testWords = [...sourceList].sort(() => 0.5 - Math.random()).slice(0, 4);
 
-    const words: MatchItem[] = chosen.map(w => ({
-      id: w._id + '_w',
+    const leftCol: MatchItem[] = testWords.map(w => ({
+      id: `word-${w._id}`,
       text: w.word,
       type: 'word' as const,
       matchId: w._id
     })).sort(() => 0.5 - Math.random());
 
-    const meanings: MatchItem[] = chosen.map(w => ({
-      id: w._id + '_m',
+    const rightCol: MatchItem[] = testWords.map(w => ({
+      id: `mean-${w._id}`,
       text: w.englishMeaning,
       type: 'meaning' as const,
       matchId: w._id
     })).sort(() => 0.5 - Math.random());
 
-    setWordsCol(words);
-    setMeaningsCol(meanings);
-    setMatchedIds([]);
+    setWordsCol(leftCol);
+    setMeaningsCol(rightCol);
     setSelectedWord(null);
     setSelectedMeaning(null);
+    setMatchedIds([]);
     setScore(0);
     setGameState('match');
   };
 
-  // HANDLE COLUMN CARD MATCH SELECTIONS
   const handleMatchClick = (item: MatchItem) => {
-    if (matchedIds.includes(item.matchId)) return;
-
     if (item.type === 'word') {
       setSelectedWord(item);
-      if (selectedMeaning) {
-        verifyMatch(item, selectedMeaning);
-      }
+      checkPairs(item, selectedMeaning);
     } else {
       setSelectedMeaning(item);
-      if (selectedWord) {
-        verifyMatch(selectedWord, item);
+      checkPairs(selectedWord, item);
+    }
+  };
+
+  const checkPairs = (w: MatchItem | null, m: MatchItem | null) => {
+    if (w && m) {
+      if (w.matchId === m.matchId) {
+        setMatchedIds(prev => {
+          const next = [...prev, w.matchId];
+          if (next.length === 4) {
+            setTimeout(() => {
+              endGame("Succeeded! All matches cleared.");
+            }, 500);
+          }
+          return next;
+        });
+        playSound('correct');
+      } else {
+        playSound('wrong');
       }
+      setSelectedWord(null);
+      setSelectedMeaning(null);
     }
   };
 
-  const verifyMatch = (w: MatchItem, m: MatchItem) => {
-    if (w.matchId === m.matchId) {
-      // It is a match!
-      setMatchedIds(prev => [...prev, w.matchId]);
-      setScore(prev => prev + 1);
-      playSound('correct');
-    } else {
-      playSound('wrong');
-    }
-    // reset selection
-    setSelectedWord(null);
-    setSelectedMeaning(null);
-  };
-
-  useEffect(() => {
-    // Check if matcher is complete
-    if (gameState === 'match' && matchedIds.length === 4 && matchedIds.length > 0) {
-      setTimeout(() => {
-        endGame('Bravo! You matched all pairs perfectly.');
-      }, 600);
-    }
-  }, [matchedIds, gameState]);
-
-  // TERMINATE AND CALCULATE SCORE REWARDS
+  // COMPLETE & SUBMIT SCORE
   const endGame = async (msg: string) => {
     setResultMsg(msg);
     setGameState('result');
-    if (timerRef.current) clearInterval(timerRef.current);
-
-    // Reward math
-    const xpReward = score * 15;
-    const coinReward = score * 3;
-    setEarnedXp(xpReward);
-    setEarnedCoins(coinReward);
-
-    // Call API (using practice/time route to sync XP points on user profile)
-    const token = useAuthStore.getState().token;
-    if (token && score > 0) {
-      try {
-        await fetch(`${API_BASE_URL}/learning/practice/time`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify({ skill: 'reading', duration: score * 15 }) // counts as reading practice duration
-        });
-        await useAuthStore.getState().loadUser();
-      } catch (err) {
-        console.error('Failed to sync game scores', err);
-      }
-    }
     playSound('complete');
+
+    // Submit points
+    const xpBonus = 100;
+    const coinsBonus = 15;
+    setEarnedXp(xpBonus);
+    setEarnedCoins(coinsBonus);
+
+    try {
+      await fetch(`${API_BASE_URL}/gamification/credit`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${useAuthStore.getState().token}`
+        },
+        body: JSON.stringify({ xp: xpBonus, coins: coinsBonus })
+      });
+      await useAuthStore.getState().loadUser();
+    } catch (e) {
+      console.error('Failed to sync game points', e);
+    }
   };
 
   useEffect(() => {
@@ -218,70 +203,71 @@ export const VocabGame: React.FC = () => {
   }, []);
 
   return (
-    <div className="space-y-6 select-none max-w-4xl mx-auto">
+    <div className="space-y-6 select-none max-w-lg mx-auto pb-6 text-brand-text-primary">
       
-      {/* HEADER SECTION */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-extrabold text-white flex items-center space-x-3">
-            <Gamepad2 className="w-8 h-8 text-indigo-400" />
-            <span>Vocab Game Arcade</span>
-          </h1>
-          <p className="text-xs text-brand-text-secondary mt-1">Play matches, race against timers, and claim bonus coins.</p>
+      {/* HEADER ROW */}
+      <div className="flex items-center justify-between pb-3 border-b border-brand-border px-1 shrink-0">
+        <div className="flex items-center gap-3">
+          {gameState !== 'menu' && (
+            <button
+              onClick={() => {
+                if (timerRef.current) clearInterval(timerRef.current);
+                setGameState('menu');
+              }}
+              style={{ borderRadius: '12px', padding: '8px' }}
+              className="bg-white border border-gray-200 text-brand-text-secondary hover:bg-gray-50 transition-all mr-1"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+          )}
+          <div className="space-y-1 text-left">
+            <h2 className="text-2xl font-bold text-brand-text-primary flex items-center gap-2">
+              <Gamepad2 className="w-6 h-6 text-indigo-500" />
+              <span>Vocabulary Playground</span>
+            </h2>
+            <p className="text-xs text-brand-text-secondary">Study English by playing gamified speed speed-runs and paired matches.</p>
+          </div>
         </div>
-        
-        {gameState !== 'menu' && (
-          <button
-            onClick={() => {
-              if (timerRef.current) clearInterval(timerRef.current);
-              setGameState('menu');
-            }}
-            className="flex items-center space-x-2 px-3.5 py-2 bg-brand-card border border-brand-border rounded-xl text-xs font-bold text-brand-text-secondary hover:text-white"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Quit Game</span>
-          </button>
-        )}
       </div>
 
-      {/* GAME VIEW MANAGER */}
-
-      {/* 1. GAME SELECTION MENU */}
+      {/* 1. START GAME MENU OPTIONS */}
       {gameState === 'menu' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
           {/* Speed Quiz Card */}
-          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border flex flex-col justify-between h-[300px] hover:border-indigo-500/40 hover:-translate-y-1 transition-all">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
+          <div className="card flex flex-col justify-between h-[320px] hover:border-indigo-500/40 hover:-translate-y-0.5 transition-all">
+            <div className="space-y-3.5 text-left">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-55/10 border border-indigo-500/20 text-indigo-550 flex items-center justify-center">
                 <Timer className="w-6 h-6 animate-pulse" />
               </div>
-              <h3 className="text-xl font-extrabold text-white">30-Second Speed Quiz</h3>
+              <h3 className="text-lg font-bold text-brand-text-primary">30-Second Speed Quiz</h3>
               <p className="text-xs text-brand-text-secondary leading-relaxed">
                 A high-speed sprint! Read vocabulary words and identify their correct meanings before the 30-second clock hits zero.
               </p>
             </div>
             <button
               onClick={startSpeedQuiz}
-              className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-600/20"
+              style={{ borderRadius: '12px', padding: '12px' }}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all shadow-md active:scale-[0.99]"
             >
               Start Sprint
             </button>
           </div>
 
           {/* Word Matcher Card */}
-          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border flex flex-col justify-between h-[300px] hover:border-indigo-500/40 hover:-translate-y-1 transition-all">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+          <div className="card flex flex-col justify-between h-[320px] hover:border-emerald-500/40 hover:-translate-y-0.5 transition-all">
+            <div className="space-y-3.5 text-left">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50/10 border border-emerald-500/20 text-emerald-600 flex items-center justify-center">
                 <Sparkles className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-extrabold text-white">Meaning Matcher</h3>
+              <h3 className="text-lg font-bold text-brand-text-primary">Meaning Matcher</h3>
               <p className="text-xs text-brand-text-secondary leading-relaxed">
                 Connect shuffled word columns with their English definitions. Requires analytical pairing and accuracy.
               </p>
             </div>
             <button
               onClick={startWordMatcher}
-              className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-emerald-600/20"
+              style={{ borderRadius: '12px', padding: '12px' }}
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition-all shadow-md active:scale-[0.99]"
             >
               Play Matcher
             </button>
@@ -291,16 +277,16 @@ export const VocabGame: React.FC = () => {
 
       {/* 2. SPEED QUIZ ACTIVE BOARD */}
       {gameState === 'speed' && speedQuestions[currentSpeedIdx] && (
-        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-6">
+        <div className="card space-y-6">
           <div className="flex justify-between items-center border-b border-brand-border pb-4">
-            <div className="flex items-center space-x-2 text-indigo-400">
+            <div className="flex items-center space-x-2 text-indigo-600">
               <Timer className="w-5 h-5 text-indigo-500 fill-indigo-500/10" />
               <span className="font-mono font-bold text-xl">{speedTimer}s</span>
             </div>
             <div className="text-xs font-bold text-brand-text-secondary">
               QUESTION {currentSpeedIdx + 1} OF {speedQuestions.length}
             </div>
-            <div className="flex items-center space-x-1.5 text-xs text-emerald-400 font-bold">
+            <div className="flex items-center space-x-1.5 text-xs text-emerald-600 font-bold">
               <CheckCircle2 className="w-4 h-4" />
               <span>Score: {score}</span>
             </div>
@@ -308,18 +294,18 @@ export const VocabGame: React.FC = () => {
 
           <div className="flex flex-col items-center justify-center text-center space-y-3 py-6">
             <span className="text-brand-text-secondary uppercase tracking-widest text-[10px] font-bold">What is the meaning of:</span>
-            <h2 className="text-4xl font-extrabold tracking-wide text-white font-sans">{speedQuestions[currentSpeedIdx].word}</h2>
+            <h2 className="text-3xl font-bold tracking-wide text-brand-text-primary font-sans">{speedQuestions[currentSpeedIdx].word}</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-2">
             {speedQuestions[currentSpeedIdx].options.map((opt: string, i: number) => (
               <button
                 key={i}
                 onClick={() => handleSpeedAnswer(opt)}
-                className="p-4 bg-brand-surface/60 border border-brand-border rounded-2xl text-left text-xs font-semibold text-brand-text-secondary hover:border-indigo-500/60 hover:bg-indigo-950/20 hover:text-white transition-all duration-150 leading-relaxed"
+                className="p-3 bg-white border border-gray-200 rounded-xl text-left text-xs font-semibold text-brand-text-primary hover:border-indigo-300 hover:bg-indigo-50/50 transition-all duration-150 leading-relaxed active:scale-[0.99]"
               >
-                <div className="flex space-x-3 items-start">
-                  <span className="px-1.5 py-0.5 rounded bg-brand-surface text-brand-text-muted font-mono font-bold">{i + 1}</span>
+                <div className="flex space-x-3 items-center">
+                  <span className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-bold shrink-0">{i + 1}</span>
                   <span>{opt}</span>
                 </div>
               </button>
@@ -330,19 +316,19 @@ export const VocabGame: React.FC = () => {
 
       {/* 3. WORD MATCHER ACTIVE BOARD */}
       {gameState === 'match' && (
-        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-6">
+        <div className="card space-y-6">
           <div className="flex justify-between items-center border-b border-brand-border pb-4">
             <span className="text-xs text-brand-text-secondary font-bold">MATCH WORDS TO MEANINGS</span>
-            <div className="flex items-center space-x-1 text-xs text-emerald-400 font-bold">
+            <div className="flex items-center space-x-1 text-xs text-emerald-600 font-bold">
               <CheckCircle2 className="w-4 h-4" />
               <span>Pairs: {matchedIds.length}/4</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start pt-2">
             {/* WORDS COLUMN */}
-            <div className="flex flex-col space-y-3">
-              <h4 className="text-xs font-bold text-indigo-400 uppercase tracking-wider text-center">Words</h4>
+            <div className="flex flex-col space-y-2">
+              <h4 className="text-xs font-bold text-indigo-500 uppercase tracking-wider text-center">Words</h4>
               {wordsCol.map(item => {
                 const isMatched = matchedIds.includes(item.matchId);
                 const isSelected = selectedWord?.id === item.id;
@@ -351,12 +337,12 @@ export const VocabGame: React.FC = () => {
                     key={item.id}
                     disabled={isMatched}
                     onClick={() => handleMatchClick(item)}
-                    className={`p-4 border rounded-2xl text-center font-bold text-sm transition-all duration-200 ${
+                    className={`p-3 border rounded-xl text-center font-bold text-xs transition-all duration-200 ${
                       isMatched 
-                        ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400/60 line-through cursor-not-allowed'
+                        ? 'bg-emerald-50 border-emerald-200 text-emerald-600/60 line-through cursor-not-allowed'
                         : isSelected
-                          ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/25 scale-[1.02]'
-                          : 'bg-brand-surface/60 border-brand-border text-brand-text-secondary hover:border-brand-border hover:text-white'
+                          ? 'bg-indigo-600 border-indigo-600 text-white shadow-md scale-[1.02]'
+                          : 'bg-white border-gray-200 text-brand-text-primary hover:border-indigo-300 hover:bg-indigo-50/50 active:scale-[0.99]'
                     }`}
                   >
                     {item.text}
@@ -366,8 +352,8 @@ export const VocabGame: React.FC = () => {
             </div>
 
             {/* MEANINGS COLUMN */}
-            <div className="flex flex-col space-y-3">
-              <h4 className="text-xs font-bold text-emerald-400 uppercase tracking-wider text-center">Definitions</h4>
+            <div className="flex flex-col space-y-2">
+              <h4 className="text-xs font-bold text-emerald-600 uppercase tracking-wider text-center">Definitions</h4>
               {meaningsCol.map(item => {
                 const isMatched = matchedIds.includes(item.matchId);
                 const isSelected = selectedMeaning?.id === item.id;
@@ -376,12 +362,12 @@ export const VocabGame: React.FC = () => {
                     key={item.id}
                     disabled={isMatched}
                     onClick={() => handleMatchClick(item)}
-                    className={`p-4 border rounded-2xl text-left text-xs transition-all duration-200 leading-relaxed ${
+                    className={`p-3 border rounded-xl text-left text-xs transition-all duration-200 leading-relaxed ${
                       isMatched 
-                        ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400/60 line-through cursor-not-allowed'
+                        ? 'bg-emerald-50 border-emerald-200 text-emerald-600/60 line-through cursor-not-allowed'
                         : isSelected
-                          ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/25 scale-[1.02]'
-                          : 'bg-brand-surface/60 border-brand-border text-brand-text-secondary hover:border-brand-border hover:text-white'
+                          ? 'bg-indigo-600 border-indigo-600 text-white shadow-md scale-[1.02]'
+                          : 'bg-white border-gray-200 text-brand-text-primary hover:border-indigo-300 hover:bg-indigo-50/50 active:scale-[0.99]'
                     }`}
                   >
                     {item.text}
@@ -395,40 +381,41 @@ export const VocabGame: React.FC = () => {
 
       {/* 4. RESULT MODAL VIEWER */}
       {gameState === 'result' && (
-        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-8 border border-brand-border text-center max-w-md mx-auto space-y-6 flex flex-col items-center">
+        <div className="card text-center max-w-md mx-auto space-y-6 flex flex-col items-center">
           <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 flex items-center justify-center animate-bounce">
-            <Trophy className="w-8 h-8" />
+            <Trophy className="w-8 h-8 animate-pulse" />
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-2xl font-extrabold text-white">Game Finished!</h2>
+            <h2 className="text-2xl font-bold text-brand-text-primary">Game Finished!</h2>
             <p className="text-xs text-brand-text-secondary leading-relaxed">{resultMsg}</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4 w-full pt-2">
-            <div className="bg-indigo-950/30 border border-indigo-900/30 p-4 rounded-2xl">
+            <div className="bg-indigo-50 border border-indigo-100 p-4 rounded-2xl">
               <span className="text-[10px] text-brand-text-secondary uppercase font-bold tracking-wider">XP gained</span>
-              <p className="text-2xl font-extrabold text-indigo-400">+{earnedXp} XP</p>
+              <p className="text-xl font-extrabold text-indigo-600 mt-0.5">+{earnedXp} XP</p>
             </div>
-            <div className="bg-amber-950/30 border border-amber-900/30 p-4 rounded-2xl">
+            <div className="bg-amber-50 border border-amber-100 p-4 rounded-2xl">
               <span className="text-[10px] text-brand-text-secondary uppercase font-bold tracking-wider">Coins Claimed</span>
-              <p className="text-2xl font-extrabold text-amber-400">+{earnedCoins} Coins</p>
+              <p className="text-xl font-extrabold text-amber-600 mt-0.5">+{earnedCoins} Coins</p>
             </div>
           </div>
 
           <div className="flex gap-4 w-full pt-4">
             <button
               onClick={() => setGameState('menu')}
-              className="flex-1 py-3 bg-brand-card border border-brand-border text-brand-text-secondary hover:text-white rounded-xl text-xs font-bold transition-all"
+              style={{ borderRadius: '12px', padding: '12px' }}
+              className="flex-grow py-3 bg-white border border-gray-200 text-brand-text-secondary hover:bg-gray-50 text-xs font-bold transition-all"
             >
               Menu
             </button>
             <button
               onClick={() => {
-                 // Restart with a new speed quiz by default
                  startSpeedQuiz();
                }}
-              className="flex-grow py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-600/25 flex items-center justify-center space-x-2"
+              style={{ borderRadius: '12px', padding: '12px' }}
+              className="flex-grow py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md flex items-center justify-center space-x-2 active:scale-[0.99]"
             >
               <RotateCcw className="w-4 h-4" />
               <span>Play Again</span>

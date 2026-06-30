@@ -125,14 +125,14 @@ export const WordCard: React.FC<WordCardProps> = ({
         onMouseLeave={handlePressEnd}
         onTouchStart={handlePressStart}
         onTouchEnd={handlePressEnd}
-        className="w-full h-[390px] flip-card cursor-pointer select-none group relative rounded-3xl"
+        className="w-full h-[390px] flip-card cursor-pointer select-none group relative rounded-[20px]"
         whileTap={{ scale: 0.985 }}
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       >
-        <div className={`relative w-full h-full flip-card-inner rounded-3xl bg-brand-card border border-brand-border transition-all duration-500 shadow-level-1 ${isFlipped ? 'flip-card-flipped' : ''}`}>
+        <div className={`relative w-full h-full flip-card-inner rounded-[20px] bg-brand-card border border-brand-border transition-all duration-500 shadow-level-1 ${isFlipped ? 'flip-card-flipped' : ''}`}>
           
           {/* CARD FRONT */}
-          <div className="absolute inset-0 w-full h-full flip-card-front p-6 flex flex-col justify-between rounded-3xl bg-brand-surface border border-brand-border">
+          <div className="absolute inset-0 w-full h-full flip-card-front p-6 flex flex-col justify-between rounded-[20px] bg-brand-surface border border-brand-border">
             {/* Top Bar */}
             <div className="flex justify-between items-center">
               <span className="text-[10px] font-semibold uppercase px-2.5 py-0.5 rounded-full bg-brand-primary/10 text-brand-primary border border-brand-primary/15">
@@ -185,7 +185,7 @@ export const WordCard: React.FC<WordCardProps> = ({
           </div>
 
           {/* CARD BACK */}
-          <div className="absolute inset-0 w-full h-full flip-card-back p-6 flex flex-col justify-between overflow-y-auto rounded-3xl bg-brand-surface border border-brand-border">
+          <div className="absolute inset-0 w-full h-full flip-card-back p-6 flex flex-col justify-between overflow-y-auto rounded-[20px] bg-brand-surface border border-brand-border">
             <div className="space-y-4">
               {/* Top Back Header */}
               <div className="flex justify-between items-center border-b border-brand-border pb-2.5">

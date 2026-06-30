@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLearningStore } from '../store/learningStore';
 import { useAuthStore } from '../store/authStore';
-import { BookOpenCheck, FileText, CheckCircle, Award, Sparkles, Send, Edit3, HelpCircle } from 'lucide-react';
+import { BookOpenCheck, FileText, CheckCircle, Award, Sparkles, Send, Edit3, HelpCircle, ChevronRight, CheckCircle2 } from 'lucide-react';
 
 export const ReadingPractice: React.FC = () => {
   const { lessons, fetchLessons, activeLesson, fetchLessonById, submitQuiz, submitWriting, loading } = useLearningStore();
@@ -72,40 +72,45 @@ export const ReadingPractice: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 select-none max-w-5xl mx-auto">
+    <div className="space-y-6 select-none max-w-5xl mx-auto pb-6">
       
       {/* HEADER */}
-      <div>
-        <h1 className="text-3xl font-extrabold text-white flex items-center space-x-3">
-          <BookOpenCheck className="w-8 h-8 text-indigo-400" />
+      <div className="space-y-1">
+        <h2 className="text-2xl font-bold text-brand-text-primary flex items-center gap-2">
+          <BookOpenCheck className="w-6 h-6 text-indigo-500" />
           <span>Reading Practice Hub</span>
-        </h1>
-        <p className="text-xs text-brand-text-secondary mt-1">Read curated articles, complete vocabulary quizzes, and write brief reviews.</p>
+        </h2>
+        <p className="text-xs text-brand-text-secondary">Read curated articles, complete vocabulary quizzes, and write brief reviews.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         
         {/* LEFT COLUMN: LIST */}
-        <div className="flex flex-col space-y-4 lg:col-span-1">
-          <h3 className="text-xs font-bold text-brand-text-secondary uppercase tracking-wider pl-1 font-sans">Articles & Stories</h3>
+        <div className="flex flex-col space-y-3 lg:col-span-1">
+          <span className="text-[11px] uppercase font-bold tracking-wider text-brand-text-muted pl-1">Articles & Stories</span>
           
-          <div className="space-y-3">
-            {lessons.map(sc => (
-              <div
-                key={sc._id}
-                onClick={() => selectStory(sc._id)}
-                className={`p-4 rounded-2xl border text-left cursor-pointer transition-all ${
-                  activeLesson?._id === sc._id
-                    ? 'bg-indigo-600/15 border-indigo-500 text-white'
-                    : 'bg-brand-card border border-brand-border shadow-level-1 border-brand-border text-brand-text-secondary hover:border-brand-border hover:text-brand-text-primary'
-                }`}
-              >
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                  {sc.category}
-                </span>
-                <h4 className="font-bold text-sm mt-2 text-brand-text-primary">{sc.title}</h4>
-              </div>
-            ))}
+          <div className="space-y-2">
+            {lessons.map(sc => {
+              const isActive = activeLesson?._id === sc._id;
+              return (
+                <button
+                  key={sc._id}
+                  onClick={() => selectStory(sc._id)}
+                  className={`w-full text-left card !p-4 transition-all active:scale-[0.99] flex items-center gap-3 ${
+                    isActive ? 'ring-2 ring-indigo-500 ring-offset-1 shadow-md' : 'hover:shadow-md'
+                  }`}
+                >
+                  <div className="w-1 self-stretch rounded-full bg-indigo-500 shrink-0" />
+                  <div className="flex-1 min-w-0 space-y-1">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-55/10 text-indigo-500 border border-indigo-500/20 uppercase">
+                      {sc.category}
+                    </span>
+                    <h4 className="font-semibold text-[13px] text-brand-text-primary mt-1 line-clamp-1 leading-snug">{sc.title}</h4>
+                  </div>
+                  <ChevronRight className={`w-4 h-4 shrink-0 ${isActive ? 'text-indigo-500' : 'text-brand-text-muted'}`} />
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -115,38 +120,30 @@ export const ReadingPractice: React.FC = () => {
             <div className="space-y-6">
               
               {/* READING STORY TEXT VIEW */}
-              <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 md:p-8 border border-brand-border space-y-4">
-                <span className="text-[10px] uppercase font-extrabold tracking-widest text-indigo-400">
+              <div className="card space-y-4">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-indigo-500">
                   {activeLesson.category}
                 </span>
-                <h2 className="text-2xl font-extrabold text-white leading-tight">{activeLesson.title}</h2>
+                <h2 className="text-xl font-bold text-brand-text-primary leading-tight">{activeLesson.title}</h2>
                 
                 {/* Readable format content box */}
                 <div className="text-brand-text-secondary text-sm leading-relaxed whitespace-pre-line border-t border-brand-border pt-4 font-sans max-h-80 overflow-y-auto pr-2">
-                  {activeLesson.content.replace(/#\s+.+/g, '')} {/* strip out duplicates headers if any */}
+                  {activeLesson.content.replace(/#\s+.+/g, '')}
                 </div>
               </div>
 
               {/* STUDY TABS */}
-              <div className="flex bg-brand-card border border-brand-border p-1 rounded-2xl">
+              <div className="tab-bar">
                 <button
                   onClick={() => setActiveWorkspaceTab('quiz')}
-                  className={`flex-1 flex items-center justify-center space-x-2 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                    activeWorkspaceTab === 'quiz' 
-                      ? 'bg-indigo-600 text-white shadow-md' 
-                      : 'text-brand-text-secondary hover:text-brand-text-primary'
-                  }`}
+                  className={`tab-btn ${activeWorkspaceTab === 'quiz' ? 'active' : ''}`}
                 >
                   <HelpCircle className="w-3.5 h-3.5" />
                   <span>Comprehension Quiz</span>
                 </button>
                 <button
                   onClick={() => setActiveWorkspaceTab('summary')}
-                  className={`flex-1 flex items-center justify-center space-x-2 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                    activeWorkspaceTab === 'summary' 
-                      ? 'bg-indigo-600 text-white shadow-md' 
-                      : 'text-brand-text-secondary hover:text-brand-text-primary'
-                  }`}
+                  className={`tab-btn ${activeWorkspaceTab === 'summary' ? 'active' : ''}`}
                 >
                   <Edit3 className="w-3.5 h-3.5" />
                   <span>Summary Writing</span>
@@ -155,41 +152,54 @@ export const ReadingPractice: React.FC = () => {
 
               {/* COMPREHENSION QUIZ TAB */}
               {activeWorkspaceTab === 'quiz' && (
-                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-6">
+                <div className="card space-y-6">
                   <div className="space-y-6">
                     {activeLesson.metadata.questions?.map((q, idx) => (
                       <div key={q.id} className="space-y-3">
-                        <p className="text-sm font-bold text-brand-text-secondary">
+                        <p className="text-[13px] font-semibold text-brand-text-primary leading-snug">
                           {idx + 1}. {q.question}
                         </p>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 gap-2">
                           {q.options.map((opt, i) => {
                             const isSelected = selectedAnswers[q.id] === opt;
                             const isCorrect = q.answer === opt;
-                            let btnClass = 'bg-brand-surface/60 border-brand-border text-brand-text-secondary hover:border-indigo-500/40';
 
-                            if (isSelected) {
-                              btnClass = 'bg-indigo-600 border-indigo-500 text-white shadow-md';
+                            let optClass = 'bg-white border-gray-200 text-brand-text-primary hover:border-indigo-300 hover:bg-indigo-50/50';
+                            let prefixClass = 'bg-gray-100 text-gray-500';
+
+                            if (isSelected && !quizResult) {
+                              optClass = 'bg-indigo-600 border-indigo-600 text-white shadow-sm';
+                              prefixClass = 'bg-white/20 text-white';
                             }
 
                             if (quizResult) {
                               if (isCorrect) {
-                                btnClass = 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-bold';
+                                optClass = 'bg-emerald-50 border-emerald-400 text-emerald-700 font-bold';
+                                prefixClass = 'bg-emerald-100 text-emerald-600';
                               } else if (isSelected) {
-                                btnClass = 'bg-rose-500/20 border-rose-500 text-rose-400 line-through';
+                                optClass = 'bg-red-55 border-red-400 text-red-600 line-through';
+                                prefixClass = 'bg-red-100 text-red-550';
                               } else {
-                                btnClass = 'bg-brand-surface/40 border-brand-border text-brand-text-muted opacity-60';
+                                optClass = 'bg-gray-50 border-gray-100 text-brand-text-muted opacity-50';
+                                prefixClass = 'bg-gray-100 text-gray-400';
                               }
                             }
 
+                            const letters = ['A', 'B', 'C', 'D'];
                             return (
                               <button
                                 key={i}
                                 disabled={quizResult !== null}
                                 onClick={() => handleSelectOption(q.id, opt)}
-                                className={`p-3 text-left text-xs font-semibold rounded-xl border transition-all leading-relaxed ${btnClass}`}
+                                className={`w-full flex items-center gap-3 p-3 rounded-xl border text-left text-[13px] transition-all active:scale-[0.99] ${optClass}`}
                               >
-                                {opt}
+                                <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${prefixClass}`}>
+                                  {letters[i]}
+                                </span>
+                                <span className="leading-snug">{opt}</span>
+                                {quizResult && isCorrect && (
+                                  <CheckCircle2 className="w-4 h-4 text-emerald-500 ml-auto shrink-0" />
+                                )}
                               </button>
                             );
                           })}
@@ -201,23 +211,24 @@ export const ReadingPractice: React.FC = () => {
                   {!quizResult ? (
                     <button
                       onClick={handleSubmitQuiz}
-                      className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-bold transition-all shadow-md shadow-indigo-600/25 mt-4"
+                      style={{ borderRadius: '12px', padding: '14px' }}
+                      className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2"
                     >
                       Submit Quiz
                     </button>
                   ) : (
-                    <div className={`p-5 rounded-2xl border text-center space-y-3 ${
+                    <div className={`p-4 rounded-2xl border text-center space-y-2 ${
                       quizResult.passed 
-                        ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-400' 
-                        : 'bg-rose-500/10 border-rose-500/25 text-rose-400'
+                        ? 'bg-emerald-50 border-emerald-200 text-emerald-700' 
+                        : 'bg-red-50 border-red-200 text-red-600'
                     }`}>
-                      <div className="flex items-center justify-center space-x-2 font-bold text-base">
-                        <Award className="w-5 h-5" />
+                      <div className="flex items-center justify-center gap-2 font-bold text-sm">
+                        <Award className="w-4.5 h-4.5" />
                         <span>{quizResult.passed ? 'Quiz Passed! 🎉' : 'Quiz Incomplete'}</span>
                       </div>
                       <p className="text-xs">
-                        You scored <span className="font-extrabold">{quizResult.score}%</span> accuracy.
-                        Earned <span className="font-bold text-indigo-400">+{quizResult.xpGained} XP</span> and <span className="font-bold text-amber-400">+{quizResult.coinsGained} Coins</span>!
+                        You scored <span className="font-bold">{quizResult.score}%</span> accuracy.<br />
+                        Earned <span className="font-bold text-indigo-600">+{quizResult.xpGained} XP</span> and <span className="font-bold text-amber-500">+{quizResult.coinsGained} Coins</span>!
                       </p>
                     </div>
                   )}
@@ -226,10 +237,10 @@ export const ReadingPractice: React.FC = () => {
 
               {/* SUMMARY WRITING TAB */}
               {activeWorkspaceTab === 'summary' && (
-                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-5">
+                <div className="card space-y-5">
                   <div className="space-y-1">
-                    <h3 className="font-bold text-brand-text-primary">Submit a Story Summary</h3>
-                    <p className="text-[11px] text-brand-text-secondary">Write a brief 1-3 sentence summary of what you read. Our parser will evaluate sentence spelling, case structure, and length.</p>
+                    <h3 className="font-bold text-brand-text-primary text-sm">Submit a Story Summary</h3>
+                    <p className="text-[11px] text-brand-text-secondary leading-normal">Write a brief 1-3 sentence summary of what you read. Our parser will evaluate sentence spelling, case structure, and length.</p>
                   </div>
 
                   <form onSubmit={handleSubmitSummary} className="space-y-4">
@@ -238,14 +249,15 @@ export const ReadingPractice: React.FC = () => {
                       placeholder="Write your summary here... (e.g. Emails are essential in corporate systems. We should construct neat subject lines and keep requests direct.)"
                       value={summaryText}
                       onChange={(e) => setSummaryText(e.target.value)}
-                      className="w-full h-32 p-4 bg-brand-surface border border-brand-border rounded-2xl text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/30 transition-all font-sans leading-relaxed resize-none"
+                      className="w-full h-32 p-4 bg-brand-surface border border-gray-250 rounded-2xl text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/30 transition-all font-sans leading-relaxed resize-none"
                     />
 
                     {!writingResult ? (
                       <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-bold transition-all shadow-md shadow-indigo-600/20 flex items-center justify-center space-x-2"
+                        style={{ borderRadius: '12px', padding: '14px' }}
+                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2"
                       >
                         <Send className="w-4 h-4" />
                         <span>Submit Summary</span>
@@ -255,9 +267,9 @@ export const ReadingPractice: React.FC = () => {
                         <div className="flex justify-between items-center bg-brand-card border border-brand-border p-4 rounded-2xl">
                           <div className="text-left">
                             <span className="text-[10px] text-brand-text-muted uppercase font-bold tracking-wider">Evaluation Score</span>
-                            <p className="text-xl font-extrabold text-indigo-400 mt-0.5">{writingResult.score} / 100</p>
+                            <p className="text-xl font-extrabold text-indigo-600 mt-0.5">{writingResult.score} / 100</p>
                           </div>
-                          <span className="text-xs text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
+                          <span className="text-xs text-emerald-600 font-bold bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
                             +{writingResult.xpGained} XP • +{writingResult.coinsGained} Coins
                           </span>
                         </div>
@@ -265,7 +277,7 @@ export const ReadingPractice: React.FC = () => {
                         <div className="space-y-2 text-left">
                           <h4 className="text-xs font-bold text-brand-text-secondary">Writing Analysis Details:</h4>
                           {writingResult.feedback.map((f: string, i: number) => (
-                            <div key={i} className="p-3 bg-brand-surface/40 border border-brand-border rounded-xl text-xs text-brand-text-secondary leading-relaxed">
+                            <div key={i} className="p-3 bg-brand-surface/45 border border-brand-border rounded-xl text-xs text-brand-text-secondary leading-relaxed">
                               {f}
                             </div>
                           ))}
@@ -274,7 +286,8 @@ export const ReadingPractice: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => { setWritingResult(null); setSummaryText(''); }}
-                          className="w-full py-2.5 bg-brand-card border border-brand-border text-brand-text-secondary hover:text-white rounded-xl text-xs font-bold transition-all"
+                          style={{ borderRadius: '12px', padding: '10px' }}
+                          className="w-full bg-white border border-gray-200 text-brand-text-secondary hover:bg-gray-50 text-xs font-bold transition-all"
                         >
                           Rewrite / Practice Again
                         </button>
@@ -286,11 +299,11 @@ export const ReadingPractice: React.FC = () => {
 
             </div>
           ) : (
-            <div className="h-96 bg-brand-card border border-brand-border shadow-level-1 rounded-3xl border border-brand-border flex flex-col items-center justify-center text-center p-8 space-y-4">
+            <div className="card flex flex-col items-center justify-center text-center py-12 space-y-4">
               <span className="text-4xl">📖</span>
-              <h3 className="text-lg font-bold text-brand-text-primary">Reader Workspace</h3>
+              <h3 className="text-sm font-bold text-brand-text-primary">Reader Workspace</h3>
               <p className="text-xs text-brand-text-muted max-w-sm">
-                Select an article or business report from the list on the left to start reading and test your analytical vocabulary skills.
+                Select an article or business story from the list on the left to start reading and test your analytical vocabulary skills.
               </p>
             </div>
           )}

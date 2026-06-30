@@ -27,33 +27,33 @@ export const ProgressHub: React.FC = () => {
     <div className="space-y-6 pb-6 select-none max-w-lg mx-auto">
       {/* HEADER SECTION */}
       <div className="space-y-1">
-        <h2 className="text-2xl font-extrabold text-white">Your Progress</h2>
+        <h2 className="text-2xl font-extrabold text-brand-text-primary">Your Progress</h2>
         <p className="text-xs text-brand-text-secondary">Track stats, view active badges, and check leaderboard standings.</p>
       </div>
 
       {/* STATS OVERVIEW CARDS */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-3 border border-brand-border text-center space-y-1">
-          <Flame className="w-5 h-5 text-orange-500 fill-current mx-auto" />
+        <div className="card !p-3.5 text-center space-y-1">
+          <Flame className="w-5 h-5 text-orange-500 fill-current mx-auto animate-pulse" />
           <p className="text-[10px] text-brand-text-secondary font-bold uppercase">Streak</p>
-          <p className="text-base font-extrabold text-white">{user?.streak} days</p>
+          <p className="text-base font-extrabold text-brand-text-primary">{user?.streak} days</p>
         </div>
         
-        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-3 border border-brand-border text-center space-y-1">
+        <div className="card !p-3.5 text-center space-y-1">
           <Sparkles className="w-5 h-5 text-indigo-400 fill-current mx-auto" />
           <p className="text-[10px] text-brand-text-secondary font-bold uppercase">Total XP</p>
-          <p className="text-base font-extrabold text-white">{user?.xp} XP</p>
+          <p className="text-base font-extrabold text-brand-text-primary">{user?.xp} XP</p>
         </div>
 
-        <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-3 border border-brand-border text-center space-y-1">
+        <div className="card !p-3.5 text-center space-y-1">
           <Coins className="w-5 h-5 text-amber-400 fill-current mx-auto" />
           <p className="text-[10px] text-brand-text-secondary font-bold uppercase">Coins</p>
-          <p className="text-base font-extrabold text-white">{user?.coins}</p>
+          <p className="text-base font-extrabold text-brand-text-primary">{user?.coins}</p>
         </div>
       </div>
 
       {/* RECHARTS CHART SECTION */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 border border-brand-border space-y-3">
+      <div className="card space-y-3">
         <div>
           <h4 className="font-bold text-sm text-brand-text-primary">Practice History</h4>
           <p className="text-[10px] text-brand-text-secondary">XP points earned during lessons this week.</p>
@@ -82,7 +82,7 @@ export const ProgressHub: React.FC = () => {
       </div>
 
       {/* LEADERBOARD STANDINGS */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 space-y-3">
+      <div className="card space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h4 className="font-bold text-sm text-brand-text-primary">Leaderboard League</h4>
@@ -127,7 +127,7 @@ export const ProgressHub: React.FC = () => {
       </div>
 
       {/* BADGES / ACHIEVEMENTS */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-4 border border-brand-border space-y-3">
+      <div className="card space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h4 className="font-bold text-sm text-brand-text-primary">Badges Unlocked</h4>

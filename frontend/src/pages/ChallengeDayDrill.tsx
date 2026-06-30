@@ -409,7 +409,7 @@ export const ChallengeDayDrill: React.FC = () => {
             <p className="text-[10px] text-brand-text-secondary">Listen to today's dialogue at different speeds.</p>
           </div>
 
-          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border space-y-4">
+          <div className="card space-y-4">
             <h4 className="font-bold text-xs uppercase tracking-wider text-brand-primary">Dialogue Audio player</h4>
             
             {/* Speed toggle */}
@@ -542,7 +542,7 @@ export const ChallengeDayDrill: React.FC = () => {
           </div>
 
           {/* Active Speaking Prompt */}
-          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border space-y-4">
+          <div className="card space-y-4">
             <div className="flex justify-between items-center">
               <span className="text-[9px] font-bold text-brand-text-secondary uppercase tracking-widest">Speaking Drill Prompt</span>
               
@@ -588,7 +588,7 @@ export const ChallengeDayDrill: React.FC = () => {
 
           {/* AI Score results */}
           {speakingScore && (
-            <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border space-y-4 bg-brand-card">
+            <div className="card space-y-4">
               <h4 className="font-extrabold text-xs uppercase tracking-wider text-brand-text-secondary">Speech Scorecard</h4>
               
               <div className="grid grid-cols-3 gap-2.5">
@@ -640,7 +640,7 @@ export const ChallengeDayDrill: React.FC = () => {
 
           <div className="space-y-5">
             {activeDayContent.quiz?.map((q: any, idx: number) => (
-              <div key={q.id} className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 border border-brand-border space-y-3">
+              <div key={q.id} className="card space-y-3">
                 <p className="text-xs font-extrabold text-brand-text-primary">
                   {idx + 1}. {q.question}
                 </p>

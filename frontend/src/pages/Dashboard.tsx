@@ -5,7 +5,7 @@ import { useLearningStore } from '../store/learningStore';
 import { useChallengeStore } from '../store/challengeStore';
 import {
   Flame, Sparkles, Target, Play, CheckCircle2, ChevronRight, Award,
-  BookOpen, Clock, Zap, MessageCircle, Headphones, Mic, Book, PenTool, GraduationCap
+  BookOpen, Clock, Zap, MessageCircle, Headphones, Mic, Book, PenTool, GraduationCap, Coins
 } from 'lucide-react';
 import { IonRefresher, IonRefresherContent } from '@ionic/react';
 import { Button } from '../components/Button';
@@ -116,14 +116,8 @@ export const Dashboard: React.FC = () => {
     quiz: { label: 'Grammar Course Quiz', time: '10 min', xp: '+50 XP', route: '/grammar' }
   };
 
-  const quickActions = [
-    { name: 'Vocabulary', route: '/vocab', icon: Book, color: 'bg-rose-500/10 text-rose-500 border-rose-500/10' },
-    { name: 'Grammar', route: '/grammar', icon: GraduationCap, color: 'bg-amber-500/10 text-amber-500 border-amber-500/10' },
-    { name: 'Speaking', route: '/speaking', icon: Mic, color: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/10' },
-    { name: 'Listening', route: '/listening', icon: Headphones, color: 'bg-blue-500/10 text-blue-500 border-blue-500/10' },
-    { name: 'Reading', route: '/reading', icon: BookOpen, color: 'bg-indigo-500/10 text-indigo-500 border-indigo-500/10' },
-    { name: 'Writing', route: '/writing', icon: PenTool, color: 'bg-teal-500/10 text-teal-500 border-teal-500/10' },
-  ];
+
+
 
   return (
     <div className="space-y-6 select-none max-w-md mx-auto pb-12 pt-2 px-1 text-brand-text-primary">
@@ -181,30 +175,47 @@ export const Dashboard: React.FC = () => {
       <div className="grid grid-cols-3 gap-3">
         {/* Streak */}
         <div className="card !p-4 flex flex-col items-center justify-center text-center">
-          <div className="w-10 h-10 rounded-xl bg-brand-error/10 flex items-center justify-center text-brand-error mb-2">
-            <Flame className="w-5 h-5 fill-current" />
+          <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-500 mb-2">
+            <Flame className="w-5 h-5 fill-current animate-pulse" />
           </div>
-          <span className="text-[10px] text-brand-text-muted uppercase font-semibold tracking-wide">Streak</span>
-          <p className="text-sm font-bold text-brand-text-primary mt-0.5">{user?.streak || 0} Days</p>
+          <span className="text-[10px] text-brand-text-secondary uppercase font-semibold tracking-wide">Streak</span>
+          <p className="text-sm font-extrabold text-brand-text-primary mt-0.5">{user?.streak || 0} Days</p>
         </div>
 
         {/* XP */}
         <div className="card !p-4 flex flex-col items-center justify-center text-center">
-          <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-2">
+          <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-500 mb-2">
             <Sparkles className="w-5 h-5 fill-current" />
           </div>
-          <span className="text-[10px] text-brand-text-muted uppercase font-semibold tracking-wide">XP</span>
-          <p className="text-sm font-bold text-brand-text-primary mt-0.5">{user?.xp || 0}</p>
+          <span className="text-[10px] text-brand-text-secondary uppercase font-semibold tracking-wide">XP</span>
+          <p className="text-sm font-extrabold text-brand-text-primary mt-0.5">{user?.xp || 0}</p>
         </div>
 
-        {/* Progress */}
+        {/* Coins */}
         <div className="card !p-4 flex flex-col items-center justify-center text-center">
-          <div className="w-10 h-10 rounded-xl bg-brand-success/10 flex items-center justify-center text-brand-success mb-2">
-            <Award className="w-5 h-5" />
+          <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-500 mb-2">
+            <Coins className="w-5 h-5 fill-current" />
           </div>
-          <span className="text-[10px] text-brand-text-muted uppercase font-semibold tracking-wide">Completed</span>
-          <p className="text-sm font-bold text-brand-success mt-0.5">{progressPct}%</p>
+          <span className="text-[10px] text-brand-text-secondary uppercase font-semibold tracking-wide">Coins</span>
+          <p className="text-sm font-extrabold text-brand-text-primary mt-0.5">{user?.coins || 0}</p>
         </div>
+      </div>
+
+      {/* 🏆 Recent Achievement */}
+      <div className="card flex items-center justify-between gap-4 p-4.5 bg-gradient-to-br from-amber-500/5 to-orange-500/10 border-amber-200">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-md">
+            <Award className="w-5.5 h-5.5" />
+          </div>
+          <div className="text-left">
+            <span className="text-[10px] text-amber-600 font-bold uppercase tracking-wider">Recent Achievement</span>
+            <h4 className="text-xs font-extrabold text-brand-text-primary mt-0.5">Welcome Onboard!</h4>
+            <p className="text-[10px] text-brand-text-secondary leading-none">You've unlocked Day {currentDay} of the guided challenge</p>
+          </div>
+        </div>
+        <span className="text-[10px] bg-amber-500/10 border border-amber-500/20 text-amber-600 px-2 py-0.5 rounded-full font-bold">
+          Active
+        </span>
       </div>
 
       {/* Progress Track */}
@@ -221,33 +232,7 @@ export const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* 🎯 Quick Actions Grid */}
-      <div className="space-y-3 text-left">
-        <div className="flex items-center space-x-2 pb-1">
-          <GraduationCap className="w-4.5 h-4.5 text-brand-primary" />
-          <h3 className="font-bold text-sm text-brand-text-primary">Skills Quick Practice</h3>
-        </div>
 
-        <div className="grid grid-cols-3 gap-3">
-          {quickActions.map((action, idx) => {
-            const Icon = action.icon;
-            return (
-              <div
-                key={idx}
-                onClick={() => navigate(action.route)}
-                className="card !p-4 hover:shadow-md cursor-pointer active:scale-95 text-center flex flex-col items-center justify-center space-y-2"
-              >
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${action.color} border`}>
-                  <Icon className="w-4.5 h-4.5" />
-                </div>
-                <span className="text-[10px] font-bold text-brand-text-primary leading-none">
-                  {action.name}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      </div>
 
       {/* 🎯 Daily Goals Checklist */}
       <div className="space-y-4 text-left pt-2">

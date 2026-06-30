@@ -11,7 +11,7 @@ export const BottomNavigation: React.FC = () => {
   const tabs = [
     { to: '/', label: 'Home', icon: Home },
     { to: '/learn', label: 'Learn', icon: BookOpen },
-    { to: '/practice', label: 'Practice', icon: Mic },
+    { to: '/speak', label: 'Speak', icon: Mic },
     { to: '/progress', label: 'Progress', icon: BarChart3 },
     { to: '/profile', label: 'Profile', icon: User }
   ];
@@ -25,7 +25,7 @@ export const BottomNavigation: React.FC = () => {
   };
 
   return (
-    <nav className="fixed bottom-4 left-4 right-4 h-[68px] bg-brand-surface/90 backdrop-blur-xl border border-brand-border/60 rounded-[22px] flex items-center justify-around px-2 z-50 select-none shadow-level-3">
+    <nav className="fixed bottom-4 left-4 right-4 h-[76px] bg-brand-surface/90 backdrop-blur-xl border border-brand-border/60 rounded-[24px] flex items-center justify-around px-2 z-50 select-none shadow-level-3">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = currentPath === tab.to || (tab.to !== '/' && currentPath.startsWith(tab.to));
@@ -35,7 +35,7 @@ export const BottomNavigation: React.FC = () => {
             key={tab.to}
             to={tab.to}
             onClick={handleTabClick}
-            className="relative flex flex-col items-center justify-center w-14 h-12 text-brand-text-muted transition-all"
+            className="relative flex flex-col items-center justify-center w-14 h-14 text-brand-text-muted transition-all"
           >
             {isActive && (
               <motion.div

@@ -24,7 +24,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
   const navItems = [
     { to: '/', label: 'Home', icon: LayoutDashboard },
     { to: '/learn', label: 'Learn', icon: BookOpen },
-    { to: '/practice', label: 'Practice', icon: Mic },
+    { to: '/speak', label: 'Speak', icon: Mic },
     { to: '/progress', label: 'Progress', icon: BarChart3 },
     { to: '/profile', label: 'Profile', icon: User },
   ];
