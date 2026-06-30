@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, BookOpen, Mic, BarChart3, User } from 'lucide-react';
+import { Home, Mic, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
@@ -10,9 +10,7 @@ export const BottomNavigation: React.FC = () => {
 
   const tabs = [
     { to: '/', label: 'Home', icon: Home },
-    { to: '/learn', label: 'Learn', icon: BookOpen },
-    { to: '/speak', label: 'Speak', icon: Mic },
-    { to: '/progress', label: 'Progress', icon: BarChart3 },
+    { to: '/speak', label: 'Practice', icon: Mic },
     { to: '/profile', label: 'Profile', icon: User }
   ];
 
@@ -35,7 +33,7 @@ export const BottomNavigation: React.FC = () => {
             key={tab.to}
             to={tab.to}
             onClick={handleTabClick}
-            className="relative flex flex-col items-center justify-center w-14 h-14 text-brand-text-muted transition-all"
+            className="relative flex flex-col items-center justify-center w-20 h-14 text-brand-text-muted transition-all"
           >
             {isActive && (
               <motion.div
@@ -50,8 +48,8 @@ export const BottomNavigation: React.FC = () => {
               animate={{ scale: isActive ? 1.05 : 1 }}
               whileTap={{ scale: 0.92 }}
             >
-              <Icon className="w-5 h-5 shrink-0" />
-              <span className="text-[9px] tracking-wide mt-0.5">{tab.label}</span>
+              <Icon className="w-5.5 h-5.5 shrink-0" />
+              <span className="text-[10px] tracking-wide mt-0.5">{tab.label}</span>
             </motion.div>
           </NavLink>
         );

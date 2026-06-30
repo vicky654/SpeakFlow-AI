@@ -2,8 +2,7 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { 
-  LayoutDashboard, BookOpen, Mic, BarChart3, User, 
-  LogOut, Flame, ShieldAlert
+  LayoutDashboard, Mic, User, LogOut, Flame, ShieldAlert
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -23,9 +22,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
 
   const navItems = [
     { to: '/', label: 'Home', icon: LayoutDashboard },
-    { to: '/learn', label: 'Learn', icon: BookOpen },
-    { to: '/speak', label: 'Speak', icon: Mic },
-    { to: '/progress', label: 'Progress', icon: BarChart3 },
+    { to: '/speak', label: 'Practice', icon: Mic },
     { to: '/profile', label: 'Profile', icon: User },
   ];
 
@@ -38,7 +35,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
             <span className="text-xl font-bold text-white">S</span>
           </div>
           <div>
-            <h1 className="text-lg font-extrabold tracking-tight text-white font-sans">SpeakFlow <span className="text-indigo-400">AI</span></h1>
+            <h1 className="text-lg font-extrabold tracking-tight text-brand-text-primary font-sans">SpeakFlow <span className="text-indigo-405 text-indigo-500">AI</span></h1>
             <span className="text-[10px] text-brand-text-muted uppercase tracking-widest font-semibold font-mono">MVP Edition</span>
           </div>
         </div>
@@ -104,7 +101,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
                 <span className="font-bold text-brand-text-secondary">{user.streak} days</span>
               </div>
               <div className="flex items-center space-x-1">
-                <span className="px-1.5 py-0.5 rounded bg-indigo-950 text-indigo-400 font-mono text-[10px] border border-indigo-800/30 font-bold">
+                <span className="px-1.5 py-0.5 rounded bg-indigo-95/10 text-indigo-500 font-mono text-[10px] border border-indigo-500/25 font-bold">
                   Lvl {user.level}
                 </span>
               </div>
@@ -114,7 +111,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
 
         <button
           onClick={handleLogout}
-          className="flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold text-brand-text-secondary hover:bg-rose-950/15 hover:text-rose-400 transition-all duration-200 w-full"
+          className="flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold text-brand-text-secondary hover:bg-rose-950/15 hover:text-rose-400 transition-all duration-200 w-full animate-fade"
         >
           <LogOut className="w-4 h-4" />
           <span>Sign Out</span>
