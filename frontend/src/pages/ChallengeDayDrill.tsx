@@ -45,9 +45,38 @@ export const ChallengeDayDrill: React.FC = () => {
 
   const recognitionRef = useRef<any>(null);
 
+  const { dailyChallenge, fetchDailyChallenge } = useLearningStore();
+  const [hasResumed, setHasResumed] = useState(false);
+
   useEffect(() => {
     fetchDayContent(dayNum);
-  }, [dayNum, fetchDayContent]);
+    fetchDailyChallenge();
+  }, [dayNum, fetchDayContent, fetchDailyChallenge]);
+
+  // Auto-resume to the first uncompleted daily task on load
+  useEffect(() => {
+    if (dailyChallenge?.checklist && !hasResumed) {
+      const checklist = dailyChallenge.checklist;
+      let targetStep = 1;
+
+      if (!checklist.vocab?.completed) {
+        targetStep = 1;
+      } else if (!checklist.listening?.completed) {
+        targetStep = 2;
+      } else if (!checklist.reading?.completed) {
+        targetStep = 3;
+      } else if (!checklist.speaking?.completed) {
+        targetStep = 4;
+      } else if (!checklist.quiz?.completed) {
+        targetStep = 5;
+      } else {
+        targetStep = 6;
+      }
+
+      setStep(targetStep);
+      setHasResumed(true);
+    }
+  }, [dailyChallenge, hasResumed]);
 
   // Set up Speech Recognition API
   useEffect(() => {

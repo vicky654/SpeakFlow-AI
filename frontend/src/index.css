@@ -120,3 +120,36 @@
 .glow-active {
   animation: pulseGlow 2s infinite ease-in-out;
 }
+
+/* Momentum scrolling for Ionic Content and general containers */
+ion-content, .ion-content-scroll-host {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Force minimum 16px font-size for mobile inputs to prevent automatic browser zoom */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+/* Safe areas layout variables and bottom offsets */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 110px) !important;
+}
+
+/* Custom dynamic bouncing micro-animation */
+@keyframes bounceSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounceSubtle 2s infinite ease-in-out;
+}

@@ -1,15 +1,55 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { useLearningStore } from '../store/learningStore';
 import { useChallengeStore } from '../store/challengeStore';
-import { Flame, Sparkles, Target, Play, CheckCircle2, Circle, Award, BookOpen } from 'lucide-react';
+import { Flame, Sparkles, Target, Play, CheckCircle2, ChevronRight, Award, BookOpen, Clock, Zap } from 'lucide-react';
+import { IonRefresher, IonRefresherContent } from '@ionic/react';
+
+// Inline Mini SVG Progress Ring
+const ProgressRingMini: React.FC<{ pct: number }> = ({ pct }) => {
+  const radius = 14;
+  const stroke = 3;
+  const normalizedRadius = radius - stroke;
+  const circumference = normalizedRadius * 2 * Math.PI;
+  const strokeDashoffset = circumference - (pct / 100) * circumference;
+
+  return (
+    <div className="relative flex items-center justify-center shrink-0">
+      <svg height={radius * 2} width={radius * 2} className="transform -rotate-90">
+        <circle 
+          stroke="rgba(255, 255, 255, 0.05)" 
+          fill="transparent" 
+          strokeWidth={stroke} 
+          r={normalizedRadius} 
+          cx={radius} 
+          cy={radius} 
+        />
+        <circle 
+          stroke="#6366f1" 
+          fill="transparent" 
+          strokeWidth={stroke} 
+          strokeDasharray={`${circumference} ${circumference}`} 
+          style={{ strokeDashoffset, transition: 'stroke-dashoffset 0.5s ease' }} 
+          strokeLinecap="round" 
+          r={normalizedRadius} 
+          cx={radius} 
+          cy={radius} 
+        />
+      </svg>
+      <span className="absolute text-[8px] font-bold text-slate-350">{pct}%</span>
+    </div>
+  );
+};
 
 export const Dashboard: React.FC = () => {
   const user = useAuthStore(state => state.user);
+  const loadUser = useAuthStore(state => state.loadUser);
   const { dailyChallenge, fetchDailyChallenge } = useLearningStore();
   const { progress, fetchProgress } = useChallengeStore();
   const navigate = useNavigate();
+
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     fetchDailyChallenge();
@@ -37,7 +77,24 @@ export const Dashboard: React.FC = () => {
   };
 
   const handleContinueLearning = () => {
+    // Navigation automatically opens the active drill screen
     navigate(`/challenge/day/${currentDay}`);
+  };
+
+  const handleRefresh = async (event: any) => {
+    setRefreshing(true);
+    try {
+      await Promise.all([
+        fetchDailyChallenge(),
+        fetchProgress(),
+        loadUser ? loadUser() : Promise.resolve()
+      ]);
+    } catch (e) {
+      console.error('Failed to pull-to-refresh dashboard:', e);
+    } finally {
+      setRefreshing(false);
+      event.detail.complete();
+    }
   };
 
   // Calculate Progress Percent
@@ -47,27 +104,38 @@ export const Dashboard: React.FC = () => {
   const completedTasks = checklistItems.filter(([_, v]: any) => v.completed).length;
   const progressPct = Math.round((completedTasks / totalTasks) * 100);
 
-  const labelMap: Record<string, string> = {
-    vocab: 'Learn 10 Vocabulary Words',
-    speaking: 'Complete 1 Speaking Drill',
-    reading: 'Read 1 Practice Story',
-    listening: 'Complete 1 Listening Scenario',
-    writing: 'Complete 1 Writing Task',
-    quiz: 'Pass 1 Grammar Course Quiz'
+  // Metadata mapping for custom interactive Daily Goals Cards
+  const goalMetadata: Record<string, { label: string; time: string; xp: string; route: string }> = {
+    vocab: { label: 'Learn 10 Vocabulary Words', time: '10 min', xp: '+25 XP', route: '/vocab' },
+    speaking: { label: 'Complete 1 Speaking Drill', time: '5 min', xp: '+30 XP', route: '/speaking' },
+    listening: { label: 'Complete 1 Listening Scenario', time: '5 min', xp: '+20 XP', route: '/listening' },
+    reading: { label: 'Read 1 Practice Story', time: '8 min', xp: '+20 XP', route: '/reading' },
+    writing: { label: 'Complete 1 Writing Task', time: '12 min', xp: '+35 XP', route: '/writing' },
+    quiz: { label: 'Pass 1 Grammar Course Quiz', time: '10 min', xp: '+50 XP', route: '/grammar' }
   };
 
   return (
-    <div className="space-y-6 select-none max-w-md mx-auto pb-10 pt-4 px-2">
+    <div className="space-y-6 select-none max-w-md mx-auto pb-10 pt-4 px-2 relative">
       
+      {/* NATIVE PULL TO REFRESH */}
+      <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
+        <IonRefresherContent 
+          pullingText="Pull down to refresh study goals..." 
+          refreshingText="Updating your statistics..."
+        />
+      </IonRefresher>
+
       {/* 👋 Welcome back card */}
-      <div className="text-left py-2">
-        <span className="text-xs uppercase tracking-widest font-black text-indigo-400">👋 Welcome back</span>
-        <h1 className="text-3xl font-black text-white mt-1">
-          Hello, {user?.name || 'Learner'}!
-        </h1>
-        <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-          Let's take another small step toward English fluency today.
-        </p>
+      <div className="text-left py-2 flex justify-between items-center">
+        <div>
+          <span className="text-xs uppercase tracking-widest font-black text-indigo-400">👋 Welcome back</span>
+          <h1 className="text-3xl font-black text-white mt-1">
+            Hello, {user?.name || 'Learner'}!
+          </h1>
+          <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+            Let's take another small step toward English fluency today.
+          </p>
+        </div>
       </div>
 
       {/* 📅 Today's Lesson Banner */}
@@ -83,15 +151,15 @@ export const Dashboard: React.FC = () => {
             Day {currentDay}: {dayTopics[currentDay] || 'Daily Communication'}
           </h2>
           <p className="text-[11px] text-slate-400 leading-normal pt-1">
-            Unlock Greetings, grammar concept quizzes, oral vocabulary repetition and writing exercises.
+            Unlock greetings, grammar concept quizzes, oral vocabulary repetition and writing exercises.
           </p>
         </div>
       </div>
 
-      {/* 🔥 Streak, ⭐ XP, and 📈 Progress Indicators in a 3-way card row */}
+      {/* 🔥 Streak, ⭐ XP, and 📈 Progress Indicators */}
       <div className="grid grid-cols-3 gap-3">
         {/* Current Streak */}
-        <div className="glass-card rounded-2xl p-3 border border-slate-200/10 flex flex-col items-center justify-center text-center">
+        <div className="glass-card rounded-2xl p-3 border border-slate-205/10 flex flex-col items-center justify-center text-center">
           <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-500 mb-1.5">
             <Flame className="w-4 h-4 fill-current animate-pulse" />
           </div>
@@ -100,7 +168,7 @@ export const Dashboard: React.FC = () => {
         </div>
 
         {/* XP */}
-        <div className="glass-card rounded-2xl p-3 border border-slate-200/10 flex flex-col items-center justify-center text-center">
+        <div className="glass-card rounded-2xl p-3 border border-slate-205/10 flex flex-col items-center justify-center text-center">
           <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-1.5">
             <Sparkles className="w-4 h-4 fill-current" />
           </div>
@@ -109,7 +177,7 @@ export const Dashboard: React.FC = () => {
         </div>
 
         {/* Progress */}
-        <div className="glass-card rounded-2xl p-3 border border-slate-200/10 flex flex-col items-center justify-center text-center">
+        <div className="glass-card rounded-2xl p-3 border border-slate-205/10 flex flex-col items-center justify-center text-center">
           <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-450 mb-1.5">
             <Award className="w-4 h-4" />
           </div>
@@ -119,7 +187,7 @@ export const Dashboard: React.FC = () => {
       </div>
 
       {/* 📈 Progress Bar representation */}
-      <div className="glass-card rounded-2xl p-4 border border-slate-200/10 text-left space-y-1.5">
+      <div className="glass-card rounded-2xl p-4 border border-slate-205/10 text-left space-y-1.5">
         <div className="flex justify-between text-[10px] text-slate-400 font-bold uppercase">
           <span>Today's Progress</span>
           <span>{completedTasks}/{totalTasks} Completed</span>
@@ -135,43 +203,85 @@ export const Dashboard: React.FC = () => {
       {/* ▶️ Continue Learning Button */}
       <button
         onClick={handleContinueLearning}
-        className="w-full py-4 bg-gradient-to-r from-indigo-600 via-purple-650 to-pink-650 active:scale-[0.99] hover:brightness-110 text-white font-extrabold rounded-2xl transition-all shadow-lg shadow-indigo-650/20 text-sm flex items-center justify-center space-x-2 animate-bounce-subtle"
+        className="w-full py-4 bg-gradient-to-r from-indigo-650 via-purple-650 to-pink-650 active:scale-[0.99] hover:brightness-110 text-white font-extrabold rounded-2xl transition-all shadow-lg shadow-indigo-650/20 text-sm flex items-center justify-center space-x-2 animate-bounce-subtle"
       >
         <Play className="w-4.5 h-4.5 fill-current" />
         <span>Continue Learning (Day {currentDay})</span>
       </button>
 
-      {/* 🎯 Daily Goal Checklist */}
-      <div className="glass-card rounded-3xl p-5 border border-slate-200/10 text-left space-y-4">
-        <div className="flex items-center space-x-2 border-b border-slate-905 pb-3">
+      {/* 🎯 Daily Goal Interactive Cards */}
+      <div className="space-y-3.5 text-left">
+        <div className="flex items-center space-x-2 border-b border-slate-900 pb-2">
           <Target className="w-4.5 h-4.5 text-indigo-400" />
           <div>
-            <h3 className="font-extrabold text-sm text-slate-200">Today's Daily Goal</h3>
-            <p className="text-[10px] text-slate-550 mt-0.5">Finish these simple checks to earn bonus rewards</p>
+            <h3 className="font-extrabold text-sm text-slate-200">Daily Study Objectives</h3>
+            <p className="text-[10px] text-slate-500 mt-0.5">Click Start to complete drills and earn target XP rewards</p>
           </div>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           {checklistItems.length > 0 ? (
-            checklistItems.map(([key, value]: any) => (
-              <div key={key} className="flex items-center justify-between p-3 rounded-xl bg-slate-950/40 border border-slate-900">
-                <div className="flex items-center space-x-3 text-xs">
-                  {value.completed ? (
-                    <CheckCircle2 className="w-4.5 h-4.5 text-emerald-500 fill-emerald-555/5 shrink-0" />
-                  ) : (
-                    <Circle className="w-4.5 h-4.5 text-slate-700 shrink-0" />
-                  )}
-                  <span className={value.completed ? 'text-slate-500 line-through' : 'text-slate-200 font-semibold'}>
-                    {labelMap[key] || key}
-                  </span>
+            checklistItems.map(([key, value]: any) => {
+              const meta = goalMetadata[key] || { label: key, time: '10 min', xp: '+20 XP', route: '/' };
+              const isCompleted = value.completed;
+              const taskPct = Math.round((value.current / value.target) * 100);
+
+              return (
+                <div 
+                  key={key} 
+                  className={`p-4 rounded-3xl border transition-all flex items-center justify-between gap-4 select-none ${
+                    isCompleted 
+                      ? 'bg-slate-900/40 border-slate-900/60 opacity-60' 
+                      : 'glass-card border-slate-205/10 glow-active'
+                  }`}
+                >
+                  <div className="flex items-center space-x-3.5 text-xs min-w-0">
+                    {/* Circle Progress Indicator */}
+                    <ProgressRingMini pct={taskPct} />
+
+                    <div className="min-w-0">
+                      <h4 className={`font-extrabold text-xs truncate ${isCompleted ? 'text-slate-500 line-through' : 'text-slate-250'}`}>
+                        {meta.label}
+                      </h4>
+                      <div className="flex items-center space-x-3 mt-1.5 text-[10px] text-slate-500 font-medium">
+                        <span className="flex items-center space-x-1">
+                          <Clock className="w-3 h-3 text-slate-500 shrink-0" />
+                          <span>{meta.time}</span>
+                        </span>
+                        <span className="flex items-center space-x-1 text-indigo-400">
+                          <Zap className="w-3 h-3 text-indigo-400 shrink-0" />
+                          <span>{meta.xp}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    disabled={isCompleted}
+                    onClick={() => navigate(meta.route)}
+                    className={`px-3.5 py-1.5 rounded-full text-[10px] font-black tracking-wide transition-all active:scale-95 shrink-0 ${
+                      isCompleted
+                        ? 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 cursor-default'
+                        : 'bg-indigo-650 hover:bg-indigo-600 text-white shadow-sm shadow-indigo-600/10'
+                    }`}
+                  >
+                    {isCompleted ? (
+                      <span className="flex items-center space-x-1">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span>Done</span>
+                      </span>
+                    ) : (
+                      <span className="flex items-center space-x-0.5">
+                        <span>Start</span>
+                        <ChevronRight className="w-3 h-3" />
+                      </span>
+                    )}
+                  </button>
                 </div>
-                <span className="text-[10px] font-mono font-bold text-slate-500 shrink-0">
-                  {value.current}/{value.target}
-                </span>
-              </div>
-            ))
+              );
+            })
           ) : (
-            <div className="text-center text-xs text-slate-500 py-3">Loading your goals...</div>
+            <div className="text-center text-xs text-slate-500 py-3">Loading study objectives...</div>
           )}
         </div>
       </div>

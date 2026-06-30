@@ -26,6 +26,8 @@ import { ChallengeDayDrill } from './pages/ChallengeDayDrill';
 import { LuckySpin } from './pages/LuckySpin';
 import { AiTeacher } from './pages/AiTeacher';
 
+import { IonApp, IonPage, IonContent } from '@ionic/react';
+
 const ProtectedLayout: React.FC = () => {
   const token = useAuthStore(state => state.token);
   const user = useAuthStore(state => state.user);
@@ -66,75 +68,95 @@ const ProtectedLayout: React.FC = () => {
   }
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-slate-950 text-slate-100">
-      
-      {/* 1. DESKTOP SIDEBAR NAVIGATION */}
-      <div className="hidden md:block">
-        <Sidebar />
-      </div>
-
-      {/* 2. MAIN APP CONTENT PANEL */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden">
+    <IonPage className="bg-slate-950 text-slate-100">
+      <div className="flex h-screen w-screen overflow-hidden">
         
-        {/* DESKTOP TOP BAR OR MOBILE TOP BAR */}
+        {/* 1. DESKTOP SIDEBAR NAVIGATION */}
         <div className="hidden md:block">
-          <Navbar onToggleMobileSidebar={() => {}} />
+          <Sidebar />
         </div>
-        <div className="block md:hidden">
-          <MobileHeader />
-        </div>
-        
-        {/* INNER CONTENT SCROLL CONTAINER */}
-        <main className="flex-1 overflow-y-auto px-4 md:px-8 pt-20 pb-24 md:py-6 max-w-7xl w-full mx-auto">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/learn" element={<LearnHub />} />
-            <Route path="/practice" element={<PracticeHub />} />
-            <Route path="/progress" element={<ProgressHub />} />
-            <Route path="/ai-teacher" element={<AiTeacher />} />
-            
-             <Route path="/vocab" element={<Vocabulary />} />
-            <Route path="/game" element={<VocabGame />} />
-            <Route path="/speaking" element={<SpeakingPractice />} />
-            <Route path="/listening" element={<ListeningPractice />} />
-            <Route path="/reading" element={<ReadingPractice />} />
-            <Route path="/writing" element={<WritingPractice />} />
-            <Route path="/grammar" element={<GrammarCourse />} />
-            <Route path="/interview" element={<InterviewPrep />} />
-            <Route path="/profile" element={<Profile />} />
-            
-            <Route path="/challenge" element={<ChallengeTimeline />} />
-            <Route path="/challenge/day/:dayNumber" element={<ChallengeDayDrill />} />
-            <Route path="/lucky-spin" element={<LuckySpin />} />
-            
-            {/* Guarded Admin panel route */}
-            <Route 
-              path="/admin" 
-              element={user.role === 'admin' ? <AdminPanel /> : <Navigate to="/" replace />} 
-            />
-            
-            {/* Fallback */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
 
-        {/* 3. MOBILE STICKY BOTTOM NAVIGATION BAR */}
-        <div className="block md:hidden">
-          <BottomNavigation />
+        {/* 2. MAIN APP CONTENT PANEL */}
+        <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+          
+          {/* DESKTOP TOP BAR OR MOBILE TOP BAR */}
+          <div className="hidden md:block">
+            <Navbar onToggleMobileSidebar={() => {}} />
+          </div>
+          <div className="block md:hidden">
+            <MobileHeader />
+          </div>
+          
+          {/* INNER CONTENT SCROLL CONTAINER */}
+          <IonContent className="flex-1 overflow-y-auto" scrollEvents={true}>
+            <div className="px-4 md:px-8 pt-20 pb-28 md:py-6 max-w-7xl w-full mx-auto safe-bottom">
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/learn" element={<LearnHub />} />
+                <Route path="/practice" element={<PracticeHub />} />
+                <Route path="/progress" element={<ProgressHub />} />
+                <Route path="/ai-teacher" element={<AiTeacher />} />
+                
+                <Route path="/vocab" element={<Vocabulary />} />
+                <Route path="/game" element={<VocabGame />} />
+                <Route path="/speaking" element={<SpeakingPractice />} />
+                <Route path="/listening" element={<ListeningPractice />} />
+                <Route path="/reading" element={<ReadingPractice />} />
+                <Route path="/writing" element={<WritingPractice />} />
+                <Route path="/grammar" element={<GrammarCourse />} />
+                <Route path="/interview" element={<InterviewPrep />} />
+                <Route path="/profile" element={<Profile />} />
+                
+                <Route path="/challenge" element={<ChallengeTimeline />} />
+                <Route path="/challenge/day/:dayNumber" element={<ChallengeDayDrill />} />
+                <Route path="/lucky-spin" element={<LuckySpin />} />
+                
+                {/* Guarded Admin panel route */}
+                <Route 
+                  path="/admin" 
+                  element={user.role === 'admin' ? <AdminPanel /> : <Navigate to="/" replace />} 
+                />
+                
+                {/* Fallback */}
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </div>
+          </IonContent>
+
+          {/* 3. MOBILE STICKY BOTTOM NAVIGATION BAR */}
+          <div className="block md:hidden">
+            <BottomNavigation />
+          </div>
+
         </div>
 
       </div>
-
-    </div>
+    </IonPage>
   );
 };
 
 export const App: React.FC = () => {
+  useEffect(() => {
+    const handleFocusIn = (e: any) => {
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
+        setTimeout(() => {
+          e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      }
+    };
+    window.addEventListener('focusin', handleFocusIn);
+    return () => {
+      window.removeEventListener('focusin', handleFocusIn);
+    };
+  }, []);
+
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="*" element={<ProtectedLayout />} />
-    </Routes>
+    <IonApp>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="*" element={<ProtectedLayout />} />
+      </Routes>
+    </IonApp>
   );
 };

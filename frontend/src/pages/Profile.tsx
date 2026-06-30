@@ -162,6 +162,39 @@ export const Profile: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* 4. BADGES GRID CARD */}
+      <div className="glass-card rounded-3xl p-5 border border-slate-205/10 dark:border-slate-800/80 space-y-4">
+        <div>
+          <h3 className="font-extrabold text-sm text-slate-200">Earned Badges</h3>
+          <p className="text-[10px] text-slate-400">Milestone rewards achieved during active learning.</p>
+        </div>
+
+        {badges && badges.length > 0 ? (
+          <div className="grid grid-cols-4 gap-2.5 pt-1">
+            {badges.map((badge: any, i: number) => {
+              // Match by either badge ID or badge name string
+              const isEarned = user?.badges?.some((ub: string) => ub === badge._id || ub === badge.name || ub === badge.key);
+              return (
+                <div 
+                  key={i} 
+                  className={`flex flex-col items-center p-2.5 rounded-2xl text-center space-y-1 border ${
+                    isEarned 
+                      ? 'bg-indigo-500/10 border-indigo-500/30 text-slate-100' 
+                      : 'bg-slate-950/40 border-slate-900 opacity-25'
+                  }`}
+                >
+                  <span className="text-2xl">{badge.icon || '🏅'}</span>
+                  <span className="text-[8px] font-black text-slate-300 truncate w-full block mt-0.5">{badge.name}</span>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="text-center text-xs text-slate-500 py-3">No badges loaded yet.</div>
+        )}
+      </div>
+
     </div>
   );
 };
