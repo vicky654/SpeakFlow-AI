@@ -215,7 +215,7 @@ export const VocabGame: React.FC = () => {
                 setGameState('menu');
               }}
               style={{ borderRadius: '12px', padding: '8px' }}
-              className="bg-white border border-gray-200 text-brand-text-secondary hover:bg-gray-50 transition-all mr-1"
+              className="bg-brand-card border border-brand-border text-brand-text-secondary hover:bg-brand-surface transition-all mr-1"
             >
               <ArrowLeft className="w-4 h-4" />
             </button>
@@ -236,7 +236,7 @@ export const VocabGame: React.FC = () => {
           {/* Speed Quiz Card */}
           <div className="card flex flex-col justify-between h-[320px] hover:border-indigo-500/40 hover:-translate-y-0.5 transition-all">
             <div className="space-y-3.5 text-left">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-55/10 border border-indigo-500/20 text-indigo-550 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 flex items-center justify-center">
                 <Timer className="w-6 h-6 animate-pulse" />
               </div>
               <h3 className="text-lg font-bold text-brand-text-primary">30-Second Speed Quiz</h3>
@@ -302,10 +302,10 @@ export const VocabGame: React.FC = () => {
               <button
                 key={i}
                 onClick={() => handleSpeedAnswer(opt)}
-                className="p-3 bg-white border border-gray-200 rounded-xl text-left text-xs font-semibold text-brand-text-primary hover:border-indigo-300 hover:bg-indigo-50/50 transition-all duration-150 leading-relaxed active:scale-[0.99]"
+                className="p-3 bg-brand-card border border-brand-border rounded-xl text-left text-xs font-semibold text-brand-text-primary hover:border-indigo-400 hover:bg-brand-surface transition-all duration-150 leading-relaxed active:scale-[0.99]"
               >
                 <div className="flex space-x-3 items-center">
-                  <span className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-bold shrink-0">{i + 1}</span>
+                  <span className="w-6 h-6 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-[10px] font-bold shrink-0 text-brand-text-secondary">{i + 1}</span>
                   <span>{opt}</span>
                 </div>
               </button>
@@ -339,10 +339,10 @@ export const VocabGame: React.FC = () => {
                     onClick={() => handleMatchClick(item)}
                     className={`p-3 border rounded-xl text-center font-bold text-xs transition-all duration-200 ${
                       isMatched 
-                        ? 'bg-emerald-50 border-emerald-200 text-emerald-600/60 line-through cursor-not-allowed'
+                        ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500/60 line-through cursor-not-allowed'
                         : isSelected
                           ? 'bg-indigo-600 border-indigo-600 text-white shadow-md scale-[1.02]'
-                          : 'bg-white border-gray-200 text-brand-text-primary hover:border-indigo-300 hover:bg-indigo-50/50 active:scale-[0.99]'
+                          : 'bg-brand-card border-brand-border text-brand-text-primary hover:border-indigo-400 hover:bg-brand-surface active:scale-[0.99]'
                     }`}
                   >
                     {item.text}
@@ -364,10 +364,10 @@ export const VocabGame: React.FC = () => {
                     onClick={() => handleMatchClick(item)}
                     className={`p-3 border rounded-xl text-left text-xs transition-all duration-200 leading-relaxed ${
                       isMatched 
-                        ? 'bg-emerald-50 border-emerald-200 text-emerald-600/60 line-through cursor-not-allowed'
+                        ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500/60 line-through cursor-not-allowed'
                         : isSelected
                           ? 'bg-indigo-600 border-indigo-600 text-white shadow-md scale-[1.02]'
-                          : 'bg-white border-gray-200 text-brand-text-primary hover:border-indigo-300 hover:bg-indigo-50/50 active:scale-[0.99]'
+                          : 'bg-brand-card border-brand-border text-brand-text-primary hover:border-indigo-400 hover:bg-brand-surface active:scale-[0.99]'
                     }`}
                   >
                     {item.text}
@@ -392,11 +392,11 @@ export const VocabGame: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-4 w-full pt-2">
-            <div className="bg-indigo-50 border border-indigo-100 p-4 rounded-2xl">
+            <div className="bg-indigo-500/10 border border-indigo-500/20 p-4 rounded-2xl">
               <span className="text-[10px] text-brand-text-secondary uppercase font-bold tracking-wider">XP gained</span>
               <p className="text-xl font-extrabold text-indigo-600 mt-0.5">+{earnedXp} XP</p>
             </div>
-            <div className="bg-amber-50 border border-amber-100 p-4 rounded-2xl">
+            <div className="bg-amber-500/10 border border-amber-500/20 p-4 rounded-2xl">
               <span className="text-[10px] text-brand-text-secondary uppercase font-bold tracking-wider">Coins Claimed</span>
               <p className="text-xl font-extrabold text-amber-600 mt-0.5">+{earnedCoins} Coins</p>
             </div>
@@ -404,11 +404,11 @@ export const VocabGame: React.FC = () => {
 
           <div className="flex gap-4 w-full pt-4">
             <button
-              onClick={() => setGameState('menu')}
-              style={{ borderRadius: '12px', padding: '12px' }}
-              className="flex-grow py-3 bg-white border border-gray-200 text-brand-text-secondary hover:bg-gray-50 text-xs font-bold transition-all"
-            >
-              Menu
+               onClick={() => setGameState('menu')}
+               style={{ borderRadius: '12px', padding: '12px' }}
+               className="flex-grow py-3 bg-brand-card border border-brand-border text-brand-text-secondary hover:bg-brand-surface text-xs font-bold transition-all"
+             >
+               Menu
             </button>
             <button
               onClick={() => {

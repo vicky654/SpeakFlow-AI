@@ -41,7 +41,7 @@ export const ChallengeTimeline: React.FC = () => {
     <div className="space-y-6 select-none max-w-lg mx-auto pb-6">
       {/* HEADER SECTION */}
       <div className="space-y-1">
-        <h2 className="text-2xl font-extrabold text-white">15-Day Master Challenge</h2>
+        <h2 className="text-2xl font-extrabold text-brand-text-primary">15-Day Master Challenge</h2>
         <p className="text-xs text-brand-text-secondary">Complete curriculum blocks sequentially to unlock fluency credentials.</p>
       </div>
 
@@ -87,7 +87,7 @@ export const ChallengeTimeline: React.FC = () => {
           {canClaimChest && (
             <button
               onClick={handleClaimChest}
-              className="w-full py-2 bg-indigo-650 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md active:scale-95"
+              className="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all shadow-md active:scale-95"
             >
               Unlock Treasure Chest
             </button>
@@ -168,7 +168,7 @@ export const ChallengeTimeline: React.FC = () => {
               {/* Node Details Description */}
               <div className="pl-4 text-left">
                 <span className="text-[9px] font-extrabold uppercase tracking-widest text-brand-text-muted">Day {dayNumber}</span>
-                <h4 className={`font-extrabold text-xs ${status === 'locked' ? 'text-slate-550' : 'text-brand-text-primary'}`}>
+                <h4 className={`font-extrabold text-xs ${status === 'locked' ? 'text-brand-text-muted opacity-60' : 'text-brand-text-primary'}`}>
                   {dayNumber === 1 ? 'Buy Groceries at the Local Store' :
                    dayNumber === 2 ? 'Book a Room at the Grand Hotel' :
                    dayNumber === 3 ? 'Attend a Professional Job Interview' :

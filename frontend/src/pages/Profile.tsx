@@ -80,11 +80,11 @@ export const Profile: React.FC = () => {
     const totalSquares = 105;
     const completedDaysSet = new Set(user?.completedLessons || []);
     return (
-      <div className="grid grid-flow-col grid-rows-7 gap-1 bg-gray-50/50 p-4.5 rounded-2xl border border-gray-150 justify-center">
+      <div className="grid grid-flow-col grid-rows-7 gap-1 bg-brand-bg/50 p-4.5 rounded-2xl border border-brand-border justify-center">
         {Array.from({ length: totalSquares }).map((_, idx) => {
           let color = 'bg-gray-200 dark:bg-slate-700';
           if (idx % 11 === 0 || idx % 19 === 0) {
-            color = 'bg-green-250 dark:bg-green-900';
+            color = 'bg-green-200 dark:bg-green-900';
           } else if (idx % 7 === 0 || idx % 15 === 0) {
             color = 'bg-green-400 dark:bg-green-700';
           } else if (idx < (user?.streak || 0) * 2 || completedDaysSet.size > idx % 15) {
@@ -220,7 +220,7 @@ export const Profile: React.FC = () => {
                 key={voice}
                 onClick={() => handleVoiceChange(voice)}
                 className={`p-3 rounded-xl border font-bold text-left flex items-center justify-between transition-all active:scale-[0.98] ${
-                  isSelected ? 'bg-indigo-600 border-indigo-650 text-white shadow-sm' : 'bg-white border-gray-150 text-brand-text-secondary hover:border-indigo-300'
+                  isSelected ? 'bg-indigo-600 border-indigo-600 text-white shadow-sm' : 'bg-brand-card border border-brand-border text-brand-text-secondary hover:border-indigo-300'
                 }`}
               >
                 <span>{voice}</span>
@@ -232,7 +232,7 @@ export const Profile: React.FC = () => {
       </div>
 
       {/* 4. OPTIONAL COMMUNITY VOICE ROOMS TOGGLER */}
-      <div className="card flex items-center justify-between !p-4 border-gray-200">
+      <div className="card flex items-center justify-between !p-4 border border-brand-border">
         <div className="flex items-center space-x-2.5">
           <Users className="w-5 h-5 text-indigo-500 shrink-0" />
           <div className="text-left">
@@ -244,8 +244,8 @@ export const Profile: React.FC = () => {
           onClick={handleToggleCommunity}
           className={`px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 transition-all shadow-sm ${
             communityRoomsEnabled 
-              ? 'bg-indigo-650 text-white border border-indigo-700' 
-              : 'bg-white border border-gray-250 text-indigo-650 hover:bg-indigo-50'
+              ? 'bg-indigo-600 text-white border border-indigo-700' 
+              : 'bg-brand-card border border-brand-border text-indigo-600 hover:bg-brand-surface'
           }`}
         >
           {communityRoomsEnabled ? 'Enabled' : 'Disabled'}
@@ -263,8 +263,8 @@ export const Profile: React.FC = () => {
             onClick={() => setShowParentPortal(!showParentPortal)}
             className={`px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 transition-all shadow-sm ${
               showParentPortal 
-                ? 'bg-indigo-600 text-white border border-indigo-650' 
-                : 'bg-white border border-gray-250 text-indigo-650 hover:bg-indigo-50'
+                ? 'bg-indigo-600 text-white border border-indigo-600' 
+                : 'bg-brand-card border border-brand-border text-indigo-600 hover:bg-brand-surface'
             }`}
           >
             {showParentPortal ? 'Hide Portal' : 'Show Portal'}
@@ -272,19 +272,19 @@ export const Profile: React.FC = () => {
         </div>
 
         {showParentPortal && (
-          <div className="p-4 bg-gray-50 border border-gray-150 rounded-2xl space-y-3 animate-fade text-xs">
+          <div className="p-4 bg-brand-bg border border-brand-border rounded-2xl space-y-3 animate-fade text-xs">
             <div className="grid grid-cols-2 gap-2 text-center text-brand-text-secondary">
-              <div className="bg-white border border-gray-200 p-2.5 rounded-xl">
+              <div className="bg-brand-card border border-brand-border p-2.5 rounded-xl">
                 <span className="text-[9px] text-brand-text-muted font-bold uppercase block">Weekly Time</span>
                 <span className="font-bold text-brand-text-primary">78 minutes</span>
               </div>
-              <div className="bg-white border border-gray-200 p-2.5 rounded-xl">
+              <div className="bg-brand-card border border-brand-border p-2.5 rounded-xl">
                 <span className="text-[9px] text-brand-text-muted font-bold uppercase block">Drills Completed</span>
                 <span className="font-bold text-brand-text-primary">{totalLessonsCount} Lessons</span>
               </div>
             </div>
 
-            <div className="space-y-1 bg-white border border-gray-200 p-3 rounded-xl">
+            <div className="space-y-1 bg-brand-card border border-brand-border p-3 rounded-xl">
               <span className="text-[9px] text-brand-text-muted font-bold uppercase block">Weak Modules &amp; Vocabulary</span>
               <p className="text-[10px] text-brand-text-secondary mt-0.5">Present Continuous syntax rules, prepositions conjugation.</p>
             </div>
@@ -292,7 +292,7 @@ export const Profile: React.FC = () => {
             <button
               onClick={() => alert("Weekly email reports digest has been successfully scheduled to your registered parent address!")}
               style={{ borderRadius: '10px', padding: '10px' }}
-              className="w-full bg-indigo-600 hover:bg-indigo-705 text-white text-[10px] font-bold transition-all shadow-sm active:scale-95 flex items-center justify-center space-x-1"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-[10px] font-bold transition-all shadow-sm active:scale-95 flex items-center justify-center space-x-1"
             >
               <span>Email Weekly Progress Digest</span>
             </button>
@@ -307,13 +307,13 @@ export const Profile: React.FC = () => {
             <h4 className="font-bold text-sm text-brand-text-primary">Weekly Achievement Story</h4>
             <p className="text-[10px] text-brand-text-secondary">Sunday wrap-up details.</p>
           </div>
-          <span className="text-[8px] font-black uppercase text-indigo-655 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-150">Recap</span>
+          <span className="text-[8px] font-black uppercase text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-150">Recap</span>
         </div>
         <div className="space-y-3 text-xs leading-relaxed text-brand-text-secondary">
           <div className="grid grid-cols-3 gap-2.5 text-center">
-            <div className="p-3 bg-gray-50 rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Learned</span><span className="text-base font-black text-brand-text-primary">76 words</span></div>
-            <div className="p-3 bg-gray-50 rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Speak Acc</span><span className="text-base font-black text-brand-text-primary">+14%</span></div>
-            <div className="p-3 bg-gray-50 rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Lessons</span><span className="text-base font-black text-brand-text-primary">6 done</span></div>
+            <div className="p-3 bg-brand-bg rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Learned</span><span className="text-base font-black text-brand-text-primary">76 words</span></div>
+            <div className="p-3 bg-brand-bg rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Speak Acc</span><span className="text-base font-black text-brand-text-primary">+14%</span></div>
+            <div className="p-3 bg-brand-bg rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Lessons</span><span className="text-base font-black text-brand-text-primary">6 done</span></div>
           </div>
           <div className="space-y-1.5 pt-1.5 border-t border-gray-100 text-[11px]">
             <p>🌟 **Strongest Skill:** Listening (dialogue comprehension speed is top-tier!)</p>
@@ -329,7 +329,7 @@ export const Profile: React.FC = () => {
           <h3 className="font-bold text-sm text-brand-text-primary">Monthly Accreditation</h3>
           <p className="text-[10px] text-brand-text-secondary">Generated summary for active learning month.</p>
         </div>
-        <div className="p-4 bg-gradient-to-tr from-indigo-600 to-indigo-755 text-white rounded-2xl space-y-4 text-center relative overflow-hidden select-none shadow-md">
+        <div className="p-4 bg-gradient-to-tr from-indigo-600 to-indigo-700 text-white rounded-2xl space-y-4 text-center relative overflow-hidden select-none shadow-md">
           <div className="absolute top-2 right-2 text-3xl opacity-10 pointer-events-none">📜</div>
           <div className="space-y-2">
             <span className="text-[9px] uppercase tracking-widest font-black bg-white/20 px-2 py-0.5 rounded-full inline-block">June 2026</span>
@@ -341,7 +341,7 @@ export const Profile: React.FC = () => {
           <button
             onClick={() => window.print()}
             style={{ borderRadius: '12px', padding: '10px' }}
-            className="w-full bg-white text-indigo-650 hover:bg-gray-50 active:scale-[0.99] text-xs font-bold transition-all shadow-sm flex items-center justify-center space-x-1.5"
+            className="w-full bg-white text-indigo-600 hover:bg-gray-50 active:scale-[0.99] text-xs font-bold transition-all shadow-sm flex items-center justify-center space-x-1.5"
           >
             <Printer className="w-3.5 h-3.5" />
             <span>Download Certificate PDF</span>
@@ -382,14 +382,14 @@ export const Profile: React.FC = () => {
       <div className="card space-y-4 text-left">
         <h3 className="font-bold text-sm text-brand-text-primary">System settings</h3>
         <div className="space-y-2.5">
-          <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-150 text-xs">
+          <div className="flex items-center justify-between p-3 rounded-xl bg-brand-surface border border-brand-border text-xs">
             <span className="font-semibold text-brand-text-secondary">Interface Theme</span>
             <button onClick={toggleTheme} className="flex items-center space-x-1.5 px-3 py-1 bg-brand-bg border border-brand-border rounded-lg font-bold text-brand-text-primary">
               {darkMode ? <Sun className="w-3.5 h-3.5 text-brand-warning" /> : <Moon className="w-3.5 h-3.5 text-brand-primary" />}
               <span>{darkMode ? 'Light Theme' : 'Dark Theme'}</span>
             </button>
           </div>
-          <button onClick={handleLogout} className="flex items-center justify-between w-full p-3 rounded-xl bg-white border border-gray-150 text-xs text-brand-error font-bold text-left">
+          <button onClick={handleLogout} className="flex items-center justify-between w-full p-3 rounded-xl bg-brand-surface border border-brand-border text-xs text-brand-error font-bold text-left">
             <span className="flex items-center space-x-1.5"><LogOut className="w-4.5 h-4.5 text-brand-error animate-pulse" /><span>Logout session</span></span>
           </button>
         </div>

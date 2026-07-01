@@ -54,7 +54,7 @@ export const Vocabulary: React.FC = () => {
       {/* 1. COMPACT HEADER */}
       <div className="flex justify-between items-start">
         <div className="space-y-1 text-left">
-          <h2 className="text-2xl font-extrabold text-white">Vocabulary Cards</h2>
+          <h2 className="text-2xl font-extrabold text-brand-text-primary">Vocabulary Cards</h2>
           <p className="text-xs text-brand-text-secondary">Drill flashcards, pronunciation tips, and examples daily.</p>
         </div>
         {activeTab === 'daily' && (

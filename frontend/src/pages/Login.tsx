@@ -34,7 +34,7 @@ export const Login: React.FC = () => {
       <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="w-full max-w-md bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-8 border border-brand-border relative z-10 flex flex-col space-y-6">
+      <div className="w-full max-w-md bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-8 relative z-10 flex flex-col space-y-6">
         
         {/* Brand Header */}
         <div className="flex flex-col items-center text-center space-y-2">

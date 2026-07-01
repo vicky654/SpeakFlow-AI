@@ -652,15 +652,15 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
           </div>
 
           {speakingScore && (
-            <div className="card space-y-3.5 bg-gradient-to-br from-indigo-50/20 via-white to-purple-50/5 border-indigo-150">
+            <div className="card space-y-3.5 bg-gradient-to-br from-indigo-500/5 via-brand-card to-purple-500/5 border border-brand-border">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-650 shrink-0">
+                <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-600 shrink-0">
                   <Bot className="w-4.5 h-4.5" />
                 </div>
                 <span className="text-xs font-black uppercase text-indigo-600 tracking-wider">Coach Speech Feedback</span>
               </div>
               
-              <div className="p-4 bg-gray-50 border border-gray-150 rounded-2xl space-y-2 text-xs leading-relaxed text-brand-text-secondary">
+              <div className="p-4 bg-brand-bg border border-brand-border rounded-2xl space-y-2 text-xs leading-relaxed text-brand-text-secondary">
                 <p className="font-bold text-brand-text-primary">
                   {speakingScore.pronunciationScore >= 85 
                     ? "Excellent pacing and speech flow! You nailed the accent rhythm."
@@ -814,7 +814,7 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
             <button
               onClick={() => setShowAiSheet(true)}
               style={{ borderRadius: '12px', padding: '12px' }}
-              className="w-full max-w-xs py-3 bg-white border border-gray-200 text-brand-text-secondary hover:bg-gray-50 text-xs font-bold transition-all mx-auto flex items-center justify-center space-x-1.5 shadow-sm active:scale-95"
+              className="w-full max-w-xs py-3 bg-brand-card border border-brand-border text-brand-text-secondary hover:bg-brand-surface text-xs font-bold transition-all mx-auto flex items-center justify-center space-x-1.5 shadow-sm active:scale-95"
             >
               <span>Need Help? Ask AI 🤖</span>
             </button>
@@ -833,7 +833,7 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
       {step >= 1 && step <= 5 && (
         <button
           onClick={() => setShowAiSheet(true)}
-          className="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-indigo-600 hover:bg-indigo-750 text-white flex items-center justify-center shadow-lg hover:shadow-indigo-500/25 active:scale-90 transition-all z-40 border border-indigo-400/20"
+          className="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center shadow-lg hover:shadow-indigo-500/25 active:scale-90 transition-all z-40 border border-indigo-400/20"
         >
           <MessageCircle className="w-6 h-6 animate-pulse" />
         </button>
@@ -858,10 +858,10 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-              className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-white border-t border-gray-250 rounded-t-[28px] z-50 flex flex-col pointer-events-auto shadow-2xl text-left"
+              className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-brand-card border-t border-brand-border rounded-t-[28px] z-50 flex flex-col pointer-events-auto shadow-2xl text-left"
             >
               {/* Header handle */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-150 shrink-0">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-brand-border shrink-0">
                 <div className="flex items-center space-x-2">
                   <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping" />
                   <span className="text-xs uppercase tracking-widest font-black text-indigo-600 flex items-center space-x-1">
@@ -872,14 +872,14 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
                 
                 <button
                   onClick={() => setShowAiSheet(false)}
-                  className="p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 transition-all active:scale-90"
+                  className="p-1.5 rounded-full bg-brand-surface border border-brand-border hover:bg-brand-border text-brand-text-secondary transition-all active:scale-90"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Chat log list */}
-              <div className="flex-grow overflow-y-auto p-5 space-y-4 min-h-0 scrollbar-none bg-gray-50/50">
+              <div className="flex-grow overflow-y-auto p-5 space-y-4 min-h-0 scrollbar-none bg-brand-bg/50">
                 {aiMessages.map((msg, i) => {
                   const isAI = msg.role === 'assistant';
                   return (
@@ -893,7 +893,7 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
                       <div className="flex flex-col space-y-1 max-w-[80%]">
                         <div className={`p-3 rounded-2xl text-xs leading-relaxed border relative group ${
                           isAI 
-                            ? 'bg-white border-gray-200 text-brand-text-primary shadow-sm'
+                            ? 'bg-brand-card border-brand-border text-brand-text-primary shadow-sm'
                             : 'bg-indigo-600 border-indigo-600 text-white shadow-sm'
                         }`}>
                           <p className="whitespace-pre-line">{msg.content}</p>
@@ -904,7 +904,7 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
                               className={`absolute -right-3 top-2.5 p-1 rounded-full border shadow-sm transition-all active:scale-90 ${
                                 aiPlaying === i 
                                   ? 'bg-emerald-500/20 border-emerald-500 text-emerald-600 animate-pulse'
-                                  : 'bg-white border-gray-200 text-gray-500 hover:text-indigo-600'
+                                  : 'bg-brand-card border-brand-border text-brand-text-secondary hover:text-indigo-600'
                               }`}
                             >
                               <Volume2 className="w-3 h-3" />
@@ -914,7 +914,7 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
                       </div>
 
                       {!isAI && (
-                        <div className="w-7 h-7 rounded-lg bg-gray-150 border border-gray-200 text-gray-500 flex items-center justify-center shrink-0 mt-0.5 font-bold uppercase text-[10px]">
+                        <div className="w-7 h-7 rounded-lg bg-brand-surface border border-brand-border text-brand-text-secondary flex items-center justify-center shrink-0 mt-0.5 font-bold uppercase text-[10px]">
                           {user?.name.charAt(0) || 'U'}
                         </div>
                       )}
@@ -927,7 +927,7 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
                     <div className="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0 animate-pulse">
                       <Bot className="w-4 h-4" />
                     </div>
-                    <div className="p-3 bg-white border border-gray-200 rounded-2xl flex items-center space-x-1 shadow-sm">
+                    <div className="p-3 bg-brand-card border border-brand-border rounded-2xl flex items-center space-x-1 shadow-sm">
                       <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full animate-bounce" />
                       <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full animate-bounce [animation-delay:0.2s]" />
                       <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full animate-bounce [animation-delay:0.4s]" />
@@ -943,14 +943,14 @@ Please answer my questions or give explanations in simple beginner-friendly Engl
                   e.preventDefault();
                   handleSendAiMessage();
                 }}
-                className="flex items-center gap-2 p-3 border-t border-gray-200 bg-white shrink-0 pb-6"
+                className="flex items-center gap-2 p-3 border-t border-brand-border bg-brand-card shrink-0 pb-6"
               >
                 <input
                   type="text"
                   placeholder="Ask a question about today's lesson items..."
                   value={aiInput}
                   onChange={(e) => setAiInput(e.target.value)}
-                  className="flex-grow py-2.5 px-4 bg-gray-50 border border-gray-200 rounded-2xl text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-indigo-400 focus:bg-white transition-all font-sans"
+                  className="flex-grow py-2.5 px-4 bg-brand-bg border border-brand-border rounded-2xl text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-indigo-400 focus:bg-brand-card transition-all font-sans"
                 />
                 
                 <button

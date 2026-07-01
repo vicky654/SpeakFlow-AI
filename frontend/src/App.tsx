@@ -83,7 +83,7 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
         {/* SCREEN 1: WELCOME */}
         {step === 1 && (
           <div className="space-y-6 text-center py-4">
-            <div className="w-14 h-14 rounded-full bg-indigo-50 flex items-center justify-center mx-auto text-indigo-650 animate-bounce">
+            <div className="w-14 h-14 rounded-full bg-indigo-500/10 flex items-center justify-center mx-auto text-indigo-500 animate-bounce">
               <Bot className="w-7 h-7" />
             </div>
             <div className="space-y-2">
@@ -95,7 +95,7 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
             <button
               onClick={() => setStep(2)}
               style={{ borderRadius: '12px', padding: '12px' }}
-              className="w-full bg-indigo-600 hover:bg-indigo-750 text-white font-bold text-xs shadow-md active:scale-95 transition-all flex items-center justify-center space-x-1"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md active:scale-95 transition-all flex items-center justify-center space-x-1"
             >
               <span>Continue</span>
               <ArrowRight className="w-4 h-4" />
@@ -121,7 +121,7 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
                     className={`p-3 text-left rounded-xl border text-xs font-semibold transition-all active:scale-[0.985] ${
                       isSelected 
                         ? 'bg-indigo-600 border-indigo-600 text-white shadow-sm font-bold' 
-                        : 'bg-gray-50 border-gray-150 text-brand-text-secondary hover:border-indigo-300'
+                        : 'bg-brand-surface border-brand-border text-brand-text-secondary hover:border-indigo-400'
                     }`}
                   >
                     {opt}
@@ -133,7 +133,7 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
             <button
               onClick={() => setStep(3)}
               style={{ borderRadius: '12px', padding: '12px' }}
-              className="w-full bg-indigo-600 hover:bg-indigo-750 text-white font-bold text-xs shadow-md active:scale-95 transition-all flex items-center justify-center space-x-1 mt-2"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md active:scale-95 transition-all flex items-center justify-center space-x-1 mt-2"
             >
               <span>Next Step</span>
               <ArrowRight className="w-4 h-4" />
@@ -159,7 +159,7 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
                     className={`p-3 text-left rounded-xl border text-xs font-semibold transition-all active:scale-[0.985] ${
                       isSelected 
                         ? 'bg-indigo-600 border-indigo-600 text-white shadow-sm font-bold' 
-                        : 'bg-gray-50 border-gray-150 text-brand-text-secondary hover:border-indigo-300'
+                        : 'bg-brand-surface border-brand-border text-brand-text-secondary hover:border-indigo-400'
                     }`}
                   >
                     {opt}
@@ -171,7 +171,7 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
             <button
               onClick={() => setStep(4)}
               style={{ borderRadius: '12px', padding: '12px' }}
-              className="w-full bg-indigo-600 hover:bg-indigo-750 text-white font-bold text-xs shadow-md active:scale-95 transition-all flex items-center justify-center space-x-1 mt-2"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md active:scale-95 transition-all flex items-center justify-center space-x-1 mt-2"
             >
               <span>Next Step</span>
               <ArrowRight className="w-4 h-4" />
@@ -197,7 +197,7 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
                     className={`p-4 rounded-xl border text-xs font-bold transition-all active:scale-[0.985] flex flex-col items-center justify-center ${
                       isSelected 
                         ? 'bg-indigo-600 border-indigo-600 text-white shadow-sm' 
-                        : 'bg-gray-50 border-gray-150 text-brand-text-secondary hover:border-indigo-300'
+                        : 'bg-brand-surface border-brand-border text-brand-text-secondary hover:border-indigo-400'
                     }`}
                   >
                     <span className="text-base">⏱️</span>
@@ -210,7 +210,7 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
             <button
               onClick={() => setStep(5)}
               style={{ borderRadius: '12px', padding: '12px' }}
-              className="w-full bg-indigo-600 hover:bg-indigo-750 text-white font-bold text-xs shadow-md active:scale-95 transition-all flex items-center justify-center space-x-1 mt-2"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md active:scale-95 transition-all flex items-center justify-center space-x-1 mt-2"
             >
               <span>Generate Plan</span>
               <ArrowRight className="w-4 h-4" />
@@ -228,13 +228,13 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
                   <h3 className="text-sm font-extrabold text-brand-text-primary">AI is generating your personalized roadmap...</h3>
                   <p className="text-[10px] text-brand-text-secondary">Tailoring vocabulary topics and roleplay drills...</p>
                 </div>
-                <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden border border-gray-200">
+                <div className="w-full h-2 bg-brand-surface rounded-full overflow-hidden border border-brand-border">
                   <div className="h-full bg-indigo-600 transition-all duration-300" style={{ width: `${generatingProgress}%` }} />
                 </div>
               </div>
             ) : (
               <div className="space-y-4 animate-fade text-center flex flex-col items-center">
-                <div className="w-12 h-12 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-650 flex items-center justify-center animate-bounce mb-1">
+                <div className="w-12 h-12 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 flex items-center justify-center animate-bounce mb-1">
                   <Sparkles className="w-6 h-6 fill-current" />
                 </div>
                 
@@ -246,7 +246,7 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
                 </div>
 
                 {/* Checklist recap */}
-                <div className="w-full bg-gray-50 border border-gray-150 p-4 rounded-xl text-left text-xs space-y-2">
+                <div className="w-full bg-brand-bg border border-brand-border p-4 rounded-xl text-left text-xs space-y-2">
                   <div className="flex items-center space-x-2 text-brand-text-secondary">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                     <span>Greetings &amp; Introductions (Week 1)</span>
@@ -264,7 +264,7 @@ const Onboarding: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
                 <button
                   onClick={handleFinish}
                   style={{ borderRadius: '12px', padding: '12px' }}
-                  className="w-full bg-indigo-600 hover:bg-indigo-750 text-white font-bold text-xs shadow-md active:scale-95 transition-all flex items-center justify-center space-x-1"
+                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md active:scale-95 transition-all flex items-center justify-center space-x-1"
                 >
                   <span>Start Learning →</span>
                 </button>

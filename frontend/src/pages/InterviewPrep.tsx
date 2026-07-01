@@ -175,7 +175,7 @@ export const InterviewPrep: React.FC = () => {
             <div className="space-y-6">
               
               {/* DETAILS CARD */}
-              <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-4">
+              <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 space-y-4">
                 <span className="text-[10px] uppercase font-bold tracking-widest text-brand-text-secondary">Coaching Strategy</span>
                 <h2 className="text-xl font-extrabold text-white">{activeLesson.title}</h2>
                 <div className="text-brand-text-secondary text-sm leading-relaxed whitespace-pre-line border-t border-brand-border pt-4 font-sans max-h-56 overflow-y-auto pr-1">
@@ -186,7 +186,7 @@ export const InterviewPrep: React.FC = () => {
               {/* TIPS & SUGGESTED ANSWER BOARD */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Interview Tips */}
-                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 border border-brand-border space-y-3">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 space-y-3">
                   <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center space-x-1.5">
                     <Star className="w-4 h-4 fill-current" />
                     <span>Hiring Manager Tips</span>
@@ -199,7 +199,7 @@ export const InterviewPrep: React.FC = () => {
                 </div>
 
                 {/* Suggested template answer */}
-                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 border border-brand-border space-y-3 flex flex-col justify-between">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
                   <div className="space-y-2">
                     <h4 className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Suggested Answer</h4>
                     <p className="text-[11px] text-brand-text-secondary italic leading-relaxed line-clamp-4">
@@ -218,7 +218,7 @@ export const InterviewPrep: React.FC = () => {
               </div>
 
               {/* PRACTICE AUDIO DRILL */}
-              <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border flex flex-col items-center text-center space-y-5 relative overflow-hidden">
+              <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 flex flex-col items-center text-center space-y-5 relative overflow-hidden">
                 {isRecording && (
                   <div className="absolute inset-0 bg-indigo-500/5 border border-indigo-500/20 animate-pulse pointer-events-none" />
                 )}
@@ -257,14 +257,14 @@ export const InterviewPrep: React.FC = () => {
 
               {/* REPORT CARD */}
               {loading && (
-                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-8 border border-brand-border text-center flex flex-col items-center justify-center space-y-3 h-48">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-8 text-center flex flex-col items-center justify-center space-y-3 h-48">
                   <div className="w-6 h-6 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin" />
                   <p className="text-xs text-brand-text-secondary">Speech coach is analyzing your answer pacing and fluency...</p>
                 </div>
               )}
 
               {evaluation && !loading && (
-                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-5 bg-gradient-to-br from-indigo-950/20 to-slate-950/20 text-left">
+                <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 space-y-5 bg-gradient-to-br from-indigo-950/20 to-slate-950/20 text-left">
                   <h3 className="font-extrabold text-brand-text-primary flex items-center space-x-2 border-b border-brand-border pb-2">
                     <BarChart3 className="w-4 h-4 text-indigo-400" />
                     <span>Interview Delivery Analytics</span>

@@ -19,7 +19,7 @@ export const LearnHub: React.FC = () => {
       progress: 0,
       label: 'Ask AI Any Question',
       icon: Sparkles,
-      color: 'from-indigo-650 to-purple-600',
+      color: 'from-indigo-600 to-purple-600',
       strokeColor: 'stroke-indigo-500',
       to: '/ai-teacher'
     },
@@ -94,11 +94,11 @@ export const LearnHub: React.FC = () => {
         aria-label="Navigate to 15-Day Guided Challenge"
       >
         <div className="flex items-center space-x-3.5 min-w-0">
-          <div className="p-3 bg-indigo-650 rounded-2xl text-white shrink-0 shadow-md animate-pulse">
+          <div className="p-3 bg-indigo-600 rounded-2xl text-white shrink-0 shadow-md animate-pulse">
             <Sparkles className="w-5 h-5 fill-current" />
           </div>
           <div className="min-w-0">
-            <h4 className="font-extrabold text-sm text-transparent bg-clip-text bg-gradient-to-r from-white to-indigo-250">
+            <h4 className="font-extrabold text-sm text-transparent bg-clip-text bg-gradient-to-r from-white to-indigo-200">
               15-Day Guided Challenge
             </h4>
             <p className="text-[10px] text-brand-text-secondary mt-0.5 leading-normal">

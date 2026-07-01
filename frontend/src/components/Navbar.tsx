@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleMobileSidebar }) => {
           <Menu className="w-5 h-5" />
         </button>
         <div className="md:hidden">
-          <span className="font-extrabold tracking-tight text-white font-sans text-sm">SpeakFlow <span className="text-indigo-400">AI</span></span>
+          <span className="font-extrabold tracking-tight text-brand-text-primary font-sans text-sm">SpeakFlow <span className="text-indigo-400">AI</span></span>
         </div>
       </div>
 

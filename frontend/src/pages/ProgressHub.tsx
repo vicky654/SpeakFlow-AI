@@ -152,7 +152,7 @@ export const ProgressHub: React.FC = () => {
                   <span className="text-2xl">{badge.icon || '🏅'}</span>
                   <div>
                     <p className="font-bold text-[11px] truncate w-full">{badge.title}</p>
-                    <span className="text-[9px] text-slate-550 leading-normal block">{badge.description}</span>
+                    <span className="text-[9px] text-brand-text-secondary leading-normal block">{badge.description}</span>
                   </div>
                 </div>
               );

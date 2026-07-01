@@ -27,7 +27,7 @@
     "role": "student",
     "xp": 180,
     "coins": 21,
-    "streak": 4,
+    "streak": 5,
     "level": 2,
     "badges": [
       "Vocab Starter"
@@ -37,6 +37,6 @@
     ],
     "completedLessons": [],
     "createdAt": "2026-06-29T07:12:39.645Z",
-    "lastActive": "2026-06-30"
+    "lastActive": "2026-07-01"
   }
 ]

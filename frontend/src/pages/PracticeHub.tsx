@@ -246,7 +246,7 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
       </div>
 
       {/* FILTER TABS */}
-      <div className="flex bg-gray-50 border border-gray-150 p-1 rounded-xl text-[10px] font-black uppercase text-brand-text-secondary">
+      <div className="flex bg-brand-surface border border-brand-border p-1 rounded-xl text-[10px] font-black uppercase text-brand-text-secondary">
         <button 
           onClick={() => setActiveTab('general')}
           className={`flex-1 py-2 rounded-lg text-center transition-all ${
@@ -316,7 +316,7 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
               className="card flex items-center justify-between hover:border-indigo-400 cursor-pointer active:scale-[0.99] transition-all"
             >
               <div className="flex items-center space-x-3.5 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-650 shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-500 shrink-0">
                   <Gamepad2 className="w-5.5 h-5.5" />
                 </div>
                 <div className="text-left min-w-0">
@@ -344,7 +344,7 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
                   </div>
                 )}
                 <div className="space-y-2.5 pt-3">
-                  <div className="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-650 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
                     <Briefcase className="w-4.5 h-4.5" />
                   </div>
                   <h4 className="font-bold text-sm text-brand-text-primary leading-tight">{opt.title}</h4>
@@ -371,7 +371,7 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
                   </div>
                 )}
                 <div className="space-y-2.5 pt-3">
-                  <div className="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-655 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
                     <Laptop className="w-4.5 h-4.5" />
                   </div>
                   <h4 className="font-bold text-sm text-brand-text-primary leading-tight">{opt.title}</h4>
@@ -398,7 +398,7 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
                   </div>
                 )}
                 <div className="space-y-2.5 pt-3">
-                  <div className="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-650 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
                     <Plane className="w-4.5 h-4.5" />
                   </div>
                   <h4 className="font-bold text-sm text-brand-text-primary leading-tight">{opt.title}</h4>
@@ -416,7 +416,7 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
         {showPaywall && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowPaywall(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-sm bg-white border border-gray-250 rounded-[28px] p-6 z-50 pointer-events-auto shadow-2xl space-y-4 text-center">
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-sm bg-brand-card border border-brand-border rounded-[28px] p-6 z-50 pointer-events-auto shadow-2xl space-y-4 text-center">
               <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 flex items-center justify-center mx-auto animate-bounce mb-2">
                 <CreditCard className="w-6 h-6" />
               </div>
@@ -426,7 +426,7 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
                   Access unlimited AI Voice Conversations, dynamic job interview preps, business meeting simulations, and advanced weekly performance stories.
                 </p>
               </div>
-              <div className="bg-gray-50 border border-gray-150 p-4 rounded-2xl text-left space-y-2 text-xs">
+              <div className="bg-brand-bg border border-brand-border p-4 rounded-2xl text-left space-y-2 text-xs">
                 <p className="font-semibold text-brand-text-primary flex justify-between">
                   <span>Premium Yearly Membership</span>
                   <span className="text-indigo-600 font-bold">$9.99/month</span>
@@ -438,8 +438,8 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
                 </ul>
               </div>
               <div className="flex gap-2">
-                <button onClick={() => setShowPaywall(false)} style={{ borderRadius: '12px', padding: '10px' }} className="flex-1 bg-white border border-gray-255 text-brand-text-secondary text-xs font-bold active:scale-95">Cancel</button>
-                <button onClick={handleUpgradeAccount} style={{ borderRadius: '12px', padding: '10px' }} className="flex-grow py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold active:scale-95">Upgrade Now</button>
+                <button onClick={() => setShowPaywall(false)} style={{ borderRadius: '12px', padding: '10px' }} className="flex-1 bg-brand-card border border-brand-border text-brand-text-secondary text-xs font-bold active:scale-95">Cancel</button>
+                <button onClick={handleUpgradeAccount} style={{ borderRadius: '12px', padding: '10px' }} className="flex-grow py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold active:scale-95 shadow-md">Upgrade Now</button>
               </div>
             </motion.div>
           </>
@@ -451,17 +451,17 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
         {showRolePlay && selectedRole && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowRolePlay(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-white border-t border-gray-200 rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left">
+            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-brand-card border-t border-brand-border rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left shadow-2xl">
               
-              <div className="flex justify-between items-center border-b border-gray-150 pb-3 shrink-0">
+              <div className="flex justify-between items-center border-b border-brand-border pb-3 shrink-0">
                 <span className="text-xs font-black uppercase text-indigo-600 flex items-center gap-1.5">
                   <Bot className="w-4.5 h-4.5" />
                   <span>{selectedRole} Role Play</span>
                 </span>
-                <button onClick={() => setShowRolePlay(false)} className="p-1.5 bg-gray-100 rounded-full hover:bg-gray-200"><X className="w-4 h-4" /></button>
+                <button onClick={() => setShowRolePlay(false)} className="p-1.5 bg-brand-surface border border-brand-border rounded-full hover:bg-brand-border text-brand-text-secondary"><X className="w-4 h-4" /></button>
               </div>
 
-              <div className="flex-grow overflow-y-auto p-4 space-y-4 min-h-0 scrollbar-none bg-gray-50/50 rounded-2xl my-3 border border-gray-100">
+              <div className="flex-grow overflow-y-auto p-4 space-y-4 min-h-0 scrollbar-none bg-brand-bg/50 rounded-2xl my-3 border border-brand-border">
                 {roleMessages.map((msg, i) => {
                   const isAI = msg.role === 'assistant';
                   return (
@@ -474,14 +474,14 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
                       
                       <div className="flex flex-col space-y-1 max-w-[80%]">
                         <div className={`p-3 rounded-2xl text-xs leading-relaxed border relative group ${
-                          isAI ? 'bg-white border-gray-200 text-brand-text-primary shadow-sm' : 'bg-indigo-600 border-indigo-650 text-white shadow-sm'
+                          isAI ? 'bg-brand-card border-brand-border text-brand-text-primary shadow-sm' : 'bg-indigo-600 border-indigo-600 text-white shadow-sm'
                         }`}>
                           <p className="whitespace-pre-line">{msg.content}</p>
                           {isAI && (
                             <button
                               onClick={() => speakText(msg.content, i)}
                               className={`absolute -right-3 top-2.5 p-1 rounded-full border shadow-sm ${
-                                rolePlayingText === i ? 'bg-emerald-500/20 border-emerald-500 text-emerald-650 animate-pulse' : 'bg-white text-gray-500'
+                                rolePlayingText === i ? 'bg-emerald-500/20 border-emerald-500 text-emerald-650 animate-pulse' : 'bg-brand-card border-brand-border text-brand-text-secondary hover:text-indigo-600'
                               }`}
                             >
                               <Volume2 className="w-3 h-3" />
@@ -501,14 +501,14 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
                   e.preventDefault();
                   handleSendRoleMessage();
                 }}
-                className="flex items-center gap-2 pt-2 pb-6 shrink-0 bg-white"
+                className="flex items-center gap-2 pt-2 pb-6 shrink-0 bg-brand-card border-t border-brand-border"
               >
                 <input
                   type="text"
                   placeholder="Type your response..."
                   value={roleInput}
                   onChange={(e) => setRoleInput(e.target.value)}
-                  className="flex-grow py-2.5 px-4 bg-gray-50 border border-gray-200 rounded-2xl text-xs focus:outline-none"
+                  className="flex-grow py-2.5 px-4 bg-brand-bg border border-brand-border rounded-2xl text-xs focus:outline-none text-brand-text-primary placeholder-brand-text-muted focus:border-indigo-400 focus:bg-brand-card transition-all font-sans"
                 />
                 <button type="submit" disabled={!roleInput.trim() || roleLoading} className="p-3 bg-indigo-600 text-white rounded-xl active:scale-95"><Send className="w-4 h-4" /></button>
               </form>
@@ -522,13 +522,13 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
         {showSentenceBuilder && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowSentenceBuilder(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-white border-t border-gray-200 rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4">
-              <div className="flex justify-between items-center border-b border-gray-150 pb-3 shrink-0">
+            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-brand-card border-t border-brand-border rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4 shadow-2xl">
+              <div className="flex justify-between items-center border-b border-brand-border pb-3 shrink-0">
                 <span className="text-xs font-black uppercase text-indigo-600 flex items-center gap-1.5"><Gamepad2 className="w-4.5 h-4.5" /><span>Sentence Builder Game</span></span>
-                <button onClick={() => setShowSentenceBuilder(false)} className="p-1.5 bg-gray-100 rounded-full hover:bg-gray-200"><X className="w-4 h-4" /></button>
+                <button onClick={() => setShowSentenceBuilder(false)} className="p-1.5 bg-brand-surface border border-brand-border rounded-full hover:bg-brand-border text-brand-text-secondary"><X className="w-4 h-4" /></button>
               </div>
               <div className="flex-grow overflow-y-auto space-y-4 py-2">
-                <div className="p-4 bg-gray-50 border rounded-2xl min-h-[56px] flex flex-wrap gap-2 items-center">
+                <div className="p-4 bg-brand-bg border border-brand-border rounded-2xl min-h-[56px] flex flex-wrap gap-2 items-center">
                   {builderSelections.map((w, idx) => (
                     <span key={idx} onClick={() => handleWordSelect(w)} className="px-2.5 py-1 rounded bg-indigo-100 text-indigo-700 font-bold text-xs cursor-pointer">{w}</span>
                   ))}
@@ -537,7 +537,7 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
                   {SCRAMBLED_QUESTIONS[currentBuilderIdx].scrambled.map((word) => {
                     const isSelected = builderSelections.includes(word);
                     return (
-                      <button key={word} disabled={builderSubmitted} onClick={() => handleWordSelect(word)} className={`px-4 py-2.5 border rounded-xl text-xs font-semibold ${isSelected ? 'opacity-30' : 'bg-white'}`}>{word}</button>
+                      <button key={word} disabled={builderSubmitted} onClick={() => handleWordSelect(word)} className={`px-4 py-2.5 border border-brand-border rounded-xl text-xs font-semibold ${isSelected ? 'opacity-30' : 'bg-brand-card text-brand-text-primary hover:bg-brand-surface'}`}>{word}</button>
                     );
                   })}
                 </div>

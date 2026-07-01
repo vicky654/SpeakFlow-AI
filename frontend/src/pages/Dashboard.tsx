@@ -393,16 +393,16 @@ export const Dashboard: React.FC = () => {
     <div className="space-y-6 select-none max-w-lg mx-auto pb-24 pt-4 px-1 text-brand-text-primary text-left">
       
       {/* 1. TOP HEADER: LANGUAGE MODE SWITCHER & TIME-OF-DAY GOALS */}
-      <div className="flex justify-between items-center border-b border-gray-150 pb-3">
+      <div className="flex justify-between items-center border-b border-brand-border pb-3">
         <button 
           onClick={() => handleLanguageChange(languageMode === 'Hindi + English' ? 'English Only' : 'Hindi + English')}
-          className="flex items-center space-x-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-xl text-[10px] font-bold text-brand-text-secondary active:scale-95 transition-all"
+          className="flex items-center space-x-1.5 px-3 py-1.5 bg-brand-surface border border-brand-border rounded-xl text-[10px] font-bold text-brand-text-secondary active:scale-95 transition-all"
         >
           <Globe className="w-3.5 h-3.5 text-indigo-600" />
           <span>Mode: {languageMode}</span>
         </button>
 
-        <div className="flex items-center space-x-1 text-[10px] font-extrabold text-indigo-650 bg-indigo-50 border border-indigo-200 px-2.5 py-1 rounded-full">
+        <div className="flex items-center space-x-1 text-[10px] font-extrabold text-indigo-600 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 rounded-full">
           <Timer className="w-3.5 h-3.5" />
           <span>{suggestedGoal}</span>
         </div>
@@ -410,22 +410,22 @@ export const Dashboard: React.FC = () => {
 
       {/* 2. MULTIPLE STREAK INDICATORS */}
       <div className="grid grid-cols-3 gap-2 text-center">
-        <div className="p-3 bg-white border border-gray-150 rounded-xl space-y-1">
+        <div className="p-3 bg-brand-card border border-brand-border rounded-xl space-y-1">
           <Flame className="w-4 h-4 text-orange-500 fill-current mx-auto animate-pulse" />
           <span className="text-[9px] font-black text-brand-text-primary block">14D Speaking</span>
         </div>
-        <div className="p-3 bg-white border border-gray-150 rounded-xl space-y-1">
+        <div className="p-3 bg-brand-card border border-brand-border rounded-xl space-y-1">
           <Star className="w-4 h-4 text-indigo-500 fill-indigo-500/10 mx-auto" />
           <span className="text-[9px] font-black text-brand-text-primary block">21D Vocabulary</span>
         </div>
-        <div className="p-3 bg-white border border-gray-150 rounded-xl space-y-1">
+        <div className="p-3 bg-brand-card border border-brand-border rounded-xl space-y-1">
           <BookOpen className="w-4 h-4 text-emerald-500 fill-emerald-500/10 mx-auto" />
           <span className="text-[9px] font-black text-brand-text-primary block">30D Reading</span>
         </div>
       </div>
 
       {/* 3. AI COMPANION PROMPT */}
-      <div className="flex items-start gap-3 bg-gradient-to-r from-indigo-50/50 via-white to-purple-50/10 p-4.5 rounded-[20px] border border-indigo-100 shadow-sm relative overflow-hidden">
+      <div className="flex items-start gap-3 bg-gradient-to-r from-indigo-500/5 via-brand-card to-purple-500/5 p-4.5 rounded-[20px] border border-brand-border shadow-sm relative overflow-hidden">
         <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white shrink-0 shadow-md">
           <Bot className="w-5.5 h-5.5" />
         </div>
@@ -435,14 +435,14 @@ export const Dashboard: React.FC = () => {
             {coachGreeting}
           </p>
           {/* ADAPTIVE ENGINE WARNING INSIDE GREETINGS CARD */}
-          <div className="p-2 bg-indigo-50/60 border border-indigo-100 rounded-lg text-[9px] text-indigo-850 font-medium italic mt-1 leading-normal">
+          <div className="p-2 bg-indigo-500/5 border border-indigo-500/10 rounded-lg text-[9px] text-indigo-600 font-medium italic mt-1 leading-normal">
             {adaptiveNotice}
           </div>
         </div>
       </div>
 
       {/* 4. DOMINANT DAILY REAL-LIFE MISSION CARD (Smart Resume) */}
-      <div className="card space-y-4 border-2 border-indigo-500 shadow-md bg-gradient-to-br from-indigo-600 to-indigo-755 text-white !p-6">
+      <div className="card space-y-4 border border-indigo-500 shadow-md bg-gradient-to-br from-indigo-600 to-indigo-700 text-white !p-6">
         <div>
           <span className="text-[9px] uppercase font-black tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full">
             Today's Mission
@@ -458,7 +458,7 @@ export const Dashboard: React.FC = () => {
         <button
           onClick={() => navigate(`/challenge/day/${currentDay}`)}
           style={{ borderRadius: '12px', padding: '14px' }}
-          className="w-full bg-white text-indigo-650 font-black text-sm active:scale-95 transition-all shadow-md flex items-center justify-center space-x-1.5"
+          className="w-full bg-white text-indigo-600 font-black text-sm active:scale-95 transition-all shadow-md flex items-center justify-center space-x-1.5"
         >
           <span>{resumeStep ? 'Continue' : 'Start Mission'}</span>
           <ArrowRight className="w-4 h-4 text-indigo-600 shrink-0" />
@@ -492,12 +492,12 @@ export const Dashboard: React.FC = () => {
       </div>
 
       {/* 6. DAILY WORD OF THE DAY WIDGET */}
-      <div className="card space-y-3.5 border-dashed border-gray-250 bg-gray-50/20">
-        <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+      <div className="card space-y-3.5 border border-dashed border-brand-border bg-brand-bg/50">
+        <div className="flex justify-between items-center pb-2 border-b border-brand-border">
           <span className="text-[9px] uppercase tracking-widest text-indigo-600 font-extrabold">Word of the Day</span>
           <button 
             onClick={() => speakWord('Confident')}
-            className="p-1 rounded-full bg-indigo-50 border border-indigo-150 text-indigo-650 hover:bg-indigo-100"
+            className="p-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 hover:bg-indigo-500/20"
           >
             <Volume2 className="w-3.5 h-3.5" />
           </button>
@@ -516,7 +516,7 @@ export const Dashboard: React.FC = () => {
         <button
           onClick={() => speakWord('She was confident that she would pass the English speaking test.')}
           style={{ borderRadius: '10px', padding: '10px' }}
-          className="w-full bg-white border border-gray-200 text-brand-text-secondary hover:bg-gray-50 text-[10px] font-bold transition-all active:scale-95 flex items-center justify-center space-x-1"
+          className="w-full bg-brand-card border border-brand-border text-brand-text-secondary hover:bg-brand-surface text-[10px] font-bold transition-all active:scale-95 flex items-center justify-center space-x-1"
         >
           <span>Tap to Practice Pronunciation</span>
         </button>
@@ -529,7 +529,7 @@ export const Dashboard: React.FC = () => {
             <Compass className="w-5 h-5" />
             <span className="text-[11px] uppercase tracking-wider font-extrabold text-brand-text-secondary">Daily English Challenge</span>
           </div>
-          <span className="text-[9px] uppercase tracking-widest font-black bg-indigo-50 border border-indigo-200 text-indigo-650 px-2 py-0.5 rounded">
+          <span className="text-[9px] uppercase tracking-widest font-black bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 px-2 py-0.5 rounded">
             {dayOfWeek}
           </span>
         </div>
@@ -564,7 +564,7 @@ export const Dashboard: React.FC = () => {
           <div className="flex items-center justify-between text-xs">
             <span className="flex items-center space-x-2 text-brand-text-secondary font-medium">
               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                checklist.vocab?.completed ? 'bg-emerald-500 text-white' : 'bg-gray-150 text-gray-500'
+                checklist.vocab?.completed ? 'bg-emerald-500 text-white' : 'bg-brand-surface border border-brand-border text-brand-text-secondary'
               }`}>
                 {checklist.vocab?.completed ? '✓' : '1'}
               </span>
@@ -578,7 +578,7 @@ export const Dashboard: React.FC = () => {
           <div className="flex items-center justify-between text-xs">
             <span className="flex items-center space-x-2 text-brand-text-secondary font-medium">
               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                checklist.listening?.completed ? 'bg-emerald-500 text-white' : 'bg-gray-150 text-gray-500'
+                checklist.listening?.completed ? 'bg-emerald-500 text-white' : 'bg-brand-surface border border-brand-border text-brand-text-secondary'
               }`}>
                 {checklist.listening?.completed ? '✓' : '2'}
               </span>
@@ -592,7 +592,7 @@ export const Dashboard: React.FC = () => {
           <div className="flex items-center justify-between text-xs">
             <span className="flex items-center space-x-2 text-brand-text-secondary font-medium">
               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                checklist.speaking?.completed ? 'bg-emerald-500 text-white' : 'bg-gray-150 text-gray-500'
+                checklist.speaking?.completed ? 'bg-emerald-500 text-white' : 'bg-brand-surface border border-brand-border text-brand-text-secondary'
               }`}>
                 {checklist.speaking?.completed ? '✓' : '3'}
               </span>
@@ -606,7 +606,7 @@ export const Dashboard: React.FC = () => {
           <div className="flex items-center justify-between text-xs">
             <span className="flex items-center space-x-2 text-brand-text-secondary font-medium">
               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                checklist.quiz?.completed ? 'bg-emerald-500 text-white' : 'bg-gray-150 text-gray-500'
+                checklist.quiz?.completed ? 'bg-emerald-500 text-white' : 'bg-brand-surface border border-brand-border text-brand-text-secondary'
               }`}>
                 {checklist.quiz?.completed ? '✓' : '4'}
               </span>
@@ -626,7 +626,7 @@ export const Dashboard: React.FC = () => {
             <h4 className="font-bold text-sm text-brand-text-primary">Fluency &amp; CEFR Meter</h4>
             <p className="text-[10px] text-brand-text-secondary">Estimated speech accuracy rating based on XP.</p>
           </div>
-          <span className="text-xs font-black text-indigo-600 bg-indigo-50 border border-indigo-150 px-2 py-0.5 rounded">
+          <span className="text-xs font-black text-indigo-650 bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded">
             {fluency.title} ({fluency.cefr})
           </span>
         </div>
@@ -644,7 +644,7 @@ export const Dashboard: React.FC = () => {
       </div>
 
       {/* 10. STREAK FREEZE TOGGLER */}
-      <div className="card flex items-center justify-between !p-4 border-dashed border-indigo-200 bg-indigo-50/20">
+      <div className="card flex items-center justify-between !p-4 border-dashed border-indigo-500/20 bg-indigo-500/5">
         <div className="flex items-center space-x-2.5">
           <Snowflake className={`w-5 h-5 text-indigo-500 shrink-0 ${streakFrozen ? 'animate-spin-slow' : ''}`} />
           <div className="text-left">
@@ -656,8 +656,8 @@ export const Dashboard: React.FC = () => {
           onClick={handleToggleFreeze}
           className={`px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 transition-all shadow-sm ${
             streakFrozen 
-              ? 'bg-indigo-600 text-white border border-indigo-650' 
-              : 'bg-white border border-gray-250 text-indigo-655 hover:bg-indigo-50'
+              ? 'bg-indigo-600 text-white border border-indigo-600' 
+              : 'bg-brand-card border border-brand-border text-indigo-600 hover:bg-brand-surface'
           }`}
         >
           {streakFrozen ? '❄️ Frozen' : 'Use Freeze'}
@@ -692,7 +692,7 @@ export const Dashboard: React.FC = () => {
               <span>Week 1: Greetings &amp; Introductions</span>
               <span className="text-indigo-600 font-bold">{getWeekProgress(1)}%</span>
             </div>
-            <div className="w-full h-1.5 bg-gray-150 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-brand-surface border border-brand-border rounded-full overflow-hidden">
               <div className="h-full bg-indigo-600" style={{ width: `${getWeekProgress(1)}%` }} />
             </div>
           </div>
@@ -702,7 +702,7 @@ export const Dashboard: React.FC = () => {
               <span>Week 2: Shopping &amp; Restaurant Roleplays</span>
               <span className="text-indigo-600 font-bold">{getWeekProgress(2)}%</span>
             </div>
-            <div className="w-full h-1.5 bg-gray-150 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-brand-surface border border-brand-border rounded-full overflow-hidden">
               <div className="h-full bg-indigo-600" style={{ width: `${getWeekProgress(2)}%` }} />
             </div>
           </div>
@@ -712,7 +712,7 @@ export const Dashboard: React.FC = () => {
               <span>Week 3: Daily Routines &amp; Appointments</span>
               <span className="text-indigo-600 font-bold">{getWeekProgress(3)}%</span>
             </div>
-            <div className="w-full h-1.5 bg-gray-150 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-brand-surface border border-brand-border rounded-full overflow-hidden">
               <div className="h-full bg-indigo-600" style={{ width: `${getWeekProgress(3)}%` }} />
             </div>
           </div>
@@ -722,7 +722,7 @@ export const Dashboard: React.FC = () => {
               <span>Week 4: Final Challenge Speech</span>
               <span className="text-indigo-600 font-bold">{getWeekProgress(4)}%</span>
             </div>
-            <div className="w-full h-1.5 bg-gray-150 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-brand-surface border border-brand-border rounded-full overflow-hidden">
               <div className="h-full bg-indigo-600" style={{ width: `${getWeekProgress(4)}%` }} />
             </div>
           </div>
@@ -734,9 +734,9 @@ export const Dashboard: React.FC = () => {
         {showPaywall && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowPaywall(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-sm bg-white border border-gray-250 rounded-[28px] p-6 z-50 pointer-events-auto shadow-2xl space-y-4 text-center">
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-sm bg-brand-card border border-brand-border rounded-[28px] p-6 z-50 pointer-events-auto shadow-2xl space-y-4 text-center">
               
-              <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 flex items-center justify-center mx-auto animate-bounce mb-2">
+              <div className="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-505 text-amber-500 flex items-center justify-center mx-auto animate-bounce mb-2">
                 <CreditCard className="w-6 h-6" />
               </div>
 
@@ -747,7 +747,7 @@ export const Dashboard: React.FC = () => {
                 </p>
               </div>
 
-              <div className="bg-gray-50 border border-gray-150 p-4 rounded-2xl text-left space-y-2 text-xs">
+              <div className="bg-brand-bg border border-brand-border p-4 rounded-2xl text-left space-y-2 text-xs">
                 <p className="font-semibold text-brand-text-primary flex justify-between">
                   <span>Premium Yearly Membership</span>
                   <span className="text-indigo-600 font-bold">$9.99/month</span>
@@ -763,7 +763,7 @@ export const Dashboard: React.FC = () => {
                 <button
                   onClick={() => setShowPaywall(false)}
                   style={{ borderRadius: '12px', padding: '10px' }}
-                  className="flex-1 bg-white border border-gray-250 text-brand-text-secondary text-xs font-bold active:scale-95 transition-all"
+                  className="flex-1 bg-brand-card border border-brand-border text-brand-text-secondary text-xs font-bold active:scale-95 transition-all"
                 >
                   Cancel
                 </button>
@@ -785,7 +785,7 @@ export const Dashboard: React.FC = () => {
         {showWhatsAppMode && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowWhatsAppMode(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-[#ECE5DD] rounded-t-[28px] z-50 p-5 flex flex-col pointer-events-auto text-left shadow-2xl">
+            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-[#ECE5DD] dark:bg-brand-bg rounded-t-[28px] z-50 p-5 flex flex-col pointer-events-auto text-left shadow-2xl">
               
               <div className="flex justify-between items-center border-b border-emerald-800/10 pb-3 shrink-0 bg-emerald-600 text-white p-4 -mx-5 -mt-5 rounded-t-[28px]">
                 <div className="flex items-center space-x-2.5">
@@ -804,13 +804,13 @@ export const Dashboard: React.FC = () => {
                   return (
                     <div key={i} className={`flex ${isAI ? 'justify-start' : 'justify-end'}`}>
                       <div className={`p-3 rounded-xl text-xs max-w-[80%] shadow-sm relative ${
-                        isAI ? 'bg-white text-gray-800' : 'bg-[#DCF8C6] text-gray-800'
+                        isAI ? 'bg-brand-card border border-brand-border text-brand-text-primary' : 'bg-[#DCF8C6] text-gray-800 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border dark:border-emerald-800/30'
                       }`}>
                         <p className="leading-relaxed whitespace-pre-line">{msg.content}</p>
                         {isAI && (
                           <button
                             onClick={() => speakWord(msg.content)}
-                            className="absolute -right-2 top-2 p-0.5 rounded-full bg-gray-100 text-gray-500 shadow-sm border"
+                            className="absolute -right-2 top-2 p-0.5 rounded-full bg-brand-surface border border-brand-border text-brand-text-secondary shadow-sm hover:text-indigo-650 transition-colors"
                           >
                             <Volume2 className="w-3 h-3" />
                           </button>
@@ -821,7 +821,7 @@ export const Dashboard: React.FC = () => {
                 })}
               </div>
 
-              <div className="flex items-center justify-center py-4 bg-white -mx-5 -mb-5 p-4 border-t border-gray-200">
+              <div className="flex items-center justify-center py-4 bg-brand-card -mx-5 -mb-5 p-4 border-t border-brand-border">
                 <button
                   onClick={handleToggleWhatsAppMic}
                   className={`w-16 h-16 rounded-full flex items-center justify-center text-white transition-all shadow-md active:scale-95 ${
@@ -842,15 +842,15 @@ export const Dashboard: React.FC = () => {
         {showReflection && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowReflection(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-white border-t border-gray-200 rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4">
-              <div className="flex justify-between items-center border-b border-gray-150 pb-3 shrink-0">
-                <span className="text-xs font-black uppercase text-purple-650 flex items-center gap-1.5"><Flame className="w-4.5 h-4.5 text-orange-500" /><span>End-of-Day Reflection</span></span>
-                <button onClick={() => setShowReflection(false)} className="p-1.5 bg-gray-100 rounded-full hover:bg-gray-200"><X className="w-4 h-4" /></button>
+            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-brand-card border-t border-brand-border rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4 shadow-2xl">
+              <div className="flex justify-between items-center border-b border-brand-border pb-3 shrink-0">
+                <span className="text-xs font-black uppercase text-purple-600 flex items-center gap-1.5"><Flame className="w-4.5 h-4.5 text-orange-500" /><span>End-of-Day Reflection</span></span>
+                <button onClick={() => setShowReflection(false)} className="p-1.5 bg-brand-surface border border-brand-border rounded-full hover:bg-brand-border text-brand-text-secondary"><X className="w-4 h-4" /></button>
               </div>
               <div className="flex-grow overflow-y-auto space-y-4 py-2">
                 {!reflectionSubmitted ? (
                   <div className="space-y-4">
-                    <input type="text" placeholder="Today I learned..." value={reflectionText} onChange={(e) => setReflectionText(e.target.value)} className="w-full py-3 px-4 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none transition-all" />
+                    <input type="text" placeholder="Today I learned..." value={reflectionText} onChange={(e) => setReflectionText(e.target.value)} className="w-full py-3 px-4 bg-brand-bg border border-brand-border rounded-xl text-xs focus:outline-none text-brand-text-primary placeholder-brand-text-muted focus:bg-brand-card transition-all font-sans" />
                     <button disabled={!reflectionText.trim()} onClick={handleSubmitReflection} className="w-full py-3 bg-purple-600 text-white rounded-xl text-xs font-bold">Save Reflection</button>
                   </div>
                 ) : (
@@ -871,15 +871,15 @@ export const Dashboard: React.FC = () => {
         {showOneMinPractice && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowOneMinPractice(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-white border-t border-gray-200 rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4">
-              <div className="flex justify-between items-center border-b border-gray-150 pb-3 shrink-0">
+            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-brand-card border-t border-brand-border rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4 shadow-2xl">
+              <div className="flex justify-between items-center border-b border-brand-border pb-3 shrink-0">
                 <span className="text-xs font-black uppercase text-indigo-600 flex items-center gap-1.5"><Timer className="w-4.5 h-4.5" /><span>One-Minute Practice Sprint</span></span>
-                <button onClick={() => setShowOneMinPractice(false)} className="p-1.5 bg-gray-100 rounded-full hover:bg-gray-200"><X className="w-4 h-4" /></button>
+                <button onClick={() => setShowOneMinPractice(false)} className="p-1.5 bg-brand-surface border border-brand-border rounded-full hover:bg-brand-border text-brand-text-secondary"><X className="w-4 h-4" /></button>
               </div>
               <div className="flex-grow overflow-y-auto space-y-4 py-2">
                 {oneMinStep === 1 && (
                   <div className="space-y-4 text-center">
-                    <div className="p-6 bg-indigo-50/50 rounded-2xl">
+                    <div className="p-6 bg-indigo-500/5 border border-indigo-500/10 rounded-2xl">
                       <h3 className="text-2xl font-bold text-indigo-700">{oneMinVocabIdx === 0 ? 'Eager' : oneMinVocabIdx === 1 ? 'Procrastinate' : 'Coherent'}</h3>
                       <p className="text-xs leading-normal mt-2">{oneMinVocabIdx === 0 ? 'Very excited.' : oneMinVocabIdx === 1 ? 'Delay action.' : 'Clear.'}</p>
                     </div>
@@ -898,7 +898,7 @@ export const Dashboard: React.FC = () => {
                   <div className="space-y-4">
                     <p className="text-xs font-bold">Identify missing word: "She ______ to the park yesterday."</p>
                     {['Goes', 'Go', 'Went', 'Going'].map((opt, i) => (
-                      <button key={opt} onClick={() => setOneMinQuizAnswer(opt === 'Went' ? 'C' : 'A')} className="w-full p-3 border rounded-xl text-xs text-left">{(i+1)}. {opt}</button>
+                      <button key={opt} onClick={() => setOneMinQuizAnswer(opt === 'Went' ? 'C' : 'A')} className="w-full p-3 bg-brand-card border border-brand-border text-brand-text-primary rounded-xl text-xs text-left hover:bg-brand-surface">{(i+1)}. {opt}</button>
                     ))}
                     <button onClick={() => setOneMinStep(4)} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Submit</button>
                   </div>

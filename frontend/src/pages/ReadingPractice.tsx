@@ -164,8 +164,8 @@ export const ReadingPractice: React.FC = () => {
                             const isSelected = selectedAnswers[q.id] === opt;
                             const isCorrect = q.answer === opt;
 
-                            let optClass = 'bg-white border-gray-200 text-brand-text-primary hover:border-indigo-300 hover:bg-indigo-50/50';
-                            let prefixClass = 'bg-gray-100 text-gray-500';
+                            let optClass = 'bg-brand-card border-brand-border text-brand-text-primary hover:border-indigo-500/60 hover:bg-indigo-500/5';
+                            let prefixClass = 'bg-brand-surface border border-brand-border text-brand-text-secondary';
 
                             if (isSelected && !quizResult) {
                               optClass = 'bg-indigo-600 border-indigo-600 text-white shadow-sm';
@@ -174,14 +174,14 @@ export const ReadingPractice: React.FC = () => {
 
                             if (quizResult) {
                               if (isCorrect) {
-                                optClass = 'bg-emerald-50 border-emerald-400 text-emerald-700 font-bold';
-                                prefixClass = 'bg-emerald-100 text-emerald-600';
+                                optClass = 'bg-emerald-500/10 dark:bg-emerald-500/20 border-emerald-500 text-emerald-500 font-bold';
+                                prefixClass = 'bg-emerald-500/20 text-emerald-400';
                               } else if (isSelected) {
-                                optClass = 'bg-red-55 border-red-400 text-red-600 line-through';
-                                prefixClass = 'bg-red-100 text-red-550';
+                                optClass = 'bg-rose-500/10 dark:bg-rose-500/20 border-rose-500 text-rose-500 line-through';
+                                prefixClass = 'bg-rose-500/20 text-rose-450';
                               } else {
-                                optClass = 'bg-gray-50 border-gray-100 text-brand-text-muted opacity-50';
-                                prefixClass = 'bg-gray-100 text-gray-400';
+                                optClass = 'bg-brand-bg/40 border-brand-border text-brand-text-muted opacity-40';
+                                prefixClass = 'bg-brand-surface text-brand-text-muted';
                               }
                             }
 
@@ -249,7 +249,7 @@ export const ReadingPractice: React.FC = () => {
                       placeholder="Write your summary here... (e.g. Emails are essential in corporate systems. We should construct neat subject lines and keep requests direct.)"
                       value={summaryText}
                       onChange={(e) => setSummaryText(e.target.value)}
-                      className="w-full h-32 p-4 bg-brand-surface border border-gray-250 rounded-2xl text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/30 transition-all font-sans leading-relaxed resize-none"
+                      className="w-full h-32 p-4 bg-brand-surface border border-brand-border rounded-2xl text-xs text-brand-text-primary placeholder-brand-text-muted focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/30 transition-all font-sans leading-relaxed resize-none"
                     />
 
                     {!writingResult ? (

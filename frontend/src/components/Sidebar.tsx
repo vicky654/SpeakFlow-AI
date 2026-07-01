@@ -35,7 +35,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
             <span className="text-xl font-bold text-white">S</span>
           </div>
           <div>
-            <h1 className="text-lg font-extrabold tracking-tight text-brand-text-primary font-sans">SpeakFlow <span className="text-indigo-405 text-indigo-500">AI</span></h1>
+            <h1 className="text-lg font-extrabold tracking-tight text-brand-text-primary font-sans">SpeakFlow <span className="text-indigo-500">AI</span></h1>
             <span className="text-[10px] text-brand-text-muted uppercase tracking-widest font-semibold font-mono">MVP Edition</span>
           </div>
         </div>
@@ -101,7 +101,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
                 <span className="font-bold text-brand-text-secondary">{user.streak} days</span>
               </div>
               <div className="flex items-center space-x-1">
-                <span className="px-1.5 py-0.5 rounded bg-indigo-95/10 text-indigo-500 font-mono text-[10px] border border-indigo-500/25 font-bold">
+                <span className="px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-500 font-mono text-[10px] border border-indigo-500/25 font-bold">
                   Lvl {user.level}
                 </span>
               </div>
