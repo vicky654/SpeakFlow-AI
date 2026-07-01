@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -25,86 +25,86 @@
 }
 
 :root {
-  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Premium Light Theme Color Palette */
   --color-primary: #6D5DF6;
   --color-primary-hover: #5b4ce5;
   --color-secondary: #8B5CF6;
   --color-accent: #3B82F6;
-  --color-bg: #FAFBFC;
+  --color-bg: #F8F9FC;
   --color-surface: #FFFFFF;
   --color-card: #FFFFFF;
-  --color-border: #E8ECF5;
-  --color-divider: #EEF2F7;
+  --color-border: #E2E8F0;
+  --color-divider: #F1F5F9;
 
-  --color-success: #22C55E;
+  --color-success: #10B981;
   --color-warning: #F59E0B;
   --color-error: #EF4444;
   --color-info: #3B82F6;
 
-  --color-text-primary: #111827;
-  --color-text-secondary: #6B7280;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
   --color-text-muted: #94A3B8;
 
-  /* Shadows — stronger for card visibility */
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(109, 93, 246, 0.06);
-  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(109, 93, 246, 0.08);
-  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.10), 0 16px 40px rgba(109, 93, 246, 0.10);
+  /* Shadows — premium multi-layered */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(15, 23, 42, 0.04);
 
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(15, 23, 42, 0.04);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(15, 23, 42, 0.06);
 
   /* Spacing Tokens */
-  --spacing-screen: 16px;
-  --spacing-section: 24px;
-  --spacing-card: 16px;
-  --spacing-element: 12px;
+  --spacing-screen: 20px;
+  --spacing-section: 32px;
+  --spacing-card: 24px;
+  --spacing-element: 16px;
   --spacing-button: 16px;
 
   /* Button Tokens */
-  --btn-height-primary: 48px;
-  --btn-radius: 14px;
+  --btn-height-primary: 46px;
+  --btn-radius: 12px;
   --btn-font-weight: 600;
-  --btn-padding-x: 20px;
-  --btn-padding-y: 12px;
+  --btn-padding-x: 18px;
+  --btn-padding-y: 10px;
 
   /* Card Tokens */
-  --card-radius: 18px;
-  --card-padding: 20px;
+  --card-radius: 16px;
+  --card-padding: 24px;
 
   /* Safe area bottom padding */
-  --safe-bottom-padding: calc(env(safe-area-inset-bottom, 0px) + 100px);
+  --safe-bottom-padding: calc(env(safe-area-inset-bottom, 0px) + 90px);
 }
 
 .dark-mode {
   /* Premium Dark Theme Color Palette */
-  --color-primary: #a78bfa;
-  --color-primary-hover: #8b5cf6;
-  --color-secondary: #121826;
-  --color-accent: #c084fc;
-  --color-bg: #0b0f19;
-  --color-surface: #121826;
-  --color-card: #121826;
-  --color-border: #1e293b;
-  --color-divider: #1e293b;
+  --color-primary: #A78BFA;
+  --color-primary-hover: #8B5CF6;
+  --color-secondary: #0F172A;
+  --color-accent: #C084FC;
+  --color-bg: #090D16;
+  --color-surface: #1E293B;
+  --color-card: #131A26;
+  --color-border: #1E293B;
+  --color-divider: #1E293B;
 
-  --color-success: #34d399;
-  --color-warning: #fbbf24;
-  --color-error: #f87171;
-  --color-info: #60a5fa;
+  --color-success: #34D399;
+  --color-warning: #FBBF24;
+  --color-error: #F87171;
+  --color-info: #60A5FA;
 
-  --color-text-primary: #f8fafc;
-  --color-text-secondary: #cbd5e1;
-  --color-text-muted: #64748b;
+  --color-text-primary: #F8FAF5;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #64748B;
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.45);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
 
-  --glass-bg: rgba(11, 15, 25, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 @layer base {
@@ -119,25 +119,41 @@
     transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-kerning: normal;
     letter-spacing: -0.011em;
+    line-height: 1.5;
   }
 
   h1,
   .h1 {
     font-weight: 700;
-    letter-spacing: -0.02em;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   h2,
   .h2 {
-    font-weight: 600;
-    letter-spacing: -0.015em;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   h3,
   .h3 {
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
 
@@ -169,38 +185,42 @@
    CARD UTILITY — applied globally to all cards
    ============================================ */
 .card {
-  background: #ffffff;
-  border-radius: 20px;
-  border: 1px solid #E8ECF5;
-  box-shadow: 0 2px 8px rgba(109, 93, 246, 0.06), 0 1px 3px rgba(15, 23, 42, 0.05);
-  padding: 20px;
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  background: var(--color-card);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  padding: var(--card-padding);
+  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease;
 }
 
 .card:hover {
-  box-shadow: 0 6px 20px rgba(109, 93, 246, 0.1), 0 2px 6px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: rgba(109, 93, 246, 0.35);
 }
 
-.dark-mode .card {
-  background: #1a2235;
-  border-color: #1e293b;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+.dark-mode .card:hover {
+  border-color: rgba(167, 139, 250, 0.35);
 }
 
 /* Card with elevated shadow (for hero cards) */
 .card-elevated {
-  background: #ffffff;
-  border-radius: 20px;
-  border: 1px solid #E8ECF5;
-  box-shadow: 0 4px 16px rgba(109, 93, 246, 0.1), 0 1px 4px rgba(15, 23, 42, 0.06);
-  padding: 20px;
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  background: var(--color-card);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  padding: var(--card-padding);
+  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease;
 }
 
-.dark-mode .card-elevated {
-  background: #1a2235;
-  border-color: #1e293b;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+.card-elevated:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  border-color: rgba(109, 93, 246, 0.45);
+}
+
+.dark-mode .card-elevated:hover {
+  border-color: rgba(167, 139, 250, 0.45);
 }
 
 /* ============================================
@@ -329,9 +349,9 @@
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, var(--border-color) 25%, var(--bg-secondary) 50%, var(--border-color) 75%);
+  background: linear-gradient(90deg, var(--color-border) 25%, var(--color-divider) 50%, var(--color-border) 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+  animation: shimmer 1.5s infinite linear;
 }
 
 /* Custom glow animations for gamified elements */

@@ -44,12 +44,11 @@ export const ChallengeTimeline: React.FC = () => {
         <h2 className="text-2xl font-extrabold text-brand-text-primary">15-Day Master Challenge</h2>
         <p className="text-xs text-brand-text-secondary">Complete curriculum blocks sequentially to unlock fluency credentials.</p>
       </div>
-
       {/* STATS OVERVIEW CARD */}
-      <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-5 border border-brand-border dark:border-brand-border bg-gradient-to-r from-indigo-950/20 via-slate-900/60 to-purple-950/15 flex items-center justify-between">
+      <div className="card flex items-center justify-between p-5 bg-gradient-to-r from-indigo-500/5 via-brand-card to-purple-500/5">
         <div className="flex items-center space-x-3.5">
-          <div className="p-3 bg-indigo-500/15 rounded-2xl text-indigo-405 shrink-0">
-            <Trophy className="w-6 h-6 animate-pulse text-indigo-400" />
+          <div className="p-3 bg-indigo-500/15 rounded-2xl shrink-0">
+            <Trophy className="w-6 h-6 animate-pulse text-indigo-500" />
           </div>
           <div className="min-w-0">
             <h3 className="font-extrabold text-sm text-brand-text-primary">Overall Progress</h3>
@@ -58,7 +57,7 @@ export const ChallengeTimeline: React.FC = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-center space-x-4 text-xs font-bold text-slate-350">
+        <div className="flex items-center space-x-4 text-xs font-bold text-brand-text-secondary">
           <div className="flex items-center space-x-1">
             <Flame className="w-4 h-4 text-orange-500 fill-current animate-pulse" />
             <span>{progress?.longestStreak || 0} days</span>
@@ -72,15 +71,15 @@ export const ChallengeTimeline: React.FC = () => {
 
       {/* DAILY CHEST CLAIM */}
       {progress && (
-        <div className={`p-4 rounded-3xl border flex flex-col justify-between items-center text-center space-y-3.5 transition-all ${
+        <div className={`p-5 rounded-2xl border flex flex-col justify-between items-center text-center space-y-3.5 transition-all ${
           canClaimChest 
-            ? 'bg-indigo-950/20 border-indigo-500/30 text-brand-text-primary' 
-            : 'bg-brand-bg/30 border-brand-border text-brand-text-muted opacity-60'
+            ? 'bg-gradient-to-br from-indigo-500/10 to-indigo-500/5 border-indigo-500/20 text-brand-text-primary' 
+            : 'bg-brand-surface/40 border-brand-border text-brand-text-muted opacity-60'
         }`}>
           <div className="flex flex-col items-center space-y-1">
-            <Gift className={`w-8 h-8 ${canClaimChest ? 'text-indigo-400 animate-bounce' : 'text-brand-text-muted'}`} />
+            <Gift className={`w-8 h-8 ${canClaimChest ? 'text-indigo-500 animate-bounce' : 'text-brand-text-muted'}`} />
             <h4 className="font-extrabold text-xs text-brand-text-primary">Daily Treasure Chest</h4>
-            <p className="text-[10px] text-slate-405 leading-normal">
+            <p className="text-[10px] text-brand-text-secondary leading-normal">
               {canClaimChest ? 'Claim +50 XP and +20 Coins daily reward bonus!' : 'Already claimed today. Chest resets tomorrow!'}
             </p>
           </div>

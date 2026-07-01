@@ -221,44 +221,34 @@ export const AdminPanel: React.FC = () => {
       )}
 
       {/* ADMIN TABS */}
-      <div className="flex bg-brand-card border border-brand-border p-1 rounded-2xl">
+      <div className="tab-bar">
         <button
           onClick={() => setActiveAdminTab('stats')}
-          className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeAdminTab === 'stats' ? 'bg-rose-600 text-white' : 'text-brand-text-secondary hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeAdminTab === 'stats' ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20 shadow-sm' : ''}`}
         >
           Platform Stats
         </button>
         <button
           onClick={() => setActiveAdminTab('vocab')}
-          className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeAdminTab === 'vocab' ? 'bg-rose-600 text-white' : 'text-brand-text-secondary hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeAdminTab === 'vocab' ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20 shadow-sm' : ''}`}
         >
           Add Vocabulary
         </button>
         <button
           onClick={() => setActiveAdminTab('lesson')}
-          className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeAdminTab === 'lesson' ? 'bg-rose-600 text-white' : 'text-brand-text-secondary hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeAdminTab === 'lesson' ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20 shadow-sm' : ''}`}
         >
           Add Course Lesson
         </button>
         <button
           onClick={() => setActiveAdminTab('manage')}
-          className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeAdminTab === 'manage' ? 'bg-rose-600 text-white' : 'text-brand-text-secondary hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeAdminTab === 'manage' ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20 shadow-sm' : ''}`}
         >
           Manage Content
         </button>
         <button
           onClick={() => setActiveAdminTab('challenge')}
-          className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeAdminTab === 'challenge' ? 'bg-rose-600 text-white' : 'text-brand-text-secondary hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeAdminTab === 'challenge' ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20 shadow-sm' : ''}`}
         >
           Challenge Days
         </button>
@@ -611,8 +601,8 @@ export const AdminPanel: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
           
           {/* DICTIONARY MANAGEMENT */}
-          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-4">
-            <h3 className="font-extrabold text-sm text-slate-250 flex items-center space-x-2">
+          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 space-y-4">
+            <h3 className="font-extrabold text-sm text-brand-text-primary flex items-center space-x-2">
               <BookOpen className="w-4.5 h-4.5 text-rose-400" />
               <span>Vocabulary Dictionary ({allWords.length})</span>
             </h3>
@@ -625,7 +615,7 @@ export const AdminPanel: React.FC = () => {
                   </div>
                   <button
                     onClick={() => handleDeleteVocabItem(w._id)}
-                    className="p-1.5 rounded-lg bg-rose-950/20 border border-rose-950/30 text-rose-400 hover:bg-rose-500 hover:text-white transition-all"
+                    className="p-1.5 rounded-lg bg-rose-950/20 border border-rose-950/30 text-rose-400 hover:bg-rose-50 hover:text-white transition-all"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
@@ -635,8 +625,8 @@ export const AdminPanel: React.FC = () => {
           </div>
 
           {/* CURRICULUM MANAGEMENT */}
-          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 border border-brand-border space-y-4">
-            <h3 className="font-extrabold text-sm text-slate-250 flex items-center space-x-2">
+          <div className="bg-brand-card border border-brand-border shadow-level-1 rounded-3xl p-6 space-y-4">
+            <h3 className="font-extrabold text-sm text-brand-text-primary flex items-center space-x-2">
               <LayoutList className="w-4.5 h-4.5 text-rose-400" />
               <span>Curriculum Syllabus Chapters ({lessons.length})</span>
             </h3>

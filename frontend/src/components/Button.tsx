@@ -27,29 +27,29 @@ export const Button: React.FC<ButtonProps> = ({
   let variantClass = '';
   switch (variant) {
     case 'primary':
-      variantClass = 'bg-gradient-to-r from-[#6D5DF6] to-[#8B5CF6] text-white shadow-sm hover:brightness-105';
+      variantClass = 'bg-brand-primary hover:bg-brand-hover text-white shadow-sm';
       break;
     case 'secondary':
-      variantClass = 'bg-white border border-[#E8ECF5] text-[#111827] hover:bg-[#FAFBFC]';
+      variantClass = 'bg-brand-card border border-brand-border text-brand-text-primary hover:bg-brand-surface';
       break;
     case 'success':
-      variantClass = 'bg-green-50 border border-green-200 text-green-600 hover:bg-green-100';
+      variantClass = 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 hover:bg-emerald-500/20 dark:text-emerald-400';
       break;
     case 'warning':
-      variantClass = 'bg-amber-500 text-white hover:brightness-105 shadow-sm';
+      variantClass = 'bg-amber-500 text-white hover:bg-amber-600 shadow-sm';
       break;
     case 'error':
-      variantClass = 'bg-red-50 border border-red-200 text-red-600 hover:bg-red-100';
+      variantClass = 'bg-rose-500/10 border border-rose-500/20 text-rose-600 hover:bg-rose-500/20 dark:text-rose-450 dark:text-rose-400';
       break;
     case 'ghost':
-      variantClass = 'bg-transparent text-[#6B7280] hover:bg-[#FAFBFC] hover:text-[#111827]';
+      variantClass = 'bg-transparent text-brand-text-secondary hover:bg-brand-surface hover:text-brand-text-primary';
       break;
   }
 
   let sizeClass = '';
   switch (size) {
     case 'primary':
-      sizeClass = 'h-12 min-w-[90px] px-5 py-3 rounded-2xl text-sm';
+      sizeClass = 'h-12 min-w-[90px] px-5 py-3 rounded-2xl text-[15px]';
       break;
     case 'sm':
       sizeClass = 'h-11 min-w-[80px] px-5 py-2.5 rounded-[12px] text-sm';

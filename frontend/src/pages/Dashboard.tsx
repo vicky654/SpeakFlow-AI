@@ -389,6 +389,28 @@ export const Dashboard: React.FC = () => {
   ].filter(Boolean).length;
   const progressPct = Math.round((completedCount / 4) * 100);
 
+  if (!progress || !dailyChallenge) {
+    return (
+      <div className="space-y-6 max-w-lg mx-auto pb-24 pt-4 px-1 text-brand-text-primary text-left">
+        {/* Header skeleton */}
+        <div className="flex justify-between items-center border-b border-brand-border pb-3">
+          <div className="w-32 h-8 bg-brand-surface border border-brand-border rounded-xl animate-shimmer" />
+          <div className="w-24 h-6 bg-brand-surface border border-brand-border rounded-full animate-shimmer" />
+        </div>
+        {/* Stats columns skeleton */}
+        <div className="grid grid-cols-3 gap-2">
+          <div className="h-20 bg-brand-surface border border-brand-border rounded-xl animate-shimmer" />
+          <div className="h-20 bg-brand-surface border border-brand-border rounded-xl animate-shimmer" />
+          <div className="h-20 bg-brand-surface border border-brand-border rounded-xl animate-shimmer" />
+        </div>
+        {/* Coach tip card skeleton */}
+        <div className="h-24 bg-brand-surface border border-brand-border rounded-2xl animate-shimmer" />
+        {/* Mission card skeleton */}
+        <div className="h-44 bg-brand-surface border border-brand-border rounded-2xl animate-shimmer" />
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6 select-none max-w-lg mx-auto pb-24 pt-4 px-1 text-brand-text-primary text-left">
       
@@ -396,13 +418,13 @@ export const Dashboard: React.FC = () => {
       <div className="flex justify-between items-center border-b border-brand-border pb-3">
         <button 
           onClick={() => handleLanguageChange(languageMode === 'Hindi + English' ? 'English Only' : 'Hindi + English')}
-          className="flex items-center space-x-1.5 px-3 py-1.5 bg-brand-surface border border-brand-border rounded-xl text-[10px] font-bold text-brand-text-secondary active:scale-95 transition-all"
+          className="flex items-center space-x-1.5 px-3 py-1.5 bg-brand-surface border border-brand-border rounded-xl text-xs font-bold text-brand-text-secondary active:scale-95 transition-all"
         >
           <Globe className="w-3.5 h-3.5 text-indigo-600" />
           <span>Mode: {languageMode}</span>
         </button>
 
-        <div className="flex items-center space-x-1 text-[10px] font-extrabold text-indigo-600 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 rounded-full">
+        <div className="flex items-center space-x-1 text-xs font-extrabold text-indigo-600 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 rounded-full">
           <Timer className="w-3.5 h-3.5" />
           <span>{suggestedGoal}</span>
         </div>
@@ -412,15 +434,15 @@ export const Dashboard: React.FC = () => {
       <div className="grid grid-cols-3 gap-2 text-center">
         <div className="p-3 bg-brand-card border border-brand-border rounded-xl space-y-1">
           <Flame className="w-4 h-4 text-orange-500 fill-current mx-auto animate-pulse" />
-          <span className="text-[9px] font-black text-brand-text-primary block">14D Speaking</span>
+          <span className="text-[11px] font-black text-brand-text-primary block">14D Speaking</span>
         </div>
         <div className="p-3 bg-brand-card border border-brand-border rounded-xl space-y-1">
           <Star className="w-4 h-4 text-indigo-500 fill-indigo-500/10 mx-auto" />
-          <span className="text-[9px] font-black text-brand-text-primary block">21D Vocabulary</span>
+          <span className="text-[11px] font-black text-brand-text-primary block">21D Vocabulary</span>
         </div>
         <div className="p-3 bg-brand-card border border-brand-border rounded-xl space-y-1">
           <BookOpen className="w-4 h-4 text-emerald-500 fill-emerald-500/10 mx-auto" />
-          <span className="text-[9px] font-black text-brand-text-primary block">30D Reading</span>
+          <span className="text-[11px] font-black text-brand-text-primary block">30D Reading</span>
         </div>
       </div>
 
@@ -430,12 +452,12 @@ export const Dashboard: React.FC = () => {
           <Bot className="w-5.5 h-5.5" />
         </div>
         <div className="space-y-1.5">
-          <p className="text-[10px] text-indigo-650 font-black uppercase tracking-wider">AI English Companion</p>
+          <p className="text-[11px] text-indigo-600 dark:text-indigo-400 font-black uppercase tracking-wider">AI English Companion</p>
           <p className="text-xs text-brand-text-secondary leading-relaxed font-semibold whitespace-pre-line">
             {coachGreeting}
           </p>
           {/* ADAPTIVE ENGINE WARNING INSIDE GREETINGS CARD */}
-          <div className="p-2 bg-indigo-500/5 border border-indigo-500/10 rounded-lg text-[9px] text-indigo-600 font-medium italic mt-1 leading-normal">
+          <div className="p-2 bg-indigo-500/5 border border-indigo-500/10 rounded-lg text-[11px] text-indigo-600 dark:text-indigo-400 font-medium italic mt-1 leading-normal">
             {adaptiveNotice}
           </div>
         </div>
@@ -444,7 +466,7 @@ export const Dashboard: React.FC = () => {
       {/* 4. DOMINANT DAILY REAL-LIFE MISSION CARD (Smart Resume) */}
       <div className="card space-y-4 border border-indigo-500 shadow-md bg-gradient-to-br from-indigo-600 to-indigo-700 text-white !p-6">
         <div>
-          <span className="text-[9px] uppercase font-black tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full">
+          <span className="text-[11px] uppercase font-black tracking-widest bg-white/20 px-2.5 py-0.5 rounded-full">
             Today's Mission
           </span>
           <h2 className="text-xl font-black mt-2 leading-snug">

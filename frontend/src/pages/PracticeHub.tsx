@@ -246,38 +246,30 @@ Give natural, brief dialogue responses suitable for a beginner. If the user make
       </div>
 
       {/* FILTER TABS */}
-      <div className="flex bg-brand-surface border border-brand-border p-1 rounded-xl text-[10px] font-black uppercase text-brand-text-secondary">
+      <div className="tab-bar text-[9px] uppercase font-black">
         <button 
           onClick={() => setActiveTab('general')}
-          className={`flex-1 py-2 rounded-lg text-center transition-all ${
-            activeTab === 'general' ? 'bg-indigo-600 text-white shadow-sm' : 'hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeTab === 'general' ? 'active' : ''}`}
         >
           General
         </button>
         <button 
           onClick={() => setActiveTab('interview')}
-          className={`flex-1 py-2 rounded-lg text-center transition-all flex items-center justify-center gap-1 ${
-            activeTab === 'interview' ? 'bg-indigo-600 text-white shadow-sm' : 'hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeTab === 'interview' ? 'active' : ''}`}
         >
           <span>Interview</span>
           {user?.role !== 'admin' && <Lock className="w-3 h-3 text-amber-500" />}
         </button>
         <button 
           onClick={() => setActiveTab('business')}
-          className={`flex-1 py-2 rounded-lg text-center transition-all flex items-center justify-center gap-1 ${
-            activeTab === 'business' ? 'bg-indigo-600 text-white shadow-sm' : 'hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeTab === 'business' ? 'active' : ''}`}
         >
           <span>Business</span>
           {user?.role !== 'admin' && <Lock className="w-3 h-3 text-amber-500" />}
         </button>
         <button 
           onClick={() => setActiveTab('travel')}
-          className={`flex-1 py-2 rounded-lg text-center transition-all flex items-center justify-center gap-1 ${
-            activeTab === 'travel' ? 'bg-indigo-600 text-white shadow-sm' : 'hover:text-brand-text-primary'
-          }`}
+          className={`tab-btn ${activeTab === 'travel' ? 'active' : ''}`}
         >
           <span>Travel</span>
           {user?.role !== 'admin' && <Lock className="w-3 h-3 text-amber-500" />}
