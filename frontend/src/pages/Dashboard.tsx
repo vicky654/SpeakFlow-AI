@@ -412,7 +412,7 @@ export const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="space-y-6 select-none max-w-lg mx-auto pb-24 pt-4 px-1 text-brand-text-primary text-left">
+    <div className="space-y-6 select-none max-w-lg mx-auto pb-24 pt-4 px-2 text-brand-text-primary text-left">
       
       {/* 1. TOP HEADER: LANGUAGE MODE SWITCHER & TIME-OF-DAY GOALS */}
       <div className="flex justify-between items-center border-b border-brand-border pb-3">

@@ -23,7 +23,10 @@ export const BottomNavigation: React.FC = () => {
   };
 
   return (
-    <nav className="fixed bottom-4 left-4 right-4 h-[76px] bg-brand-surface/90 backdrop-blur-xl border border-brand-border/60 rounded-[24px] flex items-center justify-around px-2 z-50 select-none shadow-level-3">
+    <nav 
+      className="fixed left-4 right-4 h-[76px] bg-brand-surface/90 backdrop-blur-xl border border-brand-border/60 rounded-[24px] flex items-center justify-around px-2 z-50 select-none shadow-level-3"
+      style={{ bottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}
+    >
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = currentPath === tab.to || (tab.to !== '/' && currentPath.startsWith(tab.to));

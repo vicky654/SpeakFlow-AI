@@ -301,13 +301,13 @@ export const Profile: React.FC = () => {
       </div>
 
       {/* 5. WEEKLY RECAP STORY */}
-      <div className="card space-y-4 bg-gradient-to-br from-indigo-50/15 via-white to-indigo-50/5 border-indigo-100">
+      <div className="card space-y-4 bg-gradient-to-br from-indigo-500/5 via-brand-card to-purple-500/5 border-indigo-500/10">
         <div className="flex justify-between items-center border-b border-brand-border pb-3">
           <div>
             <h4 className="font-bold text-sm text-brand-text-primary">Weekly Achievement Story</h4>
             <p className="text-[10px] text-brand-text-secondary">Sunday wrap-up details.</p>
           </div>
-          <span className="text-[8px] font-black uppercase text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-150">Recap</span>
+          <span className="text-[10px] font-black uppercase text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">Recap</span>
         </div>
         <div className="space-y-3 text-xs leading-relaxed text-brand-text-secondary">
           <div className="grid grid-cols-3 gap-2.5 text-center">
@@ -315,7 +315,7 @@ export const Profile: React.FC = () => {
             <div className="p-3 bg-brand-bg rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Speak Acc</span><span className="text-base font-black text-brand-text-primary">+14%</span></div>
             <div className="p-3 bg-brand-bg rounded-xl"><span className="text-[9px] text-brand-text-muted font-bold uppercase block font-sans">Lessons</span><span className="text-base font-black text-brand-text-primary">6 done</span></div>
           </div>
-          <div className="space-y-1.5 pt-1.5 border-t border-gray-100 text-[11px]">
+          <div className="space-y-1.5 pt-1.5 border-t border-brand-border text-[11px]">
             <p>🌟 **Strongest Skill:** Listening (dialogue comprehension speed is top-tier!)</p>
             <p>🔧 **Weakest Skill:** Grammar (Present Continuous exercises need review)</p>
             <p>🎯 **Next Week's Goal:** Past Tense prepositions conjugation</p>

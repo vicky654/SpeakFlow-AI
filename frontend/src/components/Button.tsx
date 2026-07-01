@@ -52,7 +52,7 @@ export const Button: React.FC<ButtonProps> = ({
       sizeClass = 'h-12 min-w-[90px] px-5 py-3 rounded-2xl text-[15px]';
       break;
     case 'sm':
-      sizeClass = 'h-11 min-w-[80px] px-5 py-2.5 rounded-[12px] text-sm';
+      sizeClass = 'h-11 min-w-[80px] px-5 py-2.5 rounded-2xl text-sm';
       break;
     case 'lg':
       sizeClass = 'h-[52px] min-w-[100px] px-6 py-4 rounded-2xl text-base';

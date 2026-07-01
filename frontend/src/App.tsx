@@ -349,7 +349,7 @@ const ProtectedLayout: React.FC = () => {
           
           {/* INNER CONTENT SCROLL CONTAINER */}
           <IonContent className="flex-1 overflow-y-auto bg-brand-bg" scrollEvents={true}>
-            <div className="px-4 md:px-8 pt-20 pb-36 md:py-6 max-w-7xl w-full mx-auto">
+            <div className="app-content-container max-w-7xl w-full mx-auto">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/learn" element={<LearnHub />} />

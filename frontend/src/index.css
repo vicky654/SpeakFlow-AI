@@ -57,7 +57,7 @@
   --glass-border: rgba(15, 23, 42, 0.06);
 
   /* Spacing Tokens */
-  --spacing-screen: 20px;
+  --spacing-screen: 16px;
   --spacing-section: 32px;
   --spacing-card: 24px;
   --spacing-element: 16px;
@@ -65,7 +65,7 @@
 
   /* Button Tokens */
   --btn-height-primary: 46px;
-  --btn-radius: 12px;
+  --btn-radius: 16px;
   --btn-font-weight: 600;
   --btn-padding-x: 18px;
   --btn-padding-y: 10px;
@@ -408,4 +408,20 @@ textarea {
 
 .animate-bounce-subtle {
   animation: bounceSubtle 2s infinite ease-in-out;
+}
+
+.app-content-container {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 80px;
+  padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .app-content-container {
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
 }
