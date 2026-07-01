@@ -57,5 +57,64 @@
     "longestStreak": 0,
     "luckySpinsLeftToday": 1,
     "updatedAt": "2026-06-30T07:13:28.835Z"
+  },
+  {
+    "_id": "6a44f3a3cbcda39effe0f720",
+    "userId": "6a44f3a3cbcda39effe0f71f",
+    "currentDay": 1,
+    "completedDays": [],
+    "dailyStatus": {
+      "1": {
+        "status": "current"
+      },
+      "2": {
+        "status": "locked"
+      },
+      "3": {
+        "status": "locked"
+      },
+      "4": {
+        "status": "locked"
+      },
+      "5": {
+        "status": "locked"
+      },
+      "6": {
+        "status": "locked"
+      },
+      "7": {
+        "status": "locked"
+      },
+      "8": {
+        "status": "locked"
+      },
+      "9": {
+        "status": "locked"
+      },
+      "10": {
+        "status": "locked"
+      },
+      "11": {
+        "status": "locked"
+      },
+      "12": {
+        "status": "locked"
+      },
+      "13": {
+        "status": "locked"
+      },
+      "14": {
+        "status": "locked"
+      },
+      "15": {
+        "status": "locked"
+      }
+    },
+    "answersSaved": {},
+    "xpEarned": 0,
+    "coinsEarned": 0,
+    "longestStreak": 0,
+    "luckySpinsLeftToday": 1,
+    "updatedAt": "2026-07-01T11:01:55.894Z"
   }
 ]

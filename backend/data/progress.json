@@ -37,5 +37,20 @@
     "xpEarned": 35,
     "coinsEarned": 5,
     "createdAt": "2026-06-30T07:51:40.001Z"
+  },
+  {
+    "_id": "6a44f3bfcbcda39effe0f721",
+    "userId": "6a44f3a3cbcda39effe0f71f",
+    "date": "2026-07-01",
+    "vocabWordsLearned": [],
+    "speakingTime": 12,
+    "readingTime": 0,
+    "listeningTime": 0,
+    "writingSubmissions": [],
+    "grammarQuizzesCompleted": [],
+    "dailyChallengeCompleted": false,
+    "xpEarned": 25,
+    "coinsEarned": 3,
+    "createdAt": "2026-07-01T11:02:23.030Z"
   }
 ]
