@@ -12,7 +12,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleMobileSidebar }) => {
   const toggleTheme = useAuthStore(state => state.toggleTheme);
 
   return (
-    <header className="h-16 w-full glass-nav flex items-center justify-between px-6 select-none sticky top-0 z-40">
+    <div className="h-16 fixed top-0 right-0 left-0 md:left-64 glass-nav flex items-center justify-between px-6 select-none z-40">
       {/* MOBILE TRIGGER */}
       <div className="flex items-center space-x-3">
         <button
@@ -59,6 +59,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleMobileSidebar }) => {
           {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-400" />}
         </button>
       </div>
-    </header>
+    </div>
   );
 };

@@ -807,7 +807,7 @@ export const Dashboard: React.FC = () => {
         {showWhatsAppMode && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowWhatsAppMode(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-[#ECE5DD] dark:bg-brand-bg rounded-t-[28px] z-50 p-5 flex flex-col pointer-events-auto text-left shadow-2xl">
+            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-[#ECE5DD] dark:bg-brand-bg rounded-t-[28px] z-50 p-5 flex flex-col pointer-events-auto text-left shadow-2xl" style={{ paddingBottom: 'calc(20px + env(safe-area-inset-bottom, 0px))' }}>
               
               <div className="flex justify-between items-center border-b border-emerald-800/10 pb-3 shrink-0 bg-emerald-600 text-white p-4 -mx-5 -mt-5 rounded-t-[28px]">
                 <div className="flex items-center space-x-2.5">
@@ -864,7 +864,7 @@ export const Dashboard: React.FC = () => {
         {showReflection && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowReflection(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-brand-card border-t border-brand-border rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4 shadow-2xl">
+            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-brand-card border-t border-brand-border rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4 shadow-2xl" style={{ paddingBottom: 'calc(24px + env(safe-area-inset-bottom, 0px))' }}>
               <div className="flex justify-between items-center border-b border-brand-border pb-3 shrink-0">
                 <span className="text-xs font-black uppercase text-purple-600 flex items-center gap-1.5"><Flame className="w-4.5 h-4.5 text-orange-500" /><span>End-of-Day Reflection</span></span>
                 <button onClick={() => setShowReflection(false)} className="p-1.5 bg-brand-surface border border-brand-border rounded-full hover:bg-brand-border text-brand-text-secondary"><X className="w-4 h-4" /></button>
@@ -873,13 +873,13 @@ export const Dashboard: React.FC = () => {
                 {!reflectionSubmitted ? (
                   <div className="space-y-4">
                     <input type="text" placeholder="Today I learned..." value={reflectionText} onChange={(e) => setReflectionText(e.target.value)} className="w-full py-3 px-4 bg-brand-bg border border-brand-border rounded-xl text-xs focus:outline-none text-brand-text-primary placeholder-brand-text-muted focus:bg-brand-card transition-all font-sans" />
-                    <button disabled={!reflectionText.trim()} onClick={handleSubmitReflection} className="w-full py-3 bg-purple-600 text-white rounded-xl text-xs font-bold">Save Reflection</button>
+                    <button disabled={!reflectionText.trim()} onClick={handleSubmitReflection} className="w-full py-3 bg-purple-600 text-white rounded-xl text-xs font-bold shadow-sm hover:bg-purple-700 transition-colors">Save Reflection</button>
                   </div>
                 ) : (
                   <div className="space-y-4 text-center flex flex-col items-center">
                     <span className="text-3xl">✨</span>
                     <p className="text-xs">"I learned: {reflectionText}"</p>
-                    <button onClick={() => setShowReflection(false)} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Finish Day</button>
+                    <button onClick={() => setShowReflection(false)} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold shadow-sm hover:bg-indigo-700 transition-colors">Finish Day</button>
                   </div>
                 )}
               </div>
@@ -893,7 +893,7 @@ export const Dashboard: React.FC = () => {
         {showOneMinPractice && (
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowOneMinPractice(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
-            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-brand-card border-t border-brand-border rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4 shadow-2xl">
+            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[80vh] bg-brand-card border-t border-brand-border rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4 shadow-2xl" style={{ paddingBottom: 'calc(24px + env(safe-area-inset-bottom, 0px))' }}>
               <div className="flex justify-between items-center border-b border-brand-border pb-3 shrink-0">
                 <span className="text-xs font-black uppercase text-indigo-600 flex items-center gap-1.5"><Timer className="w-4.5 h-4.5" /><span>One-Minute Practice Sprint</span></span>
                 <button onClick={() => setShowOneMinPractice(false)} className="p-1.5 bg-brand-surface border border-brand-border rounded-full hover:bg-brand-border text-brand-text-secondary"><X className="w-4 h-4" /></button>
@@ -905,30 +905,98 @@ export const Dashboard: React.FC = () => {
                       <h3 className="text-2xl font-bold text-indigo-700">{oneMinVocabIdx === 0 ? 'Eager' : oneMinVocabIdx === 1 ? 'Procrastinate' : 'Coherent'}</h3>
                       <p className="text-xs leading-normal mt-2">{oneMinVocabIdx === 0 ? 'Very excited.' : oneMinVocabIdx === 1 ? 'Delay action.' : 'Clear.'}</p>
                     </div>
-                    <button onClick={() => { if (oneMinVocabIdx < 2) setOneMinVocabIdx(prev => prev + 1); else setOneMinStep(2); }} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Next Word</button>
+                    <button onClick={() => { if (oneMinVocabIdx < 2) setOneMinVocabIdx(prev => prev + 1); else setOneMinStep(2); }} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold shadow-sm hover:bg-indigo-700 transition-colors">Next Word</button>
                   </div>
                 )}
                 {oneMinStep === 2 && (
                   <div className="space-y-4 text-center">
                     <p className="text-xs font-semibold">"I am learning English with SpeakFlow every day."</p>
-                    <button onClick={toggleOneMinRecord} className={`w-14 h-14 rounded-full flex items-center justify-center text-white ${oneMinIsRecording ? 'bg-rose-500 animate-pulse' : 'bg-indigo-600'}`}><Mic className="w-5 h-5" /></button>
+                    <button onClick={toggleOneMinRecord} className={`w-14 h-14 rounded-full flex items-center justify-center text-white mx-auto ${oneMinIsRecording ? 'bg-rose-500 animate-pulse' : 'bg-indigo-600 hover:bg-indigo-700'}`}><Mic className="w-5 h-5" /></button>
                     {oneMinSpeechVerified && <p className="text-xs text-emerald-500">Verified!</p>}
-                    <button disabled={!oneMinSpeechVerified} onClick={() => setOneMinStep(3)} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Next</button>
+                    <button disabled={!oneMinSpeechVerified} onClick={() => setOneMinStep(3)} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold shadow-sm hover:bg-indigo-700 transition-colors">Next</button>
                   </div>
                 )}
                 {oneMinStep === 3 && (
                   <div className="space-y-4">
-                    <p className="text-xs font-bold">Identify missing word: "She ______ to the park yesterday."</p>
-                    {['Goes', 'Go', 'Went', 'Going'].map((opt, i) => (
-                      <button key={opt} onClick={() => setOneMinQuizAnswer(opt === 'Went' ? 'C' : 'A')} className="w-full p-3 bg-brand-card border border-brand-border text-brand-text-primary rounded-xl text-xs text-left hover:bg-brand-surface">{(i+1)}. {opt}</button>
-                    ))}
-                    <button onClick={() => setOneMinStep(4)} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Submit</button>
+                    <p className="text-xs font-bold text-brand-text-primary">Identify missing word: "She ______ to the park yesterday."</p>
+                    <div className="grid grid-cols-1 gap-2">
+                      {['Goes', 'Go', 'Went', 'Going'].map((opt, i) => (
+                        <button key={opt} onClick={() => setOneMinQuizAnswer(opt === 'Went' ? 'C' : 'A')} className="w-full p-3 bg-brand-card border border-brand-border text-brand-text-primary rounded-xl text-xs text-left hover:bg-brand-surface">{(i+1)}. {opt}</button>
+                      ))}
+                    </div>
+                    <button onClick={() => setOneMinStep(4)} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold shadow-sm hover:bg-indigo-700 transition-colors">Submit</button>
                   </div>
                 )}
                 {oneMinStep === 4 && (
                   <div className="space-y-4 text-center">
-                    <p className="text-xs">Practice completed successfully!</p>
-                    <button onClick={claimOneMinRewards} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold">Claim Rewards</button>
+                    <p className="text-xs text-brand-text-primary">Practice completed successfully!</p>
+                    <button onClick={claimOneMinRewards} className="w-full py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold shadow-sm hover:bg-indigo-700 transition-colors">Claim Rewards</button>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* ================= VOICE JOURNAL CHALLENGE DRAWER ================= */}
+      <AnimatePresence>
+        {showVoiceJournal && (
+          <>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={() => setShowVoiceJournal(false)} className="fixed inset-0 bg-black z-50 pointer-events-auto" />
+            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25 }} className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-brand-card border-t border-brand-border rounded-t-[28px] z-50 p-6 flex flex-col pointer-events-auto text-left space-y-4 shadow-2xl" style={{ paddingBottom: 'calc(24px + env(safe-area-inset-bottom, 0px))' }}>
+              
+              <div className="flex justify-between items-center border-b border-brand-border pb-3 shrink-0">
+                <span className="text-xs font-black uppercase text-indigo-600 flex items-center gap-1.5"><Mic className="w-4.5 h-4.5 text-indigo-500" /><span>Voice Journal Challenge</span></span>
+                <button onClick={() => setShowVoiceJournal(false)} className="p-1.5 bg-brand-surface border border-brand-border rounded-full hover:bg-brand-border text-brand-text-secondary"><X className="w-4 h-4" /></button>
+              </div>
+
+              <div className="flex-grow overflow-y-auto space-y-5 py-2">
+                {!voiceResult ? (
+                  <div className="flex flex-col items-center justify-center space-y-6 py-6 text-center">
+                    <div className="space-y-1">
+                      <p className="text-sm font-bold text-brand-text-primary">Record today's spoken challenge prompt</p>
+                      <p className="text-xs text-brand-text-secondary italic">"{todayChallengePrompt}"</p>
+                    </div>
+
+                    <div className="flex flex-col items-center space-y-2">
+                      <button
+                        onClick={handleToggleVoiceJournal}
+                        className={`w-20 h-20 rounded-full flex items-center justify-center text-white transition-all shadow-md active:scale-95 ${
+                          voiceRecording ? 'bg-rose-500 animate-pulse' : 'bg-indigo-600 hover:bg-indigo-700'
+                        }`}
+                      >
+                        <Mic className="w-8 h-8" />
+                      </button>
+                      <span className="text-[11px] font-bold text-brand-text-secondary">
+                        {voiceRecording ? `Recording... ${voiceTimer}s (Tap to Save)` : 'Tap to Start Recording'}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-5">
+                    <div className="p-4 bg-brand-bg border border-brand-border rounded-2xl space-y-2">
+                      <span className="text-[9px] uppercase tracking-wider font-extrabold text-indigo-600 dark:text-indigo-400 block">Speech Transcript</span>
+                      <p className="text-xs text-brand-text-primary leading-relaxed">"{voiceResult.transcript}"</p>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="p-3 bg-brand-bg border border-brand-border rounded-xl text-center">
+                        <span className="text-[9px] uppercase font-bold text-brand-text-muted block">Pronunciation</span>
+                        <span className="text-lg font-black text-emerald-500">{voiceResult.pronunciation}%</span>
+                      </div>
+                      <div className="p-3 bg-brand-bg border border-brand-border rounded-xl text-center">
+                        <span className="text-[9px] uppercase font-bold text-brand-text-muted block">Fluency Speed</span>
+                        <span className="text-lg font-black text-indigo-500">{voiceResult.wpm} WPM</span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => setShowVoiceJournal(false)}
+                      className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all shadow-md active:scale-95"
+                    >
+                      Complete &amp; Earn Rewards
+                    </button>
                   </div>
                 )}
               </div>

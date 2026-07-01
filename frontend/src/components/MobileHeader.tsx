@@ -8,7 +8,7 @@ export const MobileHeader: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 bg-brand-surface/85 backdrop-blur-md border-b border-brand-border flex items-center justify-between px-4 z-40 select-none safe-top shadow-sm">
+    <div className="fixed top-0 left-0 right-0 h-16 bg-brand-surface/85 backdrop-blur-md border-b border-brand-border flex items-center justify-between px-4 z-40 select-none safe-top shadow-sm">
       
       {/* 1. LEFT SIDE: App Logo & SpeakFlow AI */}
       <div 
@@ -53,6 +53,6 @@ export const MobileHeader: React.FC = () => {
           </div>
         </div>
       )}
-    </header>
+    </div>
   );
 };
